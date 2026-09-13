@@ -1,34 +1,34 @@
 """Coleta de estatísticas de acesso via API do GoatCounter.
 
-Cada site monitorado tem, opcionalmente, um `goatcounter_code` (o subdomínio
-`<code>.goatcounter.com`) e um token de API correspondente, lido do JSON na
-variável de ambiente GOATCOUNTER_TOKENS (formato {"<code>": "<token>"} —
-nunca fica hardcoded nem exposto no front, só o Action server-side lê).
+Um único site GoatCounter (`gfvdata`) recebe o rastreio de todos os sites
+monitorados — todos vivem sob o mesmo domínio `gfvdata-web.github.io/<repo>/`,
+então o caminho registrado já vem prefixado com o nome do repositório sem
+precisar de nenhum JavaScript especial no snippet. A separação por site aqui
+é feita filtrando os caminhos por esse prefixo.
 
-Site sem código configurado, ou sem token disponível, simplesmente não tem
-bloco de acesso no status.json — o painel mostra "sem dados de acesso ainda"
-em vez de quebrar.
+Token de API lido de GOATCOUNTER_TOKEN (variável de ambiente, nunca hardcoded
+nem exposto no front — só o Action server-side lê). Sem token configurado,
+todo site fica sem bloco de acesso no status.json em vez de quebrar o resto.
 
-Referência da API: https://www.goatcounter.com/api (v0). Os campos exatos de
-resposta foram conferidos contra a doc pública; se o formato mudar, as funções
-abaixo devem ser ajustadas — elas nunca lançam exceção para fora, só retornam
-None em caso de erro, pra uma falha de um site não derrubar os outros.
+Referência da API: https://www.goatcounter.com/help/api — endpoints usados:
+GET /api/v0/paths (lista de caminhos conhecidos, para achar os IDs de cada
+site) e GET /api/v0/stats/total?include_paths=... (total + série diária já
+filtrados pelos IDs de caminho do site).
 """
 
 import json
 import os
-import urllib.request
 import urllib.error
+import urllib.parse
+import urllib.request
+from datetime import datetime, timedelta, timezone
+
+GOATCOUNTER_CODE = "gfvdata"
+INICIO_HISTORICO = "2026-01-01T00:00:00Z"  # antes de qualquer site ter tracking
 
 
-def _tokens():
-    bruto = os.environ.get("GOATCOUNTER_TOKENS", "")
-    if not bruto.strip():
-        return {}
-    try:
-        return json.loads(bruto)
-    except json.JSONDecodeError:
-        return {}
+def _token():
+    return os.environ.get("GOATCOUNTER_TOKEN", "").strip() or None
 
 
 def _get_json(url, token):
@@ -44,28 +44,63 @@ def _get_json(url, token):
         return json.loads(resp.read().decode("utf-8"))
 
 
-def estatisticas(goatcounter_code):
-    """Total de pageviews/visitantes + série diária dos últimos 30 dias."""
-    if not goatcounter_code:
-        return None
-    token = _tokens().get(goatcounter_code)
+def _todos_os_caminhos(base, token):
+    """Pagina /api/v0/paths e devolve a lista completa de {id, path}."""
+    caminhos = []
+    apos = None
+    while True:
+        params = {"Limit": 200}
+        if apos is not None:
+            params["After"] = apos
+        pagina = _get_json(f"{base}/paths?{urllib.parse.urlencode(params)}", token)
+        caminhos.extend(pagina.get("paths", []))
+        if not pagina.get("more") or not pagina.get("paths"):
+            break
+        apos = pagina["paths"][-1]["id"]
+    return caminhos
+
+
+def _ids_do_site(caminhos, repo):
+    prefixo = f"/{repo}/"
+    exato = f"/{repo}"
+    return [c["id"] for c in caminhos if c["path"] == exato or c["path"].startswith(prefixo)]
+
+
+def estatisticas_por_repo(repos):
+    """Para uma lista de nomes de repositório, devolve {repo: {total, serie_diaria} | None}."""
+    token = _token()
     if not token:
-        return None
+        return {repo: None for repo in repos}
 
-    base = f"https://{goatcounter_code}.goatcounter.com/api/v0"
+    base = f"https://{GOATCOUNTER_CODE}.goatcounter.com/api/v0"
     try:
-        total = _get_json(f"{base}/stats/total", token)
-        hits = _get_json(f"{base}/stats/hits?daily=true", token)
+        caminhos = _todos_os_caminhos(base, token)
     except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError):
-        return None
+        return {repo: None for repo in repos}
 
-    serie_diaria = []
-    for pagina in hits.get("hits", []):
-        for dia in pagina.get("stats", []):
-            serie_diaria.append({"data": dia.get("day"), "visitas": dia.get("daily", dia.get("count"))})
-
-    return {
-        "total_pageviews": total.get("total"),
-        "total_eventos": total.get("total_events"),
-        "serie_diaria": serie_diaria,
-    }
+    resultado = {}
+    fim = datetime.now(timezone.utc).isoformat()
+    for repo in repos:
+        ids = _ids_do_site(caminhos, repo)
+        if not ids:
+            resultado[repo] = None
+            continue
+        query = urllib.parse.urlencode(
+            {"start": INICIO_HISTORICO, "end": fim, "include_paths": ids}, doseq=True
+        )
+        try:
+            dados = _get_json(f"{base}/stats/total?{query}", token)
+        except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError):
+            resultado[repo] = None
+            continue
+        serie_completa = [
+            {"data": dia.get("day"), "visitas": dia.get("daily", 0)}
+            for dia in dados.get("stats", [])
+        ]
+        corte = datetime.now(timezone.utc) - timedelta(days=30)
+        serie_30d = [d for d in serie_completa if d["data"] and d["data"] >= corte.strftime("%Y-%m-%d")]
+        resultado[repo] = {
+            "total_pageviews": dados.get("total"),
+            "serie_diaria": serie_30d,
+        }
+    return resultado

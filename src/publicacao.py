@@ -16,7 +16,7 @@ SAIDA = Path(__file__).resolve().parent.parent / "docs" / "dados" / "status.json
 RE_RODADA = re.compile(r"rodada\s+(\d+)", re.IGNORECASE)
 
 
-def coletar_site(site):
+def coletar_site(site, acesso_por_repo):
     bloco = {
         "slug": site["slug"],
         "nome": site["nome"],
@@ -42,7 +42,7 @@ def coletar_site(site):
 
     bloco["site_no_ar"] = gh.site_no_ar(site["pages_url"])
 
-    acesso = gc.estatisticas(site.get("goatcounter_code"))
+    acesso = acesso_por_repo.get(site["repo"])
     if acesso:
         bloco["acesso"] = acesso
 
@@ -50,12 +50,13 @@ def coletar_site(site):
 
 
 def montar():
+    acesso_por_repo = gc.estatisticas_por_repo([site["repo"] for site in SITES])
     return {
         "meta": {
             "gerado_em": gh.agora_iso(),
             "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web",
         },
-        "sites": [coletar_site(site) for site in SITES],
+        "sites": [coletar_site(site, acesso_por_repo) for site in SITES],
     }
 
 

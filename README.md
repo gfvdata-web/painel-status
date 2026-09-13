@@ -41,20 +41,26 @@ python -m http.server --directory docs 8000
 
 ## Configurar o rastreio de acesso (GoatCounter)
 
-O rastreio de acesso é opcional por site — um site sem `goatcounter_code` configurado em
-`src/config.py` simplesmente aparece sem números de visita, sem quebrar o resto do painel.
-Para ativar:
+Um único site GoatCounter (`gfvdata`) recebe o rastreio de **todos** os sites monitorados.
+Isso funciona porque todos vivem sob o mesmo domínio `gfvdata-web.github.io/<repo>/` — o
+caminho que o GoatCounter registra já vem prefixado com o nome do repositório, então dá pra
+separar as estatísticas por site sem precisar de um snippet diferente em cada um.
 
-1. Criar uma conta gratuita em https://www.goatcounter.com/signup.
-2. Criar um "site" por propriedade a rastrear (um subdomínio `<code>.goatcounter.com` cada).
-3. Em cada site, gerar um token de API em **Settings → API** (leitura de estatísticas basta).
-4. Preencher o `goatcounter_code` de cada entrada em `src/config.py`.
-5. Guardar os tokens como um único secret `GOATCOUNTER_TOKENS` neste repositório, em JSON:
-   `{"<code>": "<token>", ...}`.
-6. Adicionar em cada site monitorado, no `<head>` do HTML publicado:
+O rastreio de acesso é opcional: sem o secret configurado, todo site aparece sem números de
+visita, sem quebrar o resto do painel. Para ativar:
+
+1. No site `gfvdata` do GoatCounter, gerar um token em **[username] → API**, com permissão de
+   leitura de estatísticas.
+2. Guardar esse token como o secret `GOATCOUNTER_TOKEN` neste repositório.
+3. Adicionar, no `<head>` de cada site monitorado, o snippet padrão (igual em todos, nada de
+   JavaScript extra):
    ```html
-   <script data-goatcounter="https://<code>.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+   <script data-goatcounter="https://gfvdata.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
    ```
+
+A lista de repositórios cobertos é `src/config.py` — nenhum campo lá precisa saber do
+GoatCounter; a separação por site é feita em `src/coleta_goatcounter.py` filtrando os
+caminhos pelo prefixo `/<repo>/`.
 
 ## Sites monitorados
 

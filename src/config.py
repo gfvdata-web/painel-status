@@ -4,6 +4,11 @@ Cada entrada descreve um site publicado via GitHub Pages sob a conta gfvdata-web
 Nada aqui exige mudança nos repositórios monitorados: o painel só lê informação
 pública já exposta pela API do GitHub (commits, execuções de Actions) e, quando
 configurado, pela API do GoatCounter.
+
+Rastreio de acesso: um único site GoatCounter (`gfvdata`, ver coleta_goatcounter.py)
+recebe o snippet padrão em todos os sites monitorados — a separação entre eles é
+feita pelo prefixo do caminho (o nome do repositório), já que todos vivem sob
+gfvdata-web.github.io/<repo>/. Não há campo por-site aqui para isso.
 """
 
 OWNER = "gfvdata-web"
@@ -16,7 +21,6 @@ SITES = [
         "pages_url": "https://gfvdata-web.github.io/page-bolao-formula1/",
         "caminho_dados": "docs/data",
         "workflow_arquivo": "pipeline.yml",
-        "goatcounter_code": None,
         "destaque": True,
     },
     {
@@ -27,7 +31,6 @@ SITES = [
         "caminho_dados": "docs/dados",
         "json_meta_url": "https://gfvdata-web.github.io/fonte-meios-pagamento/dados/meios_pagamento_mensal.json",
         "workflow_arquivo": None,
-        "goatcounter_code": None,
         "destaque": False,
     },
     {
@@ -38,7 +41,6 @@ SITES = [
         "caminho_dados": "docs/dados",
         "json_meta_url": "https://gfvdata-web.github.io/fonte-arrecadacao-federal/dados/arrecadacao_federal.json",
         "workflow_arquivo": None,
-        "goatcounter_code": None,
         "destaque": False,
     },
     {
@@ -49,7 +51,6 @@ SITES = [
         "caminho_dados": "docs/dados",
         "json_meta_url": "https://gfvdata-web.github.io/fonte-credito-modalidade/dados/credito_modalidade.json",
         "workflow_arquivo": None,
-        "goatcounter_code": None,
         "destaque": False,
     },
     {
@@ -59,7 +60,6 @@ SITES = [
         "pages_url": "https://gfvdata-web.github.io/simulador-investimentos/",
         "caminho_dados": "dados",
         "workflow_arquivo": "atualizar-dados.yml",
-        "goatcounter_code": None,
         "destaque": False,
     },
     {
@@ -69,11 +69,6 @@ SITES = [
         "pages_url": "https://gfvdata-web.github.io/cruzeiro-indata-publico/",
         "caminho_dados": "data",
         "workflow_arquivo": None,
-        "goatcounter_code": None,
         "destaque": False,
     },
 ]
-
-# Preenchido depois que as contas do GoatCounter existirem (ver README).
-# Formato: {"<goatcounter_code>": "<api_token>"}
-GOATCOUNTER_TOKENS_ENV = "GOATCOUNTER_TOKENS"

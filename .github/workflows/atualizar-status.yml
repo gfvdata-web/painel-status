@@ -33,7 +33,7 @@ jobs:
       - name: Coletar status
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GOATCOUNTER_TOKENS: ${{ secrets.GOATCOUNTER_TOKENS }}
+          GOATCOUNTER_TOKEN: ${{ secrets.GOATCOUNTER_TOKEN }}
         run: python -m src.publicacao
 
       - name: Commitar se algo mudou
