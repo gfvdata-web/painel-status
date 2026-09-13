@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Painel de Status — gfvdata-web</title>
+  <link rel="stylesheet" href="css/estilo.css" />
+</head>
+<body>
+  <header class="cabecalho">
+    <div class="conteiner">
+      <p class="sobrelinha">gfvdata-web</p>
+      <h1>Painel de Status</h1>
+      <p class="subtitulo">
+        Acesso e atualização de dados de todos os sites publicados pela conta —
+        com destaque para o Bolão F1.
+      </p>
+      <p class="meta-info" id="meta-gerado">Carregando...</p>
+    </div>
+  </header>
+
+  <main class="conteiner">
+    <section id="secao-destaque"></section>
+    <section>
+      <h2 class="titulo-secao">Outros sites</h2>
+      <div class="grade-sites" id="grade-sites"></div>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <div class="conteiner">
+      <p>Gerado automaticamente a partir da API do GitHub e do GoatCounter — código em
+        <a href="https://github.com/gfvdata-web/painel-status" target="_blank" rel="noopener">gfvdata-web/painel-status</a>.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

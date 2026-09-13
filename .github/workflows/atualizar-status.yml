@@ -1,0 +1,49 @@
+name: Atualizar status
+
+# Consulta a API do GitHub (e do GoatCounter, quando configurado) para cada
+# site monitorado e publica docs/dados/status.json — o único arquivo que a
+# página lida.
+#
+# Horário: a cada 3 horas. Não há janela "certa" aqui como nas fontes
+# financeiras (o bolão F1 é orientado a evento, não a calendário), então um
+# intervalo curto e regular é o suficiente pra pegar mudanças com atraso baixo.
+
+on:
+  schedule:
+    - cron: '0 */3 * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: atualizar-status
+  cancel-in-progress: false
+
+jobs:
+  coletar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Coletar status
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GOATCOUNTER_TOKENS: ${{ secrets.GOATCOUNTER_TOKENS }}
+        run: python -m src.publicacao
+
+      - name: Commitar se algo mudou
+        run: |
+          git config user.name  'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          if git diff --quiet -- docs/dados/status.json; then
+            echo 'Nenhuma mudança de status; nada a commitar.'
+            exit 0
+          fi
+          git add docs/dados/status.json
+          git commit -m "Atualiza status em $(date -u +'%Y-%m-%dT%H:%MZ')"
+          git push

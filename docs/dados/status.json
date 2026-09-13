@@ -1,0 +1,182 @@
+{
+  "meta": {
+    "gerado_em": "2026-09-13T19:34:21.960130+00:00",
+    "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
+  },
+  "sites": [
+    {
+      "slug": "bolao_f1",
+      "nome": "Bolão F1",
+      "repo": "page-bolao-formula1",
+      "pages_url": "https://gfvdata-web.github.io/page-bolao-formula1/",
+      "destaque": true,
+      "ultimo_commit_dados": {
+        "data": "2026-09-13T19:03:07Z",
+        "mensagem": "Etapa 5: atualiza dados via pipeline (rodada 14, Madrid)",
+        "sha": "de59c93",
+        "url": "https://github.com/gfvdata-web/page-bolao-formula1/commit/de59c933bb1c9e0ae2bfbc560f66dd02f9966398"
+      },
+      "ultima_execucao_pipeline": {
+        "status": "completed",
+        "conclusao": "failure",
+        "criado_em": "2026-09-12T22:55:45Z",
+        "atualizado_em": "2026-09-12T22:55:53Z",
+        "url": "https://github.com/gfvdata-web/page-bolao-formula1/actions/runs/34724050738"
+      },
+      "rodada_mais_recente": 14,
+      "em_vigilia": false,
+      "site_no_ar": {
+        "ok": true,
+        "status_http": 200
+      }
+    },
+    {
+      "slug": "meios_pagamento_mensal",
+      "nome": "Meios de pagamento",
+      "repo": "fonte-meios-pagamento",
+      "pages_url": "https://gfvdata-web.github.io/fonte-meios-pagamento/",
+      "destaque": false,
+      "ultimo_commit_dados": {
+        "data": "2026-08-15T21:48:13Z",
+        "mensagem": "Perfil: motor detecta medida guardada como texto",
+        "sha": "cd01517",
+        "url": "https://github.com/gfvdata-web/fonte-meios-pagamento/commit/cd01517fee25c4d0533c79aea8dd60068d9501b0"
+      },
+      "meta_publicada": {
+        "fonte": "BCB — Estatísticas de Meios de Pagamento (mensal)",
+        "descricao": "Quantidade e valor de movimentação por AnoMes e forma de pagamento no Brasil.",
+        "url": "https://olinda.bcb.gov.br/olinda/servico/MPV_DadosAbertos/versao/v1/odata/MeiosdePagamentosMensalDA(AnoMes=@AnoMes)?@AnoMes=''&$format=json",
+        "unidades": {
+          "quantidade": "milhares de transações",
+          "valor": "R$ milhões"
+        },
+        "periodicidade": "mensal",
+        "licenca": "Dados abertos — Banco Central do Brasil",
+        "gerado_em": "2026-08-15T21:28:37.688925+00:00",
+        "periodo": {
+          "inicio": "2002-04",
+          "fim": "2026-06"
+        }
+      },
+      "site_no_ar": {
+        "ok": true,
+        "status_http": 200
+      }
+    },
+    {
+      "slug": "arrecadacao_federal",
+      "nome": "Arrecadação federal",
+      "repo": "fonte-arrecadacao-federal",
+      "pages_url": "https://gfvdata-web.github.io/fonte-arrecadacao-federal/",
+      "destaque": false,
+      "ultimo_commit_dados": {
+        "data": "2026-08-15T21:48:16Z",
+        "mensagem": "Perfil: motor detecta medida guardada como texto",
+        "sha": "c81ae4e",
+        "url": "https://github.com/gfvdata-web/fonte-arrecadacao-federal/commit/c81ae4edefbe8813b0e02f48cba0844bb117713d"
+      },
+      "meta_publicada": {
+        "fonte": "RFB — Arrecadação das Receitas Federais (série histórica)",
+        "descricao": "Valor arrecadado mensal por tributo no Brasil, a preços correntes, publicado pela Receita Federal no portal ReceitaData.",
+        "url": "https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/dados-abertos/receitadata/arrecadacao/serie-historica/",
+        "arquivos": [
+          "arrecadacao-das-receitas-federais-1970-a-1993.xlsx",
+          "arrecadacao-das-receitas-federais-1994-a-2025.xlsx"
+        ],
+        "unidades": {
+          "valor": "R$ milhões (correntes)",
+          "valor_constante": "R$ milhões (constantes, IPCA do último mês)"
+        },
+        "periodicidade": "mensal",
+        "licenca": "CC-BY-ND 3.0 — Receita Federal do Brasil",
+        "deflator": "IPCA — BCB/SGS série 433",
+        "mes_base_constante": "2025-12",
+        "gerado_em": "2026-08-15T21:37:56.571369+00:00",
+        "periodo": {
+          "inicio": "1994-01",
+          "fim": "2025-12"
+        }
+      },
+      "site_no_ar": {
+        "ok": true,
+        "status_http": 200
+      }
+    },
+    {
+      "slug": "credito_modalidade",
+      "nome": "Crédito por modalidade",
+      "repo": "fonte-credito-modalidade",
+      "pages_url": "https://gfvdata-web.github.io/fonte-credito-modalidade/",
+      "destaque": false,
+      "ultimo_commit_dados": {
+        "data": "2026-08-15T21:47:58Z",
+        "mensagem": "Etapa E: pagina de exploracao dos dados",
+        "sha": "3bb1bd2",
+        "url": "https://github.com/gfvdata-web/fonte-credito-modalidade/commit/3bb1bd27ec9c0fb0e464416658fa22ce78607dfb"
+      },
+      "meta_publicada": {
+        "fonte": "BCB — Crédito por modalidade (SGS)",
+        "descricao": "Saldo da carteira, taxa média de juros e spread das operações de crédito do Sistema Financeiro Nacional, por modalidade e por segmento (PF/PJ).",
+        "url": "https://dadosabertos.bcb.gov.br/dataset/20539-saldo-da-carteira-de-credito---total",
+        "unidades": {
+          "saldo": "R$ milhões",
+          "taxa_juros_aa": "% ao ano",
+          "spread_pp": "p.p. ao ano"
+        },
+        "periodicidade": "mensal",
+        "licenca": "Open Database License (ODbL) — Banco Central do Brasil",
+        "gerado_em": "2026-08-15T21:46:53.092497+00:00",
+        "periodo": {
+          "inicio": "2011-03",
+          "fim": "2026-06"
+        },
+        "series_sgs": 61
+      },
+      "site_no_ar": {
+        "ok": true,
+        "status_http": 200
+      }
+    },
+    {
+      "slug": "simulador_investimentos",
+      "nome": "Simulador de investimentos",
+      "repo": "simulador-investimentos",
+      "pages_url": "https://gfvdata-web.github.io/simulador-investimentos/",
+      "destaque": false,
+      "ultimo_commit_dados": {
+        "data": "2026-09-11T23:02:34Z",
+        "mensagem": "Dados de mercado em 2026-09-11",
+        "sha": "4480867",
+        "url": "https://github.com/gfvdata-web/simulador-investimentos/commit/44808672ba04c453dc2b339eae7e16b49969079d"
+      },
+      "ultima_execucao_pipeline": {
+        "status": "completed",
+        "conclusao": "success",
+        "criado_em": "2026-09-11T22:51:34Z",
+        "atualizado_em": "2026-09-11T23:02:38Z",
+        "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/34655777576"
+      },
+      "site_no_ar": {
+        "ok": true,
+        "status_http": 200
+      }
+    },
+    {
+      "slug": "cruzeiro_indata",
+      "nome": "Cruzeiro Indata",
+      "repo": "cruzeiro-indata-publico",
+      "pages_url": "https://gfvdata-web.github.io/cruzeiro-indata-publico/",
+      "destaque": false,
+      "ultimo_commit_dados": {
+        "data": "2026-07-11T13:10:02Z",
+        "mensagem": "Site publico: Brasileirao Serie A via football-data.org",
+        "sha": "3ef07cb",
+        "url": "https://github.com/gfvdata-web/cruzeiro-indata-publico/commit/3ef07cb21d2af45ae5dc85e4c2989483e7750a71"
+      },
+      "site_no_ar": {
+        "ok": true,
+        "status_http": 200
+      }
+    }
+  ]
+}
