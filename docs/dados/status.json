@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-09-18T22:58:13.872805+00:00",
+    "gerado_em": "2026-09-19T02:52:12.420250+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -32,10 +32,6 @@
       "acesso": {
         "total_pageviews": 7,
         "serie_diaria": [
-          {
-            "data": "2026-08-19",
-            "visitas": 0
-          },
           {
             "data": "2026-08-20",
             "visitas": 0
@@ -194,10 +190,6 @@
       "acesso": {
         "total_pageviews": 3,
         "serie_diaria": [
-          {
-            "data": "2026-08-19",
-            "visitas": 0
-          },
           {
             "data": "2026-08-20",
             "visitas": 0
@@ -363,10 +355,6 @@
         "total_pageviews": 3,
         "serie_diaria": [
           {
-            "data": "2026-08-19",
-            "visitas": 0
-          },
-          {
             "data": "2026-08-20",
             "visitas": 0
           },
@@ -531,16 +519,16 @@
       "pages_url": "https://gfvdata-web.github.io/simulador-investimentos/",
       "destaque": false,
       "ultimo_commit_dados": {
-        "data": "2026-09-16T23:32:23Z",
-        "mensagem": "Dados de mercado em 2026-09-16",
-        "sha": "1dde3fb",
-        "url": "https://github.com/gfvdata-web/simulador-investimentos/commit/1dde3fb2a9f6c301b405c6d2dd46cffa05dcb545"
+        "data": "2026-09-18T23:06:04Z",
+        "mensagem": "Dados de mercado em 2026-09-18",
+        "sha": "f50a998",
+        "url": "https://github.com/gfvdata-web/simulador-investimentos/commit/f50a998d4bad01008013103e17f502b863a8ffec"
       },
       "ultima_execucao_pipeline": {
-        "status": "in_progress",
-        "conclusao": null,
+        "status": "completed",
+        "conclusao": "success",
         "criado_em": "2026-09-18T22:53:40Z",
-        "atualizado_em": "2026-09-18T22:53:44Z",
+        "atualizado_em": "2026-09-18T23:06:09Z",
         "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/35403499066"
       },
       "site_no_ar": {
@@ -550,10 +538,6 @@
       "acesso": {
         "total_pageviews": 1,
         "serie_diaria": [
-          {
-            "data": "2026-08-19",
-            "visitas": 0
-          },
           {
             "data": "2026-08-20",
             "visitas": 0
