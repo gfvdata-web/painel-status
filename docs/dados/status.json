@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-09-19T22:37:38.396354+00:00",
+    "gerado_em": "2026-09-20T03:04:36.101285+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -32,10 +32,6 @@
       "acesso": {
         "total_pageviews": 7,
         "serie_diaria": [
-          {
-            "data": "2026-08-20",
-            "visitas": 0
-          },
           {
             "data": "2026-08-21",
             "visitas": 0
@@ -154,6 +150,10 @@
           },
           {
             "data": "2026-09-19",
+            "visitas": 0
+          },
+          {
+            "data": "2026-09-20",
             "visitas": 0
           }
         ]
@@ -195,10 +195,6 @@
         "total_pageviews": 3,
         "serie_diaria": [
           {
-            "data": "2026-08-20",
-            "visitas": 0
-          },
-          {
             "data": "2026-08-21",
             "visitas": 0
           },
@@ -316,6 +312,10 @@
           },
           {
             "data": "2026-09-19",
+            "visitas": 0
+          },
+          {
+            "data": "2026-09-20",
             "visitas": 0
           }
         ]
@@ -363,10 +363,6 @@
         "total_pageviews": 3,
         "serie_diaria": [
           {
-            "data": "2026-08-20",
-            "visitas": 0
-          },
-          {
             "data": "2026-08-21",
             "visitas": 0
           },
@@ -484,6 +480,10 @@
           },
           {
             "data": "2026-09-19",
+            "visitas": 0
+          },
+          {
+            "data": "2026-09-20",
             "visitas": 0
           }
         ]
@@ -551,10 +551,6 @@
         "total_pageviews": 1,
         "serie_diaria": [
           {
-            "data": "2026-08-20",
-            "visitas": 0
-          },
-          {
             "data": "2026-08-21",
             "visitas": 0
           },
@@ -672,6 +668,10 @@
           },
           {
             "data": "2026-09-19",
+            "visitas": 0
+          },
+          {
+            "data": "2026-09-20",
             "visitas": 0
           }
         ]
