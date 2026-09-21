@@ -100,6 +100,11 @@ function badgeNoAr(site) {
     : `<span class="badge erro">Site pode estar fora do ar</span>`;
 }
 
+function formatarDataCurta(iso) {
+  const [ano, mes, dia] = iso.split("-");
+  return `${dia}/${mes}/${ano}`;
+}
+
 function renderizarGraficoAcesso(canvasId, serieDiaria, cor) {
   const ctx = document.getElementById(canvasId);
   if (!ctx || !window.Chart) return;
@@ -116,13 +121,24 @@ function renderizarGraficoAcesso(canvasId, serieDiaria, cor) {
           tension: 0.3,
           fill: true,
           pointRadius: 0,
+          pointHoverRadius: 4,
+          pointHoverBackgroundColor: cor,
         },
       ],
     },
     options: {
       responsive: true,
       maintainAspectRatio: false,
-      plugins: { legend: { display: false } },
+      interaction: { mode: "index", intersect: false },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            title: (itens) => formatarDataCurta(itens[0].label),
+            label: (item) => `${item.formattedValue} visitantes únicos`,
+          },
+        },
+      },
       scales: { y: { beginAtZero: true, ticks: { precision: 0 } } },
     },
   });
