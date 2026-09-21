@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-09-21T11:49:48.954556+00:00",
+    "gerado_em": "2026-09-21T16:18:18.723518+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -28,6 +28,135 @@
       "site_no_ar": {
         "ok": true,
         "status_http": 200
+      },
+      "acesso": {
+        "visitantes_unicos": 8,
+        "serie_diaria": [
+          {
+            "data": "2026-08-22",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-08-23",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-08-24",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-08-25",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-08-26",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-08-27",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-08-28",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-08-29",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-08-30",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-08-31",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-01",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-02",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-03",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-04",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-05",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-06",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-07",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-08",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-09",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-10",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-11",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-12",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-13",
+            "visitantes": 1
+          },
+          {
+            "data": "2026-09-14",
+            "visitantes": 2
+          },
+          {
+            "data": "2026-09-15",
+            "visitantes": 2
+          },
+          {
+            "data": "2026-09-16",
+            "visitantes": 1
+          },
+          {
+            "data": "2026-09-17",
+            "visitantes": 1
+          },
+          {
+            "data": "2026-09-18",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-19",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-20",
+            "visitantes": 1
+          },
+          {
+            "data": "2026-09-21",
+            "visitantes": 0
+          }
+        ]
       }
     },
     {
@@ -61,6 +190,135 @@
       "site_no_ar": {
         "ok": true,
         "status_http": 200
+      },
+      "acesso": {
+        "visitantes_unicos": 4,
+        "serie_diaria": [
+          {
+            "data": "2026-08-22",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-08-23",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-08-24",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-08-25",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-08-26",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-08-27",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-08-28",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-08-29",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-08-30",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-08-31",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-01",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-02",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-03",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-04",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-05",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-06",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-07",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-08",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-09",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-10",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-11",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-12",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-13",
+            "visitantes": 2
+          },
+          {
+            "data": "2026-09-14",
+            "visitantes": 1
+          },
+          {
+            "data": "2026-09-15",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-16",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-17",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-18",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-19",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-20",
+            "visitantes": 1
+          },
+          {
+            "data": "2026-09-21",
+            "visitantes": 0
+          }
+        ]
       }
     },
     {
@@ -100,6 +358,135 @@
       "site_no_ar": {
         "ok": true,
         "status_http": 200
+      },
+      "acesso": {
+        "visitantes_unicos": 6,
+        "serie_diaria": [
+          {
+            "data": "2026-08-22",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-08-23",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-08-24",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-08-25",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-08-26",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-08-27",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-08-28",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-08-29",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-08-30",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-08-31",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-01",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-02",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-03",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-04",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-05",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-06",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-07",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-08",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-09",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-10",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-11",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-12",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-13",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-14",
+            "visitantes": 2
+          },
+          {
+            "data": "2026-09-15",
+            "visitantes": 1
+          },
+          {
+            "data": "2026-09-16",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-17",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-18",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-19",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-20",
+            "visitantes": 1
+          },
+          {
+            "data": "2026-09-21",
+            "visitantes": 2
+          }
+        ]
       }
     },
     {
@@ -135,6 +522,135 @@
       "site_no_ar": {
         "ok": true,
         "status_http": 200
+      },
+      "acesso": {
+        "visitantes_unicos": 2,
+        "serie_diaria": [
+          {
+            "data": "2026-08-22",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-08-23",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-08-24",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-08-25",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-08-26",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-08-27",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-08-28",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-08-29",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-08-30",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-08-31",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-01",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-02",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-03",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-04",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-05",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-06",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-07",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-08",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-09",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-10",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-11",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-12",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-13",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-14",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-15",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-16",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-17",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-18",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-19",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-20",
+            "visitantes": 1
+          },
+          {
+            "data": "2026-09-21",
+            "visitantes": 1
+          }
+        ]
       }
     },
     {
@@ -159,6 +675,135 @@
       "site_no_ar": {
         "ok": true,
         "status_http": 200
+      },
+      "acesso": {
+        "visitantes_unicos": 1,
+        "serie_diaria": [
+          {
+            "data": "2026-08-22",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-08-23",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-08-24",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-08-25",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-08-26",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-08-27",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-08-28",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-08-29",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-08-30",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-08-31",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-01",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-02",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-03",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-04",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-05",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-06",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-07",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-08",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-09",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-10",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-11",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-12",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-13",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-14",
+            "visitantes": 1
+          },
+          {
+            "data": "2026-09-15",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-16",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-17",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-18",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-19",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-20",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-21",
+            "visitantes": 0
+          }
+        ]
       }
     },
     {
