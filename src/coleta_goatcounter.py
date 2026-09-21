@@ -10,6 +10,13 @@ Token de API lido de GOATCOUNTER_TOKEN (variável de ambiente, nunca hardcoded
 nem exposto no front — só o Action server-side lê). Sem token configurado,
 todo site fica sem bloco de acesso no status.json em vez de quebrar o resto.
 
+Uma falha na chamada de /paths (rede instável, GoatCounter fora do ar,
+token expirado) é diferente de "site nunca teve visita": nesse caso
+estatisticas_por_repo devolve None (em vez de um dict por repo), e é
+publicacao.py quem decide reaproveitar o último status.json publicado em
+vez de apagar os números da rodada anterior. Erros vão para stderr para
+aparecerem no log do Action — antes eram engolidos em silêncio.
+
 Referência da API: https://www.goatcounter.com/help/api — endpoints usados:
 GET /api/v0/paths (lista de caminhos conhecidos, para achar os IDs de cada
 site) e GET /api/v0/stats/total?include_paths=... (total + série diária já
@@ -18,6 +25,7 @@ filtrados pelos IDs de caminho do site).
 
 import json
 import os
+import sys
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -67,7 +75,11 @@ def _ids_do_site(caminhos, repo):
 
 
 def estatisticas_por_repo(repos):
-    """Para uma lista de nomes de repositório, devolve {repo: {total, serie_diaria} | None}."""
+    """Para uma lista de nomes de repositório, devolve {repo: {total, serie_diaria} | None}.
+
+    Devolve None (não um dict) quando a chamada de /paths falhou por completo —
+    sinal para o chamador de que isto é uma falha transitória, não "sem dado".
+    """
     token = _token()
     if not token:
         return {repo: None for repo in repos}
@@ -75,8 +87,9 @@ def estatisticas_por_repo(repos):
     base = f"https://{GOATCOUNTER_CODE}.goatcounter.com/api/v0"
     try:
         caminhos = _todos_os_caminhos(base, token)
-    except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError):
-        return {repo: None for repo in repos}
+    except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError) as erro:
+        print(f"[goatcounter] falha ao buscar /paths: {erro}", file=sys.stderr)
+        return None
 
     resultado = {}
     fim = datetime.now(timezone.utc).isoformat()
@@ -90,7 +103,8 @@ def estatisticas_por_repo(repos):
         )
         try:
             dados = _get_json(f"{base}/stats/total?{query}", token)
-        except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError):
+        except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError) as erro:
+            print(f"[goatcounter] falha ao buscar stats de {repo}: {erro}", file=sys.stderr)
             resultado[repo] = None
             continue
         serie_completa = [
