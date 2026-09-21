@@ -1,18 +1,63 @@
 // Painel de Status — lê docs/dados/status.json e monta a página.
 // Sem build step: é só fetch + template strings, igual aos outros painéis da família.
 
+let statusAtual = null;
+
 async function carregar() {
   const resp = await fetch("dados/status.json", { cache: "no-store" });
   const status = await resp.json();
+  statusAtual = status;
 
   document.getElementById("meta-gerado").textContent =
     `Atualizado em ${formatarDataHora(status.meta.gerado_em)}`;
 
+  renderizarTudo(status);
+}
+
+function renderizarTudo(status) {
   const destaque = status.sites.find((s) => s.destaque);
   const outros = status.sites.filter((s) => !s.destaque);
 
   if (destaque) renderizarDestaque(destaque);
   renderizarGrade(outros);
+}
+
+// ---------- Tema claro/escuro ----------
+function temaEfetivo() {
+  const attr = document.documentElement.getAttribute("data-theme");
+  if (attr === "dark" || attr === "light") return attr;
+  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+}
+
+function sincronizarSwitchTema() {
+  const efetivo = temaEfetivo();
+  document.querySelectorAll("#tema-switch .tema-switch__btn").forEach((botao) => {
+    const ativo = botao.dataset.tema === efetivo;
+    botao.classList.toggle("tema-switch__btn--ativo", ativo);
+    botao.setAttribute("aria-pressed", ativo ? "true" : "false");
+  });
+}
+
+function aplicarTema(tema) {
+  document.documentElement.setAttribute("data-theme", tema);
+  try { localStorage.setItem("tema", tema); } catch (e) { /* modo privado / storage bloqueado */ }
+  sincronizarSwitchTema();
+  // Canvas (Chart.js) não reage sozinho à troca de tema via CSS — redesenha os gráficos.
+  if (statusAtual) renderizarTudo(statusAtual);
+}
+
+function configurarTema() {
+  sincronizarSwitchTema();
+  document.querySelectorAll("#tema-switch .tema-switch__btn").forEach((botao) => {
+    botao.addEventListener("click", () => aplicarTema(botao.dataset.tema));
+  });
+  // Sem escolha explícita salva, acompanha a mudança de tema do sistema.
+  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
+    if (!document.documentElement.getAttribute("data-theme")) {
+      sincronizarSwitchTema();
+      if (statusAtual) renderizarTudo(statusAtual);
+    }
+  });
 }
 
 function formatarDataHora(iso) {
@@ -163,6 +208,7 @@ function renderizarGrade(sites) {
   });
 }
 
+configurarTema();
 carregar().catch((erro) => {
   console.error("Falha ao carregar status.json", erro);
   document.getElementById("meta-gerado").textContent = "Erro ao carregar status.json";

@@ -5,9 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Painel de Status — gfvdata-web</title>
   <link rel="stylesheet" href="css/estilo.css" />
+  <script>try{var t=localStorage.getItem("tema");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
   <script data-goatcounter="https://gfvdata.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
+  <div class="tema-switch" id="tema-switch" role="group" aria-label="Tema da página">
+    <button type="button" class="tema-switch__btn" data-tema="light" aria-pressed="false">
+      <span aria-hidden="true">☀️</span><span class="tema-switch__label">Claro</span>
+    </button>
+    <button type="button" class="tema-switch__btn" data-tema="dark" aria-pressed="false">
+      <span aria-hidden="true">🌙</span><span class="tema-switch__label">Escuro</span>
+    </button>
+  </div>
+
   <header class="cabecalho">
     <div class="conteiner">
       <p class="sobrelinha">gfvdata-web</p>

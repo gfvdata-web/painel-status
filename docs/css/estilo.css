@@ -23,8 +23,10 @@
   --f1-suave: #fde2e1;
 }
 
+/* Escuro por preferência do sistema, a menos que o switch tenha fixado "light";
+   e sempre que o switch fixar "dark", trocado por clique em .tema-switch (ver app.js). */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --bg: #0b1120;
     --superficie: #131c31;
     --borda: #24304a;
@@ -38,6 +40,21 @@
     --f1-suave: #3a1210;
     --sombra: 0 1px 3px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .25);
   }
+}
+
+:root[data-theme="dark"] {
+  --bg: #0b1120;
+  --superficie: #131c31;
+  --borda: #24304a;
+  --texto: #e8edf7;
+  --texto-suave: #93a1bd;
+  --acento: #60a5fa;
+  --acento-suave: #1e3a5f;
+  --positivo-suave: #0b3324;
+  --negativo-suave: #3a1414;
+  --aviso-suave: #3a2a0a;
+  --f1-suave: #3a1210;
+  --sombra: 0 1px 3px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .25);
 }
 
 * { box-sizing: border-box; }
@@ -141,3 +158,21 @@ main { padding: 28px 0 48px; }
 
 .rodape { padding: 24px 0 40px; color: var(--texto-suave); font-size: .8rem; text-align: center; }
 .rodape a { color: inherit; }
+
+.tema-switch {
+  position: fixed; top: 14px; right: 14px; z-index: 50;
+  display: flex; border: 1px solid var(--borda); border-radius: 999px;
+  overflow: hidden; background: var(--superficie); box-shadow: var(--sombra);
+}
+.tema-switch__btn {
+  display: inline-flex; align-items: center; gap: .3rem; border: none;
+  background: transparent; color: var(--texto-suave); font: inherit; font-size: .78rem;
+  font-weight: 600; padding: 7px 13px; cursor: pointer; transition: background .15s ease, color .15s ease;
+}
+.tema-switch__btn + .tema-switch__btn { border-left: 1px solid var(--borda); }
+.tema-switch__btn--ativo { background: var(--acento); color: #fff; }
+
+@media (max-width: 760px) {
+  .tema-switch__label { display: none; }
+  .tema-switch__btn { padding: 8px 11px; }
+}
