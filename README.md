@@ -8,11 +8,12 @@ Painel único de monitoramento para todos os sites publicados via GitHub Pages p
 ## O que ele mostra
 
 Por site: se está no ar, quando os dados foram atualizados pela última vez (e o que mudou),
-e — quando o GoatCounter estiver configurado (ver abaixo) — visitas e visitantes.
+e — quando o GoatCounter estiver configurado (ver abaixo) — visitantes únicos (total e um
+gráfico por dia dos últimos 30 dias).
 
 Para o **Bolão F1** especificamente, também: a rodada mais recente processada, se a última
-execução do pipeline (`page-bolao-formula1`) terminou com sucesso ou erro, se está em
-"vigília" (aguardando o resultado do quali sair na Jolpica), e um gráfico de acesso próprio.
+execução do pipeline (`page-bolao-formula1`) terminou com sucesso ou erro, e se está em
+"vigília" (aguardando o resultado do quali sair na Jolpica).
 
 ## Como funciona
 
@@ -27,7 +28,7 @@ dados funcionar — só a lista de sites em `src/config.py`.
 src/
 ├── config.py             # lista dos sites monitorados
 ├── coleta_github.py      # commits, execuções de Actions, "site no ar"
-├── coleta_goatcounter.py # visitas/visitantes via API do GoatCounter (opcional por site)
+├── coleta_goatcounter.py # visitantes únicos via API do GoatCounter (opcional por site)
 └── publicacao.py         # monta docs/dados/status.json
 docs/                     # o que o GitHub Pages publica
 ```

@@ -137,6 +137,7 @@ main { padding: 28px 0 48px; }
   color: var(--texto-suave); padding: 6px 0; border-top: 1px dashed var(--borda); }
 .site-card .linha:first-of-type { border-top: none; }
 .site-card .linha strong { color: var(--texto); font-weight: 600; }
+.site-card .grafico-mini { height: 70px; margin: 10px 0 4px; }
 
 .rodape { padding: 24px 0 40px; color: var(--texto-suave); font-size: .8rem; text-align: center; }
 .rodape a { color: inherit; }

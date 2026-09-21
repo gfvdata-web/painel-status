@@ -55,7 +55,7 @@ function badgeNoAr(site) {
     : `<span class="badge erro">Site pode estar fora do ar</span>`;
 }
 
-function renderizarGraficoAcesso(canvasId, serieDiaria) {
+function renderizarGraficoAcesso(canvasId, serieDiaria, cor) {
   const ctx = document.getElementById(canvasId);
   if (!ctx || !window.Chart) return;
   new Chart(ctx, {
@@ -64,10 +64,10 @@ function renderizarGraficoAcesso(canvasId, serieDiaria) {
       labels: serieDiaria.map((d) => d.data),
       datasets: [
         {
-          label: "Visitas por dia",
-          data: serieDiaria.map((d) => d.visitas),
-          borderColor: "#e10600",
-          backgroundColor: "rgba(225, 6, 0, .12)",
+          label: "Visitantes únicos por dia",
+          data: serieDiaria.map((d) => d.visitantes),
+          borderColor: cor,
+          backgroundColor: cor + "1f",
           tension: 0.3,
           fill: true,
           pointRadius: 0,
@@ -78,7 +78,7 @@ function renderizarGraficoAcesso(canvasId, serieDiaria) {
       responsive: true,
       maintainAspectRatio: false,
       plugins: { legend: { display: false } },
-      scales: { y: { beginAtZero: true } },
+      scales: { y: { beginAtZero: true, ticks: { precision: 0 } } },
     },
   });
 }
@@ -110,8 +110,8 @@ function renderizarDestaque(site) {
             <p class="valor">${site.rodada_mais_recente ?? "—"}</p>
           </div>
           <div class="kpi">
-            <p class="rotulo">Visitas (total)</p>
-            <p class="valor">${acesso ? acesso.total_pageviews ?? "—" : "—"}</p>
+            <p class="rotulo">Visitantes (únicos)</p>
+            <p class="valor">${acesso ? acesso.visitantes_unicos ?? "—" : "—"}</p>
           </div>
           <div class="kpi">
             <p class="rotulo">Dados atualizados</p>
@@ -129,16 +129,18 @@ function renderizarDestaque(site) {
   `;
 
   if (acesso && acesso.serie_diaria && acesso.serie_diaria.length) {
-    renderizarGraficoAcesso(idGrafico, acesso.serie_diaria);
+    renderizarGraficoAcesso(idGrafico, acesso.serie_diaria, "#e10600");
   }
 }
 
 function renderizarGrade(sites) {
   const grade = document.getElementById("grade-sites");
-  grade.innerHTML = sites.map((site) => {
+  grade.innerHTML = sites.map((site, indice) => {
     const commit = site.ultimo_commit_dados || {};
     const acesso = site.acesso;
     const meta = site.meta_publicada;
+    const temSerie = acesso && acesso.serie_diaria && acesso.serie_diaria.length;
+    const idGrafico = `grafico-site-${indice}`;
 
     return `
       <div class="site-card">
@@ -146,11 +148,19 @@ function renderizarGrade(sites) {
         <div>${badgeNoAr(site)}</div>
         <div class="linha"><span>Dados atualizados</span><strong>${formatarRelativo(commit.data)}</strong></div>
         ${meta && meta.periodo ? `<div class="linha"><span>Período coberto</span><strong>${meta.periodo.inicio} → ${meta.periodo.fim}</strong></div>` : ""}
-        <div class="linha"><span>Visitas (total)</span><strong>${acesso ? acesso.total_pageviews ?? "—" : "sem rastreio"}</strong></div>
+        <div class="linha"><span>Visitantes (únicos)</span><strong>${acesso ? acesso.visitantes_unicos ?? "—" : "sem rastreio"}</strong></div>
+        ${temSerie ? `<div class="grafico-mini"><canvas id="${idGrafico}"></canvas></div>` : ""}
         <a class="link-site" href="${site.pages_url}" target="_blank" rel="noopener">Abrir site →</a>
       </div>
     `;
   }).join("");
+
+  sites.forEach((site, indice) => {
+    const acesso = site.acesso;
+    if (acesso && acesso.serie_diaria && acesso.serie_diaria.length) {
+      renderizarGraficoAcesso(`grafico-site-${indice}`, acesso.serie_diaria, "#2563eb");
+    }
+  });
 }
 
 carregar().catch((erro) => {

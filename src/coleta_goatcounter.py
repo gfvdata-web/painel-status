@@ -34,6 +34,10 @@ from datetime import datetime, timedelta, timezone
 GOATCOUNTER_CODE = "gfvdata"
 INICIO_HISTORICO = "2026-01-01T00:00:00Z"  # antes de qualquer site ter tracking
 
+# O campo "total" da API do GoatCounter já é contagem de visitantes únicos
+# (sessão por IP+User-Agent em memória, janela de 8h — nunca cookie nem IP
+# persistido), não pageview bruto. Ver https://www.goatcounter.com/help/sessions.
+
 
 def _token():
     return os.environ.get("GOATCOUNTER_TOKEN", "").strip() or None
@@ -75,7 +79,7 @@ def _ids_do_site(caminhos, repo):
 
 
 def estatisticas_por_repo(repos):
-    """Para uma lista de nomes de repositório, devolve {repo: {total, serie_diaria} | None}.
+    """Para uma lista de nomes de repositório, devolve {repo: {visitantes_unicos, serie_diaria} | None}.
 
     Devolve None (não um dict) quando a chamada de /paths falhou por completo —
     sinal para o chamador de que isto é uma falha transitória, não "sem dado".
@@ -108,13 +112,13 @@ def estatisticas_por_repo(repos):
             resultado[repo] = None
             continue
         serie_completa = [
-            {"data": dia.get("day"), "visitas": dia.get("daily", 0)}
+            {"data": dia.get("day"), "visitantes": dia.get("daily", 0)}
             for dia in dados.get("stats", [])
         ]
         corte = datetime.now(timezone.utc) - timedelta(days=30)
         serie_30d = [d for d in serie_completa if d["data"] and d["data"] >= corte.strftime("%Y-%m-%d")]
         resultado[repo] = {
-            "total_pageviews": dados.get("total"),
+            "visitantes_unicos": dados.get("total"),
             "serie_diaria": serie_30d,
         }
     return resultado
