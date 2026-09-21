@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-09-20T22:55:02.883772+00:00",
+    "gerado_em": "2026-09-21T03:01:23.032836+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -33,10 +33,6 @@
         "total_pageviews": 8,
         "serie_diaria": [
           {
-            "data": "2026-08-21",
-            "visitas": 0
-          },
-          {
             "data": "2026-08-22",
             "visitas": 0
           },
@@ -155,6 +151,10 @@
           {
             "data": "2026-09-20",
             "visitas": 1
+          },
+          {
+            "data": "2026-09-21",
+            "visitas": 0
           }
         ]
       }
@@ -166,10 +166,10 @@
       "pages_url": "https://gfvdata-web.github.io/fonte-meios-pagamento/",
       "destaque": false,
       "ultimo_commit_dados": {
-        "data": "2026-08-15T21:48:13Z",
-        "mensagem": "Perfil: motor detecta medida guardada como texto",
-        "sha": "cd01517",
-        "url": "https://github.com/gfvdata-web/fonte-meios-pagamento/commit/cd01517fee25c4d0533c79aea8dd60068d9501b0"
+        "data": "2026-09-21T00:25:43Z",
+        "mensagem": "v2: ajusta grafico de participacao e adiciona modo claro/escuro",
+        "sha": "731cd9f",
+        "url": "https://github.com/gfvdata-web/fonte-meios-pagamento/commit/731cd9f33f7879fa5e48ec4562abee5d8c189817"
       },
       "meta_publicada": {
         "fonte": "BCB — Estatísticas de Meios de Pagamento (mensal)",
@@ -195,10 +195,6 @@
         "total_pageviews": 4,
         "serie_diaria": [
           {
-            "data": "2026-08-21",
-            "visitas": 0
-          },
-          {
             "data": "2026-08-22",
             "visitas": 0
           },
@@ -317,6 +313,10 @@
           {
             "data": "2026-09-20",
             "visitas": 1
+          },
+          {
+            "data": "2026-09-21",
+            "visitas": 0
           }
         ]
       }
@@ -363,10 +363,6 @@
         "total_pageviews": 4,
         "serie_diaria": [
           {
-            "data": "2026-08-21",
-            "visitas": 0
-          },
-          {
             "data": "2026-08-22",
             "visitas": 0
           },
@@ -485,6 +481,10 @@
           {
             "data": "2026-09-20",
             "visitas": 1
+          },
+          {
+            "data": "2026-09-21",
+            "visitas": 0
           }
         ]
       }
@@ -527,10 +527,6 @@
         "total_pageviews": 1,
         "serie_diaria": [
           {
-            "data": "2026-08-21",
-            "visitas": 0
-          },
-          {
             "data": "2026-08-22",
             "visitas": 0
           },
@@ -649,6 +645,10 @@
           {
             "data": "2026-09-20",
             "visitas": 1
+          },
+          {
+            "data": "2026-09-21",
+            "visitas": 0
           }
         ]
       }
@@ -680,10 +680,6 @@
         "total_pageviews": 1,
         "serie_diaria": [
           {
-            "data": "2026-08-21",
-            "visitas": 0
-          },
-          {
             "data": "2026-08-22",
             "visitas": 0
           },
@@ -801,6 +797,10 @@
           },
           {
             "data": "2026-09-20",
+            "visitas": 0
+          },
+          {
+            "data": "2026-09-21",
             "visitas": 0
           }
         ]
