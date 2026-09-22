@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-09-22T16:09:21.651729+00:00",
+    "gerado_em": "2026-09-22T20:48:09.509337+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -166,10 +166,10 @@
       "pages_url": "https://gfvdata-web.github.io/fonte-meios-pagamento/",
       "destaque": false,
       "ultimo_commit_dados": {
-        "data": "2026-09-21T00:25:43Z",
-        "mensagem": "v2: ajusta grafico de participacao e adiciona modo claro/escuro",
-        "sha": "731cd9f",
-        "url": "https://github.com/gfvdata-web/fonte-meios-pagamento/commit/731cd9f33f7879fa5e48ec4562abee5d8c189817"
+        "data": "2026-09-22T17:17:53Z",
+        "mensagem": "v2: adiciona 9 novos marcos temporais pesquisados por forma de pagamento",
+        "sha": "621250f",
+        "url": "https://github.com/gfvdata-web/fonte-meios-pagamento/commit/621250f71ccc89c72fdd13ff7f45b9d2eba8a6aa"
       },
       "meta_publicada": {
         "fonte": "BCB — Estatísticas de Meios de Pagamento (mensal)",
