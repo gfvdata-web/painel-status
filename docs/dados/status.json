@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-09-23T20:59:26.044288+00:00",
+    "gerado_em": "2026-09-23T23:33:29.914029+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -360,7 +360,7 @@
         "status_http": 200
       },
       "acesso": {
-        "visitantes_unicos": 7,
+        "visitantes_unicos": 8,
         "serie_diaria": [
           {
             "data": "2026-08-24",
@@ -484,7 +484,7 @@
           },
           {
             "data": "2026-09-23",
-            "visitantes": 0
+            "visitantes": 1
           }
         ]
       }
@@ -660,17 +660,17 @@
       "pages_url": "https://gfvdata-web.github.io/simulador-investimentos/",
       "destaque": false,
       "ultimo_commit_dados": {
-        "data": "2026-09-22T23:32:42Z",
-        "mensagem": "Dados de mercado em 2026-09-22",
-        "sha": "d72867d",
-        "url": "https://github.com/gfvdata-web/simulador-investimentos/commit/d72867d0f98a5cfe603fcc0a336091347e3cc65f"
+        "data": "2026-09-23T23:28:15Z",
+        "mensagem": "Dados de mercado em 2026-09-23",
+        "sha": "01dc624",
+        "url": "https://github.com/gfvdata-web/simulador-investimentos/commit/01dc624f785e4b94084052f04e32402aed4ecb64"
       },
       "ultima_execucao_pipeline": {
         "status": "completed",
         "conclusao": "success",
-        "criado_em": "2026-09-22T23:21:23Z",
-        "atualizado_em": "2026-09-22T23:32:45Z",
-        "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/35797006340"
+        "criado_em": "2026-09-23T23:16:31Z",
+        "atualizado_em": "2026-09-23T23:28:18Z",
+        "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/35932766017"
       },
       "site_no_ar": {
         "ok": true,
