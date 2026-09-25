@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-09-25T11:00:48.762275+00:00",
+    "gerado_em": "2026-09-25T16:23:17.681240+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -11,26 +11,26 @@
       "pages_url": "https://gfvdata-web.github.io/page-bolao-formula1/",
       "destaque": true,
       "ultimo_commit_dados": {
-        "data": "2026-09-13T19:03:07Z",
-        "mensagem": "Etapa 5: atualiza dados via pipeline (rodada 14, Madrid)",
-        "sha": "de59c93",
-        "url": "https://github.com/gfvdata-web/page-bolao-formula1/commit/de59c933bb1c9e0ae2bfbc560f66dd02f9966398"
+        "data": "2026-09-25T14:37:55Z",
+        "mensagem": "Etapa 5: pontua rodada 15 (resultado saiu depois do envio)",
+        "sha": "1655f56",
+        "url": "https://github.com/gfvdata-web/page-bolao-formula1/commit/1655f56a6c6cc48f7d278921e838808c300704cc"
       },
       "ultima_execucao_pipeline": {
         "status": "completed",
-        "conclusao": "failure",
-        "criado_em": "2026-09-12T22:55:45Z",
-        "atualizado_em": "2026-09-12T22:55:53Z",
-        "url": "https://github.com/gfvdata-web/page-bolao-formula1/actions/runs/34724050738"
+        "conclusao": "success",
+        "criado_em": "2026-09-25T13:07:40Z",
+        "atualizado_em": "2026-09-25T14:38:02Z",
+        "url": "https://github.com/gfvdata-web/page-bolao-formula1/actions/runs/36139005435"
       },
-      "rodada_mais_recente": 14,
+      "rodada_mais_recente": 15,
       "em_vigilia": false,
       "site_no_ar": {
         "ok": true,
         "status_http": 200
       },
       "acesso": {
-        "visitantes_unicos": 11,
+        "visitantes_unicos": 12,
         "serie_diaria": [
           {
             "data": "2026-08-26",
@@ -154,7 +154,7 @@
           },
           {
             "data": "2026-09-25",
-            "visitantes": 0
+            "visitantes": 1
           }
         ]
       }
