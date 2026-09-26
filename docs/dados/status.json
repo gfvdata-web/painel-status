@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-09-26T03:12:50.326831+00:00",
+    "gerado_em": "2026-09-26T10:43:10.147345+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -30,12 +30,8 @@
         "status_http": 200
       },
       "acesso": {
-        "visitantes_unicos": 13,
+        "visitantes_unicos": 14,
         "serie_diaria": [
-          {
-            "data": "2026-08-26",
-            "visitantes": 0
-          },
           {
             "data": "2026-08-27",
             "visitantes": 0
@@ -154,7 +150,11 @@
           },
           {
             "data": "2026-09-25",
-            "visitantes": 2
+            "visitantes": 3
+          },
+          {
+            "data": "2026-09-26",
+            "visitantes": 0
           }
         ]
       }
@@ -195,10 +195,6 @@
         "visitantes_unicos": 5,
         "serie_diaria": [
           {
-            "data": "2026-08-26",
-            "visitantes": 0
-          },
-          {
             "data": "2026-08-27",
             "visitantes": 0
           },
@@ -316,6 +312,10 @@
           },
           {
             "data": "2026-09-25",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-26",
             "visitantes": 0
           }
         ]
@@ -363,10 +363,6 @@
         "visitantes_unicos": 8,
         "serie_diaria": [
           {
-            "data": "2026-08-26",
-            "visitantes": 0
-          },
-          {
             "data": "2026-08-27",
             "visitantes": 0
           },
@@ -484,6 +480,10 @@
           },
           {
             "data": "2026-09-25",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-26",
             "visitantes": 0
           }
         ]
@@ -527,10 +527,6 @@
         "visitantes_unicos": 2,
         "serie_diaria": [
           {
-            "data": "2026-08-26",
-            "visitantes": 0
-          },
-          {
             "data": "2026-08-27",
             "visitantes": 0
           },
@@ -648,6 +644,10 @@
           },
           {
             "data": "2026-09-25",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-26",
             "visitantes": 0
           }
         ]
@@ -680,10 +680,6 @@
         "visitantes_unicos": 1,
         "serie_diaria": [
           {
-            "data": "2026-08-26",
-            "visitantes": 0
-          },
-          {
             "data": "2026-08-27",
             "visitantes": 0
           },
@@ -801,6 +797,10 @@
           },
           {
             "data": "2026-09-25",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-26",
             "visitantes": 0
           }
         ]
