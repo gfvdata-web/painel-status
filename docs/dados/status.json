@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-09-25T21:01:53.597090+00:00",
+    "gerado_em": "2026-09-26T03:12:50.326831+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -667,10 +667,10 @@
       },
       "ultima_execucao_pipeline": {
         "status": "completed",
-        "conclusao": "success",
-        "criado_em": "2026-09-24T23:37:18Z",
-        "atualizado_em": "2026-09-24T23:51:37Z",
-        "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/36073645010"
+        "conclusao": "failure",
+        "criado_em": "2026-09-25T23:40:17Z",
+        "atualizado_em": "2026-09-25T23:45:00Z",
+        "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/36201911360"
       },
       "site_no_ar": {
         "ok": true,
