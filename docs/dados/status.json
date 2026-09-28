@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-09-27T23:34:34.639532+00:00",
+    "gerado_em": "2026-09-28T01:20:42.913802+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -27,6 +27,43 @@
       },
       "rodada_mais_recente": 15,
       "em_vigilia": false,
+      "etapas_pipeline": [
+        {
+          "chave": "forms",
+          "titulo": "Palpites enviados (Google Forms)",
+          "estado": "ok",
+          "detalhe": "Forms recebido e Apps Script disparou o pipeline no GitHub Actions.",
+          "quando": "2026-09-25T13:07:40Z"
+        },
+        {
+          "chave": "leitura",
+          "titulo": "Palpites lidos e rodada identificada",
+          "estado": "ok",
+          "detalhe": "Palpites gravados no repositório.",
+          "quando": "2026-09-25T13:07:48Z"
+        },
+        {
+          "chave": "resultado",
+          "titulo": "Resultado oficial do quali (Jolpica)",
+          "estado": "ok",
+          "detalhe": "Saiu depois do envio — obtido pela vigília.",
+          "quando": "2026-09-25T14:37:57Z"
+        },
+        {
+          "chave": "pontuacao",
+          "titulo": "Pontuação calculada",
+          "estado": "ok",
+          "detalhe": "",
+          "quando": "2026-09-25T14:37:57Z"
+        },
+        {
+          "chave": "pagina",
+          "titulo": "Página atualizada (GitHub Pages)",
+          "estado": "ok",
+          "detalhe": "Placar novo no ar.",
+          "quando": "2026-09-25T14:38:48Z"
+        }
+      ],
       "site_no_ar": {
         "ok": true,
         "status_http": 200
@@ -34,10 +71,6 @@
       "acesso": {
         "visitantes_unicos": 16,
         "serie_diaria": [
-          {
-            "data": "2026-08-28",
-            "visitantes": 0
-          },
           {
             "data": "2026-08-29",
             "visitantes": 0
@@ -159,44 +192,7 @@
             "visitantes": 1
           }
         ]
-      },
-      "etapas_pipeline": [
-        {
-          "chave": "forms",
-          "titulo": "Palpites enviados (Google Forms)",
-          "estado": "ok",
-          "detalhe": "Forms recebido e Apps Script disparou o pipeline no GitHub Actions.",
-          "quando": "2026-09-25T13:07:40Z"
-        },
-        {
-          "chave": "leitura",
-          "titulo": "Palpites lidos e rodada identificada",
-          "estado": "ok",
-          "detalhe": "Palpites gravados no repositório.",
-          "quando": "2026-09-25T13:07:48Z"
-        },
-        {
-          "chave": "resultado",
-          "titulo": "Resultado oficial do quali (Jolpica)",
-          "estado": "ok",
-          "detalhe": "Saiu depois do envio — obtido pela vigília.",
-          "quando": "2026-09-25T14:37:57Z"
-        },
-        {
-          "chave": "pontuacao",
-          "titulo": "Pontuação calculada",
-          "estado": "ok",
-          "detalhe": "",
-          "quando": "2026-09-25T14:37:57Z"
-        },
-        {
-          "chave": "pagina",
-          "titulo": "Página atualizada (GitHub Pages)",
-          "estado": "ok",
-          "detalhe": "Placar novo no ar.",
-          "quando": "2026-09-25T14:38:48Z"
-        }
-      ]
+      }
     },
     {
       "slug": "meios_pagamento_mensal",
@@ -233,10 +229,6 @@
       "acesso": {
         "visitantes_unicos": 5,
         "serie_diaria": [
-          {
-            "data": "2026-08-28",
-            "visitantes": 0
-          },
           {
             "data": "2026-08-29",
             "visitantes": 0
@@ -402,10 +394,6 @@
         "visitantes_unicos": 9,
         "serie_diaria": [
           {
-            "data": "2026-08-28",
-            "visitantes": 0
-          },
-          {
             "data": "2026-08-29",
             "visitantes": 0
           },
@@ -566,10 +554,6 @@
         "visitantes_unicos": 2,
         "serie_diaria": [
           {
-            "data": "2026-08-28",
-            "visitantes": 0
-          },
-          {
             "data": "2026-08-29",
             "visitantes": 0
           },
@@ -705,6 +689,8 @@
         "url": "https://github.com/gfvdata-web/simulador-investimentos/commit/79cd8202c49fbf45df997f4455008e5b591449c4"
       },
       "ultima_execucao_pipeline": {
+        "id": 36201911360,
+        "evento": "schedule",
         "status": "completed",
         "conclusao": "failure",
         "criado_em": "2026-09-25T23:40:17Z",
@@ -718,10 +704,6 @@
       "acesso": {
         "visitantes_unicos": 1,
         "serie_diaria": [
-          {
-            "data": "2026-08-28",
-            "visitantes": 0
-          },
           {
             "data": "2026-08-29",
             "visitantes": 0
@@ -856,6 +838,15 @@
         "mensagem": "Atualiza partidas em 2026-09-28T01:13Z",
         "sha": "14a2cbc",
         "url": "https://github.com/gfvdata-web/chess-tracking/commit/14a2cbca7414b35c2bbdf7f27ceeab6a7a7496fb"
+      },
+      "ultima_execucao_pipeline": {
+        "id": 36365138743,
+        "evento": "workflow_dispatch",
+        "status": "completed",
+        "conclusao": "success",
+        "criado_em": "2026-09-28T01:13:05Z",
+        "atualizado_em": "2026-09-28T01:13:29Z",
+        "url": "https://github.com/gfvdata-web/chess-tracking/actions/runs/36365138743"
       },
       "site_no_ar": {
         "ok": true,
