@@ -100,9 +100,11 @@ main { padding: 28px 0 48px; }
 .card-destaque {
   background: var(--superficie); border: 1px solid var(--borda); border-top: 4px solid var(--f1);
   border-radius: var(--raio); box-shadow: var(--sombra); padding: 26px;
+}
+.card-destaque__topo {
   display: grid; grid-template-columns: 1.1fr 1fr; gap: 24px;
 }
-@media (max-width: 760px) { .card-destaque { grid-template-columns: 1fr; } }
+@media (max-width: 760px) { .card-destaque__topo { grid-template-columns: 1fr; } }
 
 .card-destaque .titulo-destaque {
   display: flex; align-items: center; gap: 10px; margin: 0 0 4px;
@@ -186,37 +188,51 @@ main { padding: 28px 0 48px; }
   .tema-switch__btn { padding: 8px 11px; }
 }
 
-/* Etapas do pipeline do Bolão F1 (linha do tempo vertical) */
-.etapas { margin-top: 18px; }
+/* Etapas do pipeline do Bolão F1 (trilha horizontal, com marcadores ligados por uma linha) */
+.card-destaque__rodape { margin-top: 22px; padding-top: 22px; border-top: 1px solid var(--borda); }
+.etapas { margin-top: 0; }
 .etapas__titulo {
-  font-size: .75rem; color: var(--texto-suave); margin: 0 0 10px;
+  font-size: .75rem; color: var(--texto-suave); margin: 0 0 14px;
   text-transform: uppercase; letter-spacing: .06em; font-weight: 600;
 }
 .etapas__titulo a { text-transform: none; letter-spacing: 0; font-weight: 500; color: var(--acento); margin-left: 6px; }
-.etapas__lista { list-style: none; margin: 0; padding: 0; }
-.etapa { display: flex; gap: 12px; position: relative; padding-bottom: 12px; }
-.etapa:last-child { padding-bottom: 0; }
+.etapas__lista {
+  list-style: none; margin: 0; padding: 0;
+  display: flex; align-items: flex-start;
+}
+.etapa {
+  flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center;
+  text-align: center; position: relative; padding: 0 6px; cursor: default;
+}
 .etapa:not(:last-child)::after {
-  content: ""; position: absolute; left: 11px; top: 26px; bottom: 2px;
-  width: 2px; background: var(--borda);
+  content: ""; position: absolute; left: calc(50% + 17px); right: calc(-50% + 17px);
+  top: 11px; height: 2px; background: var(--borda); z-index: 0;
 }
 .etapa__marcador {
-  flex: 0 0 24px; height: 24px; border-radius: 50%;
+  flex: 0 0 24px; width: 24px; height: 24px; border-radius: 50%;
   display: inline-flex; align-items: center; justify-content: center;
-  font-size: .75rem; font-weight: 700;
+  font-size: .75rem; font-weight: 700; position: relative; z-index: 1;
   background: var(--bg); color: var(--texto-suave); border: 2px solid var(--borda);
 }
 .etapa--ok .etapa__marcador { background: var(--positivo-suave); color: var(--positivo); border-color: var(--positivo); }
 .etapa--erro .etapa__marcador { background: var(--negativo-suave); color: var(--negativo); border-color: var(--negativo); }
 .etapa--aguardando .etapa__marcador,
 .etapa--andamento .etapa__marcador { background: var(--aviso-suave); color: var(--aviso); border-color: var(--aviso); }
-.etapa__texto { min-width: 0; }
-.etapa__titulo { margin: 2px 0 0; font-size: .9rem; font-weight: 600; }
+.etapa__texto { min-width: 0; margin-top: 8px; }
+.etapa__titulo { margin: 0; font-size: .78rem; font-weight: 600; line-height: 1.25; }
 .etapa--pendente .etapa__titulo,
 .etapa--pulado .etapa__titulo { color: var(--texto-suave); font-weight: 500; }
-.etapa__estado { margin: 1px 0 0; font-size: .78rem; color: var(--texto-suave); }
+.etapa__estado { margin: 3px 0 0; font-size: .72rem; color: var(--texto-suave); }
 .etapa--erro .etapa__estado { color: var(--negativo); }
 .etapa--aguardando .etapa__estado, .etapa--andamento .etapa__estado { color: var(--aviso); }
-.etapa__detalhe { margin: 2px 0 0; font-size: .8rem; color: var(--texto-suave); }
+
+@media (max-width: 760px) {
+  .etapas__lista { flex-direction: column; gap: 12px; align-items: stretch; }
+  .etapa { flex-direction: row; text-align: left; padding: 0; gap: 12px; }
+  .etapa:not(:last-child)::after {
+    left: 11px; right: auto; top: 26px; bottom: -12px; height: auto; width: 2px;
+  }
+  .etapa__texto { margin-top: 0; }
+}
 
 .links-destaque { display: flex; flex-wrap: wrap; gap: 0 22px; }
