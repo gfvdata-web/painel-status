@@ -73,10 +73,28 @@ caminhos pelo prefixo `/<repo>/`.
 
 ## Sites monitorados
 
-Ver `src/config.py` — hoje são seis sites publicados sob `gfvdata-web`: Bolão F1, Meios de
-pagamento, Arrecadação federal, Crédito por modalidade, Simulador de investimentos e Chess
-Tracking. O Cruzeiro Indata saiu do painel.
+A lista que o painel usa é `src/config.py` (`SITES`). Hoje são seis:
+
+| Site | Repositório | Página | O que é |
+|------|-------------|--------|---------|
+| **Bolão F1** (destaque) | [`page-bolao-formula1`](https://github.com/gfvdata-web/page-bolao-formula1) | [bolão](https://gfvdata-web.github.io/page-bolao-formula1/) · [enviar palpites](https://forms.gle/7yZAx1WThPf51bv67) | Placar do bolão de Fórmula 1. Palpites colados no Google Forms → Apps Script dispara o pipeline no Actions → resultado oficial na Jolpica → pontuação → página republicada |
+| Meios de pagamento | [`fonte-meios-pagamento`](https://github.com/gfvdata-web/fonte-meios-pagamento) | [painel](https://gfvdata-web.github.io/fonte-meios-pagamento/) | Fonte financeira (BCB) — projeto documentado no `controle-global` |
+| Arrecadação federal | [`fonte-arrecadacao-federal`](https://github.com/gfvdata-web/fonte-arrecadacao-federal) | [painel](https://gfvdata-web.github.io/fonte-arrecadacao-federal/) | Fonte financeira (RFB) — projeto documentado no `controle-global` |
+| Crédito por modalidade | [`fonte-credito-modalidade`](https://github.com/gfvdata-web/fonte-credito-modalidade) | [painel](https://gfvdata-web.github.io/fonte-credito-modalidade/) | Fonte financeira (BCB/SGS) — projeto documentado no `controle-global` |
+| Simulador de investimentos | [`simulador-investimentos`](https://github.com/gfvdata-web/simulador-investimentos) | [simulador](https://gfvdata-web.github.io/simulador-investimentos/) | Comparação de rendimento de investimentos (bruto, líquido e real); coleta de dados oficiais em dias úteis via Actions |
+| Chess Tracking | [`chess-tracking`](https://github.com/gfvdata-web/chess-tracking) | [página](https://gfvdata-web.github.io/chess-tracking/) | Histórico de partidas no Chess.com (conta `giggsmate`) com estatísticas de rating, aberturas, ritmo, horário e gestão de tempo; coleta diária via Actions |
+
+O Cruzeiro Indata saiu do painel.
+
+## Outros forms
 
 Além dos sites monitorados, a grade tem um card fixo **"Outros forms"** com atalhos para Google
-Forms de projetos sem site publicado (Notas fiscais e Update plantas). Ele não é monitorado nem
-vem do `status.json`: a lista fica na constante `OUTROS_FORMS` em `docs/js/app.js`.
+Forms de projetos sem site publicado. Ele não é monitorado nem vem do `status.json`: a lista
+fica na constante `OUTROS_FORMS` em `docs/js/app.js`.
+
+| Form | Link |
+|------|------|
+| Notas fiscais | https://forms.gle/ftgMMg1Lwpoi7j3Z8 |
+| Update plantas | https://forms.gle/y3uXaukJXmP9GMED7 |
+
+Os dois exigem login Google para abrir (configuração do próprio Forms).
