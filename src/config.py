@@ -23,8 +23,7 @@ SITES = [
         "workflow_arquivo": "pipeline.yml",
         # Formulário (Google Forms) onde se cola o bloco de palpites do WhatsApp —
         # o envio dispara o pipeline via Apps Script. Sem valor, o card esconde o link.
-        # TODO: preencher com o link público do Forms (forms.gle/...).
-        "form_url": None,
+        "form_url": "https://forms.gle/7yZAx1WThPf51bv67",
         "destaque": True,
     },
     {
