@@ -3,29 +3,33 @@
 Usa GITHUB_TOKEN (variável de ambiente) quando disponível, só para elevar o
 limite de taxa — todos os dados lidos são públicos, nenhuma permissão
 privilegiada é exercida aqui.
+
+Toda função devolve um valor mesmo com a API fora do ar: dict com "erro" (ou
+None, onde indicado), nunca exceção — um site com problema não derruba a coleta
+dos outros.
 """
 
 import os
-import urllib.request
 import urllib.error
-import json
 from datetime import datetime, timezone
+
+from .rede import ERROS_REDE, get_json, get_status
 
 API = "https://api.github.com"
 
 
-def _headers():
-    headers = {"Accept": "application/vnd.github+json", "User-Agent": "painel-status"}
+def _get_json(url):
+    headers = {"Accept": "application/vnd.github+json"}
     token = os.environ.get("GITHUB_TOKEN")
     if token:
         headers["Authorization"] = f"Bearer {token}"
-    return headers
+    return get_json(url, headers)
 
 
-def _get_json(url):
-    req = urllib.request.Request(url, headers=_headers())
-    with urllib.request.urlopen(req, timeout=20) as resp:
-        return json.loads(resp.read().decode("utf-8"))
+def _descrever_erro(exc, o_que):
+    if isinstance(exc, urllib.error.HTTPError):
+        return f"HTTP {exc.code} ao consultar {o_que}"
+    return f"falha de rede ao consultar {o_que}: {exc}"
 
 
 def ultimo_commit_no_caminho(owner, repo, caminho):
@@ -33,8 +37,8 @@ def ultimo_commit_no_caminho(owner, repo, caminho):
     url = f"{API}/repos/{owner}/{repo}/commits?path={caminho}&per_page=1"
     try:
         commits = _get_json(url)
-    except urllib.error.HTTPError as exc:
-        return {"erro": f"HTTP {exc.code} ao consultar commits"}
+    except ERROS_REDE as exc:
+        return {"erro": _descrever_erro(exc, "commits")}
     if not commits:
         return {"erro": "nenhum commit encontrado nesse caminho"}
     commit = commits[0]
@@ -51,8 +55,8 @@ def ultima_execucao_workflow(owner, repo, arquivo_workflow):
     url = f"{API}/repos/{owner}/{repo}/actions/workflows/{arquivo_workflow}/runs?per_page=1"
     try:
         dados = _get_json(url)
-    except urllib.error.HTTPError as exc:
-        return {"erro": f"HTTP {exc.code} ao consultar execuções"}
+    except ERROS_REDE as exc:
+        return {"erro": _descrever_erro(exc, "execuções")}
     runs = dados.get("workflow_runs") or []
     if not runs:
         return {"erro": "nenhuma execução encontrada"}
@@ -69,11 +73,11 @@ def ultima_execucao_workflow(owner, repo, arquivo_workflow):
 
 
 def passos_execucao(owner, repo, run_id):
-    """Passos (steps) de todos os jobs de uma execução, na ordem em que rodam."""
+    """Passos (steps) de todos os jobs de uma execução, na ordem em que rodam. None em falha."""
     url = f"{API}/repos/{owner}/{repo}/actions/runs/{run_id}/jobs"
     try:
         dados = _get_json(url)
-    except urllib.error.HTTPError:
+    except ERROS_REDE:
         return None
     return [
         {
@@ -89,11 +93,11 @@ def passos_execucao(owner, repo, run_id):
 
 
 def execucoes_pages(owner, repo, quantidade=30):
-    """Execuções recentes do deploy automático do GitHub Pages (mais recente primeiro)."""
+    """Execuções recentes do deploy automático do GitHub Pages (mais recente primeiro). None em falha."""
     url = f"{API}/repos/{owner}/{repo}/actions/runs?event=dynamic&per_page={quantidade}"
     try:
         dados = _get_json(url)
-    except urllib.error.HTTPError:
+    except ERROS_REDE:
         return None
     return [
         {
@@ -110,23 +114,22 @@ def execucoes_pages(owner, repo, quantidade=30):
 
 def site_no_ar(pages_url):
     """Checagem HTTP simples: o site publicado responde?"""
-    req = urllib.request.Request(pages_url, headers={"User-Agent": "painel-status"}, method="GET")
     try:
-        with urllib.request.urlopen(req, timeout=20) as resp:
-            return {"ok": 200 <= resp.status < 300, "status_http": resp.status}
+        status = get_status(pages_url)
     except urllib.error.HTTPError as exc:
         return {"ok": False, "status_http": exc.code}
-    except Exception as exc:  # DNS/timeout/etc.
+    except ERROS_REDE as exc:  # DNS/timeout/etc.
         return {"ok": False, "erro": str(exc)}
+    return {"ok": 200 <= status < 300, "status_http": status}
 
 
-def meta_json(url):
-    """Lê o bloco `meta` de um JSON de dados publicado, quando existir."""
+def periodo_publicado(url):
+    """`meta.periodo` ({inicio, fim}) de um JSON de dados publicado, quando existir."""
     try:
         dados = _get_json(url)
-    except Exception:
+    except ERROS_REDE:
         return None
-    return dados.get("meta")
+    return (dados.get("meta") or {}).get("periodo")
 
 
 def agora_iso():

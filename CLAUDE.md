@@ -19,9 +19,15 @@ nada seja quebrado (conferir a página localmente com `python -m http.server --d
 |---|---|
 | Site entra, sai ou muda de nome/URL | `src/config.py` (`SITES`) e a tabela "Sites monitorados" do `README.md`; depois rodar o workflow `atualizar-status.yml` para regenerar `docs/dados/status.json` |
 | Link do Forms do Bolão F1 | `form_url` em `src/config.py` e a tabela "Sites monitorados" do `README.md` |
-| Form avulso (card "Outros forms") | constante `OUTROS_FORMS` em `docs/js/app.js` e a seção "Outros forms" do `README.md` |
+| Form avulso (card "Outros forms") | `FORMS_AVULSOS` em `src/config.py` e a tabela "Outros forms" do `README.md`; depois rodar o workflow |
+| Campo novo no cadastro de sites | `CAMPOS_SITE` e a docstring de `src/config.py`, todas as entradas de `SITES` (mesmas chaves em todas) |
+| Campo novo/renomeado no `status.json` | docstring de `src/publicacao.py` e o uso em `docs/js/app.js` |
 | Etapas do pipeline do Bolão F1 | `src/etapas_bolao.py` (docstring descreve o fluxo) e a lista em "O que ele mostra" do `README.md` |
-| Arquivo novo em `src/` | árvore em "Como funciona" do `README.md` |
+| Arquivo novo em `src/` ou `docs/` | árvore em "Como funciona" do `README.md` |
+
+**Cadastro único:** sites e forms só existem em `src/config.py`. `docs/js/app.js` não guarda
+lista nenhuma — só desenha o que vem no `status.json`. Chamadas HTTP passam por `src/rede.py`
+(capturar `ERROS_REDE`, nunca deixar exceção de rede derrubar a rodada).
 
 `docs/dados/status.json` é gerado pelo Action — não editar à mão (exceto para pré-visualizar
 localmente, e o Action sobrescreve na próxima rodada).

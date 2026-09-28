@@ -1,6 +1,15 @@
 """Monta docs/dados/status.json a partir da coleta de GitHub + GoatCounter.
 
 Uso: python -m src.publicacao
+
+Formato de saída (o único arquivo que docs/js/app.js lê):
+  meta           {gerado_em, descricao}
+  sites[]        slug, nome, repo, pages_url, destaque, ultimo_commit_dados,
+                 site_no_ar e, conforme o cadastro em config.py: form_url,
+                 periodo_publicado, ultima_execucao_pipeline, acesso e — só no
+                 site com pipeline_bolao — rodada_mais_recente, em_vigilia,
+                 etapas_pipeline
+  forms_avulsos  [{nome, url}] copiado de config.FORMS_AVULSOS
 """
 
 import json
@@ -10,7 +19,7 @@ from pathlib import Path
 from . import coleta_github as gh
 from . import coleta_goatcounter as gc
 from .etapas_bolao import montar_etapas
-from .config import OWNER, SITES
+from .config import FORMS_AVULSOS, OWNER, SITES, validar
 
 SAIDA = Path(__file__).resolve().parent.parent / "docs" / "dados" / "status.json"
 
@@ -23,22 +32,22 @@ def coletar_site(site, acesso_por_repo, acesso_anterior, falha_total):
         "nome": site["nome"],
         "repo": site["repo"],
         "pages_url": site["pages_url"],
-        "destaque": site.get("destaque", False),
+        "destaque": site["destaque"],
     }
-    if site.get("form_url"):
+    if site["form_url"]:
         bloco["form_url"] = site["form_url"]
 
     bloco["ultimo_commit_dados"] = gh.ultimo_commit_no_caminho(
         OWNER, site["repo"], site["caminho_dados"]
     )
 
-    if site.get("json_meta_url"):
-        bloco["meta_publicada"] = gh.meta_json(site["json_meta_url"])
+    if site["json_meta_url"]:
+        bloco["periodo_publicado"] = gh.periodo_publicado(site["json_meta_url"])
 
-    if site.get("workflow_arquivo"):
+    if site["workflow_arquivo"]:
         execucao = gh.ultima_execucao_workflow(OWNER, site["repo"], site["workflow_arquivo"])
         bloco["ultima_execucao_pipeline"] = execucao
-        if site["slug"] == "bolao_f1":
+        if site["pipeline_bolao"]:
             match = RE_RODADA.search(bloco["ultimo_commit_dados"].get("mensagem", ""))
             bloco["rodada_mais_recente"] = int(match.group(1)) if match else None
             bloco["em_vigilia"] = execucao.get("status") == "in_progress"
@@ -70,6 +79,7 @@ def _acesso_anterior_por_slug():
 
 
 def montar():
+    validar()
     acesso_por_repo = gc.estatisticas_por_repo([site["repo"] for site in SITES])
     falha_total = acesso_por_repo is None
     acesso_anterior = _acesso_anterior_por_slug() if falha_total else {}
@@ -83,6 +93,7 @@ def montar():
         "sites": [
             coletar_site(site, acesso_por_repo, acesso_anterior, falha_total) for site in SITES
         ],
+        "forms_avulsos": FORMS_AVULSOS,
     }
 
 

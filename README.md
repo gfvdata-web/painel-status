@@ -8,8 +8,10 @@ Painel único de monitoramento para todos os sites publicados via GitHub Pages p
 ## O que ele mostra
 
 Por site: se está no ar, quando os dados foram atualizados pela última vez (e o que mudou),
-e — quando o GoatCounter estiver configurado (ver abaixo) — visitantes únicos (total e um
-gráfico por dia dos últimos 30 dias).
+se a última execução do workflow de coleta passou (quando o site tem um cadastrado), o
+período coberto pelos dados (quando o site publica `meta.periodo`) e — quando o GoatCounter
+estiver configurado (ver abaixo) — visitantes únicos (total e um gráfico por dia dos últimos
+30 dias).
 
 Para o **Bolão F1** especificamente, também: a rodada mais recente processada, o link do
 Google Forms de envio de palpites e o **passo a passo da última atualização de dados**
@@ -29,17 +31,26 @@ cada 3 horas (e sob demanda via `workflow_dispatch`), consulta a API pública do
 recentes por caminho de dados, execuções de Actions, resposta HTTP de cada site — e, quando
 configurado, a API do GoatCounter. O resultado vira `docs/dados/status.json`, e é só isso que
 `docs/index.html` lê. Não é preciso mudar nada nos repositórios monitorados para o status de
-dados funcionar — só a lista de sites em `src/config.py`.
+dados funcionar — só o cadastro em `src/config.py`.
 
 ```
 src/
-├── config.py             # lista dos sites monitorados
-├── coleta_github.py      # commits, execuções de Actions, "site no ar"
+├── config.py             # cadastro único: sites monitorados e forms avulsos (+ validação)
+├── rede.py               # HTTP compartilhado pelos coletores (GET JSON, erros de rede)
+├── coleta_github.py      # commits, execuções de Actions, "site no ar", período publicado
 ├── coleta_goatcounter.py # visitantes únicos via API do GoatCounter (opcional por site)
 ├── etapas_bolao.py       # passo a passo da última atualização do Bolão F1
-└── publicacao.py         # monta docs/dados/status.json
+└── publicacao.py         # monta docs/dados/status.json (formato descrito na docstring)
 docs/                     # o que o GitHub Pages publica
+├── index.html
+├── css/estilo.css
+├── js/app.js             # só lê status.json e desenha — nada é cadastrado aqui
+└── dados/status.json     # gerado pelo Action; não editar à mão
 ```
+
+Um problema de rede em um site (timeout, HTTP 5xx) vira um campo `erro` no card dele e não
+derruba a coleta dos outros. Um cadastro inconsistente em `src/config.py` (campo faltando,
+slug repetido, dois destaques) faz a coleta falhar logo no início, com a lista do que corrigir.
 
 Rodar localmente:
 
@@ -73,7 +84,8 @@ caminhos pelo prefixo `/<repo>/`.
 
 ## Sites monitorados
 
-A lista que o painel usa é `src/config.py` (`SITES`). Hoje são seis:
+A lista que o painel usa é `src/config.py` (`SITES`; os campos de cada entrada estão
+descritos na docstring do arquivo). Hoje são seis:
 
 | Site | Repositório | Página | O que é |
 |------|-------------|--------|---------|
@@ -88,9 +100,10 @@ O Cruzeiro Indata saiu do painel.
 
 ## Outros forms
 
-Além dos sites monitorados, a grade tem um card fixo **"Outros forms"** com atalhos para Google
-Forms de projetos sem site publicado. Ele não é monitorado nem vem do `status.json`: a lista
-fica na constante `OUTROS_FORMS` em `docs/js/app.js`.
+Além dos sites monitorados, a grade tem um card **"Outros forms"** com atalhos para Google
+Forms de projetos sem site publicado. Nada é coletado sobre eles — são só links. A lista fica
+em `FORMS_AVULSOS` no `src/config.py` e chega à página pelo `status.json` (campo
+`forms_avulsos`), então um form novo aparece na próxima rodada do workflow.
 
 | Form | Link |
 |------|------|
@@ -98,3 +111,15 @@ fica na constante `OUTROS_FORMS` em `docs/js/app.js`.
 | Update plantas | https://forms.gle/y3uXaukJXmP9GMED7 |
 
 Os dois exigem login Google para abrir (configuração do próprio Forms).
+
+## Adicionar um site ou form
+
+1. **Site:** copiar uma entrada de `SITES` em `src/config.py` (todas têm os mesmos campos) e
+   ajustar. **Form avulso:** acrescentar `{"nome": ..., "url": ...}` em `FORMS_AVULSOS`.
+2. Atualizar a tabela correspondente neste README.
+3. Conferir localmente: `python -c "import src.config as c; c.validar()"` e, para ver a
+   página, `python -m src.publicacao` + `python -m http.server --directory docs 8000`
+   (sem `GOATCOUNTER_TOKEN` local os números de acesso somem — não commitar esse
+   `status.json`; o Action regenera).
+4. Commit + push e rodar o workflow `atualizar-status.yml` (Actions → Run workflow, ou
+   `gh workflow run atualizar-status.yml`).

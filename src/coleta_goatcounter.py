@@ -23,13 +23,12 @@ site) e GET /api/v0/stats/total?include_paths=... (total + série diária já
 filtrados pelos IDs de caminho do site).
 """
 
-import json
 import os
 import sys
-import urllib.error
 import urllib.parse
-import urllib.request
 from datetime import datetime, timedelta, timezone
+
+from .rede import ERROS_REDE, get_json
 
 GOATCOUNTER_CODE = "gfvdata"
 INICIO_HISTORICO = "2026-01-01T00:00:00Z"  # antes de qualquer site ter tracking
@@ -44,16 +43,7 @@ def _token():
 
 
 def _get_json(url, token):
-    req = urllib.request.Request(
-        url,
-        headers={
-            "Authorization": f"Bearer {token}",
-            "Accept": "application/json",
-            "User-Agent": "painel-status",
-        },
-    )
-    with urllib.request.urlopen(req, timeout=20) as resp:
-        return json.loads(resp.read().decode("utf-8"))
+    return get_json(url, {"Authorization": f"Bearer {token}", "Accept": "application/json"})
 
 
 def _todos_os_caminhos(base, token):
@@ -91,12 +81,14 @@ def estatisticas_por_repo(repos):
     base = f"https://{GOATCOUNTER_CODE}.goatcounter.com/api/v0"
     try:
         caminhos = _todos_os_caminhos(base, token)
-    except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError) as erro:
+    except ERROS_REDE as erro:
         print(f"[goatcounter] falha ao buscar /paths: {erro}", file=sys.stderr)
         return None
 
     resultado = {}
-    fim = datetime.now(timezone.utc).isoformat()
+    agora = datetime.now(timezone.utc)
+    fim = agora.isoformat()
+    corte = (agora - timedelta(days=30)).strftime("%Y-%m-%d")
     for repo in repos:
         ids = _ids_do_site(caminhos, repo)
         if not ids:
@@ -107,7 +99,7 @@ def estatisticas_por_repo(repos):
         )
         try:
             dados = _get_json(f"{base}/stats/total?{query}", token)
-        except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError) as erro:
+        except ERROS_REDE as erro:
             print(f"[goatcounter] falha ao buscar stats de {repo}: {erro}", file=sys.stderr)
             resultado[repo] = None
             continue
@@ -115,8 +107,7 @@ def estatisticas_por_repo(repos):
             {"data": dia.get("day"), "visitantes": dia.get("daily", 0)}
             for dia in dados.get("stats", [])
         ]
-        corte = datetime.now(timezone.utc) - timedelta(days=30)
-        serie_30d = [d for d in serie_completa if d["data"] and d["data"] >= corte.strftime("%Y-%m-%d")]
+        serie_30d = [d for d in serie_completa if d["data"] and d["data"] >= corte]
         resultado[repo] = {
             "visitantes_unicos": dados.get("total"),
             "serie_diaria": serie_30d,
