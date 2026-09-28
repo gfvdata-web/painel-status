@@ -76,3 +76,7 @@ caminhos pelo prefixo `/<repo>/`.
 Ver `src/config.py` — hoje são seis sites publicados sob `gfvdata-web`: Bolão F1, Meios de
 pagamento, Arrecadação federal, Crédito por modalidade, Simulador de investimentos e Chess
 Tracking. O Cruzeiro Indata saiu do painel.
+
+Além dos sites monitorados, a grade tem um card fixo **"Outros forms"** com atalhos para Google
+Forms de projetos sem site publicado (Notas fiscais e Update plantas). Ele não é monitorado nem
+vem do `status.json`: a lista fica na constante `OUTROS_FORMS` em `docs/js/app.js`.
