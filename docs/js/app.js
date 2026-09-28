@@ -243,6 +243,24 @@ function renderizarDestaque(site) {
   }
 }
 
+// Atalhos para Google Forms de outros projetos (sem site publicado para monitorar,
+// por isso ficam fixos aqui e não em src/config.py / status.json).
+const OUTROS_FORMS = [
+  { nome: "Notas fiscais", url: "https://forms.gle/ftgMMg1Lwpoi7j3Z8" },
+  { nome: "Update plantas", url: "https://forms.gle/y3uXaukJXmP9GMED7" },
+];
+
+function renderizarCardOutrosForms() {
+  return `
+    <div class="site-card">
+      <h3>Outros forms</h3>
+      ${OUTROS_FORMS.map((form) => `
+        <a class="link-site link-form" href="${form.url}" target="_blank" rel="noopener">${form.nome} (Google Forms) →</a>
+      `).join("")}
+    </div>
+  `;
+}
+
 function renderizarGrade(sites) {
   const grade = document.getElementById("grade-sites");
   grade.innerHTML = sites.map((site, indice) => {
@@ -263,7 +281,7 @@ function renderizarGrade(sites) {
         <a class="link-site" href="${site.pages_url}" target="_blank" rel="noopener">Abrir site →</a>
       </div>
     `;
-  }).join("");
+  }).join("") + renderizarCardOutrosForms();
 
   sites.forEach((site, indice) => {
     const acesso = site.acesso;
