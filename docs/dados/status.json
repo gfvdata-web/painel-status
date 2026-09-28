@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-09-28T01:20:42.913802+00:00",
+    "gerado_em": "2026-09-28T03:17:25.266103+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -190,6 +190,10 @@
           {
             "data": "2026-09-27",
             "visitantes": 1
+          },
+          {
+            "data": "2026-09-28",
+            "visitantes": 0
           }
         ]
       }
@@ -347,6 +351,10 @@
           },
           {
             "data": "2026-09-27",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-28",
             "visitantes": 0
           }
         ]
@@ -512,6 +520,10 @@
           {
             "data": "2026-09-27",
             "visitantes": 1
+          },
+          {
+            "data": "2026-09-28",
+            "visitantes": 0
           }
         ]
       }
@@ -672,6 +684,10 @@
           {
             "data": "2026-09-27",
             "visitantes": 0
+          },
+          {
+            "data": "2026-09-28",
+            "visitantes": 0
           }
         ]
       }
@@ -823,6 +839,10 @@
           {
             "data": "2026-09-27",
             "visitantes": 0
+          },
+          {
+            "data": "2026-09-28",
+            "visitantes": 0
           }
         ]
       }
@@ -834,23 +854,152 @@
       "pages_url": "https://gfvdata-web.github.io/chess-tracking/",
       "destaque": false,
       "ultimo_commit_dados": {
-        "data": "2026-09-28T01:13:24Z",
-        "mensagem": "Atualiza partidas em 2026-09-28T01:13Z",
-        "sha": "14a2cbc",
-        "url": "https://github.com/gfvdata-web/chess-tracking/commit/14a2cbca7414b35c2bbdf7f27ceeab6a7a7496fb"
+        "data": "2026-09-28T01:35:06Z",
+        "mensagem": "Regenera dados com os comentarios revisados",
+        "sha": "1a6f520",
+        "url": "https://github.com/gfvdata-web/chess-tracking/commit/1a6f520656ec6b154208630cb5ced5190acd05d5"
       },
       "ultima_execucao_pipeline": {
-        "id": 36365138743,
+        "id": 36366275228,
         "evento": "workflow_dispatch",
         "status": "completed",
         "conclusao": "success",
-        "criado_em": "2026-09-28T01:13:05Z",
-        "atualizado_em": "2026-09-28T01:13:29Z",
-        "url": "https://github.com/gfvdata-web/chess-tracking/actions/runs/36365138743"
+        "criado_em": "2026-09-28T01:31:07Z",
+        "atualizado_em": "2026-09-28T01:49:37Z",
+        "url": "https://github.com/gfvdata-web/chess-tracking/actions/runs/36366275228"
       },
       "site_no_ar": {
         "ok": true,
         "status_http": 200
+      },
+      "acesso": {
+        "visitantes_unicos": 6,
+        "serie_diaria": [
+          {
+            "data": "2026-08-29",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-08-30",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-08-31",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-01",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-02",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-03",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-04",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-05",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-06",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-07",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-08",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-09",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-10",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-11",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-12",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-13",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-14",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-15",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-16",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-17",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-18",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-19",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-20",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-21",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-22",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-23",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-24",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-25",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-26",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-27",
+            "visitantes": 6
+          },
+          {
+            "data": "2026-09-28",
+            "visitantes": 0
+          }
+        ]
       }
     }
   ]
