@@ -93,6 +93,51 @@ function badgeStatusPipeline(site) {
   return `<span class="badge neutro">${execucao.status}</span>`;
 }
 
+const ROTULO_ESTADO_ETAPA = {
+  ok: "concluída",
+  andamento: "em andamento",
+  aguardando: "aguardando",
+  erro: "falhou",
+  pendente: "não iniciada",
+  pulado: "não se aplica",
+};
+
+const ICONE_ESTADO_ETAPA = {
+  ok: "✓",
+  andamento: "…",
+  aguardando: "⏳",
+  erro: "✕",
+  pendente: "",
+  pulado: "–",
+};
+
+function renderizarEtapas(site) {
+  const etapas = site.etapas_pipeline;
+  if (!etapas || !etapas.length) return "";
+  const execucao = site.ultima_execucao_pipeline || {};
+  const itens = etapas.map((etapa, indice) => `
+    <li class="etapa etapa--${etapa.estado}">
+      <span class="etapa__marcador" aria-hidden="true">${ICONE_ESTADO_ETAPA[etapa.estado] || indice + 1}</span>
+      <div class="etapa__texto">
+        <p class="etapa__titulo">${etapa.titulo}</p>
+        <p class="etapa__estado">
+          ${ROTULO_ESTADO_ETAPA[etapa.estado] || etapa.estado}${etapa.quando ? ` · ${formatarDataHora(etapa.quando)}` : ""}
+        </p>
+        ${etapa.detalhe ? `<p class="etapa__detalhe">${etapa.detalhe}</p>` : ""}
+      </div>
+    </li>
+  `).join("");
+  return `
+    <div class="etapas">
+      <p class="etapas__titulo">
+        Última atualização de dados — passo a passo
+        ${execucao.url ? `<a href="${execucao.url}" target="_blank" rel="noopener">ver execução</a>` : ""}
+      </p>
+      <ol class="etapas__lista">${itens}</ol>
+    </div>
+  `;
+}
+
 function badgeNoAr(site) {
   const ok = site.site_no_ar && site.site_no_ar.ok;
   return ok
@@ -179,11 +224,15 @@ function renderizarDestaque(site) {
             <p class="valor" style="font-size:1rem">${formatarRelativo(commit.data)}</p>
           </div>
         </div>
+        ${renderizarEtapas(site)}
         <p class="commit-info">
           Último commit em dados: "${commit.mensagem ?? "—"}"
           ${commit.url ? `(<a href="${commit.url}" target="_blank" rel="noopener">${commit.sha}</a>)` : ""}
         </p>
-        <a class="link-site" href="${site.pages_url}" target="_blank" rel="noopener">Abrir o bolão →</a>
+        <div class="links-destaque">
+          <a class="link-site" href="${site.pages_url}" target="_blank" rel="noopener">Abrir o bolão →</a>
+          ${site.form_url ? `<a class="link-site" href="${site.form_url}" target="_blank" rel="noopener">Enviar palpites (Google Forms) →</a>` : ""}
+        </div>
       </div>
       <div class="grafico-caixa">${graficoHtml}</div>
     </div>

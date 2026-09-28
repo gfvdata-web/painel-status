@@ -21,6 +21,10 @@ SITES = [
         "pages_url": "https://gfvdata-web.github.io/page-bolao-formula1/",
         "caminho_dados": "docs/data",
         "workflow_arquivo": "pipeline.yml",
+        # Formulário (Google Forms) onde se cola o bloco de palpites do WhatsApp —
+        # o envio dispara o pipeline via Apps Script. Sem valor, o card esconde o link.
+        # TODO: preencher com o link público do Forms (forms.gle/...).
+        "form_url": None,
         "destaque": True,
     },
     {
@@ -63,12 +67,12 @@ SITES = [
         "destaque": False,
     },
     {
-        "slug": "cruzeiro_indata",
-        "nome": "Cruzeiro Indata",
-        "repo": "cruzeiro-indata-publico",
-        "pages_url": "https://gfvdata-web.github.io/cruzeiro-indata-publico/",
-        "caminho_dados": "data",
-        "workflow_arquivo": None,
+        "slug": "chess_tracking",
+        "nome": "Chess Tracking",
+        "repo": "chess-tracking",
+        "pages_url": "https://gfvdata-web.github.io/chess-tracking/",
+        "caminho_dados": "docs/dados",
+        "workflow_arquivo": "atualizar-partidas.yml",
         "destaque": False,
     },
 ]

@@ -9,6 +9,7 @@ from pathlib import Path
 
 from . import coleta_github as gh
 from . import coleta_goatcounter as gc
+from .etapas_bolao import montar_etapas
 from .config import OWNER, SITES
 
 SAIDA = Path(__file__).resolve().parent.parent / "docs" / "dados" / "status.json"
@@ -24,6 +25,8 @@ def coletar_site(site, acesso_por_repo, acesso_anterior, falha_total):
         "pages_url": site["pages_url"],
         "destaque": site.get("destaque", False),
     }
+    if site.get("form_url"):
+        bloco["form_url"] = site["form_url"]
 
     bloco["ultimo_commit_dados"] = gh.ultimo_commit_no_caminho(
         OWNER, site["repo"], site["caminho_dados"]
@@ -39,6 +42,10 @@ def coletar_site(site, acesso_por_repo, acesso_anterior, falha_total):
             match = RE_RODADA.search(bloco["ultimo_commit_dados"].get("mensagem", ""))
             bloco["rodada_mais_recente"] = int(match.group(1)) if match else None
             bloco["em_vigilia"] = execucao.get("status") == "in_progress"
+            if not execucao.get("erro"):
+                passos = gh.passos_execucao(OWNER, site["repo"], execucao["id"])
+                deploys = gh.execucoes_pages(OWNER, site["repo"])
+                bloco["etapas_pipeline"] = montar_etapas(execucao, passos, deploys)
 
     bloco["site_no_ar"] = gh.site_no_ar(site["pages_url"])
 

@@ -142,7 +142,8 @@ main { padding: 28px 0 48px; }
 }
 .link-site:hover { text-decoration: underline; }
 
-.grafico-caixa { min-height: 180px; }
+.grafico-caixa { min-height: 180px; height: 260px; align-self: start; position: sticky; top: 16px; }
+@media (max-width: 760px) { .grafico-caixa { position: static; } }
 .grafico-caixa .sem-dados {
   display: flex; align-items: center; justify-content: center; height: 180px;
   color: var(--texto-suave); font-size: .85rem; text-align: center; padding: 0 20px;
@@ -183,3 +184,38 @@ main { padding: 28px 0 48px; }
   .tema-switch__label { display: none; }
   .tema-switch__btn { padding: 8px 11px; }
 }
+
+/* Etapas do pipeline do Bolão F1 (linha do tempo vertical) */
+.etapas { margin-top: 18px; }
+.etapas__titulo {
+  font-size: .75rem; color: var(--texto-suave); margin: 0 0 10px;
+  text-transform: uppercase; letter-spacing: .06em; font-weight: 600;
+}
+.etapas__titulo a { text-transform: none; letter-spacing: 0; font-weight: 500; color: var(--acento); margin-left: 6px; }
+.etapas__lista { list-style: none; margin: 0; padding: 0; }
+.etapa { display: flex; gap: 12px; position: relative; padding-bottom: 12px; }
+.etapa:last-child { padding-bottom: 0; }
+.etapa:not(:last-child)::after {
+  content: ""; position: absolute; left: 11px; top: 26px; bottom: 2px;
+  width: 2px; background: var(--borda);
+}
+.etapa__marcador {
+  flex: 0 0 24px; height: 24px; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: .75rem; font-weight: 700;
+  background: var(--bg); color: var(--texto-suave); border: 2px solid var(--borda);
+}
+.etapa--ok .etapa__marcador { background: var(--positivo-suave); color: var(--positivo); border-color: var(--positivo); }
+.etapa--erro .etapa__marcador { background: var(--negativo-suave); color: var(--negativo); border-color: var(--negativo); }
+.etapa--aguardando .etapa__marcador,
+.etapa--andamento .etapa__marcador { background: var(--aviso-suave); color: var(--aviso); border-color: var(--aviso); }
+.etapa__texto { min-width: 0; }
+.etapa__titulo { margin: 2px 0 0; font-size: .9rem; font-weight: 600; }
+.etapa--pendente .etapa__titulo,
+.etapa--pulado .etapa__titulo { color: var(--texto-suave); font-weight: 500; }
+.etapa__estado { margin: 1px 0 0; font-size: .78rem; color: var(--texto-suave); }
+.etapa--erro .etapa__estado { color: var(--negativo); }
+.etapa--aguardando .etapa__estado, .etapa--andamento .etapa__estado { color: var(--aviso); }
+.etapa__detalhe { margin: 2px 0 0; font-size: .8rem; color: var(--texto-suave); }
+
+.links-destaque { display: flex; flex-wrap: wrap; gap: 0 22px; }

@@ -58,12 +58,54 @@ def ultima_execucao_workflow(owner, repo, arquivo_workflow):
         return {"erro": "nenhuma execução encontrada"}
     run = runs[0]
     return {
+        "id": run["id"],
+        "evento": run["event"],  # repository_dispatch (Forms) | workflow_dispatch (manual) | ...
         "status": run["status"],  # queued | in_progress | completed
         "conclusao": run.get("conclusion"),  # success | failure | ... | None
         "criado_em": run["created_at"],
         "atualizado_em": run["updated_at"],
         "url": run["html_url"],
     }
+
+
+def passos_execucao(owner, repo, run_id):
+    """Passos (steps) de todos os jobs de uma execução, na ordem em que rodam."""
+    url = f"{API}/repos/{owner}/{repo}/actions/runs/{run_id}/jobs"
+    try:
+        dados = _get_json(url)
+    except urllib.error.HTTPError:
+        return None
+    return [
+        {
+            "nome": passo["name"],
+            "status": passo["status"],
+            "conclusao": passo.get("conclusion"),
+            "inicio": passo.get("started_at"),
+            "fim": passo.get("completed_at"),
+        }
+        for job in dados.get("jobs") or []
+        for passo in job.get("steps") or []
+    ]
+
+
+def execucoes_pages(owner, repo, quantidade=30):
+    """Execuções recentes do deploy automático do GitHub Pages (mais recente primeiro)."""
+    url = f"{API}/repos/{owner}/{repo}/actions/runs?event=dynamic&per_page={quantidade}"
+    try:
+        dados = _get_json(url)
+    except urllib.error.HTTPError:
+        return None
+    return [
+        {
+            "status": run["status"],
+            "conclusao": run.get("conclusion"),
+            "criado_em": run["created_at"],
+            "atualizado_em": run["updated_at"],
+            "url": run["html_url"],
+        }
+        for run in dados.get("workflow_runs") or []
+        if run.get("name") == "pages build and deployment"
+    ]
 
 
 def site_no_ar(pages_url):

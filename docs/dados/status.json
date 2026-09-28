@@ -17,6 +17,8 @@
         "url": "https://github.com/gfvdata-web/page-bolao-formula1/commit/38bd9aa1a1445dba1710254939ecbf8acd8c89a3"
       },
       "ultima_execucao_pipeline": {
+        "id": 36139005435,
+        "evento": "repository_dispatch",
         "status": "completed",
         "conclusao": "success",
         "criado_em": "2026-09-25T13:07:40Z",
@@ -157,7 +159,44 @@
             "visitantes": 1
           }
         ]
-      }
+      },
+      "etapas_pipeline": [
+        {
+          "chave": "forms",
+          "titulo": "Palpites enviados (Google Forms)",
+          "estado": "ok",
+          "detalhe": "Forms recebido e Apps Script disparou o pipeline no GitHub Actions.",
+          "quando": "2026-09-25T13:07:40Z"
+        },
+        {
+          "chave": "leitura",
+          "titulo": "Palpites lidos e rodada identificada",
+          "estado": "ok",
+          "detalhe": "Palpites gravados no repositório.",
+          "quando": "2026-09-25T13:07:48Z"
+        },
+        {
+          "chave": "resultado",
+          "titulo": "Resultado oficial do quali (Jolpica)",
+          "estado": "ok",
+          "detalhe": "Saiu depois do envio — obtido pela vigília.",
+          "quando": "2026-09-25T14:37:57Z"
+        },
+        {
+          "chave": "pontuacao",
+          "titulo": "Pontuação calculada",
+          "estado": "ok",
+          "detalhe": "",
+          "quando": "2026-09-25T14:37:57Z"
+        },
+        {
+          "chave": "pagina",
+          "titulo": "Página atualizada (GitHub Pages)",
+          "estado": "ok",
+          "detalhe": "Placar novo no ar.",
+          "quando": "2026-09-25T14:38:48Z"
+        }
+      ]
     },
     {
       "slug": "meios_pagamento_mensal",
@@ -807,16 +846,16 @@
       }
     },
     {
-      "slug": "cruzeiro_indata",
-      "nome": "Cruzeiro Indata",
-      "repo": "cruzeiro-indata-publico",
-      "pages_url": "https://gfvdata-web.github.io/cruzeiro-indata-publico/",
+      "slug": "chess_tracking",
+      "nome": "Chess Tracking",
+      "repo": "chess-tracking",
+      "pages_url": "https://gfvdata-web.github.io/chess-tracking/",
       "destaque": false,
       "ultimo_commit_dados": {
-        "data": "2026-07-11T13:10:02Z",
-        "mensagem": "Site publico: Brasileirao Serie A via football-data.org",
-        "sha": "3ef07cb",
-        "url": "https://github.com/gfvdata-web/cruzeiro-indata-publico/commit/3ef07cb21d2af45ae5dc85e4c2989483e7750a71"
+        "data": "2026-09-28T01:13:24Z",
+        "mensagem": "Atualiza partidas em 2026-09-28T01:13Z",
+        "sha": "14a2cbc",
+        "url": "https://github.com/gfvdata-web/chess-tracking/commit/14a2cbca7414b35c2bbdf7f27ceeab6a7a7496fb"
       },
       "site_no_ar": {
         "ok": true,

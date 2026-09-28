@@ -11,9 +11,16 @@ Por site: se está no ar, quando os dados foram atualizados pela última vez (e 
 e — quando o GoatCounter estiver configurado (ver abaixo) — visitantes únicos (total e um
 gráfico por dia dos últimos 30 dias).
 
-Para o **Bolão F1** especificamente, também: a rodada mais recente processada, se a última
-execução do pipeline (`page-bolao-formula1`) terminou com sucesso ou erro, e se está em
-"vigília" (aguardando o resultado do quali sair na Jolpica).
+Para o **Bolão F1** especificamente, também: a rodada mais recente processada, o link do
+Google Forms de envio de palpites e o **passo a passo da última atualização de dados**
+(`src/etapas_bolao.py`), montado a partir dos passos da execução do pipeline
+(`page-bolao-formula1`) e do deploy do GitHub Pages:
+
+1. Palpites enviados (Google Forms → Apps Script dispara o pipeline)
+2. Palpites lidos e rodada identificada
+3. Resultado oficial do quali (Jolpica) — na hora, ou em "vigília" até sair
+4. Pontuação calculada
+5. Página atualizada (GitHub Pages)
 
 ## Como funciona
 
@@ -29,6 +36,7 @@ src/
 ├── config.py             # lista dos sites monitorados
 ├── coleta_github.py      # commits, execuções de Actions, "site no ar"
 ├── coleta_goatcounter.py # visitantes únicos via API do GoatCounter (opcional por site)
+├── etapas_bolao.py       # passo a passo da última atualização do Bolão F1
 └── publicacao.py         # monta docs/dados/status.json
 docs/                     # o que o GitHub Pages publica
 ```
@@ -65,6 +73,6 @@ caminhos pelo prefixo `/<repo>/`.
 
 ## Sites monitorados
 
-Ver `src/config.py` — hoje são os seis sites publicados sob `gfvdata-web`: Bolão F1, Meios de
-pagamento, Arrecadação federal, Crédito por modalidade, Simulador de investimentos e Cruzeiro
-Indata. `cruzeiro-indata` (privado, sem Pages) fica de fora.
+Ver `src/config.py` — hoje são seis sites publicados sob `gfvdata-web`: Bolão F1, Meios de
+pagamento, Arrecadação federal, Crédito por modalidade, Simulador de investimentos e Chess
+Tracking. O Cruzeiro Indata saiu do painel.
