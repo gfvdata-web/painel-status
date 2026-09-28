@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-09-28T12:44:50.874650+00:00",
+    "gerado_em": "2026-09-28T13:37:54.325986+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -10,6 +10,7 @@
       "repo": "page-bolao-formula1",
       "pages_url": "https://gfvdata-web.github.io/page-bolao-formula1/",
       "destaque": true,
+      "form_url": "https://forms.gle/7yZAx1WThPf51bv67",
       "ultimo_commit_dados": {
         "data": "2026-09-27T17:56:07Z",
         "mensagem": "Etapa 5: corrige nome do jogador na rodada 15 (Francez Back -> Francez)",
@@ -69,7 +70,7 @@
         "status_http": 200
       },
       "acesso": {
-        "visitantes_unicos": 16,
+        "visitantes_unicos": 17,
         "serie_diaria": [
           {
             "data": "2026-08-29",
@@ -193,7 +194,7 @@
           },
           {
             "data": "2026-09-28",
-            "visitantes": 0
+            "visitantes": 1
           }
         ]
       }
@@ -873,7 +874,7 @@
         "status_http": 200
       },
       "acesso": {
-        "visitantes_unicos": 6,
+        "visitantes_unicos": 9,
         "serie_diaria": [
           {
             "data": "2026-08-29",
@@ -997,7 +998,7 @@
           },
           {
             "data": "2026-09-28",
-            "visitantes": 0
+            "visitantes": 3
           }
         ]
       }
