@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-09-28T16:09:16.046794+00:00",
+    "gerado_em": "2026-09-28T21:02:06.215300+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -811,19 +811,19 @@
       "pages_url": "https://gfvdata-web.github.io/chess-tracking/",
       "destaque": false,
       "ultimo_commit_dados": {
-        "data": "2026-09-28T15:37:19Z",
-        "mensagem": "Acompanha varios jogadores: maherculano e PauloRicardoPalmeiras",
-        "sha": "0058013",
-        "url": "https://github.com/gfvdata-web/chess-tracking/commit/0058013025703cf43698a949c9e823dd157281a1"
+        "data": "2026-09-28T18:24:43Z",
+        "mensagem": "Atualiza partidas em 2026-09-28T18:24Z",
+        "sha": "6a8f10e",
+        "url": "https://github.com/gfvdata-web/chess-tracking/commit/6a8f10e1313d8569d2c21a55a3cd67f3dc908305"
       },
       "ultima_execucao_pipeline": {
-        "id": 36447274251,
-        "evento": "workflow_dispatch",
-        "status": "in_progress",
-        "conclusao": null,
-        "criado_em": "2026-09-28T15:55:38Z",
-        "atualizado_em": "2026-09-28T16:06:03Z",
-        "url": "https://github.com/gfvdata-web/chess-tracking/actions/runs/36447274251"
+        "id": 36459605106,
+        "evento": "schedule",
+        "status": "completed",
+        "conclusao": "success",
+        "criado_em": "2026-09-28T17:38:52Z",
+        "atualizado_em": "2026-09-28T18:24:51Z",
+        "url": "https://github.com/gfvdata-web/chess-tracking/actions/runs/36459605106"
       },
       "site_no_ar": {
         "ok": true,
