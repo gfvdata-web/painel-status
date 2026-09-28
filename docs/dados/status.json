@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-09-28T13:37:54.325986+00:00",
+    "gerado_em": "2026-09-28T16:09:16.046794+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -211,21 +211,9 @@
         "sha": "621250f",
         "url": "https://github.com/gfvdata-web/fonte-meios-pagamento/commit/621250f71ccc89c72fdd13ff7f45b9d2eba8a6aa"
       },
-      "meta_publicada": {
-        "fonte": "BCB — Estatísticas de Meios de Pagamento (mensal)",
-        "descricao": "Quantidade e valor de movimentação por AnoMes e forma de pagamento no Brasil.",
-        "url": "https://olinda.bcb.gov.br/olinda/servico/MPV_DadosAbertos/versao/v1/odata/MeiosdePagamentosMensalDA(AnoMes=@AnoMes)?@AnoMes=''&$format=json",
-        "unidades": {
-          "quantidade": "milhares de transações",
-          "valor": "R$ milhões"
-        },
-        "periodicidade": "mensal",
-        "licenca": "Dados abertos — Banco Central do Brasil",
-        "gerado_em": "2026-08-15T21:28:37.688925+00:00",
-        "periodo": {
-          "inicio": "2002-04",
-          "fim": "2026-06"
-        }
+      "periodo_publicado": {
+        "inicio": "2002-04",
+        "fim": "2026-06"
       },
       "site_no_ar": {
         "ok": true,
@@ -373,34 +361,16 @@
         "sha": "c81ae4e",
         "url": "https://github.com/gfvdata-web/fonte-arrecadacao-federal/commit/c81ae4edefbe8813b0e02f48cba0844bb117713d"
       },
-      "meta_publicada": {
-        "fonte": "RFB — Arrecadação das Receitas Federais (série histórica)",
-        "descricao": "Valor arrecadado mensal por tributo no Brasil, a preços correntes, publicado pela Receita Federal no portal ReceitaData.",
-        "url": "https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/dados-abertos/receitadata/arrecadacao/serie-historica/",
-        "arquivos": [
-          "arrecadacao-das-receitas-federais-1970-a-1993.xlsx",
-          "arrecadacao-das-receitas-federais-1994-a-2025.xlsx"
-        ],
-        "unidades": {
-          "valor": "R$ milhões (correntes)",
-          "valor_constante": "R$ milhões (constantes, IPCA do último mês)"
-        },
-        "periodicidade": "mensal",
-        "licenca": "CC-BY-ND 3.0 — Receita Federal do Brasil",
-        "deflator": "IPCA — BCB/SGS série 433",
-        "mes_base_constante": "2025-12",
-        "gerado_em": "2026-08-15T21:37:56.571369+00:00",
-        "periodo": {
-          "inicio": "1994-01",
-          "fim": "2025-12"
-        }
+      "periodo_publicado": {
+        "inicio": "1994-01",
+        "fim": "2025-12"
       },
       "site_no_ar": {
         "ok": true,
         "status_http": 200
       },
       "acesso": {
-        "visitantes_unicos": 9,
+        "visitantes_unicos": 10,
         "serie_diaria": [
           {
             "data": "2026-08-29",
@@ -524,7 +494,7 @@
           },
           {
             "data": "2026-09-28",
-            "visitantes": 0
+            "visitantes": 1
           }
         ]
       }
@@ -541,23 +511,9 @@
         "sha": "3bb1bd2",
         "url": "https://github.com/gfvdata-web/fonte-credito-modalidade/commit/3bb1bd27ec9c0fb0e464416658fa22ce78607dfb"
       },
-      "meta_publicada": {
-        "fonte": "BCB — Crédito por modalidade (SGS)",
-        "descricao": "Saldo da carteira, taxa média de juros e spread das operações de crédito do Sistema Financeiro Nacional, por modalidade e por segmento (PF/PJ).",
-        "url": "https://dadosabertos.bcb.gov.br/dataset/20539-saldo-da-carteira-de-credito---total",
-        "unidades": {
-          "saldo": "R$ milhões",
-          "taxa_juros_aa": "% ao ano",
-          "spread_pp": "p.p. ao ano"
-        },
-        "periodicidade": "mensal",
-        "licenca": "Open Database License (ODbL) — Banco Central do Brasil",
-        "gerado_em": "2026-08-15T21:46:53.092497+00:00",
-        "periodo": {
-          "inicio": "2011-03",
-          "fim": "2026-06"
-        },
-        "series_sgs": 61
+      "periodo_publicado": {
+        "inicio": "2011-03",
+        "fim": "2026-06"
       },
       "site_no_ar": {
         "ok": true,
@@ -855,19 +811,19 @@
       "pages_url": "https://gfvdata-web.github.io/chess-tracking/",
       "destaque": false,
       "ultimo_commit_dados": {
-        "data": "2026-09-28T12:31:00Z",
-        "mensagem": "Atualiza partidas em 2026-09-28T12:31Z",
-        "sha": "4458ad9",
-        "url": "https://github.com/gfvdata-web/chess-tracking/commit/4458ad9feaf8757a2328c8d2a5a1d0af30d20b22"
+        "data": "2026-09-28T15:37:19Z",
+        "mensagem": "Acompanha varios jogadores: maherculano e PauloRicardoPalmeiras",
+        "sha": "0058013",
+        "url": "https://github.com/gfvdata-web/chess-tracking/commit/0058013025703cf43698a949c9e823dd157281a1"
       },
       "ultima_execucao_pipeline": {
-        "id": 36420723239,
+        "id": 36447274251,
         "evento": "workflow_dispatch",
-        "status": "completed",
-        "conclusao": "success",
-        "criado_em": "2026-09-28T12:15:55Z",
-        "atualizado_em": "2026-09-28T12:31:06Z",
-        "url": "https://github.com/gfvdata-web/chess-tracking/actions/runs/36420723239"
+        "status": "in_progress",
+        "conclusao": null,
+        "criado_em": "2026-09-28T15:55:38Z",
+        "atualizado_em": "2026-09-28T16:06:03Z",
+        "url": "https://github.com/gfvdata-web/chess-tracking/actions/runs/36447274251"
       },
       "site_no_ar": {
         "ok": true,
@@ -1002,6 +958,16 @@
           }
         ]
       }
+    }
+  ],
+  "forms_avulsos": [
+    {
+      "nome": "Notas fiscais",
+      "url": "https://forms.gle/ftgMMg1Lwpoi7j3Z8"
+    },
+    {
+      "nome": "Update plantas",
+      "url": "https://forms.gle/y3uXaukJXmP9GMED7"
     }
   ]
 }
