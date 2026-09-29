@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-09-28T21:02:06.215300+00:00",
+    "gerado_em": "2026-09-29T03:54:49.174601+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -70,12 +70,8 @@
         "status_http": 200
       },
       "acesso": {
-        "visitantes_unicos": 17,
+        "visitantes_unicos": 18,
         "serie_diaria": [
-          {
-            "data": "2026-08-29",
-            "visitantes": 0
-          },
           {
             "data": "2026-08-30",
             "visitantes": 0
@@ -194,7 +190,11 @@
           },
           {
             "data": "2026-09-28",
-            "visitantes": 1
+            "visitantes": 2
+          },
+          {
+            "data": "2026-09-29",
+            "visitantes": 0
           }
         ]
       }
@@ -222,10 +222,6 @@
       "acesso": {
         "visitantes_unicos": 5,
         "serie_diaria": [
-          {
-            "data": "2026-08-29",
-            "visitantes": 0
-          },
           {
             "data": "2026-08-30",
             "visitantes": 0
@@ -344,6 +340,10 @@
           },
           {
             "data": "2026-09-28",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-29",
             "visitantes": 0
           }
         ]
@@ -373,10 +373,6 @@
         "visitantes_unicos": 10,
         "serie_diaria": [
           {
-            "data": "2026-08-29",
-            "visitantes": 0
-          },
-          {
             "data": "2026-08-30",
             "visitantes": 0
           },
@@ -495,6 +491,10 @@
           {
             "data": "2026-09-28",
             "visitantes": 1
+          },
+          {
+            "data": "2026-09-29",
+            "visitantes": 0
           }
         ]
       }
@@ -523,10 +523,6 @@
         "visitantes_unicos": 2,
         "serie_diaria": [
           {
-            "data": "2026-08-29",
-            "visitantes": 0
-          },
-          {
             "data": "2026-08-30",
             "visitantes": 0
           },
@@ -644,6 +640,10 @@
           },
           {
             "data": "2026-09-28",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-29",
             "visitantes": 0
           }
         ]
@@ -656,19 +656,19 @@
       "pages_url": "https://gfvdata-web.github.io/simulador-investimentos/",
       "destaque": false,
       "ultimo_commit_dados": {
-        "data": "2026-09-24T23:51:31Z",
-        "mensagem": "Dados de mercado em 2026-09-24",
-        "sha": "79cd820",
-        "url": "https://github.com/gfvdata-web/simulador-investimentos/commit/79cd8202c49fbf45df997f4455008e5b591449c4"
+        "data": "2026-09-29T00:53:18Z",
+        "mensagem": "Dados de mercado em 2026-09-29",
+        "sha": "21d9f24",
+        "url": "https://github.com/gfvdata-web/simulador-investimentos/commit/21d9f246dbc70ba161d2c1e902cfbb87aa5ffe49"
       },
       "ultima_execucao_pipeline": {
-        "id": 36201911360,
+        "id": 36504395876,
         "evento": "schedule",
         "status": "completed",
-        "conclusao": "failure",
-        "criado_em": "2026-09-25T23:40:17Z",
-        "atualizado_em": "2026-09-25T23:45:00Z",
-        "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/36201911360"
+        "conclusao": "success",
+        "criado_em": "2026-09-29T00:42:27Z",
+        "atualizado_em": "2026-09-29T00:53:22Z",
+        "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/36504395876"
       },
       "site_no_ar": {
         "ok": true,
@@ -677,10 +677,6 @@
       "acesso": {
         "visitantes_unicos": 1,
         "serie_diaria": [
-          {
-            "data": "2026-08-29",
-            "visitantes": 0
-          },
           {
             "data": "2026-08-30",
             "visitantes": 0
@@ -799,6 +795,10 @@
           },
           {
             "data": "2026-09-28",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-29",
             "visitantes": 0
           }
         ]
@@ -830,12 +830,8 @@
         "status_http": 200
       },
       "acesso": {
-        "visitantes_unicos": 9,
+        "visitantes_unicos": 10,
         "serie_diaria": [
-          {
-            "data": "2026-08-29",
-            "visitantes": 0
-          },
           {
             "data": "2026-08-30",
             "visitantes": 0
@@ -954,7 +950,11 @@
           },
           {
             "data": "2026-09-28",
-            "visitantes": 3
+            "visitantes": 4
+          },
+          {
+            "data": "2026-09-29",
+            "visitantes": 0
           }
         ]
       }
