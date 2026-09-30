@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-09-29T19:45:12.569128+00:00",
+    "gerado_em": "2026-09-30T00:02:21.018354+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -70,12 +70,8 @@
         "status_http": 200
       },
       "acesso": {
-        "visitantes_unicos": 18,
+        "visitantes_unicos": 19,
         "serie_diaria": [
-          {
-            "data": "2026-08-30",
-            "visitantes": 0
-          },
           {
             "data": "2026-08-31",
             "visitantes": 0
@@ -194,7 +190,7 @@
           },
           {
             "data": "2026-09-29",
-            "visitantes": 0
+            "visitantes": 1
           }
         ]
       }
@@ -222,10 +218,6 @@
       "acesso": {
         "visitantes_unicos": 5,
         "serie_diaria": [
-          {
-            "data": "2026-08-30",
-            "visitantes": 0
-          },
           {
             "data": "2026-08-31",
             "visitantes": 0
@@ -373,10 +365,6 @@
         "visitantes_unicos": 10,
         "serie_diaria": [
           {
-            "data": "2026-08-30",
-            "visitantes": 0
-          },
-          {
             "data": "2026-08-31",
             "visitantes": 0
           },
@@ -523,10 +511,6 @@
         "visitantes_unicos": 2,
         "serie_diaria": [
           {
-            "data": "2026-08-30",
-            "visitantes": 0
-          },
-          {
             "data": "2026-08-31",
             "visitantes": 0
           },
@@ -662,13 +646,13 @@
         "url": "https://github.com/gfvdata-web/simulador-investimentos/commit/21d9f246dbc70ba161d2c1e902cfbb87aa5ffe49"
       },
       "ultima_execucao_pipeline": {
-        "id": 36504395876,
+        "id": 36648008726,
         "evento": "schedule",
-        "status": "completed",
-        "conclusao": "success",
-        "criado_em": "2026-09-29T00:42:27Z",
-        "atualizado_em": "2026-09-29T00:53:22Z",
-        "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/36504395876"
+        "status": "in_progress",
+        "conclusao": null,
+        "criado_em": "2026-09-29T23:59:07Z",
+        "atualizado_em": "2026-09-29T23:59:10Z",
+        "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/36648008726"
       },
       "site_no_ar": {
         "ok": true,
@@ -677,10 +661,6 @@
       "acesso": {
         "visitantes_unicos": 1,
         "serie_diaria": [
-          {
-            "data": "2026-08-30",
-            "visitantes": 0
-          },
           {
             "data": "2026-08-31",
             "visitantes": 0
@@ -830,12 +810,8 @@
         "status_http": 200
       },
       "acesso": {
-        "visitantes_unicos": 10,
+        "visitantes_unicos": 12,
         "serie_diaria": [
-          {
-            "data": "2026-08-30",
-            "visitantes": 0
-          },
           {
             "data": "2026-08-31",
             "visitantes": 0
@@ -954,7 +930,7 @@
           },
           {
             "data": "2026-09-29",
-            "visitantes": 0
+            "visitantes": 2
           }
         ]
       }
