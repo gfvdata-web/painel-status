@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-09-30T00:02:21.018354+00:00",
+    "gerado_em": "2026-09-30T09:15:12.734068+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -191,6 +191,10 @@
           {
             "data": "2026-09-29",
             "visitantes": 1
+          },
+          {
+            "data": "2026-09-30",
+            "visitantes": 0
           }
         ]
       }
@@ -336,6 +340,10 @@
           },
           {
             "data": "2026-09-29",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-30",
             "visitantes": 0
           }
         ]
@@ -483,6 +491,10 @@
           {
             "data": "2026-09-29",
             "visitantes": 0
+          },
+          {
+            "data": "2026-09-30",
+            "visitantes": 0
           }
         ]
       }
@@ -629,6 +641,10 @@
           {
             "data": "2026-09-29",
             "visitantes": 0
+          },
+          {
+            "data": "2026-09-30",
+            "visitantes": 0
           }
         ]
       }
@@ -648,10 +664,10 @@
       "ultima_execucao_pipeline": {
         "id": 36648008726,
         "evento": "schedule",
-        "status": "in_progress",
-        "conclusao": null,
+        "status": "completed",
+        "conclusao": "failure",
         "criado_em": "2026-09-29T23:59:07Z",
-        "atualizado_em": "2026-09-29T23:59:10Z",
+        "atualizado_em": "2026-09-30T00:04:23Z",
         "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/36648008726"
       },
       "site_no_ar": {
@@ -779,6 +795,10 @@
           },
           {
             "data": "2026-09-29",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-30",
             "visitantes": 0
           }
         ]
@@ -931,6 +951,10 @@
           {
             "data": "2026-09-29",
             "visitantes": 2
+          },
+          {
+            "data": "2026-09-30",
+            "visitantes": 0
           }
         ]
       }
