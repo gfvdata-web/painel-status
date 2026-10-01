@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-10-01T18:44:28.914578+00:00",
+    "gerado_em": "2026-10-01T18:50:13.607534+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -220,6 +220,49 @@
         "ok": true,
         "status_http": 200
       },
+      "detalhes": {
+        "coleta": null,
+        "commits_dados": [
+          {
+            "data": "2026-09-22T17:17:53Z",
+            "mensagem": "v2: adiciona 9 novos marcos temporais pesquisados por forma de pagamento",
+            "sha": "621250f",
+            "url": "https://github.com/gfvdata-web/fonte-meios-pagamento/commit/621250f71ccc89c72fdd13ff7f45b9d2eba8a6aa"
+          },
+          {
+            "data": "2026-09-21T00:25:43Z",
+            "mensagem": "v2: ajusta grafico de participacao e adiciona modo claro/escuro",
+            "sha": "731cd9f",
+            "url": "https://github.com/gfvdata-web/fonte-meios-pagamento/commit/731cd9f33f7879fa5e48ec4562abee5d8c189817"
+          },
+          {
+            "data": "2026-09-20T23:26:57Z",
+            "mensagem": "v2: linha do tempo passa a contar a historia de uma forma em foco",
+            "sha": "cb55747",
+            "url": "https://github.com/gfvdata-web/fonte-meios-pagamento/commit/cb557472010b5356fe1bd37a0d99dfeb9f390e84"
+          },
+          {
+            "data": "2026-08-15T21:48:13Z",
+            "mensagem": "Perfil: motor detecta medida guardada como texto",
+            "sha": "cd01517",
+            "url": "https://github.com/gfvdata-web/fonte-meios-pagamento/commit/cd01517fee25c4d0533c79aea8dd60068d9501b0"
+          },
+          {
+            "data": "2026-08-15T21:29:26Z",
+            "mensagem": "Etapa E: pagina de exploracao dos dados",
+            "sha": "f8e5436",
+            "url": "https://github.com/gfvdata-web/fonte-meios-pagamento/commit/f8e5436cdc452ba4e46239b62c5f4c683d2c285a"
+          }
+        ],
+        "deploy_pages": {
+          "status": "completed",
+          "conclusao": "success",
+          "criado_em": "2026-09-22T17:35:38Z",
+          "atualizado_em": "2026-09-22T17:36:27Z",
+          "url": "https://github.com/gfvdata-web/fonte-meios-pagamento/actions/runs/35761717524"
+        }
+      },
+      "alertas": [],
       "acesso": {
         "visitantes_unicos": 5,
         "serie_diaria": [
@@ -370,6 +413,37 @@
         "ok": true,
         "status_http": 200
       },
+      "detalhes": {
+        "coleta": null,
+        "commits_dados": [
+          {
+            "data": "2026-08-15T21:48:16Z",
+            "mensagem": "Perfil: motor detecta medida guardada como texto",
+            "sha": "c81ae4e",
+            "url": "https://github.com/gfvdata-web/fonte-arrecadacao-federal/commit/c81ae4edefbe8813b0e02f48cba0844bb117713d"
+          },
+          {
+            "data": "2026-08-15T21:39:45Z",
+            "mensagem": "Etapa E: pagina de exploracao dos dados",
+            "sha": "8aff2a6",
+            "url": "https://github.com/gfvdata-web/fonte-arrecadacao-federal/commit/8aff2a64f93c52f0116e3320f3d32d6340bcc1da"
+          },
+          {
+            "data": "2026-08-14T00:23:33Z",
+            "mensagem": "Estrutura inicial: pipeline e painel de arrecadacao federal (RFB)",
+            "sha": "e8015e7",
+            "url": "https://github.com/gfvdata-web/fonte-arrecadacao-federal/commit/e8015e7ae82fda3b5748d0a69018cc03dce103f1"
+          }
+        ],
+        "deploy_pages": {
+          "status": "completed",
+          "conclusao": "success",
+          "criado_em": "2026-09-15T16:28:45Z",
+          "atualizado_em": "2026-09-15T16:29:24Z",
+          "url": "https://github.com/gfvdata-web/fonte-arrecadacao-federal/actions/runs/34995244975"
+        }
+      },
+      "alertas": [],
       "acesso": {
         "visitantes_unicos": 10,
         "serie_diaria": [
@@ -520,6 +594,31 @@
         "ok": true,
         "status_http": 200
       },
+      "detalhes": {
+        "coleta": null,
+        "commits_dados": [
+          {
+            "data": "2026-08-15T21:47:58Z",
+            "mensagem": "Etapa E: pagina de exploracao dos dados",
+            "sha": "3bb1bd2",
+            "url": "https://github.com/gfvdata-web/fonte-credito-modalidade/commit/3bb1bd27ec9c0fb0e464416658fa22ce78607dfb"
+          },
+          {
+            "data": "2026-08-14T00:23:51Z",
+            "mensagem": "Estrutura inicial: pipeline e painel de credito por modalidade (BCB/SGS)",
+            "sha": "7d13047",
+            "url": "https://github.com/gfvdata-web/fonte-credito-modalidade/commit/7d130479bdc4f70f8365d0655afcbdb479ed8a39"
+          }
+        ],
+        "deploy_pages": {
+          "status": "completed",
+          "conclusao": "success",
+          "criado_em": "2026-09-21T16:34:06Z",
+          "atualizado_em": "2026-09-21T16:37:49Z",
+          "url": "https://github.com/gfvdata-web/fonte-credito-modalidade/actions/runs/35626424956"
+        }
+      },
+      "alertas": [],
       "acesso": {
         "visitantes_unicos": 2,
         "serie_diaria": [
@@ -675,6 +774,260 @@
         "ok": true,
         "status_http": 200
       },
+      "detalhes": {
+        "coleta": {
+          "workflow": "atualizar-dados.yml",
+          "url_workflow": "https://github.com/gfvdata-web/simulador-investimentos/actions/workflows/atualizar-dados.yml",
+          "agenda": [
+            {
+              "cron": "0 21 * * 1-5",
+              "descricao": "de segunda a sexta às 18:00 (Brasília)"
+            }
+          ],
+          "historico": [
+            {
+              "id": 36795108679,
+              "evento": "schedule",
+              "status": "completed",
+              "conclusao": "failure",
+              "criado_em": "2026-10-01T00:13:49Z",
+              "atualizado_em": "2026-10-01T00:20:40Z",
+              "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/36795108679",
+              "duracao_s": 411
+            },
+            {
+              "id": 36648008726,
+              "evento": "schedule",
+              "status": "completed",
+              "conclusao": "failure",
+              "criado_em": "2026-09-29T23:59:07Z",
+              "atualizado_em": "2026-09-30T00:04:23Z",
+              "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/36648008726",
+              "duracao_s": 316
+            },
+            {
+              "id": 36504395876,
+              "evento": "schedule",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-09-29T00:42:27Z",
+              "atualizado_em": "2026-09-29T00:53:22Z",
+              "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/36504395876",
+              "duracao_s": 655
+            },
+            {
+              "id": 36201911360,
+              "evento": "schedule",
+              "status": "completed",
+              "conclusao": "failure",
+              "criado_em": "2026-09-25T23:40:17Z",
+              "atualizado_em": "2026-09-25T23:45:00Z",
+              "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/36201911360",
+              "duracao_s": 283
+            },
+            {
+              "id": 36073645010,
+              "evento": "schedule",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-09-24T23:37:18Z",
+              "atualizado_em": "2026-09-24T23:51:37Z",
+              "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/36073645010",
+              "duracao_s": 859
+            },
+            {
+              "id": 35932766017,
+              "evento": "schedule",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-09-23T23:16:31Z",
+              "atualizado_em": "2026-09-23T23:28:18Z",
+              "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/35932766017",
+              "duracao_s": 707
+            },
+            {
+              "id": 35797006340,
+              "evento": "schedule",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-09-22T23:21:23Z",
+              "atualizado_em": "2026-09-22T23:32:45Z",
+              "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/35797006340",
+              "duracao_s": 682
+            },
+            {
+              "id": 35668828888,
+              "evento": "schedule",
+              "status": "completed",
+              "conclusao": "cancelled",
+              "criado_em": "2026-09-21T23:43:10Z",
+              "atualizado_em": "2026-09-22T05:44:31Z",
+              "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/35668828888",
+              "duracao_s": 21681
+            },
+            {
+              "id": 35403499066,
+              "evento": "schedule",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-09-18T22:53:40Z",
+              "atualizado_em": "2026-09-18T23:06:09Z",
+              "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/35403499066",
+              "duracao_s": 749
+            },
+            {
+              "id": 35285734099,
+              "evento": "schedule",
+              "status": "completed",
+              "conclusao": "failure",
+              "criado_em": "2026-09-17T23:12:05Z",
+              "atualizado_em": "2026-09-17T23:16:06Z",
+              "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/35285734099",
+              "duracao_s": 241
+            },
+            {
+              "id": 35161883113,
+              "evento": "schedule",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-09-16T23:20:48Z",
+              "atualizado_em": "2026-09-16T23:32:27Z",
+              "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/35161883113",
+              "duracao_s": 699
+            },
+            {
+              "id": 35034870606,
+              "evento": "schedule",
+              "status": "completed",
+              "conclusao": "failure",
+              "criado_em": "2026-09-15T23:15:51Z",
+              "atualizado_em": "2026-09-15T23:17:02Z",
+              "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/35034870606",
+              "duracao_s": 71
+            },
+            {
+              "id": 34909367829,
+              "evento": "schedule",
+              "status": "completed",
+              "conclusao": "cancelled",
+              "criado_em": "2026-09-14T23:33:04Z",
+              "atualizado_em": "2026-09-15T05:33:22Z",
+              "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/34909367829",
+              "duracao_s": 21618
+            },
+            {
+              "id": 34655777576,
+              "evento": "schedule",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-09-11T22:51:34Z",
+              "atualizado_em": "2026-09-11T23:02:38Z",
+              "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/34655777576",
+              "duracao_s": 664
+            }
+          ],
+          "ultimo_sucesso": {
+            "id": 36504395876,
+            "evento": "schedule",
+            "status": "completed",
+            "conclusao": "success",
+            "criado_em": "2026-09-29T00:42:27Z",
+            "atualizado_em": "2026-09-29T00:53:22Z",
+            "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/36504395876"
+          },
+          "ultima_falha": {
+            "id": 36795108679,
+            "evento": "schedule",
+            "status": "completed",
+            "conclusao": "failure",
+            "criado_em": "2026-10-01T00:13:49Z",
+            "atualizado_em": "2026-10-01T00:20:40Z",
+            "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/36795108679",
+            "motivo": {
+              "job": "coletar",
+              "passo": "Coletar",
+              "mensagem": "http.client.IncompleteRead: IncompleteRead(14718209 bytes read, 71589081 more expected)"
+            }
+          },
+          "passos_ultima": [
+            {
+              "nome": "Set up job",
+              "conclusao": "success"
+            },
+            {
+              "nome": "Run actions/checkout@v4",
+              "conclusao": "success"
+            },
+            {
+              "nome": "Run actions/setup-python@v5",
+              "conclusao": "success"
+            },
+            {
+              "nome": "Coletar",
+              "conclusao": "failure"
+            },
+            {
+              "nome": "Validar o que foi coletado",
+              "conclusao": "skipped"
+            },
+            {
+              "nome": "Commitar se algo mudou",
+              "conclusao": "skipped"
+            },
+            {
+              "nome": "Post Run actions/setup-python@v5",
+              "conclusao": "skipped"
+            },
+            {
+              "nome": "Post Run actions/checkout@v4",
+              "conclusao": "success"
+            },
+            {
+              "nome": "Complete job",
+              "conclusao": "success"
+            }
+          ]
+        },
+        "commits_dados": [
+          {
+            "data": "2026-09-29T00:53:18Z",
+            "mensagem": "Dados de mercado em 2026-09-29",
+            "sha": "21d9f24",
+            "url": "https://github.com/gfvdata-web/simulador-investimentos/commit/21d9f246dbc70ba161d2c1e902cfbb87aa5ffe49"
+          },
+          {
+            "data": "2026-09-24T23:51:31Z",
+            "mensagem": "Dados de mercado em 2026-09-24",
+            "sha": "79cd820",
+            "url": "https://github.com/gfvdata-web/simulador-investimentos/commit/79cd8202c49fbf45df997f4455008e5b591449c4"
+          },
+          {
+            "data": "2026-09-23T23:28:15Z",
+            "mensagem": "Dados de mercado em 2026-09-23",
+            "sha": "01dc624",
+            "url": "https://github.com/gfvdata-web/simulador-investimentos/commit/01dc624f785e4b94084052f04e32402aed4ecb64"
+          },
+          {
+            "data": "2026-09-22T23:32:42Z",
+            "mensagem": "Dados de mercado em 2026-09-22",
+            "sha": "d72867d",
+            "url": "https://github.com/gfvdata-web/simulador-investimentos/commit/d72867d0f98a5cfe603fcc0a336091347e3cc65f"
+          },
+          {
+            "data": "2026-09-18T23:06:04Z",
+            "mensagem": "Dados de mercado em 2026-09-18",
+            "sha": "f50a998",
+            "url": "https://github.com/gfvdata-web/simulador-investimentos/commit/f50a998d4bad01008013103e17f502b863a8ffec"
+          }
+        ],
+        "deploy_pages": null
+      },
+      "alertas": [
+        {
+          "nivel": "aviso",
+          "texto": "A última coleta falhou."
+        }
+      ],
       "acesso": {
         "visitantes_unicos": 1,
         "serie_diaria": [
@@ -830,6 +1183,226 @@
         "ok": true,
         "status_http": 200
       },
+      "detalhes": {
+        "coleta": {
+          "workflow": "atualizar-partidas.yml",
+          "url_workflow": "https://github.com/gfvdata-web/chess-tracking/actions/workflows/atualizar-partidas.yml",
+          "agenda": [
+            {
+              "cron": "17 9 * * *",
+              "descricao": "todo dia às 06:17 (Brasília)"
+            }
+          ],
+          "historico": [
+            {
+              "id": 36891998762,
+              "evento": "schedule",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-10-01T16:26:25Z",
+              "atualizado_em": "2026-10-01T16:56:34Z",
+              "url": "https://github.com/gfvdata-web/chess-tracking/actions/runs/36891998762",
+              "duracao_s": 1809
+            },
+            {
+              "id": 36740319230,
+              "evento": "schedule",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-09-30T15:54:48Z",
+              "atualizado_em": "2026-09-30T16:25:50Z",
+              "url": "https://github.com/gfvdata-web/chess-tracking/actions/runs/36740319230",
+              "duracao_s": 1862
+            },
+            {
+              "id": 36593294276,
+              "evento": "schedule",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-09-29T15:50:47Z",
+              "atualizado_em": "2026-09-29T16:26:59Z",
+              "url": "https://github.com/gfvdata-web/chess-tracking/actions/runs/36593294276",
+              "duracao_s": 2172
+            },
+            {
+              "id": 36459605106,
+              "evento": "schedule",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-09-28T17:38:52Z",
+              "atualizado_em": "2026-09-28T18:24:51Z",
+              "url": "https://github.com/gfvdata-web/chess-tracking/actions/runs/36459605106",
+              "duracao_s": 2759
+            },
+            {
+              "id": 36452216624,
+              "evento": "workflow_dispatch",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-09-28T16:36:07Z",
+              "atualizado_em": "2026-09-28T17:37:02Z",
+              "url": "https://github.com/gfvdata-web/chess-tracking/actions/runs/36452216624",
+              "duracao_s": 3655
+            },
+            {
+              "id": 36447274251,
+              "evento": "workflow_dispatch",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-09-28T15:55:38Z",
+              "atualizado_em": "2026-09-28T16:35:35Z",
+              "url": "https://github.com/gfvdata-web/chess-tracking/actions/runs/36447274251",
+              "duracao_s": 2397
+            },
+            {
+              "id": 36446959379,
+              "evento": "workflow_dispatch",
+              "status": "completed",
+              "conclusao": "cancelled",
+              "criado_em": "2026-09-28T15:53:08Z",
+              "atualizado_em": "2026-09-28T16:06:00Z",
+              "url": "https://github.com/gfvdata-web/chess-tracking/actions/runs/36446959379",
+              "duracao_s": 772
+            },
+            {
+              "id": 36420723239,
+              "evento": "workflow_dispatch",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-09-28T12:15:55Z",
+              "atualizado_em": "2026-09-28T12:31:06Z",
+              "url": "https://github.com/gfvdata-web/chess-tracking/actions/runs/36420723239",
+              "duracao_s": 911
+            },
+            {
+              "id": 36366275228,
+              "evento": "workflow_dispatch",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-09-28T01:31:07Z",
+              "atualizado_em": "2026-09-28T01:49:37Z",
+              "url": "https://github.com/gfvdata-web/chess-tracking/actions/runs/36366275228",
+              "duracao_s": 1110
+            },
+            {
+              "id": 36365654492,
+              "evento": "workflow_dispatch",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-09-28T01:21:18Z",
+              "atualizado_em": "2026-09-28T01:24:59Z",
+              "url": "https://github.com/gfvdata-web/chess-tracking/actions/runs/36365654492",
+              "duracao_s": 221
+            },
+            {
+              "id": 36365138743,
+              "evento": "workflow_dispatch",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-09-28T01:13:05Z",
+              "atualizado_em": "2026-09-28T01:13:29Z",
+              "url": "https://github.com/gfvdata-web/chess-tracking/actions/runs/36365138743",
+              "duracao_s": 24
+            }
+          ],
+          "ultimo_sucesso": {
+            "id": 36891998762,
+            "evento": "schedule",
+            "status": "completed",
+            "conclusao": "success",
+            "criado_em": "2026-10-01T16:26:25Z",
+            "atualizado_em": "2026-10-01T16:56:34Z",
+            "url": "https://github.com/gfvdata-web/chess-tracking/actions/runs/36891998762"
+          },
+          "ultima_falha": null,
+          "passos_ultima": [
+            {
+              "nome": "Set up job",
+              "conclusao": "success"
+            },
+            {
+              "nome": "Run actions/checkout@v4",
+              "conclusao": "success"
+            },
+            {
+              "nome": "Run actions/setup-python@v5",
+              "conclusao": "success"
+            },
+            {
+              "nome": "Instalar dependências",
+              "conclusao": "success"
+            },
+            {
+              "nome": "Baixar Stockfish",
+              "conclusao": "success"
+            },
+            {
+              "nome": "Medir esforço do motor",
+              "conclusao": "skipped"
+            },
+            {
+              "nome": "Rodar pipeline",
+              "conclusao": "success"
+            },
+            {
+              "nome": "Commitar se algo mudou",
+              "conclusao": "success"
+            },
+            {
+              "nome": "Post Run actions/setup-python@v5",
+              "conclusao": "success"
+            },
+            {
+              "nome": "Post Run actions/checkout@v4",
+              "conclusao": "success"
+            },
+            {
+              "nome": "Complete job",
+              "conclusao": "success"
+            }
+          ]
+        },
+        "commits_dados": [
+          {
+            "data": "2026-10-01T16:56:28Z",
+            "mensagem": "Atualiza partidas em 2026-10-01T16:56Z",
+            "sha": "0359fbd",
+            "url": "https://github.com/gfvdata-web/chess-tracking/commit/0359fbd3367e7184f62d714332ccfa29c1dedd51"
+          },
+          {
+            "data": "2026-09-30T16:25:44Z",
+            "mensagem": "Atualiza partidas em 2026-09-30T16:25Z",
+            "sha": "184de5d",
+            "url": "https://github.com/gfvdata-web/chess-tracking/commit/184de5d7c0a5e4b863a8b6184728f3c00a34c881"
+          },
+          {
+            "data": "2026-09-29T16:26:53Z",
+            "mensagem": "Atualiza partidas em 2026-09-29T16:26Z",
+            "sha": "fee3752",
+            "url": "https://github.com/gfvdata-web/chess-tracking/commit/fee3752f56640d9452ec9dc276a4755759d45bdc"
+          },
+          {
+            "data": "2026-09-28T18:24:43Z",
+            "mensagem": "Atualiza partidas em 2026-09-28T18:24Z",
+            "sha": "6a8f10e",
+            "url": "https://github.com/gfvdata-web/chess-tracking/commit/6a8f10e1313d8569d2c21a55a3cd67f3dc908305"
+          },
+          {
+            "data": "2026-09-28T17:36:54Z",
+            "mensagem": "Atualiza partidas em 2026-09-28T17:36Z",
+            "sha": "8c1e520",
+            "url": "https://github.com/gfvdata-web/chess-tracking/commit/8c1e520bcb9b9f6b9d38e7e2cf53113903743b5c"
+          }
+        ],
+        "deploy_pages": {
+          "status": "completed",
+          "conclusao": "success",
+          "criado_em": "2026-10-01T16:56:33Z",
+          "atualizado_em": "2026-10-01T16:57:26Z",
+          "url": "https://github.com/gfvdata-web/chess-tracking/actions/runs/36895719822"
+        }
+      },
+      "alertas": [],
       "acesso": {
         "visitantes_unicos": 12,
         "serie_diaria": [
@@ -986,7 +1559,118 @@
       "site_no_ar": {
         "ok": true,
         "status_http": 200
-      }
+      },
+      "detalhes": {
+        "coleta": {
+          "workflow": "deploy-pages.yml",
+          "url_workflow": "https://github.com/gfvdata-web/PlantsCare-publico/actions/workflows/deploy-pages.yml",
+          "agenda": [],
+          "historico": [
+            {
+              "id": 36906321167,
+              "evento": "push",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-10-01T18:22:17Z",
+              "atualizado_em": "2026-10-01T18:22:46Z",
+              "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/36906321167",
+              "duracao_s": 29
+            },
+            {
+              "id": 36482460005,
+              "evento": "push",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-09-28T20:54:15Z",
+              "atualizado_em": "2026-09-28T20:54:48Z",
+              "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/36482460005",
+              "duracao_s": 33
+            },
+            {
+              "id": 36479213418,
+              "evento": "push",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-09-28T20:26:32Z",
+              "atualizado_em": "2026-09-28T20:26:59Z",
+              "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/36479213418",
+              "duracao_s": 27
+            }
+          ],
+          "ultimo_sucesso": {
+            "id": 36906321167,
+            "evento": "push",
+            "status": "completed",
+            "conclusao": "success",
+            "criado_em": "2026-10-01T18:22:17Z",
+            "atualizado_em": "2026-10-01T18:22:46Z",
+            "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/36906321167"
+          },
+          "ultima_falha": null,
+          "passos_ultima": [
+            {
+              "nome": "Set up job",
+              "conclusao": "success"
+            },
+            {
+              "nome": "Run actions/checkout@v4",
+              "conclusao": "success"
+            },
+            {
+              "nome": "Run actions/setup-python@v5",
+              "conclusao": "success"
+            },
+            {
+              "nome": "Run pip install \"mkdocs==1.6.1\" \"mkdocs-material==9.7.7\" \"mdx-truly-sane-lists==1.3\"",
+              "conclusao": "success"
+            },
+            {
+              "nome": "Run mkdocs build -d _site/docs",
+              "conclusao": "success"
+            },
+            {
+              "nome": "Run cp -r painel/. _site/",
+              "conclusao": "success"
+            },
+            {
+              "nome": "Run actions/upload-pages-artifact@v3",
+              "conclusao": "success"
+            },
+            {
+              "nome": "Run actions/deploy-pages@v4",
+              "conclusao": "success"
+            },
+            {
+              "nome": "Post Run actions/setup-python@v5",
+              "conclusao": "success"
+            },
+            {
+              "nome": "Post Run actions/checkout@v4",
+              "conclusao": "success"
+            },
+            {
+              "nome": "Complete job",
+              "conclusao": "success"
+            }
+          ]
+        },
+        "commits_dados": [
+          {
+            "data": "2026-10-01T18:06:32Z",
+            "mensagem": "Atualiza site a partir de PlantsCare@6438f34",
+            "sha": "0848534",
+            "url": "https://github.com/gfvdata-web/PlantsCare-publico/commit/0848534dcff8613dd8c68aacfb01de20dfeb0c52"
+          },
+          {
+            "data": "2026-09-28T20:38:20Z",
+            "mensagem": "Atualiza site a partir de PlantsCare@e273f2e",
+            "sha": "2ce1d31",
+            "url": "https://github.com/gfvdata-web/PlantsCare-publico/commit/2ce1d31a6e2113953373c9e942a731ca2c897a33"
+          }
+        ],
+        "deploy_pages": null
+      },
+      "alertas": []
     }
   ],
   "forms_avulsos": [
