@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-10-01T12:19:04.748144+00:00",
+    "gerado_em": "2026-10-01T18:29:51.648062+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -70,7 +70,7 @@
         "status_http": 200
       },
       "acesso": {
-        "visitantes_unicos": 19,
+        "visitantes_unicos": 20,
         "serie_diaria": [
           {
             "data": "2026-09-01",
@@ -194,7 +194,7 @@
           },
           {
             "data": "2026-10-01",
-            "visitantes": 0
+            "visitantes": 1
           }
         ]
       }
@@ -811,19 +811,19 @@
       "pages_url": "https://gfvdata-web.github.io/chess-tracking/",
       "destaque": false,
       "ultimo_commit_dados": {
-        "data": "2026-09-30T16:25:44Z",
-        "mensagem": "Atualiza partidas em 2026-09-30T16:25Z",
-        "sha": "184de5d",
-        "url": "https://github.com/gfvdata-web/chess-tracking/commit/184de5d7c0a5e4b863a8b6184728f3c00a34c881"
+        "data": "2026-10-01T16:56:28Z",
+        "mensagem": "Atualiza partidas em 2026-10-01T16:56Z",
+        "sha": "0359fbd",
+        "url": "https://github.com/gfvdata-web/chess-tracking/commit/0359fbd3367e7184f62d714332ccfa29c1dedd51"
       },
       "ultima_execucao_pipeline": {
-        "id": 36740319230,
+        "id": 36891998762,
         "evento": "schedule",
         "status": "completed",
         "conclusao": "success",
-        "criado_em": "2026-09-30T15:54:48Z",
-        "atualizado_em": "2026-09-30T16:25:50Z",
-        "url": "https://github.com/gfvdata-web/chess-tracking/actions/runs/36740319230"
+        "criado_em": "2026-10-01T16:26:25Z",
+        "atualizado_em": "2026-10-01T16:56:34Z",
+        "url": "https://github.com/gfvdata-web/chess-tracking/actions/runs/36891998762"
       },
       "site_no_ar": {
         "ok": true,
@@ -958,16 +958,39 @@
           }
         ]
       }
+    },
+    {
+      "slug": "plants_care",
+      "nome": "Plants Care",
+      "repo": "PlantsCare-publico",
+      "pages_url": "https://gfvdata-web.github.io/PlantsCare-publico/",
+      "destaque": false,
+      "form_url": "https://forms.gle/y3uXaukJXmP9GMED7",
+      "ultimo_commit_dados": {
+        "data": "2026-10-01T18:06:32Z",
+        "mensagem": "Atualiza site a partir de PlantsCare@6438f34",
+        "sha": "0848534",
+        "url": "https://github.com/gfvdata-web/PlantsCare-publico/commit/0848534dcff8613dd8c68aacfb01de20dfeb0c52"
+      },
+      "ultima_execucao_pipeline": {
+        "id": 36906321167,
+        "evento": "push",
+        "status": "completed",
+        "conclusao": "success",
+        "criado_em": "2026-10-01T18:22:17Z",
+        "atualizado_em": "2026-10-01T18:22:46Z",
+        "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/36906321167"
+      },
+      "site_no_ar": {
+        "ok": true,
+        "status_http": 200
+      }
     }
   ],
   "forms_avulsos": [
     {
       "nome": "Notas fiscais",
       "url": "https://forms.gle/ftgMMg1Lwpoi7j3Z8"
-    },
-    {
-      "nome": "Update plantas",
-      "url": "https://forms.gle/y3uXaukJXmP9GMED7"
     }
   ]
 }
