@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-10-01T20:04:13.375847+00:00",
+    "gerado_em": "2026-10-01T20:12:11.340713+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -1564,10 +1564,10 @@
       "ultima_execucao_pipeline": {
         "id": 36918902749,
         "evento": "push",
-        "status": "waiting",
-        "conclusao": null,
+        "status": "completed",
+        "conclusao": "success",
         "criado_em": "2026-10-01T20:04:21Z",
-        "atualizado_em": "2026-10-01T20:04:23Z",
+        "atualizado_em": "2026-10-01T20:04:52Z",
         "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/36918902749"
       },
       "site_no_ar": {
@@ -1583,12 +1583,12 @@
             {
               "id": 36918902749,
               "evento": "push",
-              "status": "waiting",
-              "conclusao": null,
+              "status": "completed",
+              "conclusao": "success",
               "criado_em": "2026-10-01T20:04:21Z",
-              "atualizado_em": "2026-10-01T20:04:23Z",
+              "atualizado_em": "2026-10-01T20:04:52Z",
               "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/36918902749",
-              "duracao_s": null
+              "duracao_s": 31
             },
             {
               "id": 36917761791,
@@ -1652,16 +1652,61 @@
             }
           ],
           "ultimo_sucesso": {
-            "id": 36917761791,
+            "id": 36918902749,
             "evento": "push",
             "status": "completed",
             "conclusao": "success",
-            "criado_em": "2026-10-01T19:54:49Z",
-            "atualizado_em": "2026-10-01T19:55:19Z",
-            "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/36917761791"
+            "criado_em": "2026-10-01T20:04:21Z",
+            "atualizado_em": "2026-10-01T20:04:52Z",
+            "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/36918902749"
           },
           "ultima_falha": null,
-          "passos_ultima": []
+          "passos_ultima": [
+            {
+              "nome": "Set up job",
+              "conclusao": "success"
+            },
+            {
+              "nome": "Run actions/checkout@v7",
+              "conclusao": "success"
+            },
+            {
+              "nome": "Run actions/setup-python@v7",
+              "conclusao": "success"
+            },
+            {
+              "nome": "Run pip install \"mkdocs==1.6.1\" \"mkdocs-material==9.7.7\" \"mdx-truly-sane-lists==1.3\"",
+              "conclusao": "success"
+            },
+            {
+              "nome": "Run mkdocs build -d _site/docs",
+              "conclusao": "success"
+            },
+            {
+              "nome": "Run cp -r painel/. _site/",
+              "conclusao": "success"
+            },
+            {
+              "nome": "Run actions/upload-pages-artifact@v3",
+              "conclusao": "success"
+            },
+            {
+              "nome": "Run actions/deploy-pages@v4",
+              "conclusao": "success"
+            },
+            {
+              "nome": "Post Run actions/setup-python@v7",
+              "conclusao": "success"
+            },
+            {
+              "nome": "Post Run actions/checkout@v7",
+              "conclusao": "success"
+            },
+            {
+              "nome": "Complete job",
+              "conclusao": "success"
+            }
+          ]
         },
         "commits_dados": [
           {
