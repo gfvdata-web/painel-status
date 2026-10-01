@@ -18,7 +18,7 @@ nada seja quebrado (conferir a página localmente com `python -m http.server --d
 | Mudança | Onde atualizar |
 |---|---|
 | Site entra, sai ou muda de nome/URL | `src/config.py` (`SITES`) e a tabela "Sites monitorados" do `README.md`; depois rodar o workflow `atualizar-status.yml` para regenerar `docs/dados/status.json` |
-| Link do Forms do Bolão F1 | `form_url` em `src/config.py` e a tabela "Sites monitorados" do `README.md` |
+| Form de um site (link ou rótulo) | `form_url` / `form_rotulo` em `src/config.py` e a tabela "Sites monitorados" do `README.md` |
 | Form avulso (card "Outros forms") | `FORMS_AVULSOS` em `src/config.py` e a tabela "Outros forms" do `README.md`; depois rodar o workflow |
 | Campo novo no cadastro de sites | `CAMPOS_SITE` e a docstring de `src/config.py`, todas as entradas de `SITES` (mesmas chaves em todas) |
 | Campo novo/renomeado no `status.json` | docstring de `src/publicacao.py` e o uso em `docs/js/app.js` |

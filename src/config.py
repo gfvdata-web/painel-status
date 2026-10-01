@@ -20,6 +20,8 @@ Campos de cada site (todos presentes em toda entrada, para servir de molde):
   json_meta_url    JSON publicado com meta.periodo {inicio, fim}, ou None;
                    com valor, o card mostra "Período coberto"
   form_url         Google Forms ligado ao site, ou None (link no card)
+  form_rotulo      texto do link do form (sem a seta), ou None; exige
+                   form_url. None no site com form = "Abrir Google Forms"
   destaque         True em no máximo um site: vira o card grande do topo
   pipeline_bolao   True só no Bolão F1: monta rodada, vigília e o passo a passo
                    (etapas_bolao.py); exige workflow_arquivo
@@ -44,6 +46,7 @@ SITES = [
         # Onde se cola o bloco de palpites do WhatsApp — o envio dispara o
         # pipeline via Apps Script.
         "form_url": "https://forms.gle/7yZAx1WThPf51bv67",
+        "form_rotulo": "Enviar palpites (Google Forms)",
         "destaque": True,
         "pipeline_bolao": True,
     },
@@ -56,6 +59,7 @@ SITES = [
         "workflow_arquivo": None,
         "json_meta_url": "https://gfvdata-web.github.io/fonte-meios-pagamento/dados/meios_pagamento_mensal.json",
         "form_url": None,
+        "form_rotulo": None,
         "destaque": False,
         "pipeline_bolao": False,
     },
@@ -68,6 +72,7 @@ SITES = [
         "workflow_arquivo": None,
         "json_meta_url": "https://gfvdata-web.github.io/fonte-arrecadacao-federal/dados/arrecadacao_federal.json",
         "form_url": None,
+        "form_rotulo": None,
         "destaque": False,
         "pipeline_bolao": False,
     },
@@ -80,6 +85,7 @@ SITES = [
         "workflow_arquivo": None,
         "json_meta_url": "https://gfvdata-web.github.io/fonte-credito-modalidade/dados/credito_modalidade.json",
         "form_url": None,
+        "form_rotulo": None,
         "destaque": False,
         "pipeline_bolao": False,
     },
@@ -92,6 +98,7 @@ SITES = [
         "workflow_arquivo": "atualizar-dados.yml",
         "json_meta_url": None,
         "form_url": None,
+        "form_rotulo": None,
         "destaque": False,
         "pipeline_bolao": False,
     },
@@ -104,6 +111,7 @@ SITES = [
         "workflow_arquivo": "atualizar-partidas.yml",
         "json_meta_url": None,
         "form_url": None,
+        "form_rotulo": None,
         "destaque": False,
         "pipeline_bolao": False,
     },
@@ -117,6 +125,7 @@ SITES = [
         "json_meta_url": None,
         # Envio de fotos de uma planta pelo celular (Forms → pasta do Drive).
         "form_url": "https://forms.gle/y3uXaukJXmP9GMED7",
+        "form_rotulo": "Enviar fotos",
         "destaque": False,
         "pipeline_bolao": False,
     },
@@ -130,7 +139,7 @@ FORMS_AVULSOS = [
 
 CAMPOS_SITE = {
     "slug", "nome", "repo", "pages_url", "caminho_dados", "workflow_arquivo",
-    "json_meta_url", "form_url", "destaque", "pipeline_bolao",
+    "json_meta_url", "form_url", "form_rotulo", "destaque", "pipeline_bolao",
 }
 
 
@@ -147,6 +156,8 @@ def validar():
             problemas.append(f"{rotulo}: campos desconhecidos {sorted(sobrando)}")
         if site.get("pipeline_bolao") and not site.get("workflow_arquivo"):
             problemas.append(f"{rotulo}: pipeline_bolao exige workflow_arquivo")
+        if site.get("form_rotulo") and not site.get("form_url"):
+            problemas.append(f"{rotulo}: form_rotulo exige form_url")
     slugs = [site.get("slug") for site in SITES]
     if len(slugs) != len(set(slugs)):
         problemas.append("slugs repetidos em SITES")

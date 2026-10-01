@@ -6,6 +6,7 @@ Formato de saída (o único arquivo que docs/js/app.js lê):
   meta           {gerado_em, descricao}
   sites[]        slug, nome, repo, pages_url, destaque, ultimo_commit_dados,
                  site_no_ar e, conforme o cadastro em config.py: form_url,
+                 form_rotulo,
                  periodo_publicado, ultima_execucao_pipeline, acesso e — só no
                  site com pipeline_bolao — rodada_mais_recente, em_vigilia,
                  etapas_pipeline
@@ -36,6 +37,8 @@ def coletar_site(site, acesso_por_repo, acesso_anterior, falha_total):
     }
     if site["form_url"]:
         bloco["form_url"] = site["form_url"]
+        if site["form_rotulo"]:
+            bloco["form_rotulo"] = site["form_rotulo"]
 
     bloco["ultimo_commit_dados"] = gh.ultimo_commit_no_caminho(
         OWNER, site["repo"], site["caminho_dados"]

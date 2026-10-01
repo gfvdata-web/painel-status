@@ -41,6 +41,12 @@ function linkExterno(url, conteudoHtml, classe = "") {
   return `<a${attrClasse} href="${escapar(url)}" target="_blank" rel="noopener">${conteudoHtml}</a>`;
 }
 
+// Link do Google Forms do site (vazio se não houver); rótulo vem de form_rotulo.
+function linkForm(site, classe) {
+  if (!site.form_url) return "";
+  return linkExterno(site.form_url, `${escapar(site.form_rotulo || "Abrir Google Forms")} →`, classe);
+}
+
 function corCss(variavel) {
   return getComputedStyle(document.documentElement).getPropertyValue(variavel).trim();
 }
@@ -276,7 +282,7 @@ function renderizarDestaque(site) {
         </p>
         <div class="links-destaque">
           ${linkExterno(site.pages_url, `Abrir ${escapar(site.nome)} →`, "link-site")}
-          ${site.form_url ? linkExterno(site.form_url, "Enviar palpites (Google Forms) →", "link-site") : ""}
+          ${linkForm(site, "link-site")}
         </div>
       </div>
     </div>
@@ -302,7 +308,7 @@ function renderizarCardSite(site, idGrafico) {
       <div class="linha"><span>Visitantes (únicos)</span><strong>${escapar(acesso ? acesso.visitantes_unicos ?? "—" : "sem rastreio")}</strong></div>
       ${temSerie(site) ? `<div class="grafico-mini"><canvas id="${idGrafico}"></canvas></div>` : ""}
       ${linkExterno(site.pages_url, "Abrir site →", "link-site")}
-      ${site.form_url ? linkExterno(site.form_url, "Abrir Google Forms →", "link-site link-form") : ""}
+      ${linkForm(site, "link-site link-form")}
     </div>
   `;
 }
