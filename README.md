@@ -13,6 +13,13 @@ período coberto pelos dados (quando o site publica `meta.periodo`) e — quando
 estiver configurado (ver abaixo) — visitantes únicos (total e um gráfico por dia dos últimos
 30 dias).
 
+Clicar no card de um site da grade abre um **pop-up de detalhes** (`src/detalhes_site.py`):
+a rotina de coleta (workflow, agenda lida do próprio `cron`, último sucesso, última falha com
+o motivo tirado do log do job, histórico das execuções recentes e os passos da última), os
+commits recentes na pasta de dados e o último deploy do GitHub Pages. Problemas viram
+**alertas** (⚠ no card): site fora do ar, última coleta falhou ou foi cancelada, coleta sem
+sucesso há 4 dias ou mais, deploy do Pages com falha.
+
 Para o **Bolão F1** especificamente, também: a rodada mais recente processada, o link do
 Google Forms de envio de palpites e o **passo a passo da última atualização de dados**
 (`src/etapas_bolao.py`), montado a partir dos passos da execução do pipeline
@@ -36,9 +43,10 @@ dados funcionar — só o cadastro em `src/config.py`.
 ```
 src/
 ├── config.py             # cadastro único: sites monitorados e forms avulsos (+ validação)
-├── rede.py               # HTTP compartilhado pelos coletores (GET JSON, erros de rede)
+├── rede.py               # HTTP compartilhado pelos coletores (GET JSON/texto, erros de rede)
 ├── coleta_github.py      # commits, execuções de Actions, "site no ar", período publicado
 ├── coleta_goatcounter.py # visitantes únicos via API do GoatCounter (opcional por site)
+├── detalhes_site.py      # pop-up de detalhes e alertas dos sites da grade
 ├── etapas_bolao.py       # passo a passo da última atualização do Bolão F1
 └── publicacao.py         # monta docs/dados/status.json (formato descrito na docstring)
 docs/                     # o que o GitHub Pages publica

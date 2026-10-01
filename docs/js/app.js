@@ -292,23 +292,46 @@ function renderizarDestaque(site) {
 }
 
 // ---------- Grade: outros sites + card "Outros forms" ----------
+// Alertas (gerados em src/detalhes_site.py): o card mostra ⚠ na cor do mais grave.
+function iconeAlerta(site) {
+  const alertas = site.alertas || [];
+  if (!alertas.length) return "";
+  const nivel = alertas.some((a) => a.nivel === "erro") ? "erro" : "aviso";
+  const textos = alertas.map((a) => a.texto).join(" ");
+  return `<span class="alerta-icone alerta-icone--${nivel}" title="${escapar(textos)}" aria-label="Alerta: ${escapar(textos)}">⚠</span>`;
+}
+
+function linhasAlerta(site) {
+  return (site.alertas || [])
+    .map((a) => `<p class="alerta-linha alerta-linha--${escapar(a.nivel)}">${escapar(a.texto)}</p>`)
+    .join("");
+}
+
 function renderizarCardSite(site, idGrafico) {
   const commit = site.ultimo_commit_dados || {};
   const acesso = site.acesso;
   const periodo = site.periodo_publicado;
+  const clicavel = Boolean(site.detalhes);
+  const atributosClique = clicavel
+    ? ` data-slug="${escapar(site.slug)}" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Detalhes de ${escapar(site.nome)}"`
+    : "";
   return `
-    <div class="site-card">
-      <h3>${escapar(site.nome)}</h3>
+    <div class="site-card${clicavel ? " site-card--clicavel" : ""}"${atributosClique}>
+      <h3>${escapar(site.nome)} ${iconeAlerta(site)}</h3>
       <div>
         ${badgeNoAr(site)}
         ${site.ultima_execucao_pipeline ? badgeExecucao(site.ultima_execucao_pipeline) : ""}
       </div>
+      ${linhasAlerta(site)}
       <div class="linha"><span>Dados atualizados</span><strong>${formatarRelativo(commit.data)}</strong></div>
       ${periodo ? `<div class="linha"><span>Período coberto</span><strong>${escapar(periodo.inicio)} → ${escapar(periodo.fim)}</strong></div>` : ""}
       <div class="linha"><span>Visitantes (únicos)</span><strong>${escapar(acesso ? acesso.visitantes_unicos ?? "—" : "sem rastreio")}</strong></div>
       ${temSerie(site) ? `<div class="grafico-mini"><canvas id="${idGrafico}"></canvas></div>` : ""}
-      ${linkExterno(site.pages_url, "Abrir site →", "link-site")}
-      ${linkForm(site, "link-site link-form")}
+      <div class="site-card__links">
+        ${linkExterno(site.pages_url, "Abrir site →", "link-site")}
+        ${linkForm(site, "link-site")}
+        ${clicavel ? `<span class="site-card__dica">Ver detalhes</span>` : ""}
+      </div>
     </div>
   `;
 }
@@ -334,7 +357,186 @@ function renderizarGrade(sites, formsAvulsos) {
   });
 }
 
+// ---------- Pop-up de detalhes (formato em src/detalhes_site.py) ----------
+const ROTULO_CONCLUSAO = {
+  success: "sucesso",
+  failure: "falhou",
+  cancelled: "cancelada",
+  timed_out: "tempo esgotado",
+  startup_failure: "falhou ao iniciar",
+  skipped: "pulado",
+  in_progress: "em andamento",
+  queued: "na fila",
+};
+
+const ROTULO_EVENTO = {
+  schedule: "agendada",
+  workflow_dispatch: "manual",
+  repository_dispatch: "disparo externo",
+  push: "push",
+};
+
+// Tom de cor de um resultado: ok | erro | aviso | neutro.
+function tomConclusao(conclusao) {
+  if (conclusao === "success") return "ok";
+  if (["failure", "timed_out", "startup_failure"].includes(conclusao)) return "erro";
+  if (["in_progress", "queued", "cancelled"].includes(conclusao)) return "aviso";
+  return "neutro";
+}
+
+function formatarDuracao(segundos) {
+  if (segundos == null) return "—";
+  const h = Math.floor(segundos / 3600);
+  const min = Math.floor((segundos % 3600) / 60);
+  const s = segundos % 60;
+  if (h) return `${h} h ${min} min`;
+  if (min) return `${min} min ${s} s`;
+  return `${s} s`;
+}
+
+function dataComRelativo(iso) {
+  return `${formatarDataHora(iso)} <span class="suave">(${formatarRelativo(iso)})</span>`;
+}
+
+function linhaDetalhe(rotulo, valorHtml) {
+  return `<div class="det-linha"><span>${rotulo}</span><div>${valorHtml}</div></div>`;
+}
+
+function secaoColeta(coleta) {
+  if (!coleta) {
+    return `
+      <section class="det-secao">
+        <h3>Rotina de atualização de dados</h3>
+        <p class="suave">Sem rotina automática cadastrada: os dados deste site são atualizados por commit manual.</p>
+      </section>`;
+  }
+  const agenda = coleta.agenda.length
+    ? coleta.agenda.map((a) => `${escapar(a.descricao)} <code>${escapar(a.cron)}</code>`).join("<br>")
+    : `<span class="suave">sem agendamento (só disparo manual ou externo)</span>`;
+  const sucesso = coleta.ultimo_sucesso;
+  const falha = coleta.ultima_falha;
+  const motivo = falha && falha.motivo;
+  const total = coleta.historico.length;
+
+  const historico = coleta.historico.slice().reverse(); // mais antiga à esquerda
+  const concluidas = coleta.historico.filter((e) => e.status === "completed");
+  const bolinhas = historico.map((e) => {
+    const resultado = e.status === "completed" ? e.conclusao : e.status;
+    const titulo = `${formatarDataHora(e.criado_em)} · ${ROTULO_CONCLUSAO[resultado] || resultado} · ${ROTULO_EVENTO[e.evento] || e.evento} · ${formatarDuracao(e.duracao_s)}`;
+    return `<a class="bolinha bolinha--${tomConclusao(resultado)}" href="${escapar(e.url)}" target="_blank" rel="noopener" title="${escapar(titulo)}" aria-label="${escapar(titulo)}"></a>`;
+  }).join("");
+
+  const passos = coleta.passos_ultima.map((p) =>
+    `<li class="passo passo--${tomConclusao(p.conclusao)}">${escapar(p.nome)} <span class="suave">· ${escapar(ROTULO_CONCLUSAO[p.conclusao] || p.conclusao)}</span></li>`
+  ).join("");
+
+  return `
+    <section class="det-secao">
+      <h3>Rotina de atualização de dados</h3>
+      ${coleta.erro ? `<p class="alerta-linha alerta-linha--erro">${escapar(coleta.erro)}</p>` : ""}
+      ${linhaDetalhe("Workflow", linkExterno(coleta.url_workflow, `<code>${escapar(coleta.workflow)}</code>`))}
+      ${linhaDetalhe("Agenda", agenda)}
+      ${linhaDetalhe("Último sucesso", sucesso
+        ? linkExterno(sucesso.url, dataComRelativo(sucesso.criado_em))
+        : `<span class="texto-erro">nenhum nas últimas ${total} execuções</span>`)}
+      ${linhaDetalhe("Última falha", falha
+        ? `${linkExterno(falha.url, dataComRelativo(falha.criado_em))} <span class="suave">· ${escapar(ROTULO_CONCLUSAO[falha.conclusao] || falha.conclusao)}</span>`
+        : `<span class="suave">nenhuma nas últimas ${total} execuções</span>`)}
+      ${motivo ? `
+        <div class="motivo-falha">
+          <p class="motivo-falha__titulo">Motivo da falha${motivo.passo ? ` — passo “${escapar(motivo.passo)}”` : ""}</p>
+          ${motivo.mensagem ? `<pre>${escapar(motivo.mensagem)}</pre>` : `<p class="suave">Mensagem de erro indisponível — ver o log da execução.</p>`}
+        </div>` : ""}
+      ${historico.length ? linhaDetalhe(
+        "Histórico",
+        `<div class="bolinhas">${bolinhas}</div>
+         <span class="suave">${concluidas.filter((e) => e.conclusao === "success").length} de ${concluidas.length} concluídas com sucesso · mais recente à direita</span>`
+      ) : ""}
+      ${passos ? `
+        <details class="det-passos">
+          <summary>Passos da execução mais recente</summary>
+          <ol>${passos}</ol>
+        </details>` : ""}
+    </section>`;
+}
+
+function secaoDados(site) {
+  const commits = site.detalhes.commits_dados || [];
+  const ultimo = site.ultimo_commit_dados || {};
+  const periodo = site.periodo_publicado;
+  const lista = commits.map((c) => `
+    <li>${linkExterno(c.url, `<code>${escapar(c.sha)}</code>`)} ${escapar(c.mensagem)}
+      <span class="suave">· ${formatarDataHora(c.data)}</span></li>`).join("");
+  return `
+    <section class="det-secao">
+      <h3>Dados</h3>
+      ${linhaDetalhe("Última atualização", ultimo.data
+        ? dataComRelativo(ultimo.data)
+        : `<span class="suave">${escapar(ultimo.erro || "sem registro")}</span>`)}
+      ${periodo ? linhaDetalhe("Período coberto", `${escapar(periodo.inicio)} → ${escapar(periodo.fim)}`) : ""}
+      ${lista ? `<p class="det-subtitulo">Commits recentes na pasta de dados</p><ul class="det-commits">${lista}</ul>` : ""}
+    </section>`;
+}
+
+function secaoPublicacao(site) {
+  const noAr = site.site_no_ar || {};
+  const deploy = site.detalhes.deploy_pages;
+  const acesso = site.acesso;
+  return `
+    <section class="det-secao">
+      <h3>Publicação e acesso</h3>
+      ${linhaDetalhe("Site", noAr.ok
+        ? `<span class="texto-ok">no ar</span> <span class="suave">· HTTP ${escapar(noAr.status_http)}</span>`
+        : `<span class="texto-erro">não respondeu</span> <span class="suave">· ${escapar(noAr.status_http || noAr.erro || "")}</span>`)}
+      ${linhaDetalhe("Último deploy (Pages)", deploy
+        ? `${linkExterno(deploy.url, dataComRelativo(deploy.criado_em))} <span class="suave">· ${escapar(ROTULO_CONCLUSAO[deploy.conclusao || deploy.status] || deploy.status)}</span>`
+        : `<span class="suave">sem deploy automático do Pages registrado (publicado por workflow próprio)</span>`)}
+      ${linhaDetalhe("Visitantes (únicos)", escapar(acesso ? acesso.visitantes_unicos ?? "—" : "sem rastreio"))}
+    </section>`;
+}
+
+function abrirDetalhes(slug) {
+  const site = statusAtual && statusAtual.sites.find((s) => s.slug === slug);
+  if (!site || !site.detalhes) return;
+  document.getElementById("dialogo-conteudo").innerHTML = `
+    <header class="dialogo__topo">
+      <h2 id="dialogo-titulo">${escapar(site.nome)} ${iconeAlerta(site)}</h2>
+      <form method="dialog"><button class="dialogo__fechar" aria-label="Fechar">✕</button></form>
+    </header>
+    ${linhasAlerta(site)}
+    ${secaoColeta(site.detalhes.coleta)}
+    ${secaoDados(site)}
+    ${secaoPublicacao(site)}
+    <div class="dialogo__links">
+      ${linkExterno(site.pages_url, "Abrir site →", "link-site")}
+      ${linkExterno(`https://github.com/gfvdata-web/${site.repo}`, "Repositório →", "link-site")}
+      ${linkForm(site, "link-site")}
+    </div>
+  `;
+  document.getElementById("dialogo-site").showModal();
+}
+
+function configurarDetalhes() {
+  const grade = document.getElementById("grade-sites");
+  const abrirDoEvento = (evento) => {
+    if (evento.target.closest("a")) return; // links do card seguem normais
+    const card = evento.target.closest(".site-card--clicavel");
+    if (card) abrirDetalhes(card.dataset.slug);
+  };
+  grade.addEventListener("click", abrirDoEvento);
+  grade.addEventListener("keydown", (evento) => {
+    if ((evento.key === "Enter" || evento.key === " ") && evento.target.matches(".site-card--clicavel")) {
+      evento.preventDefault();
+      abrirDoEvento(evento);
+    }
+  });
+  const dialogo = document.getElementById("dialogo-site");
+  // Clique fora da caixa (no fundo escurecido) fecha; Esc já fecha nativamente.
+  dialogo.addEventListener("click", (evento) => { if (evento.target === dialogo) dialogo.close(); });
+}
+
 configurarTema();
+configurarDetalhes();
 carregar().catch((erro) => {
   console.error("Falha ao carregar status.json", erro);
   document.getElementById("meta-gerado").textContent = "Erro ao carregar status.json";

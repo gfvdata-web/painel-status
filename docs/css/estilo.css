@@ -240,3 +240,81 @@ main { padding: 28px 0 48px; }
 }
 
 .links-destaque { display: flex; flex-wrap: wrap; gap: 0 22px; }
+
+/* Alertas dos cards da grade (src/detalhes_site.py) */
+.alerta-icone { font-size: .95rem; cursor: help; margin-left: 4px; }
+.alerta-icone--aviso { color: var(--aviso); }
+.alerta-icone--erro { color: var(--negativo); }
+.alerta-linha {
+  margin: 8px 0 4px; padding: 6px 10px; border-radius: 8px; font-size: .8rem; font-weight: 600;
+}
+.alerta-linha--aviso { background: var(--aviso-suave); color: var(--aviso); }
+.alerta-linha--erro { background: var(--negativo-suave); color: var(--negativo); }
+
+/* Card clicável: abre o pop-up de detalhes */
+.site-card--clicavel { cursor: pointer; transition: border-color .15s ease, transform .15s ease; }
+.site-card--clicavel:hover { border-color: var(--acento); }
+.site-card--clicavel:focus-visible { outline: 2px solid var(--acento); outline-offset: 2px; }
+.site-card__links { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 16px; margin-top: auto; }
+.site-card__dica { margin-left: auto; font-size: .78rem; color: var(--texto-suave); padding-top: 16px; }
+.site-card--clicavel:hover .site-card__dica { color: var(--acento); }
+
+/* Pop-up de detalhes */
+.dialogo {
+  width: min(680px, calc(100% - 32px)); max-height: 88vh; padding: 0;
+  border: 1px solid var(--borda); border-radius: var(--raio);
+  background: var(--superficie); color: var(--texto); box-shadow: var(--sombra);
+}
+.dialogo::backdrop { background: rgba(15, 23, 42, .55); }
+#dialogo-conteudo { padding: 20px 22px 22px; }
+.dialogo__topo { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.dialogo__topo h2 { margin: 0; font-size: 1.3rem; }
+.dialogo__topo form { margin: 0; }
+.dialogo__fechar {
+  border: 1px solid var(--borda); background: var(--bg); color: var(--texto-suave);
+  width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: .9rem;
+}
+.dialogo__fechar:hover { color: var(--texto); }
+.dialogo__links { display: flex; flex-wrap: wrap; gap: 0 22px; }
+.dialogo code, .dialogo pre { font-family: ui-monospace, Consolas, monospace; font-size: .78rem; }
+.dialogo code { background: var(--bg); padding: 1px 5px; border-radius: 4px; }
+.dialogo a { color: var(--acento); }
+
+.det-secao { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--borda); }
+.det-secao h3 {
+  margin: 0 0 8px; font-size: .75rem; color: var(--texto-suave);
+  text-transform: uppercase; letter-spacing: .06em;
+}
+.det-linha {
+  display: grid; grid-template-columns: 150px 1fr; gap: 12px;
+  font-size: .85rem; padding: 5px 0;
+}
+.det-linha > span { color: var(--texto-suave); }
+@media (max-width: 560px) { .det-linha { grid-template-columns: 1fr; gap: 2px; } }
+.det-subtitulo { margin: 10px 0 4px; font-size: .8rem; color: var(--texto-suave); }
+.det-commits { margin: 0; padding-left: 18px; font-size: .82rem; }
+.det-commits li { margin: 3px 0; }
+.suave { color: var(--texto-suave); }
+.texto-ok { color: var(--positivo); font-weight: 600; }
+.texto-erro { color: var(--negativo); font-weight: 600; }
+
+.motivo-falha {
+  margin: 6px 0 8px; padding: 10px 12px; border-radius: 10px;
+  background: var(--negativo-suave); border-left: 3px solid var(--negativo);
+}
+.motivo-falha__titulo { margin: 0 0 6px; font-size: .8rem; font-weight: 600; color: var(--negativo); }
+.motivo-falha pre { margin: 0; white-space: pre-wrap; word-break: break-word; color: var(--texto); }
+
+.bolinhas { display: flex; flex-wrap: wrap; gap: 5px; margin: 2px 0 4px; }
+.bolinha { width: 14px; height: 14px; border-radius: 50%; display: inline-block; background: var(--borda); }
+.bolinha--ok { background: var(--positivo); }
+.bolinha--erro { background: var(--negativo); }
+.bolinha--aviso { background: var(--aviso); }
+.bolinha:hover { outline: 2px solid var(--acento); outline-offset: 1px; }
+
+.det-passos { margin-top: 8px; font-size: .82rem; }
+.det-passos summary { cursor: pointer; color: var(--texto-suave); }
+.det-passos ol { margin: 6px 0 0; padding-left: 22px; }
+.passo--ok::marker { color: var(--positivo); }
+.passo--erro { color: var(--negativo); font-weight: 600; }
+.passo--neutro { color: var(--texto-suave); }

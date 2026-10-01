@@ -9,7 +9,8 @@ Formato de saída (o único arquivo que docs/js/app.js lê):
                  form_rotulo,
                  periodo_publicado, ultima_execucao_pipeline, acesso e — só no
                  site com pipeline_bolao — rodada_mais_recente, em_vigilia,
-                 etapas_pipeline
+                 etapas_pipeline; nos demais, detalhes e alertas (pop-up do card,
+                 formato em detalhes_site.py)
   forms_avulsos  [{nome, url}] copiado de config.FORMS_AVULSOS
 """
 
@@ -19,6 +20,7 @@ from pathlib import Path
 
 from . import coleta_github as gh
 from . import coleta_goatcounter as gc
+from .detalhes_site import montar_detalhes
 from .etapas_bolao import montar_etapas
 from .config import FORMS_AVULSOS, OWNER, SITES, validar
 
@@ -40,15 +42,16 @@ def coletar_site(site, acesso_por_repo, acesso_anterior, falha_total):
         if site["form_rotulo"]:
             bloco["form_rotulo"] = site["form_rotulo"]
 
-    bloco["ultimo_commit_dados"] = gh.ultimo_commit_no_caminho(
-        OWNER, site["repo"], site["caminho_dados"]
-    )
+    commits = gh.commits_no_caminho(OWNER, site["repo"], site["caminho_dados"])
+    bloco["ultimo_commit_dados"] = commits[0] if isinstance(commits, list) else commits
 
     if site["json_meta_url"]:
         bloco["periodo_publicado"] = gh.periodo_publicado(site["json_meta_url"])
 
+    execucoes = None
     if site["workflow_arquivo"]:
-        execucao = gh.ultima_execucao_workflow(OWNER, site["repo"], site["workflow_arquivo"])
+        execucoes = gh.execucoes_workflow(OWNER, site["repo"], site["workflow_arquivo"])
+        execucao = execucoes[0] if isinstance(execucoes, list) else execucoes
         bloco["ultima_execucao_pipeline"] = execucao
         if site["pipeline_bolao"]:
             match = RE_RODADA.search(bloco["ultimo_commit_dados"].get("mensagem", ""))
@@ -60,6 +63,11 @@ def coletar_site(site, acesso_por_repo, acesso_anterior, falha_total):
                 bloco["etapas_pipeline"] = montar_etapas(execucao, passos, deploys)
 
     bloco["site_no_ar"] = gh.site_no_ar(site["pages_url"])
+
+    if not site["pipeline_bolao"]:
+        bloco["detalhes"], bloco["alertas"] = montar_detalhes(
+            OWNER, site, commits, execucoes, bloco["site_no_ar"]
+        )
 
     acesso = acesso_por_repo.get(site["repo"])
     if not acesso and falha_total:
