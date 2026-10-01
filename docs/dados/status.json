@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-10-01T18:29:51.648062+00:00",
+    "gerado_em": "2026-10-01T18:44:28.914578+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -11,6 +11,7 @@
       "pages_url": "https://gfvdata-web.github.io/page-bolao-formula1/",
       "destaque": true,
       "form_url": "https://forms.gle/7yZAx1WThPf51bv67",
+      "form_rotulo": "Enviar palpites (Google Forms)",
       "ultimo_commit_dados": {
         "data": "2026-09-27T17:56:07Z",
         "mensagem": "Etapa 5: corrige nome do jogador na rodada 15 (Francez Back -> Francez)",
@@ -966,6 +967,7 @@
       "pages_url": "https://gfvdata-web.github.io/PlantsCare-publico/",
       "destaque": false,
       "form_url": "https://forms.gle/y3uXaukJXmP9GMED7",
+      "form_rotulo": "Enviar fotos",
       "ultimo_commit_dados": {
         "data": "2026-10-01T18:06:32Z",
         "mensagem": "Atualiza site a partir de PlantsCare@6438f34",
