@@ -85,7 +85,7 @@ caminhos pelo prefixo `/<repo>/`.
 ## Sites monitorados
 
 A lista que o painel usa é `src/config.py` (`SITES`; os campos de cada entrada estão
-descritos na docstring do arquivo). Hoje são seis:
+descritos na docstring do arquivo). Hoje são sete:
 
 | Site | Repositório | Página | O que é |
 |------|-------------|--------|---------|
@@ -95,6 +95,7 @@ descritos na docstring do arquivo). Hoje são seis:
 | Crédito por modalidade | [`fonte-credito-modalidade`](https://github.com/gfvdata-web/fonte-credito-modalidade) | [painel](https://gfvdata-web.github.io/fonte-credito-modalidade/) | Fonte financeira (BCB/SGS) — projeto documentado no `controle-global` |
 | Simulador de investimentos | [`simulador-investimentos`](https://github.com/gfvdata-web/simulador-investimentos) | [simulador](https://gfvdata-web.github.io/simulador-investimentos/) | Comparação de rendimento de investimentos (bruto, líquido e real); coleta de dados oficiais em dias úteis via Actions |
 | Chess Tracking | [`chess-tracking`](https://github.com/gfvdata-web/chess-tracking) | [página](https://gfvdata-web.github.io/chess-tracking/) | Histórico de partidas no Chess.com (conta `giggsmate`) com estatísticas de rating, aberturas, ritmo, horário e gestão de tempo; coleta diária via Actions |
+| Plants Care | [`PlantsCare-publico`](https://github.com/gfvdata-web/PlantsCare-publico) | [painel](https://gfvdata-web.github.io/PlantsCare-publico/) · [enviar fotos](https://forms.gle/y3uXaukJXmP9GMED7) | Acompanhamento das plantas (fichas, medições, equipamentos); versão pública do `PlantsCare`, republicada a cada sync via `deploy-pages.yml`. Fotos novas chegam pelo Google Forms → pasta do Drive |
 
 O Cruzeiro Indata saiu do painel.
 
@@ -108,9 +109,9 @@ em `FORMS_AVULSOS` no `src/config.py` e chega à página pelo `status.json` (cam
 | Form | Link |
 |------|------|
 | Notas fiscais | https://forms.gle/ftgMMg1Lwpoi7j3Z8 |
-| Update plantas | https://forms.gle/y3uXaukJXmP9GMED7 |
 
-Os dois exigem login Google para abrir (configuração do próprio Forms).
+Exige login Google para abrir (configuração do próprio Forms). O antigo "Update plantas" virou o link
+"enviar fotos" do card do Plants Care.
 
 ## Adicionar um site ou form
 

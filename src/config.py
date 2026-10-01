@@ -107,13 +107,25 @@ SITES = [
         "destaque": False,
         "pipeline_bolao": False,
     },
+    {
+        "slug": "plants_care",
+        "nome": "Plants Care",
+        "repo": "PlantsCare-publico",
+        "pages_url": "https://gfvdata-web.github.io/PlantsCare-publico/",
+        "caminho_dados": "painel",
+        "workflow_arquivo": "deploy-pages.yml",
+        "json_meta_url": None,
+        # Envio de fotos de uma planta pelo celular (Forms → pasta do Drive).
+        "form_url": "https://forms.gle/y3uXaukJXmP9GMED7",
+        "destaque": False,
+        "pipeline_bolao": False,
+    },
 ]
 
 # Google Forms de projetos sem site publicado para monitorar — viram o card
 # "Outros forms" da grade. Só atalhos: nada é coletado sobre eles.
 FORMS_AVULSOS = [
     {"nome": "Notas fiscais", "url": "https://forms.gle/ftgMMg1Lwpoi7j3Z8"},
-    {"nome": "Update plantas", "url": "https://forms.gle/y3uXaukJXmP9GMED7"},
 ]
 
 CAMPOS_SITE = {
