@@ -450,7 +450,8 @@ function secaoColeta(coleta) {
       ${historico.length ? linhaDetalhe(
         "Histórico",
         `<div class="bolinhas">${bolinhas}</div>
-         <span class="suave">${concluidas.filter((e) => e.conclusao === "success").length} de ${concluidas.length} concluídas com sucesso · mais recente à direita</span>`
+         <span class="suave">${concluidas.filter((e) => e.conclusao === "success").length} de ${concluidas.length} concluídas com sucesso · mais recente à direita</span>
+         ${coleta.historico_arquivo ? `<br><button type="button" class="botao-historico" data-historico="${escapar(coleta.historico_arquivo)}">Ver histórico completo →</button>` : ""}`
       ) : ""}
       ${passos ? `
         <details class="det-passos">
@@ -495,6 +496,108 @@ function secaoPublicacao(site) {
     </section>`;
 }
 
+// ---------- Histórico completo de execuções (formato em src/historico.py) ----------
+const FRACAO_RECORRENTE = 0.5; // aviso presente em pelo menos metade das execuções
+
+function mediana(valores) {
+  const validos = valores.filter((v) => v != null).sort((a, b) => a - b);
+  return validos.length ? validos[Math.floor(validos.length / 2)] : null;
+}
+
+// Avisos que se repetem na maioria das execuções (em geral do próprio GitHub, como o
+// de versão do Node.js) saem uma vez só no resumo, sem poluir cada execução.
+function avisosRecorrentes(execucoes) {
+  const lidas = execucoes.filter((e) => Array.isArray(e.avisos));
+  const contagem = new Map();
+  lidas.forEach((e) => new Set(e.avisos.map((a) => a.mensagem)).forEach((m) => contagem.set(m, (contagem.get(m) || 0) + 1)));
+  const minimo = Math.max(3, Math.ceil(lidas.length * FRACAO_RECORRENTE));
+  return new Map([...contagem].filter(([, n]) => n >= minimo));
+}
+
+function itemHistorico(e, recorrentes) {
+  const avisos = (e.avisos || []).filter((a) => !recorrentes.has(a.mensagem));
+  const motivo = e.motivo;
+  const limpo = e.conclusao === "success" && !avisos.length;
+  const resultado = ROTULO_CONCLUSAO[e.conclusao] || e.conclusao;
+  return `
+    <li class="hist-item" data-limpo="${limpo ? 1 : 0}">
+      <div class="hist-item__topo">
+        <span class="bolinha bolinha--${tomConclusao(e.conclusao)}" aria-hidden="true"></span>
+        ${linkExterno(e.url, formatarDataHora(e.criado_em))}
+        <span class="hist-item__resultado hist-item__resultado--${tomConclusao(e.conclusao)}">${escapar(resultado)}</span>
+        <span class="suave">· ${escapar(ROTULO_EVENTO[e.evento] || e.evento)} · ${formatarDuracao(e.duracao_s)}</span>
+      </div>
+      ${motivo ? `
+        <div class="motivo-falha">
+          <p class="motivo-falha__titulo">Motivo${motivo.passo ? ` — passo “${escapar(motivo.passo)}”` : ""}</p>
+          ${motivo.mensagem ? `<pre>${escapar(motivo.mensagem)}</pre>` : `<p class="suave">Mensagem indisponível (log expirado ou ilegível).</p>`}
+        </div>` : ""}
+      ${avisos.length ? `<ul class="hist-avisos">${avisos.map((a) =>
+        `<li class="hist-aviso hist-aviso--${escapar(a.nivel)}">${escapar(a.mensagem)}</li>`).join("")}</ul>` : ""}
+      ${e.avisos === null ? `<p class="suave hist-nota">Avisos não lidos nesta execução.</p>` : ""}
+    </li>`;
+}
+
+function renderizarHistorico(historico) {
+  const execucoes = historico.execucoes || [];
+  const sucessos = execucoes.filter((e) => e.conclusao === "success");
+  const recorrentes = avisosRecorrentes(execucoes);
+  const lidas = execucoes.filter((e) => Array.isArray(e.avisos)).length;
+  const pct = execucoes.length ? Math.round((sucessos.length / execucoes.length) * 100) : 0;
+  const maisAntiga = execucoes.length ? execucoes[execucoes.length - 1].criado_em : null;
+  return `
+    <section class="det-secao">
+      <h3>Resumo</h3>
+      ${linhaDetalhe("Execuções", `${execucoes.length}${maisAntiga ? ` <span class="suave">· desde ${formatarDataHora(maisAntiga)}</span>` : ""}`)}
+      ${linhaDetalhe("Com sucesso", `${sucessos.length} <span class="suave">(${pct}%)</span>`)}
+      ${linhaDetalhe("Duração típica", `${formatarDuracao(mediana(sucessos.map((e) => e.duracao_s)))} <span class="suave">· mediana das que deram certo</span>`)}
+      ${linhaDetalhe("Workflow", linkExterno(historico.url_workflow, `<code>${escapar(historico.workflow)}</code>`))}
+      ${recorrentes.size ? `
+        <details class="det-passos">
+          <summary>Avisos recorrentes (${recorrentes.size}) — em quase toda execução, omitidos abaixo</summary>
+          <ul class="hist-avisos">${[...recorrentes].map(([m, n]) =>
+            `<li class="hist-aviso">${escapar(m)} <span class="suave">· ${n} de ${lidas}</span></li>`).join("")}</ul>
+        </details>` : ""}
+    </section>
+    <section class="det-secao">
+      <h3>Execuções · mais recente primeiro</h3>
+      <label class="hist-filtro"><input type="checkbox" data-filtro-historico> Só com falha ou aviso</label>
+      <ol class="hist-lista">${execucoes.map((e) => itemHistorico(e, recorrentes)).join("")}</ol>
+      <p class="suave hist-vazio" hidden>Nenhuma execução com falha ou aviso.</p>
+    </section>`;
+}
+
+async function abrirHistorico(slug, arquivo) {
+  const site = statusAtual && statusAtual.sites.find((s) => s.slug === slug);
+  if (!site) return;
+  const conteudo = document.getElementById("dialogo-conteudo");
+  const topo = `
+    <header class="dialogo__topo">
+      <button type="button" class="botao-voltar" data-voltar="${escapar(slug)}">← Voltar</button>
+      <form method="dialog"><button class="dialogo__fechar" aria-label="Fechar">✕</button></form>
+    </header>
+    <h2 id="dialogo-titulo" class="hist-titulo">Histórico de execuções — ${escapar(site.nome)}</h2>`;
+  conteudo.innerHTML = `${topo}<p class="suave">Carregando…</p>`;
+  try {
+    const resp = await fetch(arquivo, { cache: "no-store" });
+    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+    conteudo.innerHTML = topo + renderizarHistorico(await resp.json());
+  } catch (erro) {
+    conteudo.innerHTML = `${topo}<p class="alerta-linha alerta-linha--erro">Não foi possível carregar o histórico (${escapar(erro.message)}).</p>`;
+  }
+  document.getElementById("dialogo-site").scrollTop = 0;
+}
+
+function filtrarHistorico(somenteProblemas) {
+  let visiveis = 0;
+  document.querySelectorAll("#dialogo-conteudo .hist-item").forEach((item) => {
+    item.hidden = somenteProblemas && item.dataset.limpo === "1";
+    if (!item.hidden) visiveis += 1;
+  });
+  const vazio = document.querySelector("#dialogo-conteudo .hist-vazio");
+  if (vazio) vazio.hidden = visiveis > 0;
+}
+
 function abrirDetalhes(slug) {
   const site = statusAtual && statusAtual.sites.find((s) => s.slug === slug);
   if (!site || !site.detalhes) return;
@@ -513,7 +616,10 @@ function abrirDetalhes(slug) {
       ${linkForm(site, "link-site")}
     </div>
   `;
-  document.getElementById("dialogo-site").showModal();
+  const dialogo = document.getElementById("dialogo-site");
+  dialogo.dataset.slug = slug;
+  dialogo.scrollTop = 0;
+  if (!dialogo.open) dialogo.showModal(); // ao voltar do histórico ele já está aberto
 }
 
 function configurarDetalhes() {
@@ -532,7 +638,16 @@ function configurarDetalhes() {
   });
   const dialogo = document.getElementById("dialogo-site");
   // Clique fora da caixa (no fundo escurecido) fecha; Esc já fecha nativamente.
-  dialogo.addEventListener("click", (evento) => { if (evento.target === dialogo) dialogo.close(); });
+  dialogo.addEventListener("click", (evento) => {
+    if (evento.target === dialogo) { dialogo.close(); return; }
+    const botaoHistorico = evento.target.closest("[data-historico]");
+    if (botaoHistorico) abrirHistorico(dialogo.dataset.slug, botaoHistorico.dataset.historico);
+    const botaoVoltar = evento.target.closest("[data-voltar]");
+    if (botaoVoltar) abrirDetalhes(botaoVoltar.dataset.voltar);
+  });
+  dialogo.addEventListener("change", (evento) => {
+    if (evento.target.matches("[data-filtro-historico]")) filtrarHistorico(evento.target.checked);
+  });
 }
 
 configurarTema();

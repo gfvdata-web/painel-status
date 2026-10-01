@@ -9,6 +9,8 @@ Sai no status.json como `detalhes` e `alertas` de cada site:
       ultimo_sucesso           execução, ou None se não houver no histórico
       ultima_falha             execução + motivo {job, passo, mensagem}, ou None
       passos_ultima            passos da execução mais recente [{nome, conclusao}]
+      historico_arquivo        caminho do histórico completo (historico.py), ou None;
+                               preenchido por publicacao.py
   detalhes.commits_dados  últimos commits na pasta de dados
   detalhes.deploy_pages   último deploy do GitHub Pages, ou None
 
@@ -34,7 +36,7 @@ def _data(iso):
     return datetime.fromisoformat(iso.replace("Z", "+00:00"))
 
 
-def _duracao_s(execucao):
+def duracao_s(execucao):
     return int((_data(execucao["atualizado_em"]) - _data(execucao["criado_em"])).total_seconds())
 
 
@@ -89,7 +91,7 @@ def descrever_cron(expressao):
 
 
 def _estourou_limite(execucao):
-    return execucao["conclusao"] == "cancelled" and _duracao_s(execucao) >= LIMITE_ACTIONS_S - 300
+    return execucao["conclusao"] == "cancelled" and duracao_s(execucao) >= LIMITE_ACTIONS_S - 300
 
 
 def _relevantes(execucoes):
@@ -102,11 +104,13 @@ def _relevantes(execucoes):
     ]
 
 
-def _motivo_falha(owner, repo, execucao):
+def motivo_falha(owner, repo, execucao, jobs=None):
+    """{job, passo, mensagem} de uma execução que falhou; `jobs` evita buscar de novo."""
     if _estourou_limite(execucao):
         return {"job": None, "passo": None,
                 "mensagem": "Cancelada pelo GitHub: passou do limite de 6 h (a coleta travou)."}
-    jobs = gh.jobs_execucao(owner, repo, execucao["id"]) or []
+    if jobs is None:
+        jobs = gh.jobs_execucao(owner, repo, execucao["id"]) or []
     for job in jobs:
         if job["conclusao"] not in CONCLUSOES_FALHA:
             continue
@@ -139,12 +143,12 @@ def _coleta(owner, site, execucoes):
 
     concluidas = _relevantes(execucoes)
     coleta["historico"] = [
-        {**e, "duracao_s": _duracao_s(e) if e["status"] == "completed" else None} for e in execucoes
+        {**e, "duracao_s": duracao_s(e) if e["status"] == "completed" else None} for e in execucoes
     ]
     coleta["ultimo_sucesso"] = next((e for e in concluidas if e["conclusao"] == "success"), None)
     falha = next((e for e in concluidas if e["conclusao"] in CONCLUSOES_FALHA), None)
     if falha:
-        coleta["ultima_falha"] = {**falha, "motivo": _motivo_falha(owner, repo, falha)}
+        coleta["ultima_falha"] = {**falha, "motivo": motivo_falha(owner, repo, falha)}
     passos = gh.passos_execucao(owner, repo, execucoes[0]["id"]) or []
     coleta["passos_ultima"] = [{"nome": p["nome"], "conclusao": p["conclusao"] or p["status"]} for p in passos]
     return coleta

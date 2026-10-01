@@ -10,7 +10,9 @@ Formato de saída (o único arquivo que docs/js/app.js lê):
                  periodo_publicado, ultima_execucao_pipeline, acesso e — só no
                  site com pipeline_bolao — rodada_mais_recente, em_vigilia,
                  etapas_pipeline; nos demais, detalhes e alertas (pop-up do card,
-                 formato em detalhes_site.py)
+                 formato em detalhes_site.py) e, com workflow,
+                 detalhes.coleta.historico_arquivo (caminho do histórico
+                 acumulado, formato em historico.py)
   forms_avulsos  [{nome, url}] copiado de config.FORMS_AVULSOS
 """
 
@@ -20,6 +22,7 @@ from pathlib import Path
 
 from . import coleta_github as gh
 from . import coleta_goatcounter as gc
+from . import historico
 from .detalhes_site import montar_detalhes
 from .etapas_bolao import montar_etapas
 from .config import FORMS_AVULSOS, OWNER, SITES, validar
@@ -27,6 +30,8 @@ from .config import FORMS_AVULSOS, OWNER, SITES, validar
 SAIDA = Path(__file__).resolve().parent.parent / "docs" / "dados" / "status.json"
 
 RE_RODADA = re.compile(r"rodada\s+(\d+)", re.IGNORECASE)
+EXECUCOES_NO_POPUP = 15
+EXECUCOES_PARA_HISTORICO = 100  # o que a API devolve numa página; o histórico só acrescenta
 
 
 def coletar_site(site, acesso_por_repo, acesso_anterior, falha_total):
@@ -50,7 +55,8 @@ def coletar_site(site, acesso_por_repo, acesso_anterior, falha_total):
 
     execucoes = None
     if site["workflow_arquivo"]:
-        execucoes = gh.execucoes_workflow(OWNER, site["repo"], site["workflow_arquivo"])
+        quantidade = EXECUCOES_NO_POPUP if site["pipeline_bolao"] else EXECUCOES_PARA_HISTORICO
+        execucoes = gh.execucoes_workflow(OWNER, site["repo"], site["workflow_arquivo"], quantidade)
         execucao = execucoes[0] if isinstance(execucoes, list) else execucoes
         bloco["ultima_execucao_pipeline"] = execucao
         if site["pipeline_bolao"]:
@@ -65,9 +71,13 @@ def coletar_site(site, acesso_por_repo, acesso_anterior, falha_total):
     bloco["site_no_ar"] = gh.site_no_ar(site["pages_url"])
 
     if not site["pipeline_bolao"]:
+        recentes = execucoes[:EXECUCOES_NO_POPUP] if isinstance(execucoes, list) else execucoes
         bloco["detalhes"], bloco["alertas"] = montar_detalhes(
-            OWNER, site, commits, execucoes, bloco["site_no_ar"]
+            OWNER, site, commits, recentes, bloco["site_no_ar"]
         )
+        coleta = bloco["detalhes"]["coleta"]
+        if coleta:
+            coleta["historico_arquivo"] = historico.atualizar(OWNER, site, execucoes, coleta["url_workflow"])
 
     acesso = acesso_por_repo.get(site["repo"])
     if not acesso and falha_total:

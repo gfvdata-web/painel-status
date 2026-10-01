@@ -117,6 +117,17 @@ def passos_execucao(owner, repo, run_id):
     return [passo for job in jobs for passo in job["passos"]]
 
 
+def anotacoes_job(owner, repo, job_id):
+    """Anotações (::warning::, ::error::, ::notice::) de um job — o id do job é o do
+    check run. [{nivel, mensagem}]; None em falha."""
+    url = f"{API}/repos/{owner}/{repo}/check-runs/{job_id}/annotations?per_page=50"
+    try:
+        dados = _get_json(url)
+    except ERROS_REDE:
+        return None
+    return [{"nivel": a["annotation_level"], "mensagem": a["message"]} for a in dados]
+
+
 # Linha de log do Actions: "2026-09-25T23:44:56.6519466Z <texto>"
 RE_PREFIXO_LOG = re.compile(r"^\S+Z ")
 RE_CRON = re.compile(r"""cron:\s*['"]([^'"]+)['"]""")

@@ -29,5 +29,5 @@ nada seja quebrado (conferir a página localmente com `python -m http.server --d
 lista nenhuma — só desenha o que vem no `status.json`. Chamadas HTTP passam por `src/rede.py`
 (capturar `ERROS_REDE`, nunca deixar exceção de rede derrubar a rodada).
 
-`docs/dados/status.json` é gerado pelo Action — não editar à mão (exceto para pré-visualizar
+`docs/dados/status.json` e `docs/dados/historico/` são gerados pelo Action — não editar à mão (exceto para pré-visualizar
 localmente, e o Action sobrescreve na próxima rodada).

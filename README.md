@@ -20,6 +20,14 @@ commits recentes na pasta de dados e o último deploy do GitHub Pages. Problemas
 **alertas** (⚠ no card): site fora do ar, última coleta falhou ou foi cancelada, coleta sem
 sucesso há 4 dias ou mais, deploy do Pages com falha.
 
+Dentro do pop-up, **"Ver histórico completo"** abre todas as execuções já registradas do
+workflow (`src/historico.py`): resultado, duração, motivo das falhas e os avisos
+(`::warning::` etc.) de cada uma, com filtro "só com falha ou aviso". O histórico é
+acumulado em `docs/dados/historico/<slug>.json` a cada rodada (até 500 execuções por site)
+e guarda o motivo das falhas mesmo depois que o GitHub apaga os logs (90 dias). Avisos que
+aparecem em quase toda execução — em geral do próprio GitHub — são mostrados uma vez só,
+como "recorrentes".
+
 Para o **Bolão F1** especificamente, também: a rodada mais recente processada, o link do
 Google Forms de envio de palpites e o **passo a passo da última atualização de dados**
 (`src/etapas_bolao.py`), montado a partir dos passos da execução do pipeline
@@ -36,8 +44,8 @@ Google Forms de envio de palpites e o **passo a passo da última atualização d
 Sem servidor: um workflow do GitHub Actions (`.github/workflows/atualizar-status.yml`) roda a
 cada 3 horas (e sob demanda via `workflow_dispatch`), consulta a API pública do GitHub — commits
 recentes por caminho de dados, execuções de Actions, resposta HTTP de cada site — e, quando
-configurado, a API do GoatCounter. O resultado vira `docs/dados/status.json`, e é só isso que
-`docs/index.html` lê. Não é preciso mudar nada nos repositórios monitorados para o status de
+configurado, a API do GoatCounter. O resultado vira `docs/dados/status.json` (mais o histórico em
+`docs/dados/historico/`), e é só isso que `docs/index.html` lê. Não é preciso mudar nada nos repositórios monitorados para o status de
 dados funcionar — só o cadastro em `src/config.py`.
 
 ```
@@ -47,13 +55,16 @@ src/
 ├── coleta_github.py      # commits, execuções de Actions, "site no ar", período publicado
 ├── coleta_goatcounter.py # visitantes únicos via API do GoatCounter (opcional por site)
 ├── detalhes_site.py      # pop-up de detalhes e alertas dos sites da grade
+├── historico.py          # histórico acumulado das execuções (docs/dados/historico/)
 ├── etapas_bolao.py       # passo a passo da última atualização do Bolão F1
 └── publicacao.py         # monta docs/dados/status.json (formato descrito na docstring)
 docs/                     # o que o GitHub Pages publica
 ├── index.html
 ├── css/estilo.css
 ├── js/app.js             # só lê status.json e desenha — nada é cadastrado aqui
-└── dados/status.json     # gerado pelo Action; não editar à mão
+└── dados/                # gerado pelo Action; não editar à mão
+    ├── status.json
+    └── historico/<slug>.json
 ```
 
 Um problema de rede em um site (timeout, HTTP 5xx) vira um campo `erro` no card dele e não

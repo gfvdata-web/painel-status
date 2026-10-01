@@ -318,3 +318,32 @@ main { padding: 28px 0 48px; }
 .passo--ok::marker { color: var(--positivo); }
 .passo--erro { color: var(--negativo); font-weight: 600; }
 .passo--neutro { color: var(--texto-suave); }
+
+/* ---------- Histórico completo (dentro do pop-up) ---------- */
+.botao-historico, .botao-voltar {
+  font: inherit; font-size: .8rem; cursor: pointer; border-radius: 8px;
+  border: 1px solid var(--borda); background: var(--bg); color: var(--acento); padding: 5px 10px;
+}
+.botao-historico { margin-top: 8px; }
+.botao-historico:hover, .botao-voltar:hover { border-color: var(--acento); }
+.hist-titulo { margin: 14px 0 0; font-size: 1.15rem; }
+.hist-filtro {
+  display: inline-flex; align-items: center; gap: 6px; margin-bottom: 6px;
+  font-size: .82rem; color: var(--texto-suave); cursor: pointer;
+}
+.hist-lista { list-style: none; margin: 0; padding: 0; }
+.hist-item { padding: 9px 0; border-top: 1px dashed var(--borda); font-size: .84rem; }
+.hist-item:first-child { border-top: 0; }
+.hist-item[hidden] { display: none; }
+.hist-item__topo { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; }
+.hist-item__topo .bolinha { width: 10px; height: 10px; }
+.hist-item__resultado { font-weight: 600; }
+.hist-item__resultado--ok { color: var(--positivo); }
+.hist-item__resultado--erro { color: var(--negativo); }
+.hist-item__resultado--aviso { color: var(--aviso); }
+.hist-item .motivo-falha { margin: 6px 0 0; }
+.hist-avisos { margin: 6px 0 0; padding-left: 18px; font-size: .8rem; }
+.hist-aviso { margin: 2px 0; word-break: break-word; }
+.hist-aviso--warning::marker, .hist-aviso--notice::marker { color: var(--aviso); }
+.hist-aviso--failure { color: var(--negativo); }
+.hist-nota { margin: 4px 0 0; font-size: .78rem; }
