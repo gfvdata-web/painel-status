@@ -9,8 +9,6 @@ Sai no status.json como `detalhes` e `alertas` de cada site:
       ultimo_sucesso           execução, ou None se não houver no histórico
       ultima_falha             execução + motivo {job, passo, mensagem}, ou None
       passos_ultima            passos da execução mais recente [{nome, conclusao}]
-      historico_arquivo        caminho do histórico completo (historico.py), ou None;
-                               preenchido por publicacao.py
   detalhes.commits_dados  últimos commits na pasta de dados
   detalhes.deploy_pages   último deploy do GitHub Pages, ou None
 

@@ -1,9 +1,11 @@
-"""Histórico acumulado das execuções do workflow de coleta de cada site da grade.
+"""Histórico acumulado das execuções do workflow de cada site que tem um (inclusive
+o pipeline do Bolão F1).
 
 O status.json só guarda as execuções recentes; este módulo grava, a cada rodada,
 docs/dados/historico/<slug>.json com toda execução concluída já vista — para
 reparos e análises depois (o GitHub apaga os logs em 90 dias; o motivo de uma
-falha fica guardado aqui). O pop-up do card abre esse arquivo sob demanda.
+falha fica guardado aqui). A página abre esse arquivo sob demanda: pelo pop-up do
+card na grade e pelo link "Histórico de execuções" no card do Bolão F1.
 
 Formato:
   slug, nome, workflow, url_workflow, atualizado_em
@@ -72,7 +74,7 @@ def _detalhar(owner, repo, execucao):
     return registro
 
 
-def atualizar(owner, site, execucoes, url_workflow):
+def atualizar(owner, site, execucoes):
     """Acrescenta ao histórico do site as execuções concluídas ainda não gravadas.
     `execucoes` é a lista de coleta_github.execucoes_workflow (ou {"erro"}: nada muda).
     Devolve o caminho publicado do arquivo, ou None se ele não existe."""
@@ -90,7 +92,7 @@ def atualizar(owner, site, execucoes, url_workflow):
                 "slug": site["slug"],
                 "nome": site["nome"],
                 "workflow": site["workflow_arquivo"],
-                "url_workflow": url_workflow,
+                "url_workflow": f"https://github.com/{owner}/{site['repo']}/actions/workflows/{site['workflow_arquivo']}",
                 "atualizado_em": gh.agora_iso(),
                 "execucoes": gravadas,
             }, ensure_ascii=False, indent=1), encoding="utf-8")

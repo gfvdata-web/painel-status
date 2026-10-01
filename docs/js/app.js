@@ -283,6 +283,7 @@ function renderizarDestaque(site) {
         <div class="links-destaque">
           ${linkExterno(site.pages_url, `Abrir ${escapar(site.nome)} →`, "link-site")}
           ${linkForm(site, "link-site")}
+          ${site.historico_arquivo ? `<button type="button" class="link-site botao-link" data-historico="${escapar(site.historico_arquivo)}" data-slug-historico="${escapar(site.slug)}">Histórico de execuções →</button>` : ""}
         </div>
       </div>
     </div>
@@ -402,7 +403,7 @@ function linhaDetalhe(rotulo, valorHtml) {
   return `<div class="det-linha"><span>${rotulo}</span><div>${valorHtml}</div></div>`;
 }
 
-function secaoColeta(coleta) {
+function secaoColeta(coleta, historicoArquivo) {
   if (!coleta) {
     return `
       <section class="det-secao">
@@ -451,7 +452,7 @@ function secaoColeta(coleta) {
         "Histórico",
         `<div class="bolinhas">${bolinhas}</div>
          <span class="suave">${concluidas.filter((e) => e.conclusao === "success").length} de ${concluidas.length} concluídas com sucesso · mais recente à direita</span>
-         ${coleta.historico_arquivo ? `<br><button type="button" class="botao-historico" data-historico="${escapar(coleta.historico_arquivo)}">Ver histórico completo →</button>` : ""}`
+         ${historicoArquivo ? `<br><button type="button" class="botao-historico" data-historico="${escapar(historicoArquivo)}">Ver histórico completo →</button>` : ""}`
       ) : ""}
       ${passos ? `
         <details class="det-passos">
@@ -573,7 +574,7 @@ async function abrirHistorico(slug, arquivo) {
   const conteudo = document.getElementById("dialogo-conteudo");
   const topo = `
     <header class="dialogo__topo">
-      <button type="button" class="botao-voltar" data-voltar="${escapar(slug)}">← Voltar</button>
+      ${site.detalhes ? `<button type="button" class="botao-voltar" data-voltar="${escapar(slug)}">← Voltar</button>` : "<span></span>"}
       <form method="dialog"><button class="dialogo__fechar" aria-label="Fechar">✕</button></form>
     </header>
     <h2 id="dialogo-titulo" class="hist-titulo">Histórico de execuções — ${escapar(site.nome)}</h2>`;
@@ -585,7 +586,10 @@ async function abrirHistorico(slug, arquivo) {
   } catch (erro) {
     conteudo.innerHTML = `${topo}<p class="alerta-linha alerta-linha--erro">Não foi possível carregar o histórico (${escapar(erro.message)}).</p>`;
   }
-  document.getElementById("dialogo-site").scrollTop = 0;
+  const dialogo = document.getElementById("dialogo-site");
+  dialogo.dataset.slug = slug;
+  dialogo.scrollTop = 0;
+  if (!dialogo.open) dialogo.showModal(); // aberto direto do card do Bolão F1
 }
 
 function filtrarHistorico(somenteProblemas) {
@@ -607,7 +611,7 @@ function abrirDetalhes(slug) {
       <form method="dialog"><button class="dialogo__fechar" aria-label="Fechar">✕</button></form>
     </header>
     ${linhasAlerta(site)}
-    ${secaoColeta(site.detalhes.coleta)}
+    ${secaoColeta(site.detalhes.coleta, site.historico_arquivo)}
     ${secaoDados(site)}
     ${secaoPublicacao(site)}
     <div class="dialogo__links">
@@ -635,6 +639,11 @@ function configurarDetalhes() {
       evento.preventDefault();
       abrirDoEvento(evento);
     }
+  });
+  // Card do Bolão F1 (sem pop-up de detalhes): o link abre o histórico direto.
+  document.getElementById("secao-destaque").addEventListener("click", (evento) => {
+    const botao = evento.target.closest("[data-slug-historico]");
+    if (botao) abrirHistorico(botao.dataset.slugHistorico, botao.dataset.historico);
   });
   const dialogo = document.getElementById("dialogo-site");
   // Clique fora da caixa (no fundo escurecido) fecha; Esc já fecha nativamente.

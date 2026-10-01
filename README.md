@@ -39,6 +39,9 @@ Google Forms de envio de palpites e o **passo a passo da última atualização d
 4. Pontuação calculada
 5. Página atualizada (GitHub Pages)
 
+O card do Bolão F1 também tem o link **"Histórico de execuções"**, que abre o mesmo
+histórico completo dos outros sites (ver acima), aqui com as execuções do pipeline.
+
 ## Como funciona
 
 Sem servidor: um workflow do GitHub Actions (`.github/workflows/atualizar-status.yml`) roda a
