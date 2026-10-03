@@ -3,8 +3,27 @@
  "nome": "Bolão F1",
  "workflow": "pipeline.yml",
  "url_workflow": "https://github.com/gfvdata-web/page-bolao-formula1/actions/workflows/pipeline.yml",
- "atualizado_em": "2026-10-01T19:22:52.821073+00:00",
+ "atualizado_em": "2026-10-03T12:34:59.741200+00:00",
  "execucoes": [
+  {
+   "id": 37122300202,
+   "criado_em": "2026-10-03T12:15:48Z",
+   "evento": "repository_dispatch",
+   "conclusao": "failure",
+   "duracao_s": 11,
+   "url": "https://github.com/gfvdata-web/page-bolao-formula1/actions/runs/37122300202",
+   "avisos": [
+    {
+     "nivel": "notice",
+     "mensagem": "\"The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748\""
+    }
+   ],
+   "motivo": {
+    "job": "pipeline",
+    "passo": "Roda pipeline (novo palpite)",
+    "mensagem": "[erro] Corrida não encontrada no calendário: '~Bahrain~ *Malaysia*'"
+   }
+  },
   {
    "id": 36139005435,
    "criado_em": "2026-09-25T13:07:40Z",
