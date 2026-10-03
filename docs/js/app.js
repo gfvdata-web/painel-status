@@ -5,10 +5,17 @@
 let statusAtual = null;
 let graficos = []; // instâncias do Chart.js ativas, destruídas a cada redesenho
 
+// Com a página aberta, confere de tempos em tempos se o Action publicou um
+// status.json novo (ex.: o job vigiar-bolao acompanhando um envio do Forms) e
+// redesenha sozinha. Não redesenha com o pop-up aberto nem com a aba escondida.
+const INTERVALO_RECARGA_MS = 60 * 1000;
+
 async function carregar() {
   const resp = await fetch("dados/status.json", { cache: "no-store" });
   if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
-  statusAtual = await resp.json();
+  const novo = await resp.json();
+  if (statusAtual && novo.meta.gerado_em === statusAtual.meta.gerado_em) return;
+  statusAtual = novo;
 
   document.getElementById("meta-gerado").textContent =
     `Atualizado em ${formatarDataHora(statusAtual.meta.gerado_em)}`;
@@ -665,3 +672,7 @@ carregar().catch((erro) => {
   console.error("Falha ao carregar status.json", erro);
   document.getElementById("meta-gerado").textContent = "Erro ao carregar status.json";
 });
+setInterval(() => {
+  if (document.hidden || document.getElementById("dialogo-site").open) return;
+  carregar().catch((erro) => console.warn("Recarga do status.json falhou", erro));
+}, INTERVALO_RECARGA_MS);

@@ -22,7 +22,8 @@ nada seja quebrado (conferir a página localmente com `python -m http.server --d
 | Form avulso (card "Outros forms") | `FORMS_AVULSOS` em `src/config.py` e a tabela "Outros forms" do `README.md`; depois rodar o workflow |
 | Campo novo no cadastro de sites | `CAMPOS_SITE` e a docstring de `src/config.py`, todas as entradas de `SITES` (mesmas chaves em todas) |
 | Campo novo/renomeado no `status.json` | docstring de `src/publicacao.py` e o uso em `docs/js/app.js` |
-| Etapas do pipeline do Bolão F1 | `src/etapas_bolao.py` (docstring descreve o fluxo) e a lista em "O que ele mostra" do `README.md` |
+| Etapas do pipeline do Bolão F1 | `src/etapas_bolao.py` (docstring descreve o fluxo) e a lista em "O que ele mostra" do `README.md`; estado novo de etapa → conferir `fase()` em `src/vigia_bolao.py` |
+| Acompanhamento do envio do Forms (`bolao_palpite`) | job `vigiar-bolao` em `atualizar-status.yml`, `src/vigia_bolao.py`, parágrafo no `README.md` e o `Code.gs` + `SETUP.md` em `page-bolao-formula1/google-apps-script/` |
 | Arquivo novo em `src/` ou `docs/` | árvore em "Como funciona" do `README.md` |
 
 **Cadastro único:** sites e forms só existem em `src/config.py`. `docs/js/app.js` não guarda

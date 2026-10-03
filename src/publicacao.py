@@ -1,6 +1,10 @@
 """Monta docs/dados/status.json a partir da coleta de GitHub + GoatCounter.
 
-Uso: python -m src.publicacao
+Uso: python -m src.publicacao              rodada completa (todos os sites)
+     python -m src.publicacao --so-bolao   só o card do Bolão F1, sobre o status.json
+                                           atual (usado pelo vigia_bolao.py, que
+                                           roda a cada minuto e não pode gastar
+                                           a cota da API com os outros sites)
 
 Formato de saída (o único arquivo que docs/js/app.js lê):
   meta           {gerado_em, descricao}
@@ -18,6 +22,7 @@ Formato de saída (o único arquivo que docs/js/app.js lê):
 
 import json
 import re
+import sys
 from pathlib import Path
 
 from . import coleta_github as gh
@@ -87,29 +92,39 @@ def coletar_site(site, acesso_por_repo, acesso_anterior, falha_total):
     return bloco
 
 
-def _acesso_anterior_por_slug():
-    """Lê o último status.json publicado para reaproveitar 'acesso' numa falha total da coleta."""
+def _status_anterior():
+    """Último status.json publicado, ou None."""
     if not SAIDA.exists():
-        return {}
+        return None
     try:
-        anterior = json.loads(SAIDA.read_text(encoding="utf-8"))
+        return json.loads(SAIDA.read_text(encoding="utf-8"))
     except (json.JSONDecodeError, OSError):
+        return None
+
+
+def _acesso_anterior_por_slug(anterior):
+    """'acesso' de cada site no status.json anterior — reaproveitado quando não há coleta nova."""
+    if not anterior:
         return {}
     return {site["slug"]: site["acesso"] for site in anterior.get("sites", []) if site.get("acesso")}
+
+
+def _meta():
+    return {
+        "gerado_em": gh.agora_iso(),
+        "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web",
+    }
 
 
 def montar():
     validar()
     acesso_por_repo = gc.estatisticas_por_repo([site["repo"] for site in SITES])
     falha_total = acesso_por_repo is None
-    acesso_anterior = _acesso_anterior_por_slug() if falha_total else {}
+    acesso_anterior = _acesso_anterior_por_slug(_status_anterior()) if falha_total else {}
     if falha_total:
         acesso_por_repo = {}
     return {
-        "meta": {
-            "gerado_em": gh.agora_iso(),
-            "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web",
-        },
+        "meta": _meta(),
         "sites": [
             coletar_site(site, acesso_por_repo, acesso_anterior, falha_total) for site in SITES
         ],
@@ -117,8 +132,23 @@ def montar():
     }
 
 
+def montar_so_bolao():
+    """Recoleta só o site com pipeline_bolao e mantém os outros como estão no
+    status.json atual. Sem status.json anterior, cai na rodada completa."""
+    anterior = _status_anterior()
+    if not anterior:
+        return montar()
+    validar()
+    site = next(s for s in SITES if s["pipeline_bolao"])
+    bloco = coletar_site(site, {}, _acesso_anterior_por_slug(anterior), falha_total=True)
+    sites = [bloco if s["slug"] == site["slug"] else s for s in anterior["sites"]]
+    if bloco not in sites:
+        sites.insert(0, bloco)
+    return {**anterior, "meta": _meta(), "sites": sites}
+
+
 def main():
-    status = montar()
+    status = montar_so_bolao() if "--so-bolao" in sys.argv[1:] else montar()
     SAIDA.parent.mkdir(parents=True, exist_ok=True)
     SAIDA.write_text(json.dumps(status, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"status.json gerado em {SAIDA}")

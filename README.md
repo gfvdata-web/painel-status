@@ -42,10 +42,21 @@ Google Forms de envio de palpites e o **passo a passo da última atualização d
 O card do Bolão F1 também tem o link **"Histórico de execuções"**, que abre o mesmo
 histórico completo dos outros sites (ver acima), aqui com as execuções do pipeline.
 
+**Acompanhamento ao vivo do envio do Forms.** O Apps Script do Forms do Bolão, além de
+disparar o pipeline no `page-bolao-formula1`, manda um `repository_dispatch`
+(`bolao_palpite`) para este repositório. Isso roda o job `vigiar-bolao` do
+`atualizar-status.yml`, que recoleta só o card do Bolão (`python -m src.publicacao --so-bolao`)
+a cada 1 min (10 min durante a vigília do resultado) e commita a cada etapa que muda, até o
+fluxo terminar (`src/vigia_bolao.py`). Depois volta à rotina de 3 em 3 horas. A página
+aberta confere o `status.json` a cada 1 min e se redesenha sozinha quando ele muda.
+O token do Apps Script (`GITHUB_TOKEN` nas Propriedades do script) precisa ter acesso
+também a este repositório (Contents: Read and write).
+
 ## Como funciona
 
 Sem servidor: um workflow do GitHub Actions (`.github/workflows/atualizar-status.yml`) roda a
-cada 3 horas (e sob demanda via `workflow_dispatch`), consulta a API pública do GitHub — commits
+cada 3 horas (e sob demanda via `workflow_dispatch`, ou pelo envio do Forms do Bolão — ver
+acima), consulta a API pública do GitHub — commits
 recentes por caminho de dados, execuções de Actions, resposta HTTP de cada site — e, quando
 configurado, a API do GoatCounter. O resultado vira `docs/dados/status.json` (mais o histórico em
 `docs/dados/historico/`), e é só isso que `docs/index.html` lê. Não é preciso mudar nada nos repositórios monitorados para o status de
@@ -60,6 +71,7 @@ src/
 ├── detalhes_site.py      # pop-up de detalhes e alertas dos sites da grade
 ├── historico.py          # histórico acumulado das execuções (docs/dados/historico/)
 ├── etapas_bolao.py       # passo a passo da última atualização do Bolão F1
+├── vigia_bolao.py        # fase do pipeline do Bolão para o job vigiar-bolao (até quando acompanhar)
 └── publicacao.py         # monta docs/dados/status.json (formato descrito na docstring)
 docs/                     # o que o GitHub Pages publica
 ├── index.html

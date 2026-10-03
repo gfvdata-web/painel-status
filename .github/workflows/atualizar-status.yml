@@ -7,11 +7,19 @@ name: Atualizar status
 # Horário: a cada 3 horas. Não há janela "certa" aqui como nas fontes
 # financeiras (o bolão F1 é orientado a evento, não a calendário), então um
 # intervalo curto e regular é o suficiente pra pegar mudanças com atraso baixo.
+#
+# Envio do Forms do Bolão F1: o Apps Script, além de disparar o pipeline no
+# page-bolao-formula1, manda um repository_dispatch `bolao_palpite` para cá. Aí
+# roda o job `vigiar-bolao`, que acompanha aquele pipeline até o fim (a cada
+# 1 min; a cada 10 min enquanto o Verificador espera o resultado) e encerra —
+# o painel volta para a rotina de 3 em 3 horas. Ver src/vigia_bolao.py.
 
 on:
   schedule:
     - cron: '0 */3 * * *'
   workflow_dispatch: {}
+  repository_dispatch:
+    types: [bolao_palpite]
 
 permissions:
   contents: write
@@ -22,6 +30,7 @@ concurrency:
 
 jobs:
   coletar:
+    if: github.event_name != 'repository_dispatch'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -47,3 +56,60 @@ jobs:
           git add docs/dados  # status.json + historico/<slug>.json
           git commit -m "Atualiza status em $(date -u +'%Y-%m-%dT%H:%MZ')"
           git push
+
+  vigiar-bolao:
+    if: github.event_name == 'repository_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 345  # vigília do Verificador vai até 5 h
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+
+      - name: Acompanhar o pipeline do Bolão F1 até o fim
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Opcional no client_payload (ISO, UTC): acompanhar uma execução já
+          # começada, ex. num teste manual com `gh api .../dispatches`.
+          DESDE: ${{ github.event.client_payload.desde }}
+        run: |
+          git config user.name  'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          # Margem de 2 min: o Apps Script dispara o pipeline antes de avisar o painel.
+          desde=$(date -u -d "${DESDE:-2 minutes ago}" +%Y-%m-%dT%H:%M:%SZ)
+          inicio=$(date +%s)
+          while :; do
+            git show HEAD:docs/dados/status.json > "$RUNNER_TEMP/anterior.json"
+            python -m src.publicacao --so-bolao
+            python -m src.vigia_bolao --desde "$desde" --anterior "$RUNNER_TEMP/anterior.json" > "$RUNNER_TEMP/vigia.txt"
+            cat "$RUNNER_TEMP/vigia.txt"
+            fase=$(sed -n 's/^fase=//p' "$RUNNER_TEMP/vigia.txt")
+            mudou=$(sed -n 's/^mudou=//p' "$RUNNER_TEMP/vigia.txt")
+            if [ "$mudou" = sim ]; then
+              git add docs/dados
+              git commit -m "Acompanha Bolão F1 ($fase) em $(date -u +'%Y-%m-%dT%H:%MZ')"
+              git pull --rebase --quiet
+              git push
+            else
+              git checkout -- docs/dados
+              git clean -fdq docs/dados
+            fi
+            minutos=$(( ($(date +%s) - inicio) / 60 ))
+            case "$fase" in
+              concluido) echo 'Pipeline concluído; de volta à rotina.'; break ;;
+              sem_execucao)
+                if [ "$minutos" -ge 10 ]; then
+                  echo '::warning::Nenhuma execução nova do pipeline do Bolão em 10 min.'
+                  break
+                fi
+                sleep 30 ;;
+              vigilia) sleep 600 ;;
+              *) sleep 60 ;;
+            esac
+            if [ "$minutos" -ge 335 ]; then
+              echo '::warning::Pipeline do Bolão ainda não terminou; a rotina de 3 h segue daqui.'
+              break
+            fi
+          done
