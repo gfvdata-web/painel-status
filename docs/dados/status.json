@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-10-03T15:37:02.669499+00:00",
+    "gerado_em": "2026-10-03T20:31:31.952475+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -72,7 +72,7 @@
       },
       "historico_arquivo": "dados/historico/bolao_f1.json",
       "acesso": {
-        "visitantes_unicos": 22,
+        "visitantes_unicos": 23,
         "serie_diaria": [
           {
             "data": "2026-09-03",
@@ -196,7 +196,7 @@
           },
           {
             "data": "2026-10-03",
-            "visitantes": 1
+            "visitantes": 2
           }
         ]
       }
@@ -1580,19 +1580,19 @@
       "form_url": "https://forms.gle/y3uXaukJXmP9GMED7",
       "form_rotulo": "Enviar fotos",
       "ultimo_commit_dados": {
-        "data": "2026-10-03T14:29:00Z",
-        "mensagem": "Atualiza site a partir de PlantsCare@18c7973",
-        "sha": "8978707",
-        "url": "https://github.com/gfvdata-web/PlantsCare-publico/commit/897870725d30b2289ce38c3d1c570fe10899beae"
+        "data": "2026-10-03T18:28:26Z",
+        "mensagem": "Atualiza site a partir de PlantsCare@3e0da5d",
+        "sha": "47eb1de",
+        "url": "https://github.com/gfvdata-web/PlantsCare-publico/commit/47eb1de7a1ddc29921aeffe339cb626f8dc4f7cb"
       },
       "ultima_execucao_pipeline": {
-        "id": 37129743780,
+        "id": 37144323610,
         "evento": "push",
         "status": "completed",
         "conclusao": "success",
-        "criado_em": "2026-10-03T14:29:03Z",
-        "atualizado_em": "2026-10-03T14:29:42Z",
-        "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/37129743780"
+        "criado_em": "2026-10-03T18:28:29Z",
+        "atualizado_em": "2026-10-03T18:28:58Z",
+        "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/37144323610"
       },
       "site_no_ar": {
         "ok": true,
@@ -1604,6 +1604,16 @@
           "url_workflow": "https://github.com/gfvdata-web/PlantsCare-publico/actions/workflows/deploy-pages.yml",
           "agenda": [],
           "historico": [
+            {
+              "id": 37144323610,
+              "evento": "push",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-10-03T18:28:29Z",
+              "atualizado_em": "2026-10-03T18:28:58Z",
+              "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/37144323610",
+              "duracao_s": 29
+            },
             {
               "id": 37129743780,
               "evento": "push",
@@ -1743,26 +1753,16 @@
               "atualizado_em": "2026-10-01T18:22:46Z",
               "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/36906321167",
               "duracao_s": 29
-            },
-            {
-              "id": 36482460005,
-              "evento": "push",
-              "status": "completed",
-              "conclusao": "success",
-              "criado_em": "2026-09-28T20:54:15Z",
-              "atualizado_em": "2026-09-28T20:54:48Z",
-              "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/36482460005",
-              "duracao_s": 33
             }
           ],
           "ultimo_sucesso": {
-            "id": 37129743780,
+            "id": 37144323610,
             "evento": "push",
             "status": "completed",
             "conclusao": "success",
-            "criado_em": "2026-10-03T14:29:03Z",
-            "atualizado_em": "2026-10-03T14:29:42Z",
-            "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/37129743780"
+            "criado_em": "2026-10-03T18:28:29Z",
+            "atualizado_em": "2026-10-03T18:28:58Z",
+            "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/37144323610"
           },
           "ultima_falha": null,
           "passos_ultima": [
@@ -1814,6 +1814,12 @@
         },
         "commits_dados": [
           {
+            "data": "2026-10-03T18:28:26Z",
+            "mensagem": "Atualiza site a partir de PlantsCare@3e0da5d",
+            "sha": "47eb1de",
+            "url": "https://github.com/gfvdata-web/PlantsCare-publico/commit/47eb1de7a1ddc29921aeffe339cb626f8dc4f7cb"
+          },
+          {
             "data": "2026-10-03T14:29:00Z",
             "mensagem": "Atualiza site a partir de PlantsCare@18c7973",
             "sha": "8978707",
@@ -1836,12 +1842,6 @@
             "mensagem": "Atualiza site a partir de PlantsCare@84d1418",
             "sha": "d9ab741",
             "url": "https://github.com/gfvdata-web/PlantsCare-publico/commit/d9ab741c28a145c5304158892393a0d21bc577ad"
-          },
-          {
-            "data": "2026-10-02T16:02:34Z",
-            "mensagem": "Atualiza site a partir de PlantsCare@d485d8a",
-            "sha": "f13903d",
-            "url": "https://github.com/gfvdata-web/PlantsCare-publico/commit/f13903dd54f8278a8ae71dc0a8b8fb15da96599a"
           }
         ],
         "deploy_pages": null
