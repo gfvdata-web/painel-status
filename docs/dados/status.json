@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-10-04T16:21:01.349155+00:00",
+    "gerado_em": "2026-10-04T20:48:32.188904+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -72,7 +72,7 @@
       },
       "historico_arquivo": "dados/historico/bolao_f1.json",
       "acesso": {
-        "visitantes_unicos": 23,
+        "visitantes_unicos": 26,
         "serie_diaria": [
           {
             "data": "2026-09-04",
@@ -196,7 +196,7 @@
           },
           {
             "data": "2026-10-04",
-            "visitantes": 0
+            "visitantes": 3
           }
         ]
       }
@@ -265,7 +265,7 @@
       },
       "alertas": [],
       "acesso": {
-        "visitantes_unicos": 5,
+        "visitantes_unicos": 7,
         "serie_diaria": [
           {
             "data": "2026-09-04",
@@ -389,7 +389,7 @@
           },
           {
             "data": "2026-10-04",
-            "visitantes": 0
+            "visitantes": 2
           }
         ]
       }
@@ -446,7 +446,7 @@
       },
       "alertas": [],
       "acesso": {
-        "visitantes_unicos": 10,
+        "visitantes_unicos": 12,
         "serie_diaria": [
           {
             "data": "2026-09-04",
@@ -570,7 +570,7 @@
           },
           {
             "data": "2026-10-04",
-            "visitantes": 0
+            "visitantes": 2
           }
         ]
       }
@@ -621,7 +621,7 @@
       },
       "alertas": [],
       "acesso": {
-        "visitantes_unicos": 2,
+        "visitantes_unicos": 3,
         "serie_diaria": [
           {
             "data": "2026-09-04",
@@ -745,7 +745,7 @@
           },
           {
             "data": "2026-10-04",
-            "visitantes": 0
+            "visitantes": 1
           }
         ]
       }
@@ -1590,19 +1590,19 @@
       "form_url": "https://forms.gle/y3uXaukJXmP9GMED7",
       "form_rotulo": "Enviar fotos",
       "ultimo_commit_dados": {
-        "data": "2026-10-04T15:03:01Z",
-        "mensagem": "Atualiza site a partir de PlantsCare@352a553",
-        "sha": "9b60fea",
-        "url": "https://github.com/gfvdata-web/PlantsCare-publico/commit/9b60fea4e25c069fdb46cc40814b0391bf8c02a5"
+        "data": "2026-10-04T18:54:14Z",
+        "mensagem": "Atualiza site a partir de PlantsCare@726e66c",
+        "sha": "86a35ea",
+        "url": "https://github.com/gfvdata-web/PlantsCare-publico/commit/86a35ea51034e0e164b5bbc325f8cb0a9ae6a53c"
       },
       "ultima_execucao_pipeline": {
-        "id": 37211549054,
+        "id": 37226211456,
         "evento": "push",
         "status": "completed",
         "conclusao": "success",
-        "criado_em": "2026-10-04T15:03:04Z",
-        "atualizado_em": "2026-10-04T15:03:36Z",
-        "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/37211549054"
+        "criado_em": "2026-10-04T18:54:17Z",
+        "atualizado_em": "2026-10-04T18:54:45Z",
+        "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/37226211456"
       },
       "site_no_ar": {
         "ok": true,
@@ -1614,6 +1614,16 @@
           "url_workflow": "https://github.com/gfvdata-web/PlantsCare-publico/actions/workflows/deploy-pages.yml",
           "agenda": [],
           "historico": [
+            {
+              "id": 37226211456,
+              "evento": "push",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-10-04T18:54:17Z",
+              "atualizado_em": "2026-10-04T18:54:45Z",
+              "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/37226211456",
+              "duracao_s": 28
+            },
             {
               "id": 37211549054,
               "evento": "push",
@@ -1753,26 +1763,16 @@
               "atualizado_em": "2026-10-01T20:15:33Z",
               "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/36920192052",
               "duracao_s": 28
-            },
-            {
-              "id": 36918902749,
-              "evento": "push",
-              "status": "completed",
-              "conclusao": "success",
-              "criado_em": "2026-10-01T20:04:21Z",
-              "atualizado_em": "2026-10-01T20:04:52Z",
-              "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/36918902749",
-              "duracao_s": 31
             }
           ],
           "ultimo_sucesso": {
-            "id": 37211549054,
+            "id": 37226211456,
             "evento": "push",
             "status": "completed",
             "conclusao": "success",
-            "criado_em": "2026-10-04T15:03:04Z",
-            "atualizado_em": "2026-10-04T15:03:36Z",
-            "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/37211549054"
+            "criado_em": "2026-10-04T18:54:17Z",
+            "atualizado_em": "2026-10-04T18:54:45Z",
+            "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/37226211456"
           },
           "ultima_falha": null,
           "passos_ultima": [
@@ -1824,6 +1824,12 @@
         },
         "commits_dados": [
           {
+            "data": "2026-10-04T18:54:14Z",
+            "mensagem": "Atualiza site a partir de PlantsCare@726e66c",
+            "sha": "86a35ea",
+            "url": "https://github.com/gfvdata-web/PlantsCare-publico/commit/86a35ea51034e0e164b5bbc325f8cb0a9ae6a53c"
+          },
+          {
             "data": "2026-10-04T15:03:01Z",
             "mensagem": "Atualiza site a partir de PlantsCare@352a553",
             "sha": "9b60fea",
@@ -1846,12 +1852,6 @@
             "mensagem": "Atualiza site a partir de PlantsCare@577a687",
             "sha": "0dddd4d",
             "url": "https://github.com/gfvdata-web/PlantsCare-publico/commit/0dddd4d498932f7ecabf1089581a8abe4e1e6711"
-          },
-          {
-            "data": "2026-10-03T18:28:26Z",
-            "mensagem": "Atualiza site a partir de PlantsCare@3e0da5d",
-            "sha": "47eb1de",
-            "url": "https://github.com/gfvdata-web/PlantsCare-publico/commit/47eb1de7a1ddc29921aeffe339cb626f8dc4f7cb"
           }
         ],
         "deploy_pages": null
