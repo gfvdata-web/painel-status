@@ -54,7 +54,7 @@ SITES = [
         "slug": "meios_pagamento_mensal",
         "nome": "Meios de pagamento",
         "repo": "fonte-meios-pagamento",
-        "pages_url": "https://gfvdata-web.github.io/fonte-meios-pagamento/",
+        "pages_url": "https://gfvdata-web.github.io/fonte-meios-pagamento/index-v2.html",
         "caminho_dados": "docs/dados",
         "workflow_arquivo": None,
         "json_meta_url": "https://gfvdata-web.github.io/fonte-meios-pagamento/dados/meios_pagamento_mensal.json",
