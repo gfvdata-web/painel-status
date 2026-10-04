@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-10-04T04:00:07.643159+00:00",
+    "gerado_em": "2026-10-04T11:42:12.116767+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -74,10 +74,6 @@
       "acesso": {
         "visitantes_unicos": 23,
         "serie_diaria": [
-          {
-            "data": "2026-09-03",
-            "visitantes": 0
-          },
           {
             "data": "2026-09-04",
             "visitantes": 0
@@ -197,6 +193,10 @@
           {
             "data": "2026-10-03",
             "visitantes": 2
+          },
+          {
+            "data": "2026-10-04",
+            "visitantes": 0
           }
         ]
       }
@@ -268,10 +268,6 @@
         "visitantes_unicos": 5,
         "serie_diaria": [
           {
-            "data": "2026-09-03",
-            "visitantes": 0
-          },
-          {
             "data": "2026-09-04",
             "visitantes": 0
           },
@@ -389,6 +385,10 @@
           },
           {
             "data": "2026-10-03",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-04",
             "visitantes": 0
           }
         ]
@@ -449,10 +449,6 @@
         "visitantes_unicos": 10,
         "serie_diaria": [
           {
-            "data": "2026-09-03",
-            "visitantes": 0
-          },
-          {
             "data": "2026-09-04",
             "visitantes": 0
           },
@@ -570,6 +566,10 @@
           },
           {
             "data": "2026-10-03",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-04",
             "visitantes": 0
           }
         ]
@@ -624,10 +624,6 @@
         "visitantes_unicos": 2,
         "serie_diaria": [
           {
-            "data": "2026-09-03",
-            "visitantes": 0
-          },
-          {
             "data": "2026-09-04",
             "visitantes": 0
           },
@@ -745,6 +741,10 @@
           },
           {
             "data": "2026-10-03",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-04",
             "visitantes": 0
           }
         ]
@@ -1039,10 +1039,6 @@
         "visitantes_unicos": 1,
         "serie_diaria": [
           {
-            "data": "2026-09-03",
-            "visitantes": 0
-          },
-          {
             "data": "2026-09-04",
             "visitantes": 0
           },
@@ -1160,6 +1156,10 @@
           },
           {
             "data": "2026-10-03",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-04",
             "visitantes": 0
           }
         ]
@@ -1445,10 +1445,6 @@
         "visitantes_unicos": 12,
         "serie_diaria": [
           {
-            "data": "2026-09-03",
-            "visitantes": 0
-          },
-          {
             "data": "2026-09-04",
             "visitantes": 0
           },
@@ -1567,6 +1563,10 @@
           {
             "data": "2026-10-03",
             "visitantes": 0
+          },
+          {
+            "data": "2026-10-04",
+            "visitantes": 0
           }
         ]
       }
@@ -1580,19 +1580,19 @@
       "form_url": "https://forms.gle/y3uXaukJXmP9GMED7",
       "form_rotulo": "Enviar fotos",
       "ultimo_commit_dados": {
-        "data": "2026-10-04T00:16:57Z",
-        "mensagem": "Atualiza site a partir de PlantsCare@39f314b",
-        "sha": "496accc",
-        "url": "https://github.com/gfvdata-web/PlantsCare-publico/commit/496acccd668828a8c9c0904c31fae1a9734edb7d"
+        "data": "2026-10-04T06:33:18Z",
+        "mensagem": "Atualiza site a partir de PlantsCare@0de3aef",
+        "sha": "700d9bf",
+        "url": "https://github.com/gfvdata-web/PlantsCare-publico/commit/700d9bf1d8a8e55d8db3c5aa2fb4e0bdf5e0c6d3"
       },
       "ultima_execucao_pipeline": {
-        "id": 37164466774,
+        "id": 37183144025,
         "evento": "push",
         "status": "completed",
         "conclusao": "success",
-        "criado_em": "2026-10-04T00:17:00Z",
-        "atualizado_em": "2026-10-04T00:17:27Z",
-        "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/37164466774"
+        "criado_em": "2026-10-04T06:33:21Z",
+        "atualizado_em": "2026-10-04T06:33:54Z",
+        "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/37183144025"
       },
       "site_no_ar": {
         "ok": true,
@@ -1604,6 +1604,16 @@
           "url_workflow": "https://github.com/gfvdata-web/PlantsCare-publico/actions/workflows/deploy-pages.yml",
           "agenda": [],
           "historico": [
+            {
+              "id": 37183144025,
+              "evento": "push",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-10-04T06:33:21Z",
+              "atualizado_em": "2026-10-04T06:33:54Z",
+              "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/37183144025",
+              "duracao_s": 33
+            },
             {
               "id": 37164466774,
               "evento": "push",
@@ -1743,26 +1753,16 @@
               "atualizado_em": "2026-10-01T19:55:19Z",
               "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/36917761791",
               "duracao_s": 30
-            },
-            {
-              "id": 36917760190,
-              "evento": "push",
-              "status": "completed",
-              "conclusao": "cancelled",
-              "criado_em": "2026-10-01T19:54:48Z",
-              "atualizado_em": "2026-10-01T19:54:51Z",
-              "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/36917760190",
-              "duracao_s": 3
             }
           ],
           "ultimo_sucesso": {
-            "id": 37164466774,
+            "id": 37183144025,
             "evento": "push",
             "status": "completed",
             "conclusao": "success",
-            "criado_em": "2026-10-04T00:17:00Z",
-            "atualizado_em": "2026-10-04T00:17:27Z",
-            "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/37164466774"
+            "criado_em": "2026-10-04T06:33:21Z",
+            "atualizado_em": "2026-10-04T06:33:54Z",
+            "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/37183144025"
           },
           "ultima_falha": null,
           "passos_ultima": [
@@ -1814,6 +1814,12 @@
         },
         "commits_dados": [
           {
+            "data": "2026-10-04T06:33:18Z",
+            "mensagem": "Atualiza site a partir de PlantsCare@0de3aef",
+            "sha": "700d9bf",
+            "url": "https://github.com/gfvdata-web/PlantsCare-publico/commit/700d9bf1d8a8e55d8db3c5aa2fb4e0bdf5e0c6d3"
+          },
+          {
             "data": "2026-10-04T00:16:57Z",
             "mensagem": "Atualiza site a partir de PlantsCare@39f314b",
             "sha": "496accc",
@@ -1836,12 +1842,6 @@
             "mensagem": "Atualiza site a partir de PlantsCare@18c7973",
             "sha": "8978707",
             "url": "https://github.com/gfvdata-web/PlantsCare-publico/commit/897870725d30b2289ce38c3d1c570fe10899beae"
-          },
-          {
-            "data": "2026-10-03T05:56:08Z",
-            "mensagem": "Atualiza site a partir de PlantsCare@0c97967",
-            "sha": "8f68967",
-            "url": "https://github.com/gfvdata-web/PlantsCare-publico/commit/8f68967bacbba7b8292e6e966cc1aed6c9be67da"
           }
         ],
         "deploy_pages": null
