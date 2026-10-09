@@ -5,7 +5,8 @@ O status.json só guarda as execuções recentes; este módulo grava, a cada rod
 docs/dados/historico/<slug>.json com toda execução concluída já vista — para
 reparos e análises depois (o GitHub apaga os logs em 90 dias; o motivo de uma
 falha fica guardado aqui). A página abre esse arquivo sob demanda: pelo pop-up do
-card na grade e pelo link "Histórico de execuções" no card do Bolão F1.
+card na grade e pelo link "Histórico de execuções" no card do Bolão F1 (o app Android
+também, na tela Histórico).
 
 Formato:
   slug, nome, workflow, url_workflow, atualizado_em

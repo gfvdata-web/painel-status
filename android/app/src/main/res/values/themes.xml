@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Tema da janela só até o Compose desenhar; as cores das telas vêm de ui/theme. -->
+    <style name="Theme.PainelStatus" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">@color/fundo_claro</item>
+    </style>
+</resources>

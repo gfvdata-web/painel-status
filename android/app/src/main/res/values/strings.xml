@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:locale="pt">
+    <!-- Nome no ícone do celular (o debug troca em src/debug). -->
+    <string name="app_name">Painel Status</string>
+    <string name="app_titulo">Painel de Status</string>
+    <string name="voltar">Voltar</string>
+    <string name="sem_valor">—</string>
+    <!-- Junta dois textos: "concluída · 03/10/26 09:31". -->
+    <string name="par">%1$s · %2$s</string>
+
+    <!-- Abas e títulos -->
+    <string name="aba_bolao">Bolão F1</string>
+    <string name="aba_sites">Sites</string>
+    <string name="aba_links">Links</string>
+    <string name="sobre_titulo">Sobre</string>
+    <string name="historico_titulo">Histórico · %1$s</string>
+
+    <!-- Estado dos dados -->
+    <string name="conferido">Conferido %1$s</string>
+    <string name="status_gerado">status de %1$s</string>
+    <string name="offline_dados_salvos">Sem conexão com o painel · dados salvos %1$s</string>
+    <string name="formato_dados_salvos">O painel mudou e o app precisa de atualização · dados salvos %1$s</string>
+    <string name="idade_agora">agora mesmo</string>
+    <string name="idade_minutos">há %1$d min</string>
+    <string name="idade_horas">há %1$d h</string>
+    <string name="idade_data">em %1$s</string>
+    <string name="erro_sem_dados">Não foi possível baixar o status do painel. Confira a internet e tente de novo.</string>
+    <string name="erro_formato">O painel publicou dados num formato que esta versão do app não entende. Atualize o app.</string>
+    <string name="tentar_de_novo">Tentar de novo</string>
+
+    <!-- Datas e durações -->
+    <string name="sem_registro">sem registro</string>
+    <string name="dias_hoje">hoje</string>
+    <string name="dias_um">há 1 dia</string>
+    <string name="dias_varios">há %1$d dias</string>
+    <string name="data_com_dias">%1$s (%2$s)</string>
+    <string name="duracao_horas">%1$d h %2$d min</string>
+    <string name="duracao_minutos">%1$d min %2$d s</string>
+    <string name="duracao_segundos">%1$d s</string>
+
+    <!-- Selos -->
+    <string name="selo_no_ar">Site no ar</string>
+    <string name="selo_fora_do_ar">Site pode estar fora do ar</string>
+    <string name="selo_execucao_ok">Última execução OK</string>
+    <string name="selo_execucao_falhou">Última execução falhou</string>
+    <string name="selo_execucao_andamento">Execução em andamento</string>
+    <string name="selo_execucao_sem_registro">Sem execução registrada</string>
+    <string name="selo_execucao_outra">Última execução: %1$s</string>
+    <string name="selo_vigilia">Em vigília — aguardando resultado</string>
+
+    <!-- Resultados e eventos do GitHub Actions -->
+    <string name="resultado_sucesso">sucesso</string>
+    <string name="resultado_falhou">falhou</string>
+    <string name="resultado_cancelada">cancelada</string>
+    <string name="resultado_tempo_esgotado">tempo esgotado</string>
+    <string name="resultado_falhou_ao_iniciar">falhou ao iniciar</string>
+    <string name="resultado_pulado">pulado</string>
+    <string name="resultado_em_andamento">em andamento</string>
+    <string name="resultado_na_fila">na fila</string>
+    <string name="evento_agendada">agendada</string>
+    <string name="evento_manual">manual</string>
+    <string name="evento_disparo_externo">disparo externo</string>
+    <string name="evento_push">push</string>
+
+    <!-- Bolão F1 -->
+    <string name="kpi_rodada">Rodada mais recente</string>
+    <string name="kpi_visitantes">Visitantes (únicos)</string>
+    <string name="kpi_dados">Dados atualizados</string>
+    <string name="ultimo_commit">Último commit em dados: “%1$s” (%2$s)</string>
+    <string name="visitas_por_dia">Visitantes únicos por dia · últimos %1$d dias</string>
+    <string name="ao_vivo_titulo">Fluxo em andamento</string>
+    <string name="ao_vivo_texto">Com o app aberto, o painel é conferido a cada %1$d min, igual à página: as etapas abaixo mudam sozinhas.</string>
+    <string name="etapas_titulo">Última atualização de dados — passo a passo</string>
+    <string name="etapa_ok">concluída</string>
+    <string name="etapa_andamento">em andamento</string>
+    <string name="etapa_aguardando">aguardando</string>
+    <string name="etapa_erro">falhou</string>
+    <string name="etapa_pendente">não iniciada</string>
+    <string name="etapa_pulado">não se aplica</string>
+    <string name="marca_ok" translatable="false">✓</string>
+    <string name="marca_andamento" translatable="false">…</string>
+    <string name="marca_aguardando" translatable="false">⏳</string>
+    <string name="marca_erro" translatable="false">✕</string>
+    <string name="marca_pulado" translatable="false">–</string>
+    <string name="ver_execucao">Ver execução no GitHub</string>
+    <string name="abrir_site_nome">Abrir %1$s</string>
+    <string name="ver_historico">Histórico de execuções</string>
+    <string name="sem_destaque">Nenhum site em destaque no painel.</string>
+
+    <!-- Sites -->
+    <string name="abrir_site">Abrir site</string>
+    <string name="abrir_form">Abrir Google Forms</string>
+    <string name="abrir_repositorio">Repositório no GitHub</string>
+    <string name="ver_detalhes">Ver detalhes</string>
+    <string name="alerta_descricao">Alerta</string>
+    <string name="periodo_coberto">Período coberto</string>
+    <string name="periodo">%1$s → %2$s</string>
+    <string name="sem_rastreio">sem rastreio</string>
+    <string name="sem_sites">Nenhum outro site cadastrado no painel.</string>
+    <string name="site_nao_encontrado">Este site não está mais no painel.</string>
+
+    <!-- Detalhes de um site -->
+    <string name="secao_rotina">Rotina de atualização de dados</string>
+    <string name="sem_rotina">Sem rotina automática cadastrada: os dados deste site são atualizados por commit manual.</string>
+    <string name="det_workflow">Workflow</string>
+    <string name="det_agenda">Agenda</string>
+    <string name="sem_agenda">sem agendamento (só disparo manual ou externo)</string>
+    <string name="agenda_item">%1$s · %2$s</string>
+    <string name="det_ultimo_sucesso">Último sucesso</string>
+    <string name="nenhum_sucesso">nenhum nas últimas %1$d execuções</string>
+    <string name="det_ultima_falha">Última falha</string>
+    <string name="nenhuma_falha">nenhuma nas últimas %1$d execuções</string>
+    <string name="motivo">Motivo da falha</string>
+    <string name="motivo_passo">Motivo da falha — passo “%1$s”</string>
+    <string name="motivo_indisponivel">Mensagem de erro indisponível: ver o log da execução.</string>
+    <string name="det_historico">Execuções recentes</string>
+    <string name="historico_resumo">%1$d de %2$d concluídas com sucesso · mais recente à direita</string>
+    <string name="ver_historico_completo">Ver histórico completo</string>
+    <string name="det_passos">Passos da execução mais recente</string>
+    <string name="secao_dados">Dados</string>
+    <string name="det_ultima_atualizacao">Última atualização</string>
+    <string name="commits_recentes">Commits recentes na pasta de dados</string>
+    <string name="commit_item">%1$s %2$s · %3$s</string>
+    <string name="secao_publicacao">Publicação e acesso</string>
+    <string name="det_site">Site</string>
+    <string name="site_no_ar_http">no ar · HTTP %1$d</string>
+    <string name="site_fora_do_ar">não respondeu · %1$s</string>
+    <string name="det_deploy">Último deploy (GitHub Pages)</string>
+    <string name="sem_deploy">sem deploy automático do Pages registrado (publicado por workflow próprio)</string>
+
+    <!-- Histórico completo -->
+    <string name="hist_resumo">Resumo</string>
+    <string name="hist_execucoes">Execuções</string>
+    <string name="hist_execucoes_desde">%1$d · desde %2$s</string>
+    <string name="hist_sucesso">Com sucesso</string>
+    <string name="hist_sucesso_valor">%1$d (%2$d%%)</string>
+    <string name="hist_duracao">Duração típica</string>
+    <string name="hist_duracao_valor">%1$s · mediana das que deram certo</string>
+    <string name="hist_recorrentes">Avisos recorrentes (%1$d), omitidos abaixo</string>
+    <string name="hist_recorrente_item">%1$s · %2$d de %3$d</string>
+    <string name="hist_filtro">Só com falha ou aviso</string>
+    <string name="hist_vazio">Nenhuma execução com falha ou aviso.</string>
+    <string name="hist_avisos_nao_lidos">Avisos não lidos nesta execução.</string>
+    <string name="sem_historico">Este site não tem histórico de execuções.</string>
+
+    <!-- Links -->
+    <string name="links_sites">Sites</string>
+    <string name="links_forms">Google Forms</string>
+    <string name="form_avulso">Form avulso</string>
+
+    <!-- Sobre -->
+    <string name="sobre_texto">Acompanha os sites publicados pela conta gfvdata-web: se estão no ar, quando os dados mudaram, as rotinas de coleta e o passo a passo de cada atualização do Bolão F1. Tudo vem do painel publicado no GitHub Pages; o app só lê.</string>
+    <string name="sobre_recarga">Com o app aberto, o painel é conferido a cada %1$d min (o mesmo intervalo da página). Puxe a tela para baixo para conferir na hora.</string>
+    <string name="abrir_painel_web">Abrir o painel na web</string>
+    <string name="sobre_versao">Versão %1$s · build %2$d</string>
+
+    <!-- Aviso de nova versão -->
+    <string name="versao_nova">Nova versão %1$s disponível</string>
+    <string name="versao_nova_dica">Baixe e instale por cima desta.</string>
+    <string name="baixar">Baixar</string>
+    <string name="agora_nao">Agora não</string>
+    <string name="versao_baixar">Baixar a versão %1$s</string>
+    <string name="versao_em_dia">Esta é a versão oficial mais recente.</string>
+    <string name="versao_sem_info">Não foi possível consultar a versão mais recente.</string>
+</resources>

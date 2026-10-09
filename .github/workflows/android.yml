@@ -1,0 +1,196 @@
+name: Android — app
+
+# Build oficial do app Android do painel (molde: app do Bolão F1). Roda quando
+# o app, este workflow ou os dados publicados mudam. Os commits de status do
+# atualizar-status.yml (feitos com GITHUB_TOKEN) não disparam outros workflows,
+# então a rotina de 3 em 3 horas não gera build.
+on:
+  push:
+    branches: [main]
+    # Tag app-vX.Y.Z publica o APK assinado num Release (job "publicar").
+    # Filtro de paths não vale para tags.
+    tags: ["app-v*"]
+    paths:
+      - "android/**"
+      - ".github/workflows/android.yml"
+      # Os testes do app leem o status.json e os históricos reais (formato é contrato).
+      - "docs/dados/**"
+  pull_request:
+    paths:
+      - "android/**"
+      - ".github/workflows/android.yml"
+      # Os testes do app leem o status.json e os históricos reais (formato é contrato).
+      - "docs/dados/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# Push novo cancela o build anterior ainda em andamento do mesmo ramo.
+concurrency:
+  group: android-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Testes, lint e APK de debug
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: android
+    env:
+      # versionCode = número desta run: só cresce, então cada APK novo é
+      # "mais novo" para o Android. O versionName é montado no passo "Versão".
+      ORG_GRADLE_PROJECT_painelVersionCode: ${{ github.run_number }}
+      APK: painel-status-debug-build${{ github.run_number }}.apk
+    steps:
+      - uses: actions/checkout@v7
+
+      # JDK 21: o Robolectric exige 21 para simular Android 15+. O bytecode do
+      # app continua Java 17 (compileOptions em app/build.gradle.kts).
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      # Também confere o checksum do gradle-wrapper.jar contra a lista oficial.
+      - uses: gradle/actions/setup-gradle@v6
+        with:
+          cache-provider: basic
+
+      - name: Versão
+        run: echo "ORG_GRADLE_PROJECT_painelVersionName=dev-${GITHUB_SHA::7}" >> "$GITHUB_ENV"
+
+      - name: Testes (JVM + Robolectric)
+        run: ./gradlew testDebugUnitTest
+
+      - name: Lint
+        run: ./gradlew lintDebug
+
+      - name: Monta APK de debug
+        run: |
+          ./gradlew assembleDebug
+          mkdir -p ../saida
+          cp app/build/outputs/apk/debug/app-debug.apk "../saida/$APK"
+
+      # archive: false → o artefato é o próprio .apk (sem .zip), baixável
+      # direto pelo celular na página da run.
+      - name: Publica APK como artefato
+        uses: actions/upload-artifact@v7
+        with:
+          path: saida/${{ env.APK }}
+          archive: false
+          retention-days: 30
+
+      - name: Resumo
+        run: |
+          TESTES=$(cat app/build/test-results/testDebugUnitTest/*.xml | grep -o '<testsuite [^>]*' | grep -o ' tests="[0-9]*"' | grep -o '[0-9]*' | awk '{s+=$1} END {print s+0}')
+          {
+            echo "### Painel de Status — APK de debug"
+            echo ""
+            echo "- Arquivo: \`$APK\`"
+            echo "- Versão: \`${ORG_GRADLE_PROJECT_painelVersionName}-debug\` · build ${ORG_GRADLE_PROJECT_painelVersionCode}"
+            echo "- Testes: **$TESTES passaram** · lint sem avisos"
+            echo "- Baixe em **Artifacts**, no fim desta página."
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Relatórios de testes e lint (só se falhar)
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: relatorios-build${{ github.run_number }}
+          path: android/app/build/reports/
+          retention-days: 14
+
+  # Release oficial: só em tag app-vX.Y.Z e só depois do job "build"
+  # (testes + lint) passar no mesmo commit. Único job com permissão de escrita.
+  publicar:
+    name: Release assinado
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/app-v')
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+    defaults:
+      run:
+        working-directory: android
+    env:
+      ORG_GRADLE_PROJECT_painelVersionCode: ${{ github.run_number }}
+      # Impressão digital SHA-256 do certificado da chave de release (dado
+      # público). É a mesma chave do app do Bolão F1 (um keystore só para
+      # guardar). O APK só é publicado se estiver assinado por ESTA chave: uma
+      # chave diferente impediria a atualização por cima no celular.
+      CERTIFICADO_SHA256: afa06a9aba9e80c48e76f490ab437a66b61762d29c30592106889f5610319978
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - uses: gradle/actions/setup-gradle@v6
+        with:
+          cache-provider: basic
+
+      - name: Versão a partir da tag
+        run: |
+          VERSAO="${GITHUB_REF_NAME#app-v}"
+          if ! [[ "$VERSAO" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "::error::A tag precisa ser app-vX.Y.Z (recebida: $GITHUB_REF_NAME)"
+            exit 1
+          fi
+          {
+            echo "VERSAO=$VERSAO"
+            echo "ORG_GRADLE_PROJECT_painelVersionName=$VERSAO"
+            echo "APK=painel-status-v$VERSAO-build$GITHUB_RUN_NUMBER.apk"
+          } >> "$GITHUB_ENV"
+
+      - name: Keystore (dos secrets)
+        env:
+          KEYSTORE_B64: ${{ secrets.ANDROID_KEYSTORE_B64 }}
+        run: |
+          if [ -z "$KEYSTORE_B64" ]; then
+            echo "::error::Secret ANDROID_KEYSTORE_B64 não configurado"
+            exit 1
+          fi
+          printf '%s' "$KEYSTORE_B64" | base64 -d > "$RUNNER_TEMP/release.p12"
+          echo "ANDROID_KEYSTORE_ARQUIVO=$RUNNER_TEMP/release.p12" >> "$GITHUB_ENV"
+
+      - name: Monta APK de release assinado
+        env:
+          ANDROID_KEYSTORE_SENHA: ${{ secrets.ANDROID_KEYSTORE_SENHA }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          ANDROID_KEY_SENHA: ${{ secrets.ANDROID_KEY_SENHA }}
+        run: |
+          ./gradlew assembleRelease
+          mkdir -p ../saida
+          cp app/build/outputs/apk/release/app-release.apk "../saida/$APK"
+
+      - name: Confere a assinatura
+        run: |
+          APKSIGNER="$(ls -d "$ANDROID_HOME"/build-tools/*/ | sort -V | tail -1)apksigner"
+          "$APKSIGNER" verify --print-certs "../saida/$APK" | tee assinatura.txt
+          if ! grep -qi "certificate SHA-256 digest: $CERTIFICADO_SHA256" assinatura.txt; then
+            echo "::error::APK não está assinado pela chave oficial (a mesma do Bolão F1)"
+            exit 1
+          fi
+
+      - name: Publica o Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          NOTAS="App Android do Painel de Status, versão $VERSAO (build $GITHUB_RUN_NUMBER). Baixe o arquivo .apk abaixo pelo celular e instale: ele atualiza por cima da versão anterior, sem perder nada."
+          gh release create "$GITHUB_REF_NAME" "../saida/$APK" --repo "$GITHUB_REPOSITORY" --title "Painel de Status $VERSAO" --notes "$NOTAS"
+          {
+            echo "### Painel de Status $VERSAO publicado"
+            echo ""
+            echo "- Release: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/releases/tag/$GITHUB_REF_NAME"
+            echo "- Arquivo: \`$APK\` · assinado pela chave oficial"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Apaga o keystore do runner
+        if: always()
+        run: rm -f "$RUNNER_TEMP/release.p12"

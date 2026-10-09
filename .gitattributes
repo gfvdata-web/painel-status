@@ -1,0 +1,8 @@
+# Workflows e o Gradle wrapper do app Android rodam em runner Linux: CRLF
+# quebra com um erro obscuro ($'\r': command not found). Fixar LF
+# independente do autocrlf de quem editar no Windows.
+*.yml text eol=lf
+*.sh text eol=lf
+gradlew text eol=lf
+*.bat text eol=crlf
+*.jar binary

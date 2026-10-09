@@ -6,7 +6,8 @@ Uso: python -m src.publicacao              rodada completa (todos os sites)
                                            roda a cada minuto e não pode gastar
                                            a cota da API com os outros sites)
 
-Formato de saída (o único arquivo que docs/js/app.js lê):
+Formato de saída (o único arquivo que docs/js/app.js lê — e o app Android em android/,
+que espelha estes campos em data/modelo/Modelos.kt; mudanças só aditivas):
   meta           {gerado_em, descricao}
   sites[]        slug, nome, repo, pages_url, destaque, ultimo_commit_dados,
                  site_no_ar e, conforme o cadastro em config.py: form_url,

@@ -8,6 +8,7 @@ let graficos = []; // instâncias do Chart.js ativas, destruídas a cada redesen
 // Com a página aberta, confere de tempos em tempos se o Action publicou um
 // status.json novo (ex.: o job vigiar-bolao acompanhando um envio do Forms) e
 // redesenha sozinha. Não redesenha com o pop-up aberto nem com a aba escondida.
+// O app Android usa o mesmo intervalo (INTERVALO_DE_RECARGA_MS em android/.../App.kt).
 const INTERVALO_RECARGA_MS = 60 * 1000;
 
 async function carregar() {

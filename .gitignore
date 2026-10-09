@@ -1,3 +1,16 @@
 __pycache__/
 *.pyc
 .venv/
+
+# App Android (android/): build, cache e configuração local
+android/.gradle/
+android/.kotlin/
+android/**/build/
+android/local.properties
+android/captures/
+# Chave de assinatura (keystore) e APKs baixados: NUNCA no Git (backup fora)
+*.jks
+*.keystore
+*.p12
+*.apk
+*.aab

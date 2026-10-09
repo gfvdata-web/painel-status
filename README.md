@@ -3,7 +3,8 @@
 Painel único de monitoramento para todos os sites publicados via GitHub Pages pela conta
 `gfvdata-web`, com destaque para o **Bolão F1**.
 
-**Painel:** https://gfvdata-web.github.io/painel-status/
+**Painel:** https://gfvdata-web.github.io/painel-status/ · **App Android:** APK nos
+[Releases](https://github.com/gfvdata-web/painel-status/releases) (ver "App Android" abaixo)
 
 ## O que ele mostra
 
@@ -80,6 +81,13 @@ docs/                     # o que o GitHub Pages publica
 └── dados/                # gerado pelo Action; não editar à mão
     ├── status.json
     └── historico/<slug>.json
+android/                  # app Android nativo (lê o mesmo status.json; ver "App Android")
+└── app/src/main/java/io/github/gfvdataweb/painelstatus/
+    ├── data/             # modelos do status.json/histórico, download, cache offline, aviso de versão
+    └── ui/               # telas Compose: Bolão F1, Sites (+ detalhes e histórico), Links, Sobre
+.github/workflows/
+├── atualizar-status.yml  # coleta (3 em 3 h) e vigia do Bolão
+└── android.yml           # testes → lint → APK; tag app-vX.Y.Z publica o APK assinado
 ```
 
 Um problema de rede em um site (timeout, HTTP 5xx) vira um campo `erro` no card dele e não
@@ -92,6 +100,51 @@ Rodar localmente:
 python -m src.publicacao
 python -m http.server --directory docs 8000
 ```
+
+## App Android
+
+App nativo (Kotlin + Jetpack Compose) em `android/`, no mesmo molde do app do Bolão F1
+(`page-bolao-formula1/android`): instalado por APK, fora da Play Store. Não tem servidor nem
+token: **lê o mesmo `docs/dados/status.json`** publicado no GitHub Pages (e
+`dados/historico/<slug>.json` sob demanda), então tudo que a página mostra vem do mesmo
+lugar e nada é cadastrado no app.
+
+- **Abas:** **Bolão F1** (situação do site e do pipeline, o passo a passo da última
+  atualização, rodada, visitantes e atalhos para o site, o Forms, o histórico e o
+  repositório), **Sites** (um card por site, com alertas; toque abre os detalhes — rotina de
+  coleta, última falha e motivo, execuções recentes, commits, deploy — e dali o histórico
+  completo) e **Links** (todos os sites e todos os Google Forms, inclusive os avulsos).
+  "Sobre" (ícone ⓘ) mostra a versão e o aviso de versão nova.
+- **Mesmo ritmo da página:** com o app aberto, o `status.json` é conferido a cada **1 min**
+  (`INTERVALO_DE_RECARGA_MS` em `App.kt`, igual a `INTERVALO_RECARGA_MS` do `app.js`), então
+  as etapas do Bolão andam no app junto com o job `vigiar-bolao`. Em segundo plano, para; ao
+  voltar, confere na hora. Puxar a tela para baixo confere na hora também.
+- **Offline:** o último `status.json` bom fica no aparelho; sem internet o app abre com ele e
+  avisa no topo. JSON quebrado no painel nunca apaga o cache.
+- **Contrato:** o app é um **segundo consumidor** do `status.json`. Campos novos não quebram
+  nada (são ignorados); renomear ou mudar o tipo de um campo quebra — por isso os testes do
+  app leem o `status.json` e os históricos reais de `docs/dados/`.
+
+**Build e versões.** O build oficial é o do Actions (`.github/workflows/android.yml`:
+testes JVM/Robolectric → lint → APK de debug como artefato). Não há JDK/SDK na máquina
+local: mudança no app só está pronta com a run verde. Regras em `.claude/rules/android.md`.
+`versionCode` = número da run do `android.yml` (não renomear nem recriar o workflow).
+`applicationId` `io.github.gfvdataweb.painelstatus` (o debug usa o sufixo `.debug` e
+instala ao lado).
+
+**Publicar uma versão:** commit(s) no `main` com a run verde → `git tag -a app-vX.Y.Z -m "…"`
+→ `git push origin app-vX.Y.Z`. O job `publicar` assina com a chave oficial, confere a
+assinatura e cria o Release com `painel-status-vX.Y.Z-buildN.apk` (nome lido pelo aviso de
+versão do app — não mudar). Quem tem o app vê "Nova versão disponível" ao abrir.
+
+**Assinatura:** a mesma chave do app do Bolão F1 (um keystore só para guardar, em
+`Documents/BolaoF1-assinatura-app/`, fora do Git), cadastrada aqui como os secrets
+`ANDROID_KEYSTORE_B64`, `ANDROID_KEYSTORE_SENHA`, `ANDROID_KEY_ALIAS` e
+`ANDROID_KEY_SENHA`. Perder o keystore = nenhuma atualização instala por cima dos dois apps.
+
+**Instalar no celular:** abrir o Release pelo celular, baixar o `.apk` e instalar
+(o Android pede para permitir instalação desta fonte). Valem as mesmas observações do app do
+Bolão sobre a verificação de desenvolvedor do Android.
 
 ## Configurar o rastreio de acesso (GoatCounter)
 
