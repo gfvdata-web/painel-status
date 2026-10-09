@@ -55,8 +55,8 @@ private fun novidadesDoBolao(antes: Site, agora: Site): List<Novidade> {
     fun ficou(chave: String, estado: String) =
         agora.etapasPipeline.any { it.chave == chave && it.estado == estado } && estadosAntes[chave] != estado
 
-    if (novaExecucao && execucao?.status != "completed") {
-        lista += Novidade.BolaoComecou(manual = execucao?.evento == "workflow_dispatch")
+    if (novaExecucao && execucao.status != "completed") {
+        lista += Novidade.BolaoComecou(manual = execucao.evento == "workflow_dispatch")
     }
     if (ficou(ETAPA_RESULTADO, "aguardando")) lista += Novidade.BolaoAguardandoResultado
     if (ficou(ETAPA_PAGINA, "ok")) lista += Novidade.BolaoPaginaAtualizada(agora.rodadaMaisRecente)
