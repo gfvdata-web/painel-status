@@ -3,6 +3,8 @@
 
     <!-- Baixar o status.json publicado pelo painel (GitHub Pages). -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Avisos com o app fechado (Android 13+ pede a permissão; o app pergunta antes). -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
         android:name=".PainelApp"

@@ -1,5 +1,11 @@
 package io.github.gfvdataweb.painelstatus.ui
 
+import android.Manifest
+import android.content.Intent
+import android.os.Build
+import android.provider.Settings
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,6 +15,7 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.ExitToApp
 import androidx.compose.material.icons.automirrored.filled.List
 import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -22,13 +29,18 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.LifecycleEventEffect
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.repeatOnLifecycle
@@ -44,8 +56,13 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import io.github.gfvdataweb.painelstatus.AppContainer
 import io.github.gfvdataweb.painelstatus.R
+import io.github.gfvdataweb.painelstatus.avisos.AbaDoAviso
+import io.github.gfvdataweb.painelstatus.avisos.podeNotificar
 import io.github.gfvdataweb.painelstatus.data.DadosDoPainel
 import io.github.gfvdataweb.painelstatus.data.modelo.Status
+import io.github.gfvdataweb.painelstatus.ui.avisos.AvisosTela
+import io.github.gfvdataweb.painelstatus.ui.avisos.AvisosViewModel
+import io.github.gfvdataweb.painelstatus.ui.avisos.FaixaDeAvisos
 import io.github.gfvdataweb.painelstatus.ui.bolao.BolaoTela
 import io.github.gfvdataweb.painelstatus.ui.comum.ConteudoComDados
 import io.github.gfvdataweb.painelstatus.ui.comum.dataHora
@@ -83,6 +100,9 @@ data class RotaHistorico(val slug: String)
 @Serializable
 object RotaSobre
 
+@Serializable
+object RotaAvisos
+
 private data class Aba(val rota: Any, @param:StringRes val rotulo: Int, val icone: ImageVector)
 
 private val ABAS = listOf(
@@ -94,11 +114,11 @@ private val ABAS = listOf(
 /** Raiz da interface: barra superior, abas embaixo e a tela escolhida. */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AppPainel(container: AppContainer, versao: String, build: Int) {
+fun AppPainel(container: AppContainer, versao: String, build: Int, abaInicial: String? = null) {
     val navegacao = rememberNavController()
     // Escopo da Activity: todas as telas dividem o mesmo status.json.
     val painel: PainelViewModel = viewModel(
-        factory = PainelViewModel.fabrica(container.dados, container.intervaloDeRecargaMs),
+        factory = PainelViewModel.fabrica(container.dados, container.intervaloDeRecargaMs, container::aoVerStatus),
     )
     val estado by painel.estado.collectAsStateWithLifecycle()
     val versaoViewModel: VersaoViewModel = viewModel(factory = VersaoViewModel.fabrica(container.verificadorDeAtualizacao, build))
@@ -108,6 +128,30 @@ fun AppPainel(container: AppContainer, versao: String, build: Int) {
     val navegador = LocalUriHandler.current
     val baixarNovaVersao = { estadoDaVersao.publicada?.let { runCatching { navegador.openUri(it.urlDoApk) } } }
     val intervaloMin = (container.intervaloDeRecargaMs / 60_000).coerceAtLeast(1)
+
+    // Avisos com o app fechado: preferências e a permissão do Android 13+.
+    val avisos: AvisosViewModel = viewModel(
+        factory = AvisosViewModel.fabrica(container.preferencias, container.agendador, container.vigia),
+    )
+    val preferenciasDeAvisos by avisos.estado.collectAsStateWithLifecycle()
+    val ultimaVerificacao by avisos.ultimaVerificacao.collectAsStateWithLifecycle()
+    val contexto = LocalContext.current
+    var permitido by remember { mutableStateOf(podeNotificar(contexto)) }
+    LifecycleEventEffect(Lifecycle.Event.ON_RESUME) {
+        permitido = podeNotificar(contexto)
+        avisos.recarregarUltimaVerificacao()
+    }
+    val pedirPermissao = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { concedida ->
+        permitido = concedida
+        avisos.definirAtivado(concedida)
+    }
+    val ativarAvisos = { ligar: Boolean ->
+        if (ligar && Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && !podeNotificar(contexto)) {
+            pedirPermissao.launch(Manifest.permission.POST_NOTIFICATIONS)
+        } else {
+            avisos.definirAtivado(ligar)
+        }
+    }
 
     // Com o app visível, confere o painel a cada intervalo (como a página
     // aberta); em segundo plano, para.
@@ -135,6 +179,9 @@ fun AppPainel(container: AppContainer, versao: String, build: Int) {
                 },
                 actions = {
                     if (naAba != null) {
+                        IconButton(onClick = { navegacao.navigate(RotaAvisos) { launchSingleTop = true } }) {
+                            Icon(Icons.Filled.Notifications, contentDescription = stringResource(R.string.avisos_titulo))
+                        }
                         IconButton(onClick = { navegacao.navigate(RotaSobre) { launchSingleTop = true } }) {
                             Icon(Icons.Filled.Info, contentDescription = stringResource(R.string.sobre_titulo))
                         }
@@ -162,9 +209,14 @@ fun AppPainel(container: AppContainer, versao: String, build: Int) {
             if (estadoDaVersao.mostrarAviso && publicada != null) {
                 AvisoDeNovaVersao(publicada, aoBaixar = { baixarNovaVersao() }, aoDispensar = versaoViewModel::dispensar)
             }
+            if (!preferenciasDeAvisos.perguntado && naAba != null) {
+                FaixaDeAvisos(aoAtivar = { ativarAvisos(true) }, aoDispensar = avisos::dispensar)
+            }
             val complemento = dataHora(estado.dados?.meta?.geradoEm, ZoneId.systemDefault())
                 ?.let { stringResource(R.string.status_gerado, it) }
-            NavHost(navegacao, startDestination = RotaBolao, modifier = Modifier.weight(1f)) {
+            // Aberto por uma notificação dos sites: começa na aba Sites.
+            val inicio: Any = if (abaInicial == AbaDoAviso.SITES.name) RotaSites else RotaBolao
+            NavHost(navegacao, startDestination = inicio, modifier = Modifier.weight(1f)) {
                 composable<RotaBolao> {
                     ConteudoComDados(estado, painel::atualizar, complemento = complemento) { status ->
                         val destaque = destaqueDe(status)
@@ -215,6 +267,22 @@ fun AppPainel(container: AppContainer, versao: String, build: Int) {
                         MensagemSimples(stringResource(R.string.sem_historico))
                     }
                 }
+                composable<RotaAvisos> {
+                    AvisosTela(
+                        preferencias = preferenciasDeAvisos,
+                        permitido = permitido,
+                        ultimaVerificacao = ultimaVerificacao,
+                        aoAtivar = ativarAvisos,
+                        aoMudarBolao = avisos::mudarBolao,
+                        aoMudarSites = avisos::mudarSites,
+                        aoTestar = container.avisador::testar,
+                        aoAbrirConfiguracoesDoAndroid = {
+                            val abrir = Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS)
+                                .putExtra(Settings.EXTRA_APP_PACKAGE, contexto.packageName)
+                            runCatching { contexto.startActivity(abrir) }
+                        },
+                    )
+                }
                 composable<RotaSobre> {
                     SobreTela(
                         versao = versao,
@@ -239,6 +307,7 @@ private fun tituloDaTela(entrada: NavBackStackEntry?, status: Status?): String {
         destino.hasRoute(RotaHistorico::class) ->
             stringResource(R.string.historico_titulo, nomeDoSite(entrada.toRoute<RotaHistorico>().slug))
         destino.hasRoute(RotaSobre::class) -> stringResource(R.string.sobre_titulo)
+        destino.hasRoute(RotaAvisos::class) -> stringResource(R.string.avisos_titulo)
         else -> stringResource(R.string.app_titulo)
     }
 }

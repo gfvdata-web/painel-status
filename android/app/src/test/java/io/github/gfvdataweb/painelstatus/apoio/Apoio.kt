@@ -2,6 +2,7 @@ package io.github.gfvdataweb.painelstatus.apoio
 
 import io.github.gfvdataweb.painelstatus.AppContainer
 import io.github.gfvdataweb.painelstatus.PainelApp
+import io.github.gfvdataweb.painelstatus.avisos.Agendador
 import io.github.gfvdataweb.painelstatus.data.DadosDoPainel
 import io.github.gfvdataweb.painelstatus.data.lerStatus
 import io.github.gfvdataweb.painelstatus.data.modelo.Status
@@ -75,9 +76,24 @@ object PainelDeTeste {
     val painel: PainelLocal by lazy { PainelLocal() }
 }
 
+/** Agendador que só anota o que pediram (o WorkManager não roda nos testes). */
+class AgendadorDeTeste : Agendador {
+    val aplicados = mutableListOf<Boolean>()
+    val rapidas = mutableListOf<Boolean>()
+
+    override fun aplicar(ativado: Boolean) {
+        aplicados += ativado
+    }
+
+    override fun conferirLogo(emSequencia: Boolean) {
+        rapidas += emSequencia
+    }
+}
+
 /**
  * App usado nos testes Robolectric do app inteiro: lê do painel local. A
- * recarga periódica fica em 1 h para não disparar no meio de um teste.
+ * recarga periódica fica em 1 h para não disparar no meio de um teste, e a
+ * verificação em segundo plano usa o [AgendadorDeTeste].
  */
 class PainelAppDeTeste : PainelApp() {
     override fun criarContainer(): AppContainer = AppContainer(
@@ -85,5 +101,6 @@ class PainelAppDeTeste : PainelApp() {
         PainelDeTeste.painel.urlDoPainel,
         PainelDeTeste.painel.urlDosReleases,
         intervaloDeRecargaMs = 3_600_000,
+        agendador = AgendadorDeTeste(),
     )
 }

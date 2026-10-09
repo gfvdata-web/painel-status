@@ -84,7 +84,9 @@ docs/                     # o que o GitHub Pages publica
 android/                  # app Android nativo (lê o mesmo status.json; ver "App Android")
 └── app/src/main/java/io/github/gfvdataweb/painelstatus/
     ├── data/             # modelos do status.json/histórico, download, cache offline, aviso de versão
-    └── ui/               # telas Compose: Bolão F1, Sites (+ detalhes e histórico), Links, Sobre
+    │   └── avisos/       # o que mudou desde o último status visto (Novidades.kt), preferências
+    ├── avisos/           # verificação em segundo plano (WorkManager) e notificações
+    └── ui/               # telas Compose: Bolão F1, Sites (+ detalhes e histórico), Links, Avisos, Sobre
 .github/workflows/
 ├── atualizar-status.yml  # coleta (3 em 3 h) e vigia do Bolão
 └── android.yml           # testes → lint → APK; tag app-vX.Y.Z publica o APK assinado
@@ -119,6 +121,16 @@ lugar e nada é cadastrado no app.
   (`INTERVALO_DE_RECARGA_MS` em `App.kt`, igual a `INTERVALO_RECARGA_MS` do `app.js`), então
   as etapas do Bolão andam no app junto com o job `vigiar-bolao`. Em segundo plano, para; ao
   voltar, confere na hora. Puxar a tela para baixo confere na hora também.
+- **Avisos com o app fechado** (desde a 0.2.0; ícone do sino): o app pergunta uma vez se pode
+  avisar e, ligado, o WorkManager confere o `status.json` a cada ~15 min (o mínimo do
+  Android) e, enquanto o fluxo do Bolão anda, a cada ~5 min, até a página ser atualizada.
+  Compara com o último status visto (na tela ou na verificação anterior) e notifica:
+  **Bolão F1** — palpites recebidos (ou retry manual), aguardando o resultado do quali,
+  página atualizada com a rodada, falha numa etapa, site fora do ar; **sites** — alerta novo
+  (os mesmos de `src/detalhes_site.py`; "há 5 dias"/"há 6 dias" contam como o mesmo).
+  O que a pessoa viu com o app aberto não vira notificação. Tocar abre a aba certa. Dá para
+  desligar cada tipo e mandar uma notificação de teste. Não há servidor nem Firebase: o atraso
+  depende do Android (economia de bateria pode adiar).
 - **Offline:** o último `status.json` bom fica no aparelho; sem internet o app abre com ele e
   avisa no topo. JSON quebrado no painel nunca apaga o cache.
 - **Contrato:** o app é um **segundo consumidor** do `status.json`. Campos novos não quebram

@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import io.github.gfvdataweb.painelstatus.avisos.EXTRA_ABA
 import io.github.gfvdataweb.painelstatus.ui.AppPainel
 import io.github.gfvdataweb.painelstatus.ui.theme.PainelStatusTheme
 
@@ -13,9 +14,11 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         val container = (application as PainelApp).container
+        // Aberto por uma notificação: a aba que ela indica (Bolão ou Sites).
+        val abaInicial = intent?.getStringExtra(EXTRA_ABA)
         setContent {
             PainelStatusTheme {
-                AppPainel(container, versao = BuildConfig.VERSION_NAME, build = BuildConfig.VERSION_CODE)
+                AppPainel(container, versao = BuildConfig.VERSION_NAME, build = BuildConfig.VERSION_CODE, abaInicial = abaInicial)
             }
         }
     }

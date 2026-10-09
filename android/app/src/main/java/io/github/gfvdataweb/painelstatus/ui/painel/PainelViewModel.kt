@@ -29,6 +29,8 @@ class PainelViewModel(
     private val dados: DadosDoPainel,
     private val intervaloMs: Long,
     private val relogio: () -> Long = System::currentTimeMillis,
+    /** Chamado a cada download bom (o contêiner marca o status como visto pelos avisos). */
+    private val aoBaixar: suspend (Status) -> Unit = {},
 ) : ViewModel() {
 
     private val _estado = MutableStateFlow(
@@ -89,11 +91,16 @@ class PainelViewModel(
             ultimaConsulta = relogio()
         }
         _estado.value = novo
+        if (novo.erro == null) novo.dados?.let { aoBaixar(it) }
     }
 
     companion object {
-        fun fabrica(dados: DadosDoPainel, intervaloMs: Long): ViewModelProvider.Factory = viewModelFactory {
-            initializer { PainelViewModel(dados, intervaloMs) }
+        fun fabrica(
+            dados: DadosDoPainel,
+            intervaloMs: Long,
+            aoBaixar: suspend (Status) -> Unit,
+        ): ViewModelProvider.Factory = viewModelFactory {
+            initializer { PainelViewModel(dados, intervaloMs, aoBaixar = aoBaixar) }
         }
     }
 }

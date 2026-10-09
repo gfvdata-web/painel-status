@@ -59,6 +59,18 @@ class MainActivityTest {
     }
 
     @Test
+    fun sinoAbreOsAvisosEAFaixaSomeComAgoraNao() {
+        esperarTexto("Avisar com o app fechado?")
+        compose.onNodeWithText("Agora não").performClick()
+        compose.waitUntil(timeoutMillis = 5_000) {
+            compose.onAllNodesWithText("Avisar com o app fechado?").fetchSemanticsNodes().isEmpty()
+        }
+        compose.onNodeWithContentDescription("Avisos").performClick()
+        esperarTexto("Avisar com o app fechado")
+        esperarTexto("Bolão F1 — passo a passo")
+    }
+
+    @Test
     fun sobreMostraAVersaoInstalada() {
         esperarTexto("Última atualização de dados — passo a passo")
         compose.onNodeWithContentDescription("Sobre").performClick()

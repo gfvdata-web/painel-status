@@ -149,10 +149,49 @@
     <string name="form_avulso">Form avulso</string>
 
     <!-- Sobre -->
-    <string name="sobre_texto">Acompanha os sites publicados pela conta gfvdata-web: se estão no ar, quando os dados mudaram, as rotinas de coleta e o passo a passo de cada atualização do Bolão F1. Tudo vem do painel publicado no GitHub Pages; o app só lê.</string>
+    <string name="sobre_texto">Acompanha os sites publicados pela conta gfvdata-web: se estão no ar, quando os dados mudaram, as rotinas de coleta e o passo a passo de cada atualização do Bolão F1. Tudo vem do painel publicado no GitHub Pages; o app só lê. Com o app fechado, ele pode avisar por notificação (ícone do sino).</string>
     <string name="sobre_recarga">Com o app aberto, o painel é conferido a cada %1$d min (o mesmo intervalo da página). Puxe a tela para baixo para conferir na hora.</string>
     <string name="abrir_painel_web">Abrir o painel na web</string>
     <string name="sobre_versao">Versão %1$s · build %2$d</string>
+
+    <!-- Avisos com o app fechado -->
+    <string name="avisos_titulo">Avisos</string>
+    <string name="avisos_explicacao">Com o app fechado, o Android confere o painel a cada %1$d min mais ou menos. Enquanto o fluxo do Bolão F1 anda, a cada %2$d min, até a página ser atualizada.</string>
+    <string name="avisos_ativar">Avisar com o app fechado</string>
+    <string name="avisos_bolao">Bolão F1 — passo a passo</string>
+    <string name="avisos_bolao_descricao">Palpites recebidos, aguardando o resultado do quali, página atualizada ou falha no pipeline.</string>
+    <string name="avisos_sites">Alertas dos sites</string>
+    <string name="avisos_sites_descricao">Site fora do ar, coleta que falhou, foi cancelada ou parou.</string>
+    <string name="avisos_bloqueados">As notificações deste app estão bloqueadas no Android. Libere para receber os avisos.</string>
+    <string name="avisos_abrir_configuracoes">Abrir configurações de notificação</string>
+    <string name="avisos_sem_verificacao">Ainda não houve verificação em segundo plano.</string>
+    <string name="avisos_ultima_verificacao">Última verificação em segundo plano: %1$s</string>
+    <string name="avisos_testar">Enviar uma notificação de teste</string>
+    <string name="avisos_bateria">Com a economia de bateria ligada, o Android pode atrasar as verificações. Se os avisos demorarem, tire o app da otimização de bateria nas configurações do celular.</string>
+    <string name="faixa_avisos_titulo">Avisar com o app fechado?</string>
+    <string name="faixa_avisos_texto">O app pode notificar quando o Bolão F1 andar (palpites recebidos, página atualizada, falha) e quando um site tiver alerta.</string>
+    <string name="faixa_avisos_ativar">Ativar</string>
+
+    <!-- Notificações -->
+    <string name="canal_bolao">Bolão F1</string>
+    <string name="canal_bolao_descricao">Passo a passo da atualização do Bolão F1.</string>
+    <string name="canal_sites">Alertas dos sites</string>
+    <string name="canal_sites_descricao">Site fora do ar ou coleta de dados com problema.</string>
+    <string name="aviso_comecou_titulo">Bolão F1: palpites recebidos</string>
+    <string name="aviso_manual_titulo">Bolão F1: pipeline rodando de novo</string>
+    <string name="aviso_comecou_texto">O pipeline começou. O próximo aviso chega quando a página for atualizada.</string>
+    <string name="aviso_aguardando_titulo">Bolão F1: aguardando o resultado do quali</string>
+    <string name="aviso_aguardando_texto">Palpites lidos. O resultado oficial ainda não saiu; a vigília confere a cada 30 min.</string>
+    <string name="aviso_pagina_titulo">Bolão F1: página atualizada</string>
+    <string name="aviso_pagina_texto_rodada">Rodada %1$d pontuada e publicada.</string>
+    <string name="aviso_pagina_texto">Placar novo no ar.</string>
+    <string name="aviso_falhou_titulo">Bolão F1: o pipeline falhou</string>
+    <string name="aviso_falhou_texto_etapa">Falhou em “%1$s”. Toque para ver o passo a passo.</string>
+    <string name="aviso_falhou_texto">Toque para ver o passo a passo.</string>
+    <string name="aviso_fora_do_ar_titulo">%1$s pode estar fora do ar</string>
+    <string name="aviso_fora_do_ar_texto">O site não respondeu na última checagem.</string>
+    <string name="aviso_teste_titulo">Painel de Status: teste</string>
+    <string name="aviso_teste_texto">As notificações estão funcionando.</string>
 
     <!-- Aviso de nova versão -->
     <string name="versao_nova">Nova versão %1$s disponível</string>

@@ -20,6 +20,12 @@ Mesmo molde do app do Bolão F1 (`page-bolao-formula1/android` e a regra
 - **Recarga = página:** `INTERVALO_DE_RECARGA_MS` (`App.kt`) igual a
   `INTERVALO_RECARGA_MS` (`docs/js/app.js`). A recarga roda só com o app
   visível (`repeatOnLifecycle(STARTED)` → `PainelViewModel.acompanhar`).
+- **Avisos com o app fechado** (`avisos/`, `data/avisos/`): a regra do que
+  vira notificação é a função pura `novidades()` (`Novidades.kt`), testada em
+  `NovidadesTest`; o worker só baixa, compara, notifica e agenda. Nada de
+  servidor nem Firebase. Intervalos em `AgendadorWorkManager` (15 min é o
+  mínimo do Android; 5 min só enquanto o fluxo do Bolão anda). Os testes usam
+  o `AgendadorDeTeste` (o WorkManager não roda nos testes).
 - **Versões só em `gradle/libs.versions.toml`** (inclusive SDKs), as mesmas do
   app do Bolão. Atualizar **uma coisa por commit**, com run verde.
 - **Gradle wrapper:** trocar só com o jar oficial (checksum de
