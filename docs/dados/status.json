@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-10-10T11:48:12.166481+00:00",
+    "gerado_em": "2026-10-10T14:34:51.070819+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -19,51 +19,51 @@
         "url": "https://github.com/gfvdata-web/page-bolao-formula1/commit/94f936cb8b23ddad92c87373b579807ee66033f7"
       },
       "ultima_execucao_pipeline": {
-        "id": 37123151624,
+        "id": 38060160071,
         "evento": "repository_dispatch",
-        "status": "completed",
-        "conclusao": "success",
-        "criado_em": "2026-10-03T12:31:27Z",
-        "atualizado_em": "2026-10-03T13:01:41Z",
-        "url": "https://github.com/gfvdata-web/page-bolao-formula1/actions/runs/37123151624"
+        "status": "in_progress",
+        "conclusao": null,
+        "criado_em": "2026-10-10T14:34:41Z",
+        "atualizado_em": "2026-10-10T14:34:44Z",
+        "url": "https://github.com/gfvdata-web/page-bolao-formula1/actions/runs/38060160071"
       },
       "rodada_mais_recente": null,
-      "em_vigilia": false,
+      "em_vigilia": true,
       "etapas_pipeline": [
         {
           "chave": "forms",
           "titulo": "Palpites enviados (Google Forms)",
           "estado": "ok",
           "detalhe": "Forms recebido e Apps Script disparou o pipeline no GitHub Actions.",
-          "quando": "2026-10-03T12:31:27Z"
+          "quando": "2026-10-10T14:34:41Z"
         },
         {
           "chave": "leitura",
           "titulo": "Palpites lidos e rodada identificada",
           "estado": "ok",
           "detalhe": "Palpites gravados no repositório.",
-          "quando": "2026-10-03T12:31:34Z"
+          "quando": "2026-10-10T14:34:47Z"
         },
         {
           "chave": "resultado",
           "titulo": "Resultado oficial do quali (Jolpica)",
-          "estado": "ok",
-          "detalhe": "Saiu depois do envio — obtido pela vigília.",
-          "quando": "2026-10-03T13:01:38Z"
+          "estado": "aguardando",
+          "detalhe": "Em vigília: consultando a Jolpica a cada 30 min (até 5 h) até o resultado sair.",
+          "quando": null
         },
         {
           "chave": "pontuacao",
           "titulo": "Pontuação calculada",
-          "estado": "ok",
-          "detalhe": "",
-          "quando": "2026-10-03T13:01:38Z"
+          "estado": "pendente",
+          "detalhe": "Assim que o resultado sair.",
+          "quando": null
         },
         {
           "chave": "pagina",
           "titulo": "Página atualizada (GitHub Pages)",
-          "estado": "ok",
-          "detalhe": "Placar novo no ar.",
-          "quando": "2026-10-03T13:02:23Z"
+          "estado": "pendente",
+          "detalhe": "",
+          "quando": null
         }
       ],
       "site_no_ar": {
