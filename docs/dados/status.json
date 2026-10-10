@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-10-10T20:20:16.738079+00:00",
+    "gerado_em": "2026-10-10T20:30:20.495934+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -21,14 +21,14 @@
       "ultima_execucao_pipeline": {
         "id": 38063363794,
         "evento": "workflow_dispatch",
-        "status": "in_progress",
-        "conclusao": null,
+        "status": "completed",
+        "conclusao": "failure",
         "criado_em": "2026-10-10T15:22:47Z",
-        "atualizado_em": "2026-10-10T15:22:52Z",
+        "atualizado_em": "2026-10-10T20:23:18Z",
         "url": "https://github.com/gfvdata-web/page-bolao-formula1/actions/runs/38063363794"
       },
       "rodada_mais_recente": null,
-      "em_vigilia": true,
+      "em_vigilia": false,
       "etapas_pipeline": [
         {
           "chave": "forms",
@@ -47,15 +47,15 @@
         {
           "chave": "resultado",
           "titulo": "Resultado oficial do quali (Jolpica)",
-          "estado": "aguardando",
-          "detalhe": "Em vigília: consultando a Jolpica a cada 5 min (até 5 h) até o resultado sair — 60 consultas sem resultado até agora (horário = a mais recente).",
-          "quando": "2026-10-10T20:17:54Z"
+          "estado": "erro",
+          "detalhe": "Não saiu em 5 h de vigília. Palpites estão salvos: rodar o workflow manualmente.",
+          "quando": "2026-10-10T20:23:15Z"
         },
         {
           "chave": "pontuacao",
           "titulo": "Pontuação calculada",
           "estado": "pendente",
-          "detalhe": "Assim que o resultado sair.",
+          "detalhe": "",
           "quando": null
         },
         {

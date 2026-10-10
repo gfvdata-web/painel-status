@@ -3,8 +3,31 @@
  "nome": "Bolão F1",
  "workflow": "pipeline.yml",
  "url_workflow": "https://github.com/gfvdata-web/page-bolao-formula1/actions/workflows/pipeline.yml",
- "atualizado_em": "2026-10-10T15:25:10.775628+00:00",
+ "atualizado_em": "2026-10-10T20:30:20.495411+00:00",
  "execucoes": [
+  {
+   "id": 38063363794,
+   "criado_em": "2026-10-10T15:22:47Z",
+   "evento": "workflow_dispatch",
+   "conclusao": "failure",
+   "duracao_s": 18031,
+   "url": "https://github.com/gfvdata-web/page-bolao-formula1/actions/runs/38063363794",
+   "avisos": [
+    {
+     "nivel": "failure",
+     "mensagem": "Rodada 17 continuou sem resultado na Jolpica após 60 tentativas. Os palpites estão salvos: rode o workflow manualmente (Run workflow -> round=17) quando o quali aparecer na API."
+    },
+    {
+     "nivel": "notice",
+     "mensagem": "\"The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748\""
+    }
+   ],
+   "motivo": {
+    "job": "pipeline",
+    "passo": "Verificador — re-tenta até o resultado oficial sair",
+    "mensagem": "Rodada 17 continuou sem resultado na Jolpica após 60 tentativas. Os palpites estão salvos: rode o workflow manualmente (Run workflow -> round=17) quando o quali aparecer na API."
+   }
+  },
   {
    "id": 38063057381,
    "criado_em": "2026-10-10T15:18:15Z",
