@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-10-10T18:49:48.781187+00:00",
+    "gerado_em": "2026-10-10T18:59:51.773656+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -48,8 +48,8 @@
           "chave": "resultado",
           "titulo": "Resultado oficial do quali (Jolpica)",
           "estado": "aguardando",
-          "detalhe": "Em vigília: consultando a Jolpica a cada 5 min (até 5 h) até o resultado sair — 42 consultas sem resultado até agora (horário = a mais recente).",
-          "quando": "2026-10-10T18:47:54Z"
+          "detalhe": "Em vigília: consultando a Jolpica a cada 5 min (até 5 h) até o resultado sair — 44 consultas sem resultado até agora (horário = a mais recente).",
+          "quando": "2026-10-10T18:57:54Z"
         },
         {
           "chave": "pontuacao",
