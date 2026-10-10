@@ -3,8 +3,62 @@
  "nome": "Bolão F1",
  "workflow": "pipeline.yml",
  "url_workflow": "https://github.com/gfvdata-web/page-bolao-formula1/actions/workflows/pipeline.yml",
- "atualizado_em": "2026-10-03T13:05:09.594276+00:00",
+ "atualizado_em": "2026-10-10T15:25:10.775628+00:00",
  "execucoes": [
+  {
+   "id": 38063057381,
+   "criado_em": "2026-10-10T15:18:15Z",
+   "evento": "workflow_dispatch",
+   "conclusao": "cancelled",
+   "duracao_s": 282,
+   "url": "https://github.com/gfvdata-web/page-bolao-formula1/actions/runs/38063057381",
+   "avisos": [
+    {
+     "nivel": "failure",
+     "mensagem": "The run was canceled by @gfvdata-web."
+    },
+    {
+     "nivel": "failure",
+     "mensagem": "The operation was canceled."
+    },
+    {
+     "nivel": "notice",
+     "mensagem": "\"The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748\""
+    }
+   ],
+   "motivo": {
+    "job": "pipeline",
+    "passo": "Verificador — re-tenta até o resultado oficial sair",
+    "mensagem": "The operation was canceled."
+   }
+  },
+  {
+   "id": 38060160071,
+   "criado_em": "2026-10-10T14:34:41Z",
+   "evento": "repository_dispatch",
+   "conclusao": "cancelled",
+   "duracao_s": 2893,
+   "url": "https://github.com/gfvdata-web/page-bolao-formula1/actions/runs/38060160071",
+   "avisos": [
+    {
+     "nivel": "failure",
+     "mensagem": "The run was canceled by @gfvdata-web."
+    },
+    {
+     "nivel": "failure",
+     "mensagem": "The operation was canceled."
+    },
+    {
+     "nivel": "notice",
+     "mensagem": "\"The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748\""
+    }
+   ],
+   "motivo": {
+    "job": "pipeline",
+    "passo": "Verificador — re-tenta até o resultado oficial sair",
+    "mensagem": "The operation was canceled."
+   }
+  },
   {
    "id": 37123151624,
    "criado_em": "2026-10-03T12:31:27Z",

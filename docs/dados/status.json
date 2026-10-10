@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-10-10T14:34:51.070819+00:00",
+    "gerado_em": "2026-10-10T15:25:10.776242+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -19,13 +19,13 @@
         "url": "https://github.com/gfvdata-web/page-bolao-formula1/commit/94f936cb8b23ddad92c87373b579807ee66033f7"
       },
       "ultima_execucao_pipeline": {
-        "id": 38060160071,
-        "evento": "repository_dispatch",
+        "id": 38063363794,
+        "evento": "workflow_dispatch",
         "status": "in_progress",
         "conclusao": null,
-        "criado_em": "2026-10-10T14:34:41Z",
-        "atualizado_em": "2026-10-10T14:34:44Z",
-        "url": "https://github.com/gfvdata-web/page-bolao-formula1/actions/runs/38060160071"
+        "criado_em": "2026-10-10T15:22:47Z",
+        "atualizado_em": "2026-10-10T15:22:52Z",
+        "url": "https://github.com/gfvdata-web/page-bolao-formula1/actions/runs/38063363794"
       },
       "rodada_mais_recente": null,
       "em_vigilia": true,
@@ -33,23 +33,23 @@
         {
           "chave": "forms",
           "titulo": "Palpites enviados (Google Forms)",
-          "estado": "ok",
-          "detalhe": "Forms recebido e Apps Script disparou o pipeline no GitHub Actions.",
-          "quando": "2026-10-10T14:34:41Z"
+          "estado": "pulado",
+          "detalhe": "Re-tentativa manual no GitHub — não houve envio novo pelo Forms.",
+          "quando": "2026-10-10T15:22:47Z"
         },
         {
           "chave": "leitura",
           "titulo": "Palpites lidos e rodada identificada",
           "estado": "ok",
           "detalhe": "Palpites gravados no repositório.",
-          "quando": "2026-10-10T14:34:47Z"
+          "quando": "2026-10-10T15:22:54Z"
         },
         {
           "chave": "resultado",
           "titulo": "Resultado oficial do quali (Jolpica)",
           "estado": "aguardando",
           "detalhe": "Em vigília: consultando a Jolpica a cada 30 min (até 5 h) até o resultado sair.",
-          "quando": null
+          "quando": "2026-10-10T15:22:54Z"
         },
         {
           "chave": "pontuacao",
