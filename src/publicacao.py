@@ -53,7 +53,9 @@ def coletar_site(site, acesso_por_repo, acesso_anterior, falha_total):
         if site["form_rotulo"]:
             bloco["form_rotulo"] = site["form_rotulo"]
 
-    commits = gh.commits_no_caminho(OWNER, site["repo"], site["caminho_dados"])
+    commits = gh.commits_no_caminho(
+        OWNER, site["repo"], site["caminho_dados"], branch=site["branch_dados"]
+    )
     bloco["ultimo_commit_dados"] = commits[0] if isinstance(commits, list) else commits
 
     if site["json_meta_url"]:

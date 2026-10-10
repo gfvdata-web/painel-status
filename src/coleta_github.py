@@ -38,9 +38,13 @@ def _descrever_erro(exc, o_que):
     return f"falha de rede ao consultar {o_que}: {exc}"
 
 
-def commits_no_caminho(owner, repo, caminho, quantidade=5):
-    """Commits mais recentes que tocaram `caminho` (mais recente primeiro), ou {"erro"}."""
+def commits_no_caminho(owner, repo, caminho, quantidade=5, branch=None):
+    """Commits mais recentes que tocaram `caminho` (mais recente primeiro), ou {"erro"}.
+
+    `branch` None = branch padrão do repositório."""
     url = f"{API}/repos/{owner}/{repo}/commits?path={caminho}&per_page={quantidade}"
+    if branch:
+        url += f"&sha={branch}"
     try:
         commits = _get_json(url)
     except ERROS_REDE as exc:

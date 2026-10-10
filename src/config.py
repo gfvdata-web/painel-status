@@ -15,6 +15,8 @@ Campos de cada site (todos presentes em toda entrada, para servir de molde):
   pages_url        endereço publicado (checagem "site no ar" e link "Abrir")
   caminho_dados    pasta do repo onde os dados moram; o último commit nela é
                    o "Dados atualizados"
+  branch_dados     branch onde fica caminho_dados, ou None (= branch padrão);
+                   para sites cujos dados só são publicados no gh-pages
   workflow_arquivo arquivo em .github/workflows/ da coleta/pipeline, ou None;
                    com valor, o card mostra se a última execução passou
   json_meta_url    JSON publicado com meta.periodo {inicio, fim}, ou None;
@@ -41,6 +43,7 @@ SITES = [
         "repo": "page-bolao-formula1",
         "pages_url": "https://gfvdata-web.github.io/page-bolao-formula1/",
         "caminho_dados": "docs/data",
+        "branch_dados": None,
         "workflow_arquivo": "pipeline.yml",
         "json_meta_url": None,
         # Onde se cola o bloco de palpites do WhatsApp — o envio dispara o
@@ -56,6 +59,7 @@ SITES = [
         "repo": "fonte-meios-pagamento",
         "pages_url": "https://gfvdata-web.github.io/fonte-meios-pagamento/index-v2.html",
         "caminho_dados": "docs/dados",
+        "branch_dados": None,
         "workflow_arquivo": None,
         "json_meta_url": "https://gfvdata-web.github.io/fonte-meios-pagamento/dados/meios_pagamento_mensal.json",
         "form_url": None,
@@ -69,6 +73,7 @@ SITES = [
         "repo": "fonte-arrecadacao-federal",
         "pages_url": "https://gfvdata-web.github.io/fonte-arrecadacao-federal/",
         "caminho_dados": "docs/dados",
+        "branch_dados": None,
         "workflow_arquivo": None,
         "json_meta_url": "https://gfvdata-web.github.io/fonte-arrecadacao-federal/dados/arrecadacao_federal.json",
         "form_url": None,
@@ -82,6 +87,7 @@ SITES = [
         "repo": "fonte-credito-modalidade",
         "pages_url": "https://gfvdata-web.github.io/fonte-credito-modalidade/",
         "caminho_dados": "docs/dados",
+        "branch_dados": None,
         "workflow_arquivo": None,
         "json_meta_url": "https://gfvdata-web.github.io/fonte-credito-modalidade/dados/credito_modalidade.json",
         "form_url": None,
@@ -95,6 +101,7 @@ SITES = [
         "repo": "simulador-investimentos",
         "pages_url": "https://gfvdata-web.github.io/simulador-investimentos/",
         "caminho_dados": "dados",
+        "branch_dados": None,
         "workflow_arquivo": "atualizar-dados.yml",
         "json_meta_url": None,
         "form_url": None,
@@ -108,6 +115,7 @@ SITES = [
         "repo": "chess-tracking",
         "pages_url": "https://gfvdata-web.github.io/chess-tracking/",
         "caminho_dados": "docs/dados",
+        "branch_dados": None,
         "workflow_arquivo": "atualizar-partidas.yml",
         "json_meta_url": None,
         "form_url": None,
@@ -121,11 +129,58 @@ SITES = [
         "repo": "PlantsCare-publico",
         "pages_url": "https://gfvdata-web.github.io/PlantsCare-publico/",
         "caminho_dados": "painel",
+        "branch_dados": None,
         "workflow_arquivo": "deploy-pages.yml",
         "json_meta_url": None,
         # Envio de fotos de uma planta pelo celular (Forms → pasta do Drive).
         "form_url": "https://forms.gle/y3uXaukJXmP9GMED7",
         "form_rotulo": "Enviar fotos",
+        "destaque": False,
+        "pipeline_bolao": False,
+    },
+    {
+        "slug": "eleicoes_2026",
+        "nome": "Eleições 2026",
+        "repo": "eleicoes-2026",
+        "pages_url": "https://gfvdata-web.github.io/eleicoes-2026/",
+        "caminho_dados": "docs/data",
+        "branch_dados": None,
+        # pages.yml só publica a cada push (sem agenda): cadastrado, geraria o
+        # alerta "sem coleta há N dias" sempre que o repo ficasse parado.
+        "workflow_arquivo": None,
+        "json_meta_url": None,
+        "form_url": None,
+        "form_rotulo": None,
+        "destaque": False,
+        "pipeline_bolao": False,
+    },
+    {
+        "slug": "painel_esportivo",
+        "nome": "Painel esportivo",
+        "repo": "painel-esportivo",
+        "pages_url": "https://gfvdata-web.github.io/painel-esportivo/",
+        # Os dados (cifrados) só existem no gh-pages, publicados à mão por
+        # scripts/publicar.mjs.
+        "caminho_dados": "dados",
+        "branch_dados": "gh-pages",
+        "workflow_arquivo": None,
+        "json_meta_url": None,
+        "form_url": None,
+        "form_rotulo": None,
+        "destaque": False,
+        "pipeline_bolao": False,
+    },
+    {
+        "slug": "dashboard_municipios",
+        "nome": "Dashboard dos municípios",
+        "repo": "dashboard-municipios",
+        "pages_url": "https://gfvdata-web.github.io/dashboard-municipios/",
+        "caminho_dados": "site/dados",
+        "branch_dados": None,
+        "workflow_arquivo": None,
+        "json_meta_url": None,
+        "form_url": None,
+        "form_rotulo": None,
         "destaque": False,
         "pipeline_bolao": False,
     },
@@ -138,7 +193,7 @@ FORMS_AVULSOS = [
 ]
 
 CAMPOS_SITE = {
-    "slug", "nome", "repo", "pages_url", "caminho_dados", "workflow_arquivo",
+    "slug", "nome", "repo", "pages_url", "caminho_dados", "branch_dados", "workflow_arquivo",
     "json_meta_url", "form_url", "form_rotulo", "destaque", "pipeline_bolao",
 }
 

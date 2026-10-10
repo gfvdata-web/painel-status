@@ -184,7 +184,7 @@ caminhos pelo prefixo `/<repo>/`.
 ## Sites monitorados
 
 A lista que o painel usa é `src/config.py` (`SITES`; os campos de cada entrada estão
-descritos na docstring do arquivo). Hoje são sete:
+descritos na docstring do arquivo). Hoje são dez:
 
 | Site | Repositório | Página | O que é |
 |------|-------------|--------|---------|
@@ -195,6 +195,9 @@ descritos na docstring do arquivo). Hoje são sete:
 | Simulador de investimentos | [`simulador-investimentos`](https://github.com/gfvdata-web/simulador-investimentos) | [simulador](https://gfvdata-web.github.io/simulador-investimentos/) | Comparação de rendimento de investimentos (bruto, líquido e real); coleta de dados oficiais em dias úteis via Actions |
 | Chess Tracking | [`chess-tracking`](https://github.com/gfvdata-web/chess-tracking) | [página](https://gfvdata-web.github.io/chess-tracking/) | Histórico de partidas no Chess.com (conta `giggsmate`) com estatísticas de rating, aberturas, ritmo, horário e gestão de tempo; coleta diária via Actions |
 | Plants Care | [`PlantsCare-publico`](https://github.com/gfvdata-web/PlantsCare-publico) | [painel](https://gfvdata-web.github.io/PlantsCare-publico/) · [enviar fotos](https://forms.gle/y3uXaukJXmP9GMED7) | Acompanhamento das plantas (fichas, medições, equipamentos); versão pública do `PlantsCare`, republicada a cada sync via `deploy-pages.yml`. Fotos novas chegam pelo Google Forms → pasta do Drive |
+| Eleições 2026 | [`eleicoes-2026`](https://github.com/gfvdata-web/eleicoes-2026) | [mapa](https://gfvdata-web.github.io/eleicoes-2026/) | Mapa das pesquisas para governador e Senado por estado, mais a apuração. Publicado a cada push via `pages.yml` (sem agenda, por isso sem workflow cadastrado) |
+| Painel esportivo | [`painel-esportivo`](https://github.com/gfvdata-web/painel-esportivo) | [painel](https://gfvdata-web.github.io/painel-esportivo/) | Histórico esportivo (Strava + Samsung Health) com dados cifrados. Os dados só existem no branch `gh-pages` (publicados à mão por `scripts/publicar.mjs`), daí `branch_dados: "gh-pages"` |
+| Dashboard dos municípios | [`dashboard-municipios`](https://github.com/gfvdata-web/dashboard-municipios) | [painel](https://gfvdata-web.github.io/dashboard-municipios/) | 18 indicadores públicos dos 5.571 municípios (segurança, saneamento, saúde, educação, finanças, transparência); dados em `site/dados`, coletados localmente |
 
 O Cruzeiro Indata saiu do painel.
 
