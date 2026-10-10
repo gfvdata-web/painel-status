@@ -10,7 +10,9 @@ O fluxo real (ver page-bolao-formula1/.github/workflows/pipeline.yml):
      resultado); qualquer outro código é erro e derruba o passo.
   3. Resultado oficial — consulta à Jolpica. Se já estava lá, sai no passo 2
      e o "Verificador" é pulado; se não, o Verificador fica de vigília
-     (a cada 30 min, até 5 h) até o resultado sair.
+     (a cada 5 min, até 5 h) até o resultado sair. O passo não expõe cada
+     consulta, então o horário da última é deduzido do início do passo e do
+     intervalo fixo do laço (sleep + retry de poucos segundos).
   4. Pontuação calculada — acontece no mesmo comando que obtém o resultado,
      então acompanha a etapa 3.
   5. Página atualizada — o commit dos dados dispara o deploy do GitHub Pages
@@ -21,9 +23,16 @@ Cada etapa sai como {"chave", "titulo", "estado", "detalhe", "quando"}, com
 estado em: ok | andamento | aguardando | erro | pendente | pulado.
 """
 
+from datetime import datetime, timedelta, timezone
+
 PASSO_NOVO_PALPITE = "Roda pipeline (novo palpite)"
 PASSO_RETRY_MANUAL = "Roda pipeline (retry manual)"
 PASSO_VERIFICADOR = "Verificador"  # prefixo: o nome completo tem um travessão
+
+# Espelho de INTERVALO_SEGUNDOS / MAX_TENTATIVAS do pipeline.yml do
+# page-bolao-formula1: mudou lá, mudar aqui.
+INTERVALO_VERIFICADOR = timedelta(minutes=5)
+MAX_TENTATIVAS_VERIFICADOR = 60
 
 
 def _passo(passos, prefixo):
@@ -41,7 +50,32 @@ def _etapa(chave, titulo, estado, detalhe="", quando=None):
     return {"chave": chave, "titulo": titulo, "estado": estado, "detalhe": detalhe, "quando": quando}
 
 
-def montar_etapas(execucao, passos, deploys):
+def _data(iso):
+    return datetime.fromisoformat(iso.replace("Z", "+00:00"))
+
+
+def _iso(data):
+    return data.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
+def _consultas_da_vigilia(leitura, verificador, agora):
+    """(consultas sem resultado até agora, horário ISO da última).
+
+    A 1ª consulta é a do passo de leitura; cada volta do laço do Verificador
+    dorme INTERVALO_VERIFICADOR e consulta de novo.
+    """
+    inicio = verificador.get("inicio")
+    if not inicio:
+        return 1, leitura["fim"]
+    voltas = int((agora - _data(inicio)) / INTERVALO_VERIFICADOR)
+    voltas = max(0, min(voltas, MAX_TENTATIVAS_VERIFICADOR))
+    if voltas == 0:
+        return 1, leitura["fim"]
+    return 1 + voltas, _iso(_data(inicio) + voltas * INTERVALO_VERIFICADOR)
+
+
+def montar_etapas(execucao, passos, deploys, agora=None):
+    agora = agora or datetime.now(timezone.utc)
     if not execucao or execucao.get("erro"):
         return None
 
@@ -98,10 +132,13 @@ def montar_etapas(execucao, passos, deploys):
                              "Já estava publicado no momento do envio.", pontuado_em))
         etapas.append(_etapa("pontuacao", titulo_pontos, "ok", "", pontuado_em))
     elif verificador["status"] != "completed":
+        consultas, ultima = _consultas_da_vigilia(leitura, verificador, agora)
         etapas.append(_etapa(
             "resultado", titulo_resultado, "aguardando",
-            "Em vigília: consultando a Jolpica a cada 30 min (até 5 h) até o resultado sair.",
-            verificador["inicio"],
+            f"Em vigília: consultando a Jolpica a cada 5 min (até 5 h) até o resultado sair — "
+            f"{consultas} {'consulta' if consultas == 1 else 'consultas'} sem resultado até agora "
+            f"(horário = a mais recente).",
+            ultima,
         ))
         etapas.append(_etapa("pontuacao", titulo_pontos, "pendente", "Assim que o resultado sair."))
     elif verificador["conclusao"] == "success":

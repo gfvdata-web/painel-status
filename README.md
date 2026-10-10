@@ -36,7 +36,8 @@ Google Forms de envio de palpites e o **passo a passo da última atualização d
 
 1. Palpites enviados (Google Forms → Apps Script dispara o pipeline)
 2. Palpites lidos e rodada identificada
-3. Resultado oficial do quali (Jolpica) — na hora, ou em "vigília" até sair
+3. Resultado oficial do quali (Jolpica) — na hora, ou em "vigília" até sair (consulta a cada
+   5 min; durante a vigília o horário mostrado é o da última consulta)
 4. Pontuação calculada
 5. Página atualizada (GitHub Pages)
 
