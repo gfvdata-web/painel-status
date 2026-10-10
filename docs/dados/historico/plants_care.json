@@ -3,8 +3,44 @@
  "nome": "Plants Care",
  "workflow": "deploy-pages.yml",
  "url_workflow": "https://github.com/gfvdata-web/PlantsCare-publico/actions/workflows/deploy-pages.yml",
- "atualizado_em": "2026-10-10T11:48:31.022039+00:00",
+ "atualizado_em": "2026-10-10T21:04:03.355542+00:00",
  "execucoes": [
+  {
+   "id": 38080657728,
+   "criado_em": "2026-10-10T19:39:22Z",
+   "evento": "push",
+   "conclusao": "success",
+   "duracao_s": 35,
+   "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/38080657728",
+   "avisos": [
+    {
+     "nivel": "warning",
+     "mensagem": "Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/deploy-pages@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/"
+    },
+    {
+     "nivel": "notice",
+     "mensagem": "\"The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748\""
+    }
+   ]
+  },
+  {
+   "id": 38064474110,
+   "criado_em": "2026-10-10T15:39:12Z",
+   "evento": "push",
+   "conclusao": "success",
+   "duracao_s": 28,
+   "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/38064474110",
+   "avisos": [
+    {
+     "nivel": "warning",
+     "mensagem": "Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/deploy-pages@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/"
+    },
+    {
+     "nivel": "notice",
+     "mensagem": "\"The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748\""
+    }
+   ]
+  },
   {
    "id": 38036170256,
    "criado_em": "2026-10-10T07:56:47Z",
