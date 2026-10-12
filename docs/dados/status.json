@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-10-11T19:18:16.087323+00:00",
+    "gerado_em": "2026-10-12T00:09:12.801986+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -72,12 +72,8 @@
       },
       "historico_arquivo": "dados/historico/bolao_f1.json",
       "acesso": {
-        "visitantes_unicos": 40,
+        "visitantes_unicos": 42,
         "serie_diaria": [
-          {
-            "data": "2026-09-11",
-            "visitantes": 0
-          },
           {
             "data": "2026-09-12",
             "visitantes": 0
@@ -196,7 +192,7 @@
           },
           {
             "data": "2026-10-11",
-            "visitantes": 1
+            "visitantes": 3
           }
         ]
       }
@@ -267,10 +263,6 @@
       "acesso": {
         "visitantes_unicos": 7,
         "serie_diaria": [
-          {
-            "data": "2026-09-11",
-            "visitantes": 0
-          },
           {
             "data": "2026-09-12",
             "visitantes": 0
@@ -449,10 +441,6 @@
         "visitantes_unicos": 12,
         "serie_diaria": [
           {
-            "data": "2026-09-11",
-            "visitantes": 0
-          },
-          {
             "data": "2026-09-12",
             "visitantes": 0
           },
@@ -623,10 +611,6 @@
       "acesso": {
         "visitantes_unicos": 3,
         "serie_diaria": [
-          {
-            "data": "2026-09-11",
-            "visitantes": 0
-          },
           {
             "data": "2026-09-12",
             "visitantes": 0
@@ -1038,10 +1022,6 @@
       "acesso": {
         "visitantes_unicos": 1,
         "serie_diaria": [
-          {
-            "data": "2026-09-11",
-            "visitantes": 0
-          },
           {
             "data": "2026-09-12",
             "visitantes": 0
@@ -1455,10 +1435,6 @@
         "visitantes_unicos": 12,
         "serie_diaria": [
           {
-            "data": "2026-09-11",
-            "visitantes": 0
-          },
-          {
             "data": "2026-09-12",
             "visitantes": 0
           },
@@ -1590,19 +1566,19 @@
       "form_url": "https://forms.gle/y3uXaukJXmP9GMED7",
       "form_rotulo": "Enviar fotos",
       "ultimo_commit_dados": {
-        "data": "2026-10-11T16:04:52Z",
-        "mensagem": "Atualiza site a partir de PlantsCare@a52709d",
-        "sha": "a85f986",
-        "url": "https://github.com/gfvdata-web/PlantsCare-publico/commit/a85f98662e1c1702ff6a61cea525bf8fb969c7bf"
+        "data": "2026-10-12T00:07:57Z",
+        "mensagem": "Atualiza site a partir de PlantsCare@f283e43",
+        "sha": "bcbc744",
+        "url": "https://github.com/gfvdata-web/PlantsCare-publico/commit/bcbc744bf4e250842cc6c07c55e7061dc1342531"
       },
       "ultima_execucao_pipeline": {
-        "id": 38153959549,
+        "id": 38186845433,
         "evento": "push",
         "status": "completed",
         "conclusao": "success",
-        "criado_em": "2026-10-11T16:04:55Z",
-        "atualizado_em": "2026-10-11T16:05:24Z",
-        "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/38153959549"
+        "criado_em": "2026-10-12T00:08:00Z",
+        "atualizado_em": "2026-10-12T00:08:30Z",
+        "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/38186845433"
       },
       "site_no_ar": {
         "ok": true,
@@ -1614,6 +1590,26 @@
           "url_workflow": "https://github.com/gfvdata-web/PlantsCare-publico/actions/workflows/deploy-pages.yml",
           "agenda": [],
           "historico": [
+            {
+              "id": 38186845433,
+              "evento": "push",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-10-12T00:08:00Z",
+              "atualizado_em": "2026-10-12T00:08:30Z",
+              "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/38186845433",
+              "duracao_s": 30
+            },
+            {
+              "id": 38173403737,
+              "evento": "push",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-10-11T20:43:31Z",
+              "atualizado_em": "2026-10-11T20:44:02Z",
+              "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/38173403737",
+              "duracao_s": 31
+            },
             {
               "id": 38153959549,
               "evento": "push",
@@ -1743,36 +1739,16 @@
               "atualizado_em": "2026-10-08T09:46:57Z",
               "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/37758931123",
               "duracao_s": 51
-            },
-            {
-              "id": 37717588870,
-              "evento": "push",
-              "status": "completed",
-              "conclusao": "success",
-              "criado_em": "2026-10-08T02:22:59Z",
-              "atualizado_em": "2026-10-08T02:23:26Z",
-              "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/37717588870",
-              "duracao_s": 27
-            },
-            {
-              "id": 37696462968,
-              "evento": "push",
-              "status": "completed",
-              "conclusao": "success",
-              "criado_em": "2026-10-07T22:29:03Z",
-              "atualizado_em": "2026-10-07T22:29:30Z",
-              "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/37696462968",
-              "duracao_s": 27
             }
           ],
           "ultimo_sucesso": {
-            "id": 38153959549,
+            "id": 38186845433,
             "evento": "push",
             "status": "completed",
             "conclusao": "success",
-            "criado_em": "2026-10-11T16:04:55Z",
-            "atualizado_em": "2026-10-11T16:05:24Z",
-            "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/38153959549"
+            "criado_em": "2026-10-12T00:08:00Z",
+            "atualizado_em": "2026-10-12T00:08:30Z",
+            "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/38186845433"
           },
           "ultima_falha": null,
           "passos_ultima": [
@@ -1824,6 +1800,18 @@
         },
         "commits_dados": [
           {
+            "data": "2026-10-12T00:07:57Z",
+            "mensagem": "Atualiza site a partir de PlantsCare@f283e43",
+            "sha": "bcbc744",
+            "url": "https://github.com/gfvdata-web/PlantsCare-publico/commit/bcbc744bf4e250842cc6c07c55e7061dc1342531"
+          },
+          {
+            "data": "2026-10-11T20:43:28Z",
+            "mensagem": "Atualiza site a partir de PlantsCare@e0e9691",
+            "sha": "d14ef3d",
+            "url": "https://github.com/gfvdata-web/PlantsCare-publico/commit/d14ef3d180426a00e2b1256ed4de54ddfac47d16"
+          },
+          {
             "data": "2026-10-11T16:04:52Z",
             "mensagem": "Atualiza site a partir de PlantsCare@a52709d",
             "sha": "a85f986",
@@ -1840,18 +1828,6 @@
             "mensagem": "Atualiza site a partir de PlantsCare@e745708",
             "sha": "3d95cbc",
             "url": "https://github.com/gfvdata-web/PlantsCare-publico/commit/3d95cbc9d9b6431cd77015f376350aa7c31bd949"
-          },
-          {
-            "data": "2026-10-10T15:39:09Z",
-            "mensagem": "Atualiza site a partir de PlantsCare@e1d5259",
-            "sha": "a1734cd",
-            "url": "https://github.com/gfvdata-web/PlantsCare-publico/commit/a1734cd16ab3b4b0065bcb24fb78d865726b1adf"
-          },
-          {
-            "data": "2026-10-10T07:56:44Z",
-            "mensagem": "Atualiza site a partir de PlantsCare@8930085",
-            "sha": "a4eaaa5",
-            "url": "https://github.com/gfvdata-web/PlantsCare-publico/commit/a4eaaa56e40871f17381d6ae0e9c15997a5e3784"
           }
         ],
         "deploy_pages": null
@@ -1917,7 +1893,132 @@
           "url": "https://github.com/gfvdata-web/eleicoes-2026/actions/runs/37222831530"
         }
       },
-      "alertas": []
+      "alertas": [],
+      "acesso": {
+        "visitantes_unicos": 1,
+        "serie_diaria": [
+          {
+            "data": "2026-09-12",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-13",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-14",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-15",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-16",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-17",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-18",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-19",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-20",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-21",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-22",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-23",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-24",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-25",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-26",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-27",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-28",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-29",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-30",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-01",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-02",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-03",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-04",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-05",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-06",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-07",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-08",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-09",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-10",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-11",
+            "visitantes": 1
+          }
+        ]
+      }
     },
     {
       "slug": "painel_esportivo",
