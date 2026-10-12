@@ -4,7 +4,9 @@ Painel único de monitoramento para todos os sites publicados via GitHub Pages p
 `gfvdata-web`, com destaque para o **Bolão F1**.
 
 **Painel:** https://gfvdata-web.github.io/painel-status/ · **App Android:** APK nos
-[Releases](https://github.com/gfvdata-web/painel-status/releases) (ver "App Android" abaixo)
+[Releases](https://github.com/gfvdata-web/painel-status/releases) (ver "App Android" abaixo) ·
+**Layout em lista (teste):** https://gfvdata-web.github.io/painel-status/lista.html — um cartão
+por site, com status, form e visitas dos últimos 7 dias; mesmo `status.json` e mesmo switch de tema
 
 ## O que ele mostra
 
@@ -77,8 +79,11 @@ src/
 └── publicacao.py         # monta docs/dados/status.json (formato descrito na docstring)
 docs/                     # o que o GitHub Pages publica
 ├── index.html
+├── lista.html            # layout de teste em lista (um cartão por site)
 ├── css/estilo.css
+├── css/lista.css         # só o que é da lista; cores e switch de tema vêm de estilo.css
 ├── js/app.js             # só lê status.json e desenha — nada é cadastrado aqui
+├── js/lista.js           # idem, para lista.html
 └── dados/                # gerado pelo Action; não editar à mão
     ├── status.json
     └── historico/<slug>.json

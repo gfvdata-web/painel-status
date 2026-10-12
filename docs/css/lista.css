@@ -1,0 +1,61 @@
+/* ===== Layout em lista (lista.html) — teste, molde B =====
+   Cores, base e o switch de tema vêm de estilo.css; aqui só o que é da lista. */
+
+.lista-conteiner { width: 100%; max-width: 680px; margin: 0 auto; padding: 0 16px; }
+
+.lista-topo {
+  background: linear-gradient(135deg, var(--cabecalho-de), var(--cabecalho-para));
+  color: #fff; padding: 22px 0 20px; margin-bottom: 18px;
+}
+.lista-topo h1 { margin: 0; font-size: 1.4rem; letter-spacing: -.01em; }
+.lista-topo p { margin: 2px 0 0; font-size: .85rem; opacity: .85; }
+
+.lista-sites { display: flex; flex-direction: column; gap: 8px; }
+
+/* Faixa à esquerda = status: verde no ar, âmbar alerta, vermelho fora do ar, F1 = destaque */
+.cartao {
+  display: flex; align-items: center; gap: 14px;
+  background: var(--superficie); border: 1px solid var(--borda);
+  border-left: 4px solid var(--positivo); border-radius: 10px;
+  padding: 9px 14px; box-shadow: var(--sombra);
+}
+.cartao--aviso { border-left-color: var(--aviso); }
+.cartao--erro { border-left-color: var(--negativo); }
+.cartao--destaque { border-left-color: var(--f1); }
+
+.cartao__principal { flex: 1; min-width: 0; }
+.cartao__nome {
+  font-weight: 650; font-size: 1rem; color: var(--texto); text-decoration: none;
+}
+.cartao__nome:hover { color: var(--acento); text-decoration: underline; }
+.cartao__nome::after { content: " ↗"; font-size: .75em; color: var(--texto-suave); }
+.cartao__sub {
+  margin: 1px 0 0; font-size: .78rem; color: var(--texto-suave);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.cartao__sub--aviso { color: var(--aviso); font-weight: 600; white-space: normal; }
+.cartao__sub--erro { color: var(--negativo); font-weight: 600; white-space: normal; }
+.cartao__sub--destaque { color: var(--f1); font-weight: 600; white-space: normal; }
+
+.cartao__form {
+  font-size: .78rem; font-weight: 600; color: var(--acento); text-decoration: none;
+  border: 1px solid var(--acento-suave); border-radius: 8px; padding: 4px 10px; white-space: nowrap;
+}
+.cartao__form:hover { background: var(--acento-suave); }
+
+.cartao__visitas { text-align: right; min-width: 64px; line-height: 1.1; }
+.cartao__visitas strong { display: block; font-size: 1.25rem; font-variant-numeric: tabular-nums; }
+.cartao__visitas small { font-size: .7rem; color: var(--texto-suave); }
+
+.lista-outros { margin: 14px 2px 0; font-size: .85rem; color: var(--texto-suave); }
+.lista-outros a { color: var(--acento); font-weight: 600; text-decoration: none; margin-left: 6px; }
+.lista-outros a:hover { text-decoration: underline; }
+.lista-nota { margin: 6px 2px 32px; font-size: .75rem; color: var(--texto-suave); }
+.lista-nota a { color: var(--acento); margin-left: 6px; }
+
+/* Celular: o botão do form desce para baixo do nome */
+@media (max-width: 520px) {
+  .cartao { flex-wrap: wrap; row-gap: 6px; }
+  .cartao__principal { flex-basis: calc(100% - 80px); }
+  .cartao__form { order: 3; margin-left: 0; }
+}
