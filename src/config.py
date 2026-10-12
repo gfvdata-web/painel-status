@@ -184,6 +184,38 @@ SITES = [
         "destaque": False,
         "pipeline_bolao": False,
     },
+    {
+        "slug": "var_vendo",
+        "nome": "VarVendo",
+        "repo": "var-vendo",
+        "pages_url": "https://gfvdata-web.github.io/var-vendo/",
+        "caminho_dados": "docs/data",
+        "branch_dados": None,
+        # pages.yml só publica a cada push (sem agenda), como no Eleições 2026.
+        "workflow_arquivo": None,
+        "json_meta_url": None,
+        "form_url": None,
+        "form_rotulo": None,
+        "destaque": False,
+        "pipeline_bolao": False,
+    },
+    {
+        "slug": "evolucao_fotografia",
+        "nome": "Evolução Fotografia",
+        "repo": "evolucao-fotografia",
+        "pages_url": "https://gfvdata-web.github.io/evolucao-fotografia/",
+        # Sem dados no repo (as fotos ficam no aparelho): "Dados atualizados"
+        # é a última versão publicada do site.
+        "caminho_dados": "site",
+        "branch_dados": None,
+        # ci-pages.yml roda testes + deploy a cada push, sem agenda.
+        "workflow_arquivo": None,
+        "json_meta_url": None,
+        "form_url": None,
+        "form_rotulo": None,
+        "destaque": False,
+        "pipeline_bolao": False,
+    },
 ]
 
 # Google Forms de projetos sem site publicado para monitorar — viram o card

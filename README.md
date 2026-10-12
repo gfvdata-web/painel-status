@@ -191,7 +191,7 @@ caminhos pelo prefixo `/<repo>/`.
 ## Sites monitorados
 
 A lista que o painel usa é `src/config.py` (`SITES`; os campos de cada entrada estão
-descritos na docstring do arquivo). Hoje são dez:
+descritos na docstring do arquivo). Hoje são doze:
 
 | Site | Repositório | Página | O que é |
 |------|-------------|--------|---------|
@@ -205,6 +205,8 @@ descritos na docstring do arquivo). Hoje são dez:
 | Eleições 2026 | [`eleicoes-2026`](https://github.com/gfvdata-web/eleicoes-2026) | [mapa](https://gfvdata-web.github.io/eleicoes-2026/) | Mapa das pesquisas para governador e Senado por estado, mais a apuração. Publicado a cada push via `pages.yml` (sem agenda, por isso sem workflow cadastrado) |
 | Painel esportivo | [`painel-esportivo`](https://github.com/gfvdata-web/painel-esportivo) | [painel](https://gfvdata-web.github.io/painel-esportivo/) | Histórico esportivo (Strava + Samsung Health) com dados cifrados. Os dados só existem no branch `gh-pages` (publicados à mão por `scripts/publicar.mjs`), daí `branch_dados: "gh-pages"` |
 | Dashboard dos municípios | [`dashboard-municipios`](https://github.com/gfvdata-web/dashboard-municipios) | [painel](https://gfvdata-web.github.io/dashboard-municipios/) | 18 indicadores públicos dos 5.571 municípios (segurança, saneamento, saúde, educação, finanças, transparência); dados em `site/dados`, coletados localmente |
+| VarVendo | [`var-vendo`](https://github.com/gfvdata-web/var-vendo) | [página](https://gfvdata-web.github.io/var-vendo/) | Arbitragem no Brasileirão Série A e na Copa do Brasil 2026 (API da CBF + ogol): quem apita, clubes, resultados e cartões. Dados em `docs/data`; publicado a cada push via `pages.yml` (sem agenda, por isso sem workflow cadastrado) |
+| Evolução Fotografia | [`evolucao-fotografia`](https://github.com/gfvdata-web/evolucao-fotografia) | [app](https://gfvdata-web.github.io/evolucao-fotografia/) | Análise da qualidade de captura das fotos da Canon EOS RP, no navegador. O repo não guarda fotos: `caminho_dados` é `site/`, então "Dados atualizados" = última versão publicada. Testes + deploy a cada push via `ci-pages.yml` (sem agenda, sem workflow cadastrado) |
 
 O Cruzeiro Indata saiu do painel.
 
