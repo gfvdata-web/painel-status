@@ -59,3 +59,8 @@
   .cartao__principal { flex-basis: calc(100% - 80px); }
   .cartao__form { order: 3; margin-left: 0; }
 }
+
+/* Celular estreito: o título desce para não passar por baixo dos switches do canto */
+@media (max-width: 380px) {
+  .lista-topo { padding-top: 58px; }
+}

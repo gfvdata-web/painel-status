@@ -175,22 +175,30 @@ main { padding: 28px 0 48px; }
 .rodape { padding: 24px 0 40px; color: var(--texto-suave); font-size: .8rem; text-align: center; }
 .rodape a { color: inherit; }
 
-.tema-switch {
+/* Canto superior direito, nas duas páginas: switch de versão (V1 = index.html,
+   V2 = lista.html, são só links) e switch de tema. Mesmo visual de pílula. */
+.controles-topo {
   position: fixed; top: 14px; right: 14px; z-index: 50;
+  display: flex; gap: 8px;
+}
+.tema-switch, .versao-switch {
   display: flex; border: 1px solid var(--borda); border-radius: 999px;
   overflow: hidden; background: var(--superficie); box-shadow: var(--sombra);
 }
-.tema-switch__btn {
+.tema-switch__btn, .versao-switch__link {
   display: inline-flex; align-items: center; gap: .3rem; border: none;
   background: transparent; color: var(--texto-suave); font: inherit; font-size: .78rem;
   font-weight: 600; padding: 7px 13px; cursor: pointer; transition: background .15s ease, color .15s ease;
+  text-decoration: none;
 }
-.tema-switch__btn + .tema-switch__btn { border-left: 1px solid var(--borda); }
-.tema-switch__btn--ativo { background: var(--acento); color: #fff; }
+.tema-switch__btn + .tema-switch__btn,
+.versao-switch__link + .versao-switch__link { border-left: 1px solid var(--borda); }
+.tema-switch__btn--ativo, .versao-switch__link--ativo { background: var(--acento); color: #fff; }
+.versao-switch__link:not(.versao-switch__link--ativo):hover { color: var(--acento); }
 
 @media (max-width: 760px) {
   .tema-switch__label { display: none; }
-  .tema-switch__btn { padding: 8px 11px; }
+  .tema-switch__btn, .versao-switch__link { padding: 8px 11px; }
 }
 
 /* Etapas do pipeline do Bolão F1 (trilha horizontal, com marcadores ligados por uma linha) */

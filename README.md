@@ -6,7 +6,8 @@ Painel único de monitoramento para todos os sites publicados via GitHub Pages p
 **Painel:** https://gfvdata-web.github.io/painel-status/ · **App Android:** APK nos
 [Releases](https://github.com/gfvdata-web/painel-status/releases) (ver "App Android" abaixo) ·
 **Layout em lista (teste):** https://gfvdata-web.github.io/painel-status/lista.html — um cartão
-por site, com status, form e visitas dos últimos 7 dias; mesmo `status.json` e mesmo switch de tema
+por site, com status, form e visitas dos últimos 7 dias; mesmo `status.json` e mesmo switch de tema.
+O switch **V1 / V2** no canto superior das duas páginas alterna entre elas
 
 ## O que ele mostra
 

@@ -11,13 +11,19 @@
 </head>
 <body>
   <!-- Layout de teste: um cartão por site, em lista (molde B). O painel completo é o index.html. -->
-  <div class="tema-switch" id="tema-switch" role="group" aria-label="Tema da página">
-    <button type="button" class="tema-switch__btn" data-tema="light" aria-pressed="false">
-      <span aria-hidden="true">☀️</span><span class="tema-switch__label">Claro</span>
-    </button>
-    <button type="button" class="tema-switch__btn" data-tema="dark" aria-pressed="false">
-      <span aria-hidden="true">🌙</span><span class="tema-switch__label">Escuro</span>
-    </button>
+  <div class="controles-topo">
+    <nav class="versao-switch" aria-label="Versão da página">
+      <a class="versao-switch__link" href="./" title="Painel completo">V1</a>
+      <a class="versao-switch__link versao-switch__link--ativo" aria-current="page" href="lista.html" title="Layout em lista (teste)">V2</a>
+    </nav>
+    <div class="tema-switch" id="tema-switch" role="group" aria-label="Tema da página">
+      <button type="button" class="tema-switch__btn" data-tema="light" aria-pressed="false">
+        <span aria-hidden="true">☀️</span><span class="tema-switch__label">Claro</span>
+      </button>
+      <button type="button" class="tema-switch__btn" data-tema="dark" aria-pressed="false">
+        <span aria-hidden="true">🌙</span><span class="tema-switch__label">Escuro</span>
+      </button>
+    </div>
   </div>
 
   <header class="lista-topo">
