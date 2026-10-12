@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-10-12T10:08:30.144907+00:00",
+    "gerado_em": "2026-10-12T16:56:10.183687+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -2117,6 +2117,66 @@
           "atualizado_em": "2026-10-10T18:33:01Z",
           "url": "https://github.com/gfvdata-web/dashboard-municipios/actions/runs/38076184937"
         }
+      },
+      "alertas": []
+    },
+    {
+      "slug": "var_vendo",
+      "nome": "VarVendo",
+      "repo": "var-vendo",
+      "pages_url": "https://gfvdata-web.github.io/var-vendo/",
+      "destaque": false,
+      "ultimo_commit_dados": {
+        "data": "2026-10-12T16:18:29Z",
+        "mensagem": "Primeira versão: arbitragem na Série A e na Copa do Brasil 2026",
+        "sha": "902ce97",
+        "url": "https://github.com/gfvdata-web/var-vendo/commit/902ce971224a17584935d0347cd7e01632914550"
+      },
+      "site_no_ar": {
+        "ok": true,
+        "status_http": 200
+      },
+      "detalhes": {
+        "coleta": null,
+        "commits_dados": [
+          {
+            "data": "2026-10-12T16:18:29Z",
+            "mensagem": "Primeira versão: arbitragem na Série A e na Copa do Brasil 2026",
+            "sha": "902ce97",
+            "url": "https://github.com/gfvdata-web/var-vendo/commit/902ce971224a17584935d0347cd7e01632914550"
+          }
+        ],
+        "deploy_pages": null
+      },
+      "alertas": []
+    },
+    {
+      "slug": "evolucao_fotografia",
+      "nome": "Evolução Fotografia",
+      "repo": "evolucao-fotografia",
+      "pages_url": "https://gfvdata-web.github.io/evolucao-fotografia/",
+      "destaque": false,
+      "ultimo_commit_dados": {
+        "data": "2026-10-10T18:31:08Z",
+        "mensagem": "feat: v0.1.0 — envio de fotos e ficha básica no navegador",
+        "sha": "b6e1c64",
+        "url": "https://github.com/gfvdata-web/evolucao-fotografia/commit/b6e1c640dde4468f8de4dd70dbbce0fffea23b6b"
+      },
+      "site_no_ar": {
+        "ok": true,
+        "status_http": 200
+      },
+      "detalhes": {
+        "coleta": null,
+        "commits_dados": [
+          {
+            "data": "2026-10-10T18:31:08Z",
+            "mensagem": "feat: v0.1.0 — envio de fotos e ficha básica no navegador",
+            "sha": "b6e1c64",
+            "url": "https://github.com/gfvdata-web/evolucao-fotografia/commit/b6e1c640dde4468f8de4dd70dbbce0fffea23b6b"
+          }
+        ],
+        "deploy_pages": null
       },
       "alertas": []
     }
