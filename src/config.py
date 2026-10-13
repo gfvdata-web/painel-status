@@ -30,8 +30,9 @@ Campos de cada site (todos presentes em toda entrada, para servir de molde):
 
 Rastreio de acesso: um único site GoatCounter (`gfvdata`, ver coleta_goatcounter.py)
 recebe o snippet padrão em todos os sites monitorados — a separação entre eles é
-feita pelo prefixo do caminho (o nome do repositório), já que todos vivem sob
-gfvdata-web.github.io/<repo>/. Não há campo por-site aqui para isso.
+feita pelo prefixo do caminho (o nome do repositório), já que todos viviam sob
+gfvdata-web.github.io/<repo>/. Site em domínio próprio precisa prefixar o caminho no
+snippet (ver README). Não há campo por-site aqui para isso.
 """
 
 OWNER = "gfvdata-web"
@@ -41,7 +42,9 @@ SITES = [
         "slug": "bolao_f1",
         "nome": "Bolão F1",
         "repo": "page-bolao-formula1",
-        "pages_url": "https://gfvdata-web.github.io/page-bolao-formula1/",
+        # Cloudflare Pages (projeto bolao-formula1); o GitHub Pages antigo segue
+        # publicado, mas não é mais o endereço oficial.
+        "pages_url": "https://bolaof1.gfvdata.com/",
         "caminho_dados": "docs/data",
         "branch_dados": None,
         "workflow_arquivo": "pipeline.yml",
@@ -57,11 +60,13 @@ SITES = [
         "slug": "meios_pagamento_mensal",
         "nome": "Meios de pagamento",
         "repo": "fonte-meios-pagamento",
-        "pages_url": "https://gfvdata-web.github.io/fonte-meios-pagamento/index-v2.html",
+        # Cloudflare Pages (projeto meios-pagamento); sem ".html": a Cloudflare
+        # redireciona (308) o endereço com extensão.
+        "pages_url": "https://meiospagamento.gfvdata.com/index-v2",
         "caminho_dados": "docs/dados",
         "branch_dados": None,
         "workflow_arquivo": None,
-        "json_meta_url": "https://gfvdata-web.github.io/fonte-meios-pagamento/dados/meios_pagamento_mensal.json",
+        "json_meta_url": "https://meiospagamento.gfvdata.com/dados/meios_pagamento_mensal.json",
         "form_url": None,
         "form_rotulo": None,
         "destaque": False,

@@ -188,6 +188,16 @@ A lista de repositórios cobertos é `src/config.py` — nenhum campo lá precis
 GoatCounter; a separação por site é feita em `src/coleta_goatcounter.py` filtrando os
 caminhos pelo prefixo `/<repo>/`.
 
+**Sites que migraram para domínio próprio na Cloudflare** (`bolaof1.gfvdata.com`,
+`meiospagamento.gfvdata.com`): lá o caminho não tem mais o prefixo `/<repo>/`, então o snippet
+padrão registra `/` e as visitas novas não entram na conta do site. A correção é no snippet do
+próprio site, prefixando o caminho com o nome do repositório:
+```html
+<script>window.goatcounter = { path: (p) => "/<repo>" + p };</script>
+```
+(antes do snippet padrão). O Bolão F1 ainda está sem isso; o Meios de pagamento não tem
+snippet.
+
 ## Sites monitorados
 
 A lista que o painel usa é `src/config.py` (`SITES`; os campos de cada entrada estão
@@ -195,8 +205,8 @@ descritos na docstring do arquivo). Hoje são doze:
 
 | Site | Repositório | Página | O que é |
 |------|-------------|--------|---------|
-| **Bolão F1** (destaque) | [`page-bolao-formula1`](https://github.com/gfvdata-web/page-bolao-formula1) | [bolão](https://gfvdata-web.github.io/page-bolao-formula1/) · [enviar palpites](https://forms.gle/7yZAx1WThPf51bv67) | Placar do bolão de Fórmula 1. Palpites colados no Google Forms → Apps Script dispara o pipeline no Actions → resultado oficial na Jolpica → pontuação → página republicada |
-| Meios de pagamento | [`fonte-meios-pagamento`](https://github.com/gfvdata-web/fonte-meios-pagamento) | [painel v2](https://gfvdata-web.github.io/fonte-meios-pagamento/index-v2.html) | Fonte financeira (BCB) — projeto documentado no `controle-global` |
+| **Bolão F1** (destaque) | [`page-bolao-formula1`](https://github.com/gfvdata-web/page-bolao-formula1) | [bolão](https://bolaof1.gfvdata.com/) · [enviar palpites](https://forms.gle/7yZAx1WThPf51bv67) | Placar do bolão de Fórmula 1. Palpites colados no Google Forms → Apps Script dispara o pipeline no Actions → resultado oficial na Jolpica → pontuação → página republicada |
+| Meios de pagamento | [`fonte-meios-pagamento`](https://github.com/gfvdata-web/fonte-meios-pagamento) | [painel v2](https://meiospagamento.gfvdata.com/index-v2) | Fonte financeira (BCB) — projeto documentado no `controle-global` |
 | Arrecadação federal | [`fonte-arrecadacao-federal`](https://github.com/gfvdata-web/fonte-arrecadacao-federal) | [painel](https://gfvdata-web.github.io/fonte-arrecadacao-federal/) | Fonte financeira (RFB) — projeto documentado no `controle-global` |
 | Crédito por modalidade | [`fonte-credito-modalidade`](https://github.com/gfvdata-web/fonte-credito-modalidade) | [painel](https://gfvdata-web.github.io/fonte-credito-modalidade/) | Fonte financeira (BCB/SGS) — projeto documentado no `controle-global` |
 | Simulador de investimentos | [`simulador-investimentos`](https://github.com/gfvdata-web/simulador-investimentos) | [simulador](https://gfvdata-web.github.io/simulador-investimentos/) | Comparação de rendimento de investimentos (bruto, líquido e real); coleta de dados oficiais em dias úteis via Actions |
