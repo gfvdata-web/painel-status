@@ -69,15 +69,20 @@
 .bolinha--aviso { background: var(--aviso); }
 .bolinha--erro { background: var(--negativo); }
 
-/* Pipeline recolhido por padrão; expandido, a trilha fica na horizontal e rola no celular */
+/* Pipeline recolhido por padrão: só um ícone à direita do nome (o cartão não cresce).
+   Expandido, a trilha fica na horizontal, centralizada, e rola no celular. */
+.cartao__titulo { display: flex; align-items: center; gap: 6px; min-width: 0; }
 .cartao__alternar {
-  margin-top: 6px; padding: 0; border: 0; background: none; cursor: pointer;
-  font: inherit; font-size: .75rem; font-weight: 600; color: var(--acento);
+  flex: 0 0 auto; width: 20px; height: 20px; padding: 0; line-height: 1;
+  display: inline-flex; align-items: center; justify-content: center;
+  border: 1px solid var(--acento-suave); border-radius: 6px; background: none; cursor: pointer;
+  font: inherit; font-size: .7rem; color: var(--acento);
 }
-.cartao__alternar:hover { text-decoration: underline; }
+.cartao__alternar:hover, .cartao__alternar[aria-expanded="true"] { background: var(--acento-suave); }
 .cartao__pipeline { margin-top: 8px; padding-top: 10px; border-top: 1px solid var(--borda); }
 .cartao__pipeline[hidden] { display: none; }
 .cartao__pipeline-titulo {
+  text-align: center;
   margin: 0 0 8px; font-size: .72rem; color: var(--texto-suave);
   text-transform: uppercase; letter-spacing: .06em; font-weight: 600;
 }
@@ -92,6 +97,9 @@
   left: calc(50% + 17px); right: calc(-50% + 17px); top: 11px; bottom: auto; height: 2px; width: auto;
 }
 .cartao__pipeline .etapa__texto { margin-top: 8px; }
+/* Centraliza a trilha sem cortar o começo quando ela é mais larga que o cartão (rolagem) */
+.cartao__pipeline .etapa:first-child { margin-left: auto; }
+.cartao__pipeline .etapa:last-child { margin-right: auto; }
 
 .lista-outros { margin: 14px 2px 0; font-size: .85rem; color: var(--texto-suave); }
 .lista-outros a { color: var(--acento); font-weight: 600; text-decoration: none; margin-left: 6px; }

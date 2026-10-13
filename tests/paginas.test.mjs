@@ -156,23 +156,37 @@ test("lista: faixa = categoria; bolinha = situação; legenda só com categoria 
   semLixo(html, "lista com categoria");
 });
 
-test("lista: pipeline do Bolão F1 começa recolhido e expande/oculta ao clicar", async () => {
+test("lista: pipeline (Bolão F1 e PlantsCare) começa recolhido, ícone ao lado do nome, expande/oculta ao clicar", async () => {
   const p = await abrirLista(exemplo);
   const html = p.el("lista-sites").innerHTML;
-  assert.match(html, /<button type="button" class="cartao__alternar" data-slug="bolao_f1" aria-expanded="false">/);
+  // Ícone na mesma linha do nome (dentro de cartao__titulo), sem texto: o cartão recolhido não cresce.
+  assert.match(html, /<div class="cartao__titulo">\s*<a class="cartao__nome"[^>]*>Bolão F1<\/a>\s*<button type="button" class="cartao__alternar" data-slug="bolao_f1" aria-expanded="false" aria-label="Mostrar pipeline" title="Mostrar pipeline">▸<\/button>/);
   assert.match(html, /<div class="cartao__pipeline" hidden>/);
-  assert.equal((html.match(/cartao__alternar/g) || []).length, 1, "só o Bolão tem pipeline");
+  assert.match(html, /data-slug="plants_care"/, "PlantsCare mostra o envio do Forms (pipeline_forms)");
+  assert.match(html, /Último envio do Forms/);
+  assert.equal((html.match(/class="cartao__alternar"/g) || []).length, 2, "só Bolão e PlantsCare têm pipeline");
 
   // Clique (delegação em #lista-sites): alvo = botão do Bolão, dentro do cartão dele.
   const pipeline = { hidden: true };
-  const botao = { dataset: { slug: "bolao_f1" }, textContent: "", setAttribute() {}, closest: (sel) => (sel === ".cartao" ? cartaoFake : null) };
+  const atributos = {};
+  const botao = { dataset: { slug: "bolao_f1" }, textContent: "", setAttribute(k, v) { atributos[k] = v; }, closest: (sel) => (sel === ".cartao" ? cartaoFake : null) };
   const cartaoFake = { querySelector: (sel) => (sel === ".cartao__pipeline" ? pipeline : null) };
   const clicar = () => p.el("lista-sites").ouvintes.click[0]({ target: { closest: (sel) => (sel === ".cartao__alternar" ? botao : null) } });
   clicar();
   assert.equal(pipeline.hidden, false, "expande");
+  assert.equal(botao.textContent, "▾");
+  assert.equal(atributos["aria-label"], "Ocultar pipeline");
   clicar();
   assert.equal(pipeline.hidden, true, "oculta de novo");
+  assert.equal(botao.textContent, "▸");
   assert.deepEqual(p.erros, []);
+});
+
+test("lista: pipeline_forms com erro na execução não mostra ícone de pipeline", async () => {
+  const status = copia(exemplo);
+  site(status, "plants_care").pipeline_forms = { workflow: "pipeline.yml", execucao: { erro: "HTTP 404" }, etapas: null };
+  const p = await abrirLista(status);
+  assert.doesNotMatch(p.el("lista-sites").innerHTML, /data-slug="plants_care"/);
 });
 
 test("lista: visitas = soma dos últimos 7 dias da série; sem rastreio = traço", async () => {

@@ -96,11 +96,36 @@ function formatarDataHora(iso) {
   return data.toLocaleString("pt-BR", { day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" });
 }
 
-// Passo a passo do pipeline (só o Bolão F1 tem etapas_pipeline): trilha horizontal, rolável no celular.
-function pipeline(site) {
-  const etapas = site.etapas_pipeline;
-  if (!etapas || !etapas.length) return "";
-  const execucao = site.ultima_execucao_pipeline || {};
+// Passo a passo a mostrar no cartão: etapas_pipeline (Bolão F1) ou o último envio do Forms
+// (pipeline_forms, hoje o PlantsCare — mesmo formato). null = cartão sem pipeline.
+function dadosPipeline(site) {
+  if (site.etapas_pipeline && site.etapas_pipeline.length) {
+    return { etapas: site.etapas_pipeline, execucao: site.ultima_execucao_pipeline || {}, titulo: "Última atualização de dados" };
+  }
+  const bloco = site.pipeline_forms;
+  const execucao = (bloco && bloco.execucao) || {};
+  if (bloco && !execucao.erro && bloco.etapas && bloco.etapas.length) {
+    return { etapas: bloco.etapas, execucao, titulo: "Último envio do Forms" };
+  }
+  return null;
+}
+
+// Ícone ao lado do nome que abre/fecha o pipeline (o cartão recolhido fica com a altura dos outros).
+function rotuloAlternar(aberto) {
+  return aberto ? "Ocultar pipeline" : "Mostrar pipeline";
+}
+
+function botaoPipeline(site) {
+  if (!dadosPipeline(site)) return "";
+  const aberto = pipelinesAbertos.has(site.slug);
+  return `<button type="button" class="cartao__alternar" data-slug="${escapar(site.slug)}" aria-expanded="${aberto}" aria-label="${rotuloAlternar(aberto)}" title="${rotuloAlternar(aberto)}">${aberto ? "▾" : "▸"}</button>`;
+}
+
+// Trilha horizontal, centralizada, rolável no celular.
+function painelPipeline(site) {
+  const dados = dadosPipeline(site);
+  if (!dados) return "";
+  const { etapas, execucao, titulo } = dados;
   const aberto = pipelinesAbertos.has(site.slug);
   const itens = etapas.map((etapa, indice) => {
     const estadoTexto = `${ROTULO_ESTADO_ETAPA[etapa.estado] || etapa.estado}${etapa.quando ? ` · ${formatarDataHora(etapa.quando)}` : ""}`;
@@ -118,11 +143,8 @@ function pipeline(site) {
     ? ` <a href="${escapar(execucao.url)}" target="_blank" rel="noopener">ver execução ↗</a>`
     : "";
   return `
-    <button type="button" class="cartao__alternar" data-slug="${escapar(site.slug)}" aria-expanded="${aberto}">
-      ${aberto ? "▾ Ocultar pipeline" : "▸ Pipeline de atualização"}
-    </button>
     <div class="cartao__pipeline" ${aberto ? "" : "hidden"}>
-      <p class="cartao__pipeline-titulo">Última atualização de dados${link}</p>
+      <p class="cartao__pipeline-titulo">${titulo}${link}</p>
       <ol class="etapas__lista">${itens}</ol>
     </div>`;
 }
@@ -143,7 +165,10 @@ function cartao(site) {
     <article class="cartao cartao--cat-${categoria}">
       <div class="cartao__linha">
         <div class="cartao__principal">
-          <a class="cartao__nome" href="${escapar(site.pages_url)}" target="_blank" rel="noopener">${escapar(site.nome)}</a>
+          <div class="cartao__titulo">
+            <a class="cartao__nome" href="${escapar(site.pages_url)}" target="_blank" rel="noopener">${escapar(site.nome)}</a>
+            ${botaoPipeline(site)}
+          </div>
           ${sub}
         </div>
         ${form}
@@ -152,7 +177,7 @@ function cartao(site) {
         </div>
         <span class="bolinha bolinha--${bolinhaNivel}" role="img" aria-label="${TEXTO_BOLINHA[bolinhaNivel]}" title="${TEXTO_BOLINHA[bolinhaNivel]} · ${escapar(rotuloCategoria)}"></span>
       </div>
-      ${pipeline(site)}
+      ${painelPipeline(site)}
     </article>`;
 }
 
@@ -189,7 +214,9 @@ function configurarPipeline() {
     const aberto = !pipelinesAbertos.has(slug);
     if (aberto) pipelinesAbertos.add(slug); else pipelinesAbertos.delete(slug);
     botao.setAttribute("aria-expanded", String(aberto));
-    botao.textContent = aberto ? "▾ Ocultar pipeline" : "▸ Pipeline de atualização";
+    botao.setAttribute("aria-label", rotuloAlternar(aberto));
+    botao.setAttribute("title", rotuloAlternar(aberto));
+    botao.textContent = aberto ? "▾" : "▸";
     cartaoDoSite.querySelector(".cartao__pipeline").hidden = !aberto;
   });
 }
