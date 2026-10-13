@@ -71,9 +71,9 @@ SITES = [
         "slug": "meios_pagamento_mensal",
         "nome": "Meios de pagamento",
         "repo": "fonte-meios-pagamento",
-        # Cloudflare Pages (projeto meios-pagamento); sem ".html": a Cloudflare
-        # redireciona (308) o endereço com extensão.
-        "pages_url": "https://meiospagamento.gfvdata.com/index-v2",
+        # Cloudflare Pages (projeto meios-pagamento); a raiz serve a página principal
+        # (antes era /index-v2). Sem ".html": a Cloudflare redireciona (308).
+        "pages_url": "https://meiospagamento.gfvdata.com/",
         "caminho_dados": "docs/dados",
         "branch_dados": None,
         "workflow_arquivo": None,
