@@ -1,25 +1,97 @@
 #!/usr/bin/env bash
-# Checagem rápida do repo. Sem argumento: tudo. Com um arquivo: só o que vale para ele.
-# Silencioso quando passa; sai com 1 e uma mensagem curta quando falha.
-# Chamado pelo hook global (~/.claude/hooks/run-check.sh) depois de cada edição.
+# Checagem do repo, sem rede, sem tokens e sem navegador. Silenciosa quando passa; sai com 1 e
+# uma mensagem curta (arquivo:linha / o que quebrou) quando falha.
+#   scripts/check            completo: sintaxe, JSON, tsc do worker e todos os testes (tests/)
+#   scripts/check <arquivo>  rápido: só o que vale para aquele arquivo (caminho Windows ou relativo)
+# Chamado pelo hook global (~/.claude/hooks/run-check.sh) depois de cada edição e pelo
+# .githooks/pre-commit (completo) antes de cada commit.
+#
+# Cobertura: (cada linha tem pelo menos um teste; "sem teste" diz o motivo)
+#   Cadastro de sites e forms avulsos (validar, campos, URLs, regras)   src/config.py          tests/test_config.py
+#   HTTP e erros de rede, token não vaza em redirecionamento             src/rede.py            tests/test_rede.py
+#   Coleta GitHub (commits, execuções, jobs, logs, cron, Pages, no ar)   src/coleta_github.py   tests/test_coleta_github.py
+#   Coleta GoatCounter (visitantes por repo, sem token, falhas)          src/coleta_goatcounter.py  tests/test_coleta_goatcounter.py
+#   Pop-up de detalhes e alertas dos sites da grade                      src/detalhes_site.py   tests/test_detalhes_site.py
+#   Etapas do Bolão F1 e do envio do Forms (todos os estados)            src/etapas_bolao.py, src/etapas_forms.py   tests/test_etapas.py
+#   Histórico acumulado das execuções (docs/dados/historico/)            src/historico.py       tests/test_historico.py
+#   Geração do status.json (rodada completa, --so-bolao, --so-forms)     src/publicacao.py      tests/test_publicacao.py
+#   Vigias do Bolão e do Forms (fase=, mudou=) usados pelo Actions       src/vigia_bolao.py, src/vigia_forms.py   tests/test_vigias.py
+#   Envio e download de docs/dados no Worker                             src/envio.py           tests/test_envio.py
+#   Workflow atualizar-status.yml (módulos, flags, saídas, disparos)     .github/workflows/atualizar-status.yml   tests/test_infra.py
+#   Contrato status.json/histórico publicados em docs/dados              tests/contrato.py      tests/test_dados_publicados.py
+#   Página principal (lista): cartões, alertas, visitas, outros forms    docs/index.html, docs/js/lista.js, docs/css/lista.css   tests/test_paginas.py, tests/paginas.test.mjs
+#   Painel completo V1 (/v1): destaque, grade, pop-up, histórico         docs/v1.html, docs/js/app.js, docs/css/estilo.css       tests/test_paginas.py, tests/paginas.test.mjs
+#   Redirecionamentos antigos (/lista -> /)                              docs/_redirects        tests/test_paginas.py
+#   Worker: rotas /dados /app /api, validação do envio, APK, agenda      worker/src/index.ts    tests/worker.test.mjs, tsc, tests/test_infra.py
+#   README/CLAUDE.md em dia com o cadastro e os arquivos                 README.md, CLAUDE.md   tests/test_infra.py
+#   (sem teste: gráficos Chart.js, troca de tema e layout no navegador real — exigem navegador)
+#   (sem teste: Worker no Cloudflare de verdade (D1/KV/Cron reais) e a API real do GitHub — exigem rede e tokens)
+#   (sem teste: app Android em android/ — a run do android.yml (JDK/SDK) é quem testa)
+
 cd "$(dirname "$0")/.." || exit 1
-alvo="$(printf '%s' "${1:-}" | sed 's#\\#/#g')";alvo="${alvo#"$(pwd -W 2>/dev/null || pwd)/"}"; alvo="${alvo#"$(pwd)/"}"
+export PYTHONDONTWRITEBYTECODE=1 NODE_OPTIONS="--disable-warning=ExperimentalWarning"
+alvo="$(printf '%s' "${1:-}" | sed 's#\\#/#g')"; alvo="${alvo#"$(pwd -W 2>/dev/null || pwd)/"}"; alvo="${alvo#"$(pwd)/"}"
 falhas=0
 
-checar_py() { python -m py_compile "$@" 2>&1 || falhas=1; }
+# rodar <rótulo> <comando...>: silencioso se passa; senão mostra o fim da saída.
+rodar() {
+  local saida
+  saida="$("${@:2}" 2>&1)" || { echo "FALHOU: $1"; printf '%s\n' "$saida" | tail -n 45; falhas=1; }
+}
+
+checar_py() {  # sintaxe sem gerar .pyc: mostra arquivo:linha
+  python -B -c '
+import sys
+erros = 0
+for f in sys.argv[1:]:
+    try:
+        compile(open(f, encoding="utf-8").read(), f, "exec")
+    except SyntaxError as e:
+        print(f"{f}:{e.lineno}: {e.msg}"); erros = 1
+sys.exit(erros)' "$@" 2>&1 || falhas=1
+}
 checar_json() {
   for f in "$@"; do
-    python -c "import json,sys; json.load(open(sys.argv[1],encoding='utf-8'))" "$f" 2>/dev/null \
-      || { echo "JSON inválido: $f"; python -c "import json,sys; json.load(open(sys.argv[1],encoding='utf-8'))" "$f" 2>&1 | tail -1; falhas=1; }
+    python -B -c "import json,sys; json.load(open(sys.argv[1],encoding='utf-8'))" "$f" 2>/dev/null \
+      || { echo "JSON inválido: $f"; python -B -c "import json,sys; json.load(open(sys.argv[1],encoding='utf-8'))" "$f" 2>&1 | tail -1; falhas=1; }
   done
 }
-checar_ts() { (cd worker && npx tsc --noEmit --pretty false 2>&1 | head -20; exit "${PIPESTATUS[0]}") || falhas=1; }
+checar_js() { for f in "$@"; do out="$(node --check "$f" 2>&1)" || { echo "JS inválido: $f"; printf '%s\n' "$out" | head -5; falhas=1; }; done; }
+checar_sh() { for f in "$@"; do [ -f "$f" ] && { out="$(bash -n "$f" 2>&1)" || { echo "shell inválido: $f"; printf '%s\n' "$out" | head -5; falhas=1; }; }; done; }
+checar_ts() {
+  if [ ! -x worker/node_modules/.bin/tsc ] && [ ! -f worker/node_modules/.bin/tsc ]; then
+    echo "FALHOU: tsc do worker ausente (rodar: npm ci --prefix worker)"; falhas=1; return
+  fi
+  (cd worker && npx --no-install tsc --noEmit --pretty false 2>&1 | head -20; exit "${PIPESTATUS[0]}") || falhas=1
+}
+testes_py()   { rodar "testes Python (tests/)" python -B -m unittest discover -s tests -t . ; }
+testes_node() { rodar "testes Node (tests/*.test.mjs)" node --test tests/*.test.mjs ; }
+
+hash_dados() { find docs/dados -type f -print0 | sort -z | xargs -0 sha256sum | sha256sum; }
 
 case "$alvo" in
-  "")              checar_py src/*.py; mapfile -t js < <(find docs/dados -name '*.json'); checar_json "${js[@]}"; checar_ts ;;
-  *.py)            checar_py "$alvo" ;;
-  *.json)          checar_json "$alvo" ;;
-  worker/*.ts)     checar_ts ;;
-  *)               : ;;
+  "")
+    antes="$(hash_dados)"
+    checar_py src/*.py tests/*.py
+    mapfile -t json < <(find docs/dados tests/fixtures -name '*.json'); checar_json "${json[@]}"
+    checar_js docs/js/*.js tests/*.mjs
+    checar_sh scripts/check .githooks/pre-commit
+    checar_ts
+    testes_py
+    testes_node
+    [ "$antes" = "$(hash_dados)" ] || { echo "FALHOU: os testes alteraram arquivos de docs/dados (não podem)"; falhas=1; }
+    ;;
+  *.py)                                   checar_py "$alvo"; testes_py ;;
+  tests/fixtures/*.json|docs/dados/*.json|docs/dados/*/*.json)
+                                          checar_json "$alvo"; testes_py; testes_node ;;
+  *.json)                                 checar_json "$alvo" ;;
+  tests/*.mjs)                            checar_js "$alvo"; testes_node ;;
+  docs/js/*.js)                           checar_js "$alvo"; testes_py; testes_node ;;
+  docs/*.html|docs/css/*|docs/_redirects) testes_py; testes_node ;;
+  worker/*.ts)                            checar_ts; testes_node ;;
+  worker/wrangler.jsonc|worker/migrations/*|worker/package.json|.github/workflows/*|README.md|CLAUDE.md|android/*.kt|android/*/*.kt|android/*/*/*.kt|android/*/*/*/*.kt|android/*/*/*/*/*.kt|android/*/*/*/*/*/*.kt|android/*/*/*/*/*/*/*.kt|android/*/*/*/*/*/*/*/*.kt|android/*/*/*/*/*/*/*/*/*.kt|android/*/*/*/*/*/*/*/*/*/*.kt|android/*/*/*/*/*/*/*/*/*/*/*.kt)
+                                          testes_py ;;
+  scripts/check|.githooks/*)              checar_sh "$alvo"; testes_py ;;
+  *)                                      : ;;
 esac
 exit $falhas

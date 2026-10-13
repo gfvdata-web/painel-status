@@ -1,0 +1,18 @@
+[
+  {
+    "sha": "a1b2c3d4e5f60718293a4b5c6d7e8f9012345678",
+    "commit": {
+      "author": {"name": "github-actions[bot]", "date": "2026-10-13T08:00:12Z"},
+      "message": "Atualiza dados da rodada 21\n\nCorpo da mensagem que não aparece no painel."
+    },
+    "html_url": "https://github.com/gfvdata-web/exemplo/commit/a1b2c3d4e5f60718293a4b5c6d7e8f9012345678"
+  },
+  {
+    "sha": "ffeeddccbbaa00998877665544332211ffeeddcc",
+    "commit": {
+      "author": {"name": "github-actions[bot]", "date": "2026-10-12T08:00:05Z"},
+      "message": "Atualiza dados da rodada 20"
+    },
+    "html_url": "https://github.com/gfvdata-web/exemplo/commit/ffeeddccbbaa00998877665544332211ffeeddcc"
+  }
+]

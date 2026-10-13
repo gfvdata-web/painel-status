@@ -1,0 +1,22 @@
+{
+  "total_count": 1,
+  "jobs": [
+    {
+      "id": 9001, "name": "pipeline", "conclusion": "success",
+      "steps": [
+        {"name": "Set up job", "status": "completed", "conclusion": "success",
+         "started_at": "2026-10-13T10:00:05Z", "completed_at": "2026-10-13T10:00:06Z"},
+        {"name": "Roda pipeline (novo palpite)", "status": "completed", "conclusion": "success",
+         "started_at": "2026-10-13T10:00:06Z", "completed_at": "2026-10-13T10:01:00Z"},
+        {"name": "Verificador — espera o resultado", "status": "completed", "conclusion": "skipped",
+         "started_at": "2026-10-13T10:01:00Z", "completed_at": "2026-10-13T10:01:00Z"},
+        {"name": "Estágio 1 — ficha", "status": "completed", "conclusion": "success",
+         "started_at": "2026-10-13T10:00:06Z", "completed_at": "2026-10-13T10:00:30Z"},
+        {"name": "Estágio 2-4 — relatório", "status": "completed", "conclusion": "success",
+         "started_at": "2026-10-13T10:00:30Z", "completed_at": "2026-10-13T10:02:00Z"},
+        {"name": "Commitar ficha e PDF", "status": "completed", "conclusion": "success",
+         "started_at": "2026-10-13T10:02:00Z", "completed_at": "2026-10-13T10:02:10Z"}
+      ]
+    }
+  ]
+}

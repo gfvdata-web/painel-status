@@ -1,0 +1,10 @@
+{
+  "paths": [
+    {"id": 1, "path": "/page-bolao-formula1/", "title": "Bolão"},
+    {"id": 2, "path": "/page-bolao-formula1/classificacao"},
+    {"id": 3, "path": "/chess-tracking/", "title": "Chess"},
+    {"id": 4, "path": "/chess-tracking-outro/", "title": "Não é do chess-tracking"},
+    {"id": 5, "path": "/var-vendo", "title": "VarVendo"}
+  ],
+  "more": false
+}

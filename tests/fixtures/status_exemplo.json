@@ -1,0 +1,963 @@
+{
+  "meta": {
+    "gerado_em": "2026-10-13T12:00:00+00:00",
+    "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
+  },
+  "sites": [
+    {
+      "slug": "bolao_f1",
+      "nome": "Bolão F1",
+      "repo": "page-bolao-formula1",
+      "pages_url": "https://bolaof1.gfvdata.com/",
+      "destaque": true,
+      "form_url": "https://forms.gle/7yZAx1WThPf51bv67",
+      "form_rotulo": "Enviar palpites (Google Forms)",
+      "ultimo_commit_dados": {
+        "data": "2026-10-13T08:00:12Z",
+        "mensagem": "Atualiza dados da rodada 21",
+        "sha": "a1b2c3d",
+        "url": "https://github.com/gfvdata-web/exemplo/commit/a1b2c3d4e5f60718293a4b5c6d7e8f9012345678"
+      },
+      "ultima_execucao_pipeline": {
+        "id": 103,
+        "evento": "schedule",
+        "status": "completed",
+        "conclusao": "success",
+        "criado_em": "2026-10-13T10:00:03Z",
+        "atualizado_em": "2026-10-13T10:04:10Z",
+        "url": "https://github.com/gfvdata-web/exemplo/actions/runs/103"
+      },
+      "rodada_mais_recente": 21,
+      "em_vigilia": false,
+      "etapas_pipeline": [
+        {
+          "chave": "forms",
+          "titulo": "Palpites enviados (Google Forms)",
+          "estado": "ok",
+          "detalhe": "Forms recebido e Apps Script disparou o pipeline no GitHub Actions.",
+          "quando": "2026-10-13T10:00:03Z"
+        },
+        {
+          "chave": "leitura",
+          "titulo": "Palpites lidos e rodada identificada",
+          "estado": "ok",
+          "detalhe": "Palpites gravados no repositório.",
+          "quando": "2026-10-13T10:01:00Z"
+        },
+        {
+          "chave": "resultado",
+          "titulo": "Resultado oficial do quali (Jolpica)",
+          "estado": "ok",
+          "detalhe": "Já estava publicado no momento do envio.",
+          "quando": "2026-10-13T10:01:00Z"
+        },
+        {
+          "chave": "pontuacao",
+          "titulo": "Pontuação calculada",
+          "estado": "ok",
+          "detalhe": "",
+          "quando": "2026-10-13T10:01:00Z"
+        },
+        {
+          "chave": "pagina",
+          "titulo": "Página atualizada (GitHub Pages)",
+          "estado": "ok",
+          "detalhe": "Placar novo no ar.",
+          "quando": "2026-10-13T10:06:00Z"
+        }
+      ],
+      "site_no_ar": {
+        "ok": true,
+        "status_http": 200
+      },
+      "historico_arquivo": "dados/historico/bolao_f1.json",
+      "acesso": {
+        "visitantes_unicos": 123,
+        "serie_diaria": [
+          {
+            "data": "2026-10-01",
+            "visitantes": 4
+          },
+          {
+            "data": "2026-10-02",
+            "visitantes": 6
+          },
+          {
+            "data": "2026-10-12",
+            "visitantes": 9
+          }
+        ]
+      }
+    },
+    {
+      "slug": "meios_pagamento_mensal",
+      "nome": "Meios de pagamento",
+      "repo": "fonte-meios-pagamento",
+      "pages_url": "https://meiospagamento.gfvdata.com/index-v2",
+      "destaque": false,
+      "ultimo_commit_dados": {
+        "data": "2026-10-13T08:00:12Z",
+        "mensagem": "Atualiza dados da rodada 21",
+        "sha": "a1b2c3d",
+        "url": "https://github.com/gfvdata-web/exemplo/commit/a1b2c3d4e5f60718293a4b5c6d7e8f9012345678"
+      },
+      "periodo_publicado": {
+        "inicio": "2020-01",
+        "fim": "2026-08"
+      },
+      "site_no_ar": {
+        "ok": true,
+        "status_http": 200
+      },
+      "detalhes": {
+        "coleta": null,
+        "commits_dados": [
+          {
+            "data": "2026-10-13T08:00:12Z",
+            "mensagem": "Atualiza dados da rodada 21",
+            "sha": "a1b2c3d",
+            "url": "https://github.com/gfvdata-web/exemplo/commit/a1b2c3d4e5f60718293a4b5c6d7e8f9012345678"
+          },
+          {
+            "data": "2026-10-12T08:00:05Z",
+            "mensagem": "Atualiza dados da rodada 20",
+            "sha": "ffeeddc",
+            "url": "https://github.com/gfvdata-web/exemplo/commit/ffeeddccbbaa00998877665544332211ffeeddcc"
+          }
+        ],
+        "deploy_pages": {
+          "status": "completed",
+          "conclusao": "success",
+          "criado_em": "2026-10-13T10:05:00Z",
+          "atualizado_em": "2026-10-13T10:06:00Z",
+          "url": "https://github.com/gfvdata-web/exemplo/actions/runs/7"
+        }
+      },
+      "alertas": []
+    },
+    {
+      "slug": "arrecadacao_federal",
+      "nome": "Arrecadação federal",
+      "repo": "fonte-arrecadacao-federal",
+      "pages_url": "https://gfvdata-web.github.io/fonte-arrecadacao-federal/",
+      "destaque": false,
+      "ultimo_commit_dados": {
+        "data": "2026-10-13T08:00:12Z",
+        "mensagem": "Atualiza dados da rodada 21",
+        "sha": "a1b2c3d",
+        "url": "https://github.com/gfvdata-web/exemplo/commit/a1b2c3d4e5f60718293a4b5c6d7e8f9012345678"
+      },
+      "periodo_publicado": {
+        "inicio": "2020-01",
+        "fim": "2026-08"
+      },
+      "site_no_ar": {
+        "ok": true,
+        "status_http": 200
+      },
+      "detalhes": {
+        "coleta": null,
+        "commits_dados": [
+          {
+            "data": "2026-10-13T08:00:12Z",
+            "mensagem": "Atualiza dados da rodada 21",
+            "sha": "a1b2c3d",
+            "url": "https://github.com/gfvdata-web/exemplo/commit/a1b2c3d4e5f60718293a4b5c6d7e8f9012345678"
+          },
+          {
+            "data": "2026-10-12T08:00:05Z",
+            "mensagem": "Atualiza dados da rodada 20",
+            "sha": "ffeeddc",
+            "url": "https://github.com/gfvdata-web/exemplo/commit/ffeeddccbbaa00998877665544332211ffeeddcc"
+          }
+        ],
+        "deploy_pages": {
+          "status": "completed",
+          "conclusao": "success",
+          "criado_em": "2026-10-13T10:05:00Z",
+          "atualizado_em": "2026-10-13T10:06:00Z",
+          "url": "https://github.com/gfvdata-web/exemplo/actions/runs/7"
+        }
+      },
+      "alertas": []
+    },
+    {
+      "slug": "credito_modalidade",
+      "nome": "Crédito por modalidade",
+      "repo": "fonte-credito-modalidade",
+      "pages_url": "https://gfvdata-web.github.io/fonte-credito-modalidade/",
+      "destaque": false,
+      "ultimo_commit_dados": {
+        "data": "2026-10-13T08:00:12Z",
+        "mensagem": "Atualiza dados da rodada 21",
+        "sha": "a1b2c3d",
+        "url": "https://github.com/gfvdata-web/exemplo/commit/a1b2c3d4e5f60718293a4b5c6d7e8f9012345678"
+      },
+      "periodo_publicado": {
+        "inicio": "2020-01",
+        "fim": "2026-08"
+      },
+      "site_no_ar": {
+        "ok": true,
+        "status_http": 200
+      },
+      "detalhes": {
+        "coleta": null,
+        "commits_dados": [
+          {
+            "data": "2026-10-13T08:00:12Z",
+            "mensagem": "Atualiza dados da rodada 21",
+            "sha": "a1b2c3d",
+            "url": "https://github.com/gfvdata-web/exemplo/commit/a1b2c3d4e5f60718293a4b5c6d7e8f9012345678"
+          },
+          {
+            "data": "2026-10-12T08:00:05Z",
+            "mensagem": "Atualiza dados da rodada 20",
+            "sha": "ffeeddc",
+            "url": "https://github.com/gfvdata-web/exemplo/commit/ffeeddccbbaa00998877665544332211ffeeddcc"
+          }
+        ],
+        "deploy_pages": {
+          "status": "completed",
+          "conclusao": "success",
+          "criado_em": "2026-10-13T10:05:00Z",
+          "atualizado_em": "2026-10-13T10:06:00Z",
+          "url": "https://github.com/gfvdata-web/exemplo/actions/runs/7"
+        }
+      },
+      "alertas": []
+    },
+    {
+      "slug": "simulador_investimentos",
+      "nome": "Simulador de investimentos",
+      "repo": "simulador-investimentos",
+      "pages_url": "https://gfvdata-web.github.io/simulador-investimentos/",
+      "destaque": false,
+      "ultimo_commit_dados": {
+        "data": "2026-10-13T08:00:12Z",
+        "mensagem": "Atualiza dados da rodada 21",
+        "sha": "a1b2c3d",
+        "url": "https://github.com/gfvdata-web/exemplo/commit/a1b2c3d4e5f60718293a4b5c6d7e8f9012345678"
+      },
+      "ultima_execucao_pipeline": {
+        "id": 103,
+        "evento": "schedule",
+        "status": "completed",
+        "conclusao": "success",
+        "criado_em": "2026-10-13T10:00:03Z",
+        "atualizado_em": "2026-10-13T10:04:10Z",
+        "url": "https://github.com/gfvdata-web/exemplo/actions/runs/103"
+      },
+      "site_no_ar": {
+        "ok": true,
+        "status_http": 200
+      },
+      "detalhes": {
+        "coleta": {
+          "workflow": "atualizar-dados.yml",
+          "url_workflow": "https://github.com/gfvdata-web/simulador-investimentos/actions/workflows/atualizar-dados.yml",
+          "agenda": [
+            {
+              "cron": "0 21 * * 1-5",
+              "descricao": "de segunda a sexta às 18:00 (Brasília)"
+            },
+            {
+              "cron": "30 9 * * *",
+              "descricao": "todo dia às 06:30 (Brasília)"
+            }
+          ],
+          "historico": [
+            {
+              "id": 103,
+              "evento": "schedule",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-10-13T10:00:03Z",
+              "atualizado_em": "2026-10-13T10:04:10Z",
+              "url": "https://github.com/gfvdata-web/exemplo/actions/runs/103",
+              "duracao_s": 247
+            },
+            {
+              "id": 102,
+              "evento": "workflow_dispatch",
+              "status": "completed",
+              "conclusao": "failure",
+              "criado_em": "2026-10-12T10:00:03Z",
+              "atualizado_em": "2026-10-12T10:02:00Z",
+              "url": "https://github.com/gfvdata-web/exemplo/actions/runs/102",
+              "duracao_s": 117
+            },
+            {
+              "id": 101,
+              "evento": "schedule",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-10-11T10:00:03Z",
+              "atualizado_em": "2026-10-11T10:03:30Z",
+              "url": "https://github.com/gfvdata-web/exemplo/actions/runs/101",
+              "duracao_s": 207
+            }
+          ],
+          "ultimo_sucesso": {
+            "id": 103,
+            "evento": "schedule",
+            "status": "completed",
+            "conclusao": "success",
+            "criado_em": "2026-10-13T10:00:03Z",
+            "atualizado_em": "2026-10-13T10:04:10Z",
+            "url": "https://github.com/gfvdata-web/exemplo/actions/runs/103"
+          },
+          "ultima_falha": {
+            "id": 102,
+            "evento": "workflow_dispatch",
+            "status": "completed",
+            "conclusao": "failure",
+            "criado_em": "2026-10-12T10:00:03Z",
+            "atualizado_em": "2026-10-12T10:02:00Z",
+            "url": "https://github.com/gfvdata-web/exemplo/actions/runs/102",
+            "motivo": {
+              "job": "coletar",
+              "passo": "Coletar dados",
+              "mensagem": "requests.exceptions.HTTPError: 503 Server Error: Service Unavailable"
+            }
+          },
+          "passos_ultima": [
+            {
+              "nome": "Set up job",
+              "conclusao": "success"
+            },
+            {
+              "nome": "Roda pipeline (novo palpite)",
+              "conclusao": "success"
+            },
+            {
+              "nome": "Verificador — espera o resultado",
+              "conclusao": "skipped"
+            },
+            {
+              "nome": "Estágio 1 — ficha",
+              "conclusao": "success"
+            },
+            {
+              "nome": "Estágio 2-4 — relatório",
+              "conclusao": "success"
+            },
+            {
+              "nome": "Commitar ficha e PDF",
+              "conclusao": "success"
+            }
+          ]
+        },
+        "commits_dados": [
+          {
+            "data": "2026-10-13T08:00:12Z",
+            "mensagem": "Atualiza dados da rodada 21",
+            "sha": "a1b2c3d",
+            "url": "https://github.com/gfvdata-web/exemplo/commit/a1b2c3d4e5f60718293a4b5c6d7e8f9012345678"
+          },
+          {
+            "data": "2026-10-12T08:00:05Z",
+            "mensagem": "Atualiza dados da rodada 20",
+            "sha": "ffeeddc",
+            "url": "https://github.com/gfvdata-web/exemplo/commit/ffeeddccbbaa00998877665544332211ffeeddcc"
+          }
+        ],
+        "deploy_pages": {
+          "status": "completed",
+          "conclusao": "success",
+          "criado_em": "2026-10-13T10:05:00Z",
+          "atualizado_em": "2026-10-13T10:06:00Z",
+          "url": "https://github.com/gfvdata-web/exemplo/actions/runs/7"
+        }
+      },
+      "alertas": [],
+      "historico_arquivo": "dados/historico/simulador_investimentos.json"
+    },
+    {
+      "slug": "chess_tracking",
+      "nome": "Chess Tracking",
+      "repo": "chess-tracking",
+      "pages_url": "https://gfvdata-web.github.io/chess-tracking/",
+      "destaque": false,
+      "ultimo_commit_dados": {
+        "data": "2026-10-13T08:00:12Z",
+        "mensagem": "Atualiza dados da rodada 21",
+        "sha": "a1b2c3d",
+        "url": "https://github.com/gfvdata-web/exemplo/commit/a1b2c3d4e5f60718293a4b5c6d7e8f9012345678"
+      },
+      "ultima_execucao_pipeline": {
+        "id": 103,
+        "evento": "schedule",
+        "status": "completed",
+        "conclusao": "success",
+        "criado_em": "2026-10-13T10:00:03Z",
+        "atualizado_em": "2026-10-13T10:04:10Z",
+        "url": "https://github.com/gfvdata-web/exemplo/actions/runs/103"
+      },
+      "site_no_ar": {
+        "ok": true,
+        "status_http": 200
+      },
+      "detalhes": {
+        "coleta": {
+          "workflow": "atualizar-partidas.yml",
+          "url_workflow": "https://github.com/gfvdata-web/chess-tracking/actions/workflows/atualizar-partidas.yml",
+          "agenda": [
+            {
+              "cron": "0 21 * * 1-5",
+              "descricao": "de segunda a sexta às 18:00 (Brasília)"
+            },
+            {
+              "cron": "30 9 * * *",
+              "descricao": "todo dia às 06:30 (Brasília)"
+            }
+          ],
+          "historico": [
+            {
+              "id": 103,
+              "evento": "schedule",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-10-13T10:00:03Z",
+              "atualizado_em": "2026-10-13T10:04:10Z",
+              "url": "https://github.com/gfvdata-web/exemplo/actions/runs/103",
+              "duracao_s": 247
+            },
+            {
+              "id": 102,
+              "evento": "workflow_dispatch",
+              "status": "completed",
+              "conclusao": "failure",
+              "criado_em": "2026-10-12T10:00:03Z",
+              "atualizado_em": "2026-10-12T10:02:00Z",
+              "url": "https://github.com/gfvdata-web/exemplo/actions/runs/102",
+              "duracao_s": 117
+            },
+            {
+              "id": 101,
+              "evento": "schedule",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-10-11T10:00:03Z",
+              "atualizado_em": "2026-10-11T10:03:30Z",
+              "url": "https://github.com/gfvdata-web/exemplo/actions/runs/101",
+              "duracao_s": 207
+            }
+          ],
+          "ultimo_sucesso": {
+            "id": 103,
+            "evento": "schedule",
+            "status": "completed",
+            "conclusao": "success",
+            "criado_em": "2026-10-13T10:00:03Z",
+            "atualizado_em": "2026-10-13T10:04:10Z",
+            "url": "https://github.com/gfvdata-web/exemplo/actions/runs/103"
+          },
+          "ultima_falha": {
+            "id": 102,
+            "evento": "workflow_dispatch",
+            "status": "completed",
+            "conclusao": "failure",
+            "criado_em": "2026-10-12T10:00:03Z",
+            "atualizado_em": "2026-10-12T10:02:00Z",
+            "url": "https://github.com/gfvdata-web/exemplo/actions/runs/102",
+            "motivo": {
+              "job": "coletar",
+              "passo": "Coletar dados",
+              "mensagem": "requests.exceptions.HTTPError: 503 Server Error: Service Unavailable"
+            }
+          },
+          "passos_ultima": [
+            {
+              "nome": "Set up job",
+              "conclusao": "success"
+            },
+            {
+              "nome": "Roda pipeline (novo palpite)",
+              "conclusao": "success"
+            },
+            {
+              "nome": "Verificador — espera o resultado",
+              "conclusao": "skipped"
+            },
+            {
+              "nome": "Estágio 1 — ficha",
+              "conclusao": "success"
+            },
+            {
+              "nome": "Estágio 2-4 — relatório",
+              "conclusao": "success"
+            },
+            {
+              "nome": "Commitar ficha e PDF",
+              "conclusao": "success"
+            }
+          ]
+        },
+        "commits_dados": [
+          {
+            "data": "2026-10-13T08:00:12Z",
+            "mensagem": "Atualiza dados da rodada 21",
+            "sha": "a1b2c3d",
+            "url": "https://github.com/gfvdata-web/exemplo/commit/a1b2c3d4e5f60718293a4b5c6d7e8f9012345678"
+          },
+          {
+            "data": "2026-10-12T08:00:05Z",
+            "mensagem": "Atualiza dados da rodada 20",
+            "sha": "ffeeddc",
+            "url": "https://github.com/gfvdata-web/exemplo/commit/ffeeddccbbaa00998877665544332211ffeeddcc"
+          }
+        ],
+        "deploy_pages": {
+          "status": "completed",
+          "conclusao": "success",
+          "criado_em": "2026-10-13T10:05:00Z",
+          "atualizado_em": "2026-10-13T10:06:00Z",
+          "url": "https://github.com/gfvdata-web/exemplo/actions/runs/7"
+        }
+      },
+      "alertas": [],
+      "historico_arquivo": "dados/historico/chess_tracking.json",
+      "acesso": {
+        "visitantes_unicos": 123,
+        "serie_diaria": [
+          {
+            "data": "2026-10-01",
+            "visitantes": 4
+          },
+          {
+            "data": "2026-10-02",
+            "visitantes": 6
+          },
+          {
+            "data": "2026-10-12",
+            "visitantes": 9
+          }
+        ]
+      }
+    },
+    {
+      "slug": "plants_care",
+      "nome": "Plants Care",
+      "repo": "PlantsCare",
+      "pages_url": "https://plantscare.gfvdata.com/",
+      "destaque": false,
+      "form_url": "https://forms.gle/y3uXaukJXmP9GMED7",
+      "form_rotulo": "Enviar fotos",
+      "ultimo_commit_dados": {
+        "data": "2026-10-13T08:00:12Z",
+        "mensagem": "Atualiza dados da rodada 21",
+        "sha": "a1b2c3d",
+        "url": "https://github.com/gfvdata-web/exemplo/commit/a1b2c3d4e5f60718293a4b5c6d7e8f9012345678"
+      },
+      "ultima_execucao_pipeline": {
+        "id": 103,
+        "evento": "schedule",
+        "status": "completed",
+        "conclusao": "success",
+        "criado_em": "2026-10-13T10:00:03Z",
+        "atualizado_em": "2026-10-13T10:04:10Z",
+        "url": "https://github.com/gfvdata-web/exemplo/actions/runs/103"
+      },
+      "site_no_ar": {
+        "ok": true,
+        "status_http": 200
+      },
+      "detalhes": {
+        "coleta": {
+          "workflow": "sensor-sync.yml",
+          "url_workflow": "https://github.com/gfvdata-web/PlantsCare/actions/workflows/sensor-sync.yml",
+          "agenda": [
+            {
+              "cron": "0 21 * * 1-5",
+              "descricao": "de segunda a sexta às 18:00 (Brasília)"
+            },
+            {
+              "cron": "30 9 * * *",
+              "descricao": "todo dia às 06:30 (Brasília)"
+            }
+          ],
+          "historico": [
+            {
+              "id": 103,
+              "evento": "schedule",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-10-13T10:00:03Z",
+              "atualizado_em": "2026-10-13T10:04:10Z",
+              "url": "https://github.com/gfvdata-web/exemplo/actions/runs/103",
+              "duracao_s": 247
+            },
+            {
+              "id": 102,
+              "evento": "workflow_dispatch",
+              "status": "completed",
+              "conclusao": "failure",
+              "criado_em": "2026-10-12T10:00:03Z",
+              "atualizado_em": "2026-10-12T10:02:00Z",
+              "url": "https://github.com/gfvdata-web/exemplo/actions/runs/102",
+              "duracao_s": 117
+            },
+            {
+              "id": 101,
+              "evento": "schedule",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-10-11T10:00:03Z",
+              "atualizado_em": "2026-10-11T10:03:30Z",
+              "url": "https://github.com/gfvdata-web/exemplo/actions/runs/101",
+              "duracao_s": 207
+            }
+          ],
+          "ultimo_sucesso": {
+            "id": 103,
+            "evento": "schedule",
+            "status": "completed",
+            "conclusao": "success",
+            "criado_em": "2026-10-13T10:00:03Z",
+            "atualizado_em": "2026-10-13T10:04:10Z",
+            "url": "https://github.com/gfvdata-web/exemplo/actions/runs/103"
+          },
+          "ultima_falha": {
+            "id": 102,
+            "evento": "workflow_dispatch",
+            "status": "completed",
+            "conclusao": "failure",
+            "criado_em": "2026-10-12T10:00:03Z",
+            "atualizado_em": "2026-10-12T10:02:00Z",
+            "url": "https://github.com/gfvdata-web/exemplo/actions/runs/102",
+            "motivo": {
+              "job": "coletar",
+              "passo": "Coletar dados",
+              "mensagem": "requests.exceptions.HTTPError: 503 Server Error: Service Unavailable"
+            }
+          },
+          "passos_ultima": [
+            {
+              "nome": "Set up job",
+              "conclusao": "success"
+            },
+            {
+              "nome": "Roda pipeline (novo palpite)",
+              "conclusao": "success"
+            },
+            {
+              "nome": "Verificador — espera o resultado",
+              "conclusao": "skipped"
+            },
+            {
+              "nome": "Estágio 1 — ficha",
+              "conclusao": "success"
+            },
+            {
+              "nome": "Estágio 2-4 — relatório",
+              "conclusao": "success"
+            },
+            {
+              "nome": "Commitar ficha e PDF",
+              "conclusao": "success"
+            }
+          ]
+        },
+        "commits_dados": [
+          {
+            "data": "2026-10-13T08:00:12Z",
+            "mensagem": "Atualiza dados da rodada 21",
+            "sha": "a1b2c3d",
+            "url": "https://github.com/gfvdata-web/exemplo/commit/a1b2c3d4e5f60718293a4b5c6d7e8f9012345678"
+          },
+          {
+            "data": "2026-10-12T08:00:05Z",
+            "mensagem": "Atualiza dados da rodada 20",
+            "sha": "ffeeddc",
+            "url": "https://github.com/gfvdata-web/exemplo/commit/ffeeddccbbaa00998877665544332211ffeeddcc"
+          }
+        ],
+        "deploy_pages": {
+          "status": "completed",
+          "conclusao": "success",
+          "criado_em": "2026-10-13T10:05:00Z",
+          "atualizado_em": "2026-10-13T10:06:00Z",
+          "url": "https://github.com/gfvdata-web/exemplo/actions/runs/7"
+        }
+      },
+      "alertas": [],
+      "pipeline_forms": {
+        "workflow": "pipeline.yml",
+        "execucao": {
+          "id": 103,
+          "evento": "schedule",
+          "status": "completed",
+          "conclusao": "success",
+          "criado_em": "2026-10-13T10:00:03Z",
+          "atualizado_em": "2026-10-13T10:04:10Z",
+          "url": "https://github.com/gfvdata-web/exemplo/actions/runs/103"
+        },
+        "etapas": [
+          {
+            "chave": "forms",
+            "titulo": "Fotos enviadas (Google Forms)",
+            "estado": "ok",
+            "detalhe": "Apps Script gravou o envio em inbox/ no GitHub e disparou o pipeline.",
+            "quando": "2026-10-13T10:00:03Z"
+          },
+          {
+            "chave": "ficha",
+            "titulo": "Ficha da planta atualizada",
+            "estado": "ok",
+            "detalhe": "Fotos copiadas e entrada nova escrita na ficha.",
+            "quando": "2026-10-13T10:00:30Z"
+          },
+          {
+            "chave": "relatorio",
+            "titulo": "Relatório da IA (Gemini) → PDF → e-mail",
+            "estado": "ok",
+            "detalhe": "Síntese do Gemini, PDF e e-mail enviados.",
+            "quando": "2026-10-13T10:02:00Z"
+          },
+          {
+            "chave": "commit",
+            "titulo": "Salvo no repositório",
+            "estado": "ok",
+            "detalhe": "Ficha, fotos e PDF commitados; envio retirado de inbox/.",
+            "quando": "2026-10-13T10:02:10Z"
+          }
+        ]
+      },
+      "historico_arquivo": "dados/historico/plants_care.json"
+    },
+    {
+      "slug": "eleicoes_2026",
+      "nome": "Eleições 2026",
+      "repo": "eleicoes-2026",
+      "pages_url": "https://gfvdata-web.github.io/eleicoes-2026/",
+      "destaque": false,
+      "ultimo_commit_dados": {
+        "data": "2026-10-13T08:00:12Z",
+        "mensagem": "Atualiza dados da rodada 21",
+        "sha": "a1b2c3d",
+        "url": "https://github.com/gfvdata-web/exemplo/commit/a1b2c3d4e5f60718293a4b5c6d7e8f9012345678"
+      },
+      "site_no_ar": {
+        "ok": true,
+        "status_http": 200
+      },
+      "detalhes": {
+        "coleta": null,
+        "commits_dados": [
+          {
+            "data": "2026-10-13T08:00:12Z",
+            "mensagem": "Atualiza dados da rodada 21",
+            "sha": "a1b2c3d",
+            "url": "https://github.com/gfvdata-web/exemplo/commit/a1b2c3d4e5f60718293a4b5c6d7e8f9012345678"
+          },
+          {
+            "data": "2026-10-12T08:00:05Z",
+            "mensagem": "Atualiza dados da rodada 20",
+            "sha": "ffeeddc",
+            "url": "https://github.com/gfvdata-web/exemplo/commit/ffeeddccbbaa00998877665544332211ffeeddcc"
+          }
+        ],
+        "deploy_pages": {
+          "status": "completed",
+          "conclusao": "success",
+          "criado_em": "2026-10-13T10:05:00Z",
+          "atualizado_em": "2026-10-13T10:06:00Z",
+          "url": "https://github.com/gfvdata-web/exemplo/actions/runs/7"
+        }
+      },
+      "alertas": []
+    },
+    {
+      "slug": "painel_esportivo",
+      "nome": "Painel esportivo",
+      "repo": "painel-esportivo",
+      "pages_url": "https://gfvdata-web.github.io/painel-esportivo/",
+      "destaque": false,
+      "ultimo_commit_dados": {
+        "data": "2026-10-13T08:00:12Z",
+        "mensagem": "Atualiza dados da rodada 21",
+        "sha": "a1b2c3d",
+        "url": "https://github.com/gfvdata-web/exemplo/commit/a1b2c3d4e5f60718293a4b5c6d7e8f9012345678"
+      },
+      "site_no_ar": {
+        "ok": true,
+        "status_http": 200
+      },
+      "detalhes": {
+        "coleta": null,
+        "commits_dados": [
+          {
+            "data": "2026-10-13T08:00:12Z",
+            "mensagem": "Atualiza dados da rodada 21",
+            "sha": "a1b2c3d",
+            "url": "https://github.com/gfvdata-web/exemplo/commit/a1b2c3d4e5f60718293a4b5c6d7e8f9012345678"
+          },
+          {
+            "data": "2026-10-12T08:00:05Z",
+            "mensagem": "Atualiza dados da rodada 20",
+            "sha": "ffeeddc",
+            "url": "https://github.com/gfvdata-web/exemplo/commit/ffeeddccbbaa00998877665544332211ffeeddcc"
+          }
+        ],
+        "deploy_pages": {
+          "status": "completed",
+          "conclusao": "success",
+          "criado_em": "2026-10-13T10:05:00Z",
+          "atualizado_em": "2026-10-13T10:06:00Z",
+          "url": "https://github.com/gfvdata-web/exemplo/actions/runs/7"
+        }
+      },
+      "alertas": []
+    },
+    {
+      "slug": "dashboard_municipios",
+      "nome": "Dashboard dos municípios",
+      "repo": "dashboard-municipios",
+      "pages_url": "https://gfvdata-web.github.io/dashboard-municipios/",
+      "destaque": false,
+      "ultimo_commit_dados": {
+        "data": "2026-10-13T08:00:12Z",
+        "mensagem": "Atualiza dados da rodada 21",
+        "sha": "a1b2c3d",
+        "url": "https://github.com/gfvdata-web/exemplo/commit/a1b2c3d4e5f60718293a4b5c6d7e8f9012345678"
+      },
+      "site_no_ar": {
+        "ok": true,
+        "status_http": 200
+      },
+      "detalhes": {
+        "coleta": null,
+        "commits_dados": [
+          {
+            "data": "2026-10-13T08:00:12Z",
+            "mensagem": "Atualiza dados da rodada 21",
+            "sha": "a1b2c3d",
+            "url": "https://github.com/gfvdata-web/exemplo/commit/a1b2c3d4e5f60718293a4b5c6d7e8f9012345678"
+          },
+          {
+            "data": "2026-10-12T08:00:05Z",
+            "mensagem": "Atualiza dados da rodada 20",
+            "sha": "ffeeddc",
+            "url": "https://github.com/gfvdata-web/exemplo/commit/ffeeddccbbaa00998877665544332211ffeeddcc"
+          }
+        ],
+        "deploy_pages": {
+          "status": "completed",
+          "conclusao": "success",
+          "criado_em": "2026-10-13T10:05:00Z",
+          "atualizado_em": "2026-10-13T10:06:00Z",
+          "url": "https://github.com/gfvdata-web/exemplo/actions/runs/7"
+        }
+      },
+      "alertas": []
+    },
+    {
+      "slug": "var_vendo",
+      "nome": "VarVendo",
+      "repo": "var-vendo",
+      "pages_url": "https://gfvdata-web.github.io/var-vendo/",
+      "destaque": false,
+      "ultimo_commit_dados": {
+        "data": "2026-10-13T08:00:12Z",
+        "mensagem": "Atualiza dados da rodada 21",
+        "sha": "a1b2c3d",
+        "url": "https://github.com/gfvdata-web/exemplo/commit/a1b2c3d4e5f60718293a4b5c6d7e8f9012345678"
+      },
+      "site_no_ar": {
+        "ok": true,
+        "status_http": 200
+      },
+      "detalhes": {
+        "coleta": null,
+        "commits_dados": [
+          {
+            "data": "2026-10-13T08:00:12Z",
+            "mensagem": "Atualiza dados da rodada 21",
+            "sha": "a1b2c3d",
+            "url": "https://github.com/gfvdata-web/exemplo/commit/a1b2c3d4e5f60718293a4b5c6d7e8f9012345678"
+          },
+          {
+            "data": "2026-10-12T08:00:05Z",
+            "mensagem": "Atualiza dados da rodada 20",
+            "sha": "ffeeddc",
+            "url": "https://github.com/gfvdata-web/exemplo/commit/ffeeddccbbaa00998877665544332211ffeeddcc"
+          }
+        ],
+        "deploy_pages": {
+          "status": "completed",
+          "conclusao": "success",
+          "criado_em": "2026-10-13T10:05:00Z",
+          "atualizado_em": "2026-10-13T10:06:00Z",
+          "url": "https://github.com/gfvdata-web/exemplo/actions/runs/7"
+        }
+      },
+      "alertas": [],
+      "acesso": {
+        "visitantes_unicos": 123,
+        "serie_diaria": [
+          {
+            "data": "2026-10-01",
+            "visitantes": 4
+          },
+          {
+            "data": "2026-10-02",
+            "visitantes": 6
+          },
+          {
+            "data": "2026-10-12",
+            "visitantes": 9
+          }
+        ]
+      }
+    },
+    {
+      "slug": "evolucao_fotografia",
+      "nome": "Evolução Fotografia",
+      "repo": "evolucao-fotografia",
+      "pages_url": "https://gfvdata-web.github.io/evolucao-fotografia/",
+      "destaque": false,
+      "ultimo_commit_dados": {
+        "data": "2026-10-13T08:00:12Z",
+        "mensagem": "Atualiza dados da rodada 21",
+        "sha": "a1b2c3d",
+        "url": "https://github.com/gfvdata-web/exemplo/commit/a1b2c3d4e5f60718293a4b5c6d7e8f9012345678"
+      },
+      "site_no_ar": {
+        "ok": true,
+        "status_http": 200
+      },
+      "detalhes": {
+        "coleta": null,
+        "commits_dados": [
+          {
+            "data": "2026-10-13T08:00:12Z",
+            "mensagem": "Atualiza dados da rodada 21",
+            "sha": "a1b2c3d",
+            "url": "https://github.com/gfvdata-web/exemplo/commit/a1b2c3d4e5f60718293a4b5c6d7e8f9012345678"
+          },
+          {
+            "data": "2026-10-12T08:00:05Z",
+            "mensagem": "Atualiza dados da rodada 20",
+            "sha": "ffeeddc",
+            "url": "https://github.com/gfvdata-web/exemplo/commit/ffeeddccbbaa00998877665544332211ffeeddcc"
+          }
+        ],
+        "deploy_pages": {
+          "status": "completed",
+          "conclusao": "success",
+          "criado_em": "2026-10-13T10:05:00Z",
+          "atualizado_em": "2026-10-13T10:06:00Z",
+          "url": "https://github.com/gfvdata-web/exemplo/actions/runs/7"
+        }
+      },
+      "alertas": []
+    }
+  ],
+  "forms_avulsos": [
+    {
+      "nome": "Notas fiscais",
+      "url": "https://forms.gle/ftgMMg1Lwpoi7j3Z8"
+    }
+  ]
+}

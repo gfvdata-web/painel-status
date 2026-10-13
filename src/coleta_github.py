@@ -57,7 +57,7 @@ def commits_no_caminho(owner, repo, caminho, quantidade=5, branch=None):
     return [
         {
             "data": commit["commit"]["author"]["date"],
-            "mensagem": commit["commit"]["message"].splitlines()[0],
+            "mensagem": (commit["commit"]["message"].splitlines() or [""])[0],  # git aceita commit sem mensagem
             "sha": commit["sha"][:7],
             "url": commit["html_url"],
         }

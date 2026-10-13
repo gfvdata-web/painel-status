@@ -124,7 +124,16 @@ android/                  # app Android nativo (lê o mesmo status.json; ver "Ap
 ├── atualizar-status.yml  # coleta (3 em 3 h), vigia do Bolão e vigia do envio do Forms
 └── android.yml           # testes → lint → APK; tag app-vX.Y.Z publica o APK assinado
 scripts/
-└── check                 # checagem rápida (py_compile, JSON de docs/dados, tsc do worker); sem argumento roda tudo
+└── check                 # testes sem rede/tokens/navegador: sintaxe, JSON, tsc do worker e tests/; sem argumento roda tudo, com um arquivo só o que vale para ele
+tests/                    # testes automáticos (unittest + node --test), rodados pelo scripts/check
+├── test_*.py             # Python: cadastro, coletores (API do GitHub/GoatCounter falsa), etapas, vigias, histórico, publicação, envio, páginas, docs/workflow/Worker
+├── paginas.test.mjs      # roda lista.js e app.js no Node com um DOM de mentira e o status.json de exemplo
+├── worker.test.mjs       # roda worker/src/index.ts no Node com D1/KV em memória (rotas, validação do envio, APK, agenda)
+├── contrato.py           # contrato do status.json/histórico (campos que páginas, Worker e app leem)
+├── apoio.py              # rede bloqueada, relógio fixo, API falsa; regenerar_fixtures.py refaz o status de exemplo
+└── fixtures/             # respostas da API (formato real, reduzidas) e o status.json de exemplo
+.githooks/
+└── pre-commit            # roda scripts/check completo antes de cada commit (git config core.hooksPath .githooks)
 ```
 
 Um problema de rede em um site (timeout, HTTP 5xx) vira um campo `erro` no card dele e não
@@ -137,6 +146,10 @@ Rodar localmente:
 python -m src.publicacao
 python -m http.server --directory docs 8000
 ```
+
+Testes (sem rede, sem tokens, sem navegador; ~10 s): `bash scripts/check`. Com um arquivo só, `bash scripts/check src/etapas_bolao.py`.
+O pre-commit (`.githooks/pre-commit`) roda o completo e bloqueia o commit se algo falhar; depois de clonar, `git config core.hooksPath .githooks`.
+O `tsc` do worker precisa de `npm ci --prefix worker` uma vez.
 
 ## Cloudflare (Worker + D1 + KV)
 
@@ -333,7 +346,7 @@ Exige login Google para abrir (configuração do próprio Forms). O antigo "Upda
 1. **Site:** copiar uma entrada de `SITES` em `src/config.py` (todas têm os mesmos campos) e
    ajustar. **Form avulso:** acrescentar `{"nome": ..., "url": ...}` em `FORMS_AVULSOS`.
 2. Atualizar a tabela correspondente neste README.
-3. Conferir localmente: `python -c "import src.config as c; c.validar()"` e, para ver a
+3. Conferir localmente: `bash scripts/check` (valida o cadastro e confere se o README lista o site) e, para ver a
    página, `python -m src.publicacao` + `python -m http.server --directory docs 8000`
    (sem `GOATCOUNTER_TOKEN` local os números de acesso somem — não commitar esse
    `status.json`; o Action regenera).

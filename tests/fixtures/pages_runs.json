@@ -1,0 +1,14 @@
+{
+  "total_count": 3,
+  "workflow_runs": [
+    {"id": 7, "name": "pages build and deployment", "status": "completed", "conclusion": "success",
+     "created_at": "2026-10-13T10:05:00Z", "updated_at": "2026-10-13T10:06:00Z",
+     "html_url": "https://github.com/gfvdata-web/exemplo/actions/runs/7"},
+    {"id": 6, "name": "Outro workflow", "status": "completed", "conclusion": "success",
+     "created_at": "2026-10-13T10:04:00Z", "updated_at": "2026-10-13T10:04:30Z",
+     "html_url": "https://github.com/gfvdata-web/exemplo/actions/runs/6"},
+    {"id": 5, "name": "pages build and deployment", "status": "completed", "conclusion": "cancelled",
+     "created_at": "2026-10-12T10:05:00Z", "updated_at": "2026-10-12T10:05:10Z",
+     "html_url": "https://github.com/gfvdata-web/exemplo/actions/runs/5"}
+  ]
+}

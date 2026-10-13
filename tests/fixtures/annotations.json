@@ -1,0 +1,4 @@
+[
+  {"annotation_level": "warning", "message": "Node.js 20 is deprecated."},
+  {"annotation_level": "failure", "message": "Process completed with exit code 1."}
+]

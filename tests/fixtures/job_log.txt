@@ -1,0 +1,4 @@
+2026-10-12T10:00:06.1000000Z ##[group]Run python coletar.py
+2026-10-12T10:01:40.2000000Z Baixando dados...
+2026-10-12T10:01:49.3000000Z requests.exceptions.HTTPError: 503 Server Error: Service Unavailable
+2026-10-12T10:01:49.4000000Z ##[error]Process completed with exit code 1.

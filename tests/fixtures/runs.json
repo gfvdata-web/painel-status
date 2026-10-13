@@ -1,0 +1,14 @@
+{
+  "total_count": 3,
+  "workflow_runs": [
+    {"id": 103, "event": "schedule", "status": "completed", "conclusion": "success",
+     "created_at": "2026-10-13T10:00:03Z", "updated_at": "2026-10-13T10:04:10Z",
+     "html_url": "https://github.com/gfvdata-web/exemplo/actions/runs/103", "name": "Coleta"},
+    {"id": 102, "event": "workflow_dispatch", "status": "completed", "conclusion": "failure",
+     "created_at": "2026-10-12T10:00:03Z", "updated_at": "2026-10-12T10:02:00Z",
+     "html_url": "https://github.com/gfvdata-web/exemplo/actions/runs/102", "name": "Coleta"},
+    {"id": 101, "event": "schedule", "status": "completed", "conclusion": "success",
+     "created_at": "2026-10-11T10:00:03Z", "updated_at": "2026-10-11T10:03:30Z",
+     "html_url": "https://github.com/gfvdata-web/exemplo/actions/runs/101", "name": "Coleta"}
+  ]
+}

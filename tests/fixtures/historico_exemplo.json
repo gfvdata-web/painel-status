@@ -1,0 +1,56 @@
+{
+  "slug": "chess_tracking",
+  "nome": "Chess Tracking",
+  "workflow": "atualizar-partidas.yml",
+  "url_workflow": "https://github.com/gfvdata-web/chess-tracking/actions/workflows/atualizar-partidas.yml",
+  "atualizado_em": "2026-10-13T12:00:00+00:00",
+  "execucoes": [
+    {
+      "id": 103,
+      "criado_em": "2026-10-13T10:00:03Z",
+      "evento": "schedule",
+      "conclusao": "success",
+      "duracao_s": 247,
+      "url": "https://github.com/gfvdata-web/exemplo/actions/runs/103",
+      "avisos": [
+        {
+          "nivel": "warning",
+          "mensagem": "Node.js 20 is deprecated."
+        }
+      ]
+    },
+    {
+      "id": 102,
+      "criado_em": "2026-10-12T10:00:03Z",
+      "evento": "workflow_dispatch",
+      "conclusao": "failure",
+      "duracao_s": 117,
+      "url": "https://github.com/gfvdata-web/exemplo/actions/runs/102",
+      "avisos": [
+        {
+          "nivel": "warning",
+          "mensagem": "Node.js 20 is deprecated."
+        }
+      ],
+      "motivo": {
+        "job": "coletar",
+        "passo": "Coletar dados",
+        "mensagem": "requests.exceptions.HTTPError: 503 Server Error: Service Unavailable"
+      }
+    },
+    {
+      "id": 101,
+      "criado_em": "2026-10-11T10:00:03Z",
+      "evento": "schedule",
+      "conclusao": "success",
+      "duracao_s": 207,
+      "url": "https://github.com/gfvdata-web/exemplo/actions/runs/101",
+      "avisos": [
+        {
+          "nivel": "warning",
+          "mensagem": "Node.js 20 is deprecated."
+        }
+      ]
+    }
+  ]
+}
