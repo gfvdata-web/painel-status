@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-10-13T11:56:39.814219+00:00",
+    "gerado_em": "2026-10-13T13:09:15.562714+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -1584,25 +1584,16 @@
     {
       "slug": "plants_care",
       "nome": "Plants Care",
-      "repo": "PlantsCare-publico",
-      "pages_url": "https://gfvdata-web.github.io/PlantsCare-publico/",
+      "repo": "PlantsCare",
+      "pages_url": "https://plantscare.gfvdata.com/",
       "destaque": false,
       "form_url": "https://forms.gle/y3uXaukJXmP9GMED7",
       "form_rotulo": "Enviar fotos",
       "ultimo_commit_dados": {
-        "data": "2026-10-13T08:45:53Z",
-        "mensagem": "Atualiza site a partir de PlantsCare@c2e6b4d",
-        "sha": "8f9614f",
-        "url": "https://github.com/gfvdata-web/PlantsCare-publico/commit/8f9614fa8dd9a9abf23ae8fb90b07aa33a49318a"
+        "erro": "HTTP 404 ao consultar commits"
       },
       "ultima_execucao_pipeline": {
-        "id": 38371511989,
-        "evento": "push",
-        "status": "completed",
-        "conclusao": "success",
-        "criado_em": "2026-10-13T08:45:56Z",
-        "atualizado_em": "2026-10-13T08:47:11Z",
-        "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/38371511989"
+        "erro": "HTTP 404 ao consultar execuções"
       },
       "site_no_ar": {
         "ok": true,
@@ -1610,253 +1601,26 @@
       },
       "detalhes": {
         "coleta": {
-          "workflow": "deploy-pages.yml",
-          "url_workflow": "https://github.com/gfvdata-web/PlantsCare-publico/actions/workflows/deploy-pages.yml",
+          "workflow": "sensor-sync.yml",
+          "url_workflow": "https://github.com/gfvdata-web/PlantsCare/actions/workflows/sensor-sync.yml",
           "agenda": [],
-          "historico": [
-            {
-              "id": 38371511989,
-              "evento": "push",
-              "status": "completed",
-              "conclusao": "success",
-              "criado_em": "2026-10-13T08:45:56Z",
-              "atualizado_em": "2026-10-13T08:47:11Z",
-              "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/38371511989",
-              "duracao_s": 75
-            },
-            {
-              "id": 38333578636,
-              "evento": "push",
-              "status": "completed",
-              "conclusao": "success",
-              "criado_em": "2026-10-13T01:44:40Z",
-              "atualizado_em": "2026-10-13T01:45:12Z",
-              "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/38333578636",
-              "duracao_s": 32
-            },
-            {
-              "id": 38298298503,
-              "evento": "push",
-              "status": "completed",
-              "conclusao": "success",
-              "criado_em": "2026-10-12T19:32:12Z",
-              "atualizado_em": "2026-10-12T19:32:44Z",
-              "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/38298298503",
-              "duracao_s": 32
-            },
-            {
-              "id": 38214433313,
-              "evento": "push",
-              "status": "completed",
-              "conclusao": "success",
-              "criado_em": "2026-10-12T06:49:23Z",
-              "atualizado_em": "2026-10-12T06:49:54Z",
-              "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/38214433313",
-              "duracao_s": 31
-            },
-            {
-              "id": 38186845433,
-              "evento": "push",
-              "status": "completed",
-              "conclusao": "success",
-              "criado_em": "2026-10-12T00:08:00Z",
-              "atualizado_em": "2026-10-12T00:08:30Z",
-              "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/38186845433",
-              "duracao_s": 30
-            },
-            {
-              "id": 38173403737,
-              "evento": "push",
-              "status": "completed",
-              "conclusao": "success",
-              "criado_em": "2026-10-11T20:43:31Z",
-              "atualizado_em": "2026-10-11T20:44:02Z",
-              "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/38173403737",
-              "duracao_s": 31
-            },
-            {
-              "id": 38153959549,
-              "evento": "push",
-              "status": "completed",
-              "conclusao": "success",
-              "criado_em": "2026-10-11T16:04:55Z",
-              "atualizado_em": "2026-10-11T16:05:24Z",
-              "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/38153959549",
-              "duracao_s": 29
-            },
-            {
-              "id": 38107451966,
-              "evento": "push",
-              "status": "completed",
-              "conclusao": "success",
-              "criado_em": "2026-10-11T03:08:57Z",
-              "atualizado_em": "2026-10-11T03:09:30Z",
-              "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/38107451966",
-              "duracao_s": 33
-            },
-            {
-              "id": 38080657728,
-              "evento": "push",
-              "status": "completed",
-              "conclusao": "success",
-              "criado_em": "2026-10-10T19:39:22Z",
-              "atualizado_em": "2026-10-10T19:39:57Z",
-              "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/38080657728",
-              "duracao_s": 35
-            },
-            {
-              "id": 38064474110,
-              "evento": "push",
-              "status": "completed",
-              "conclusao": "success",
-              "criado_em": "2026-10-10T15:39:12Z",
-              "atualizado_em": "2026-10-10T15:39:40Z",
-              "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/38064474110",
-              "duracao_s": 28
-            },
-            {
-              "id": 38036170256,
-              "evento": "push",
-              "status": "completed",
-              "conclusao": "success",
-              "criado_em": "2026-10-10T07:56:47Z",
-              "atualizado_em": "2026-10-10T07:57:15Z",
-              "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/38036170256",
-              "duracao_s": 28
-            },
-            {
-              "id": 38013107824,
-              "evento": "push",
-              "status": "completed",
-              "conclusao": "success",
-              "criado_em": "2026-10-10T01:25:15Z",
-              "atualizado_em": "2026-10-10T01:25:52Z",
-              "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/38013107824",
-              "duracao_s": 37
-            },
-            {
-              "id": 37993296867,
-              "evento": "push",
-              "status": "completed",
-              "conclusao": "success",
-              "criado_em": "2026-10-09T21:24:50Z",
-              "atualizado_em": "2026-10-09T21:25:17Z",
-              "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/37993296867",
-              "duracao_s": 27
-            },
-            {
-              "id": 37961254161,
-              "evento": "push",
-              "status": "completed",
-              "conclusao": "success",
-              "criado_em": "2026-10-09T16:44:12Z",
-              "atualizado_em": "2026-10-09T16:45:03Z",
-              "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/37961254161",
-              "duracao_s": 51
-            },
-            {
-              "id": 37913907095,
-              "evento": "push",
-              "status": "completed",
-              "conclusao": "success",
-              "criado_em": "2026-10-09T09:51:03Z",
-              "atualizado_em": "2026-10-09T09:51:35Z",
-              "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/37913907095",
-              "duracao_s": 32
-            }
-          ],
-          "ultimo_sucesso": {
-            "id": 38371511989,
-            "evento": "push",
-            "status": "completed",
-            "conclusao": "success",
-            "criado_em": "2026-10-13T08:45:56Z",
-            "atualizado_em": "2026-10-13T08:47:11Z",
-            "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/38371511989"
-          },
+          "historico": [],
+          "ultimo_sucesso": null,
           "ultima_falha": null,
-          "passos_ultima": [
-            {
-              "nome": "Set up job",
-              "conclusao": "success"
-            },
-            {
-              "nome": "Run actions/checkout@v7",
-              "conclusao": "success"
-            },
-            {
-              "nome": "Run actions/setup-python@v7",
-              "conclusao": "success"
-            },
-            {
-              "nome": "Run pip install \"mkdocs==1.6.1\" \"mkdocs-material==9.7.7\" \"mdx-truly-sane-lists==1.3\"",
-              "conclusao": "success"
-            },
-            {
-              "nome": "Run mkdocs build -d _site/docs",
-              "conclusao": "success"
-            },
-            {
-              "nome": "Run cp -r painel/. _site/",
-              "conclusao": "success"
-            },
-            {
-              "nome": "Run actions/upload-pages-artifact@v3",
-              "conclusao": "success"
-            },
-            {
-              "nome": "Run actions/deploy-pages@v4",
-              "conclusao": "success"
-            },
-            {
-              "nome": "Post Run actions/setup-python@v7",
-              "conclusao": "success"
-            },
-            {
-              "nome": "Post Run actions/checkout@v7",
-              "conclusao": "success"
-            },
-            {
-              "nome": "Complete job",
-              "conclusao": "success"
-            }
-          ]
+          "passos_ultima": [],
+          "erro": "HTTP 404 ao consultar execuções"
         },
-        "commits_dados": [
-          {
-            "data": "2026-10-13T08:45:53Z",
-            "mensagem": "Atualiza site a partir de PlantsCare@c2e6b4d",
-            "sha": "8f9614f",
-            "url": "https://github.com/gfvdata-web/PlantsCare-publico/commit/8f9614fa8dd9a9abf23ae8fb90b07aa33a49318a"
-          },
-          {
-            "data": "2026-10-13T01:44:37Z",
-            "mensagem": "Atualiza site a partir de PlantsCare@7fe5a55",
-            "sha": "aca44d5",
-            "url": "https://github.com/gfvdata-web/PlantsCare-publico/commit/aca44d5d9de98610ccce6ec2b3a18882990077a8"
-          },
-          {
-            "data": "2026-10-12T19:32:09Z",
-            "mensagem": "Atualiza site a partir de PlantsCare@ef050a7",
-            "sha": "52f9045",
-            "url": "https://github.com/gfvdata-web/PlantsCare-publico/commit/52f9045d84b4de5f6d4175483d0b827f44f522e8"
-          },
-          {
-            "data": "2026-10-12T06:49:20Z",
-            "mensagem": "Atualiza site a partir de PlantsCare@c0ac54b",
-            "sha": "d69e3ac",
-            "url": "https://github.com/gfvdata-web/PlantsCare-publico/commit/d69e3ac1a8784d9c17bf52b2514adc8a24b2557a"
-          },
-          {
-            "data": "2026-10-12T00:07:57Z",
-            "mensagem": "Atualiza site a partir de PlantsCare@f283e43",
-            "sha": "bcbc744",
-            "url": "https://github.com/gfvdata-web/PlantsCare-publico/commit/bcbc744bf4e250842cc6c07c55e7061dc1342531"
-          }
-        ],
+        "commits_dados": [],
         "deploy_pages": null
       },
       "alertas": [],
+      "pipeline_forms": {
+        "workflow": "pipeline.yml",
+        "execucao": {
+          "erro": "HTTP 404 ao consultar execuções"
+        },
+        "etapas": null
+      },
       "historico_arquivo": "dados/historico/plants_care.json"
     },
     {
