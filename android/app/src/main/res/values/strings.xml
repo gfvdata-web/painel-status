@@ -149,7 +149,7 @@
     <string name="form_avulso">Form avulso</string>
 
     <!-- Sobre -->
-    <string name="sobre_texto">Acompanha os sites publicados pela conta gfvdata-web: se estão no ar, quando os dados mudaram, as rotinas de coleta e o passo a passo de cada atualização do Bolão F1. Tudo vem do painel publicado no GitHub Pages; o app só lê. Com o app fechado, ele pode avisar por notificação (ícone do sino).</string>
+    <string name="sobre_texto">Acompanha os sites publicados pela conta gfvdata-web: se estão no ar, quando os dados mudaram, as rotinas de coleta e o passo a passo de cada atualização do Bolão F1. Tudo vem do painel publicado em painel.gfvdata.com; o app só lê. Com o app fechado, ele pode avisar por notificação (ícone do sino).</string>
     <string name="sobre_recarga">Com o app aberto, o painel é conferido a cada %1$d min (o mesmo intervalo da página). Puxe a tela para baixo para conferir na hora.</string>
     <string name="abrir_painel_web">Abrir o painel na web</string>
     <string name="sobre_versao">Versão %1$s · build %2$d</string>

@@ -24,8 +24,14 @@ import java.util.concurrent.TimeUnit
 
 /** Endereços externos que o app conhece (só leitura, nada de token). */
 object Enderecos {
-    /** Raiz do painel no GitHub Pages: `dados/status.json` e `dados/historico/` ficam abaixo dela. */
-    const val PAINEL = "https://gfvdata-web.github.io/painel-status/"
+    /** Raiz do painel (Worker da Cloudflare): `dados/status.json` e `dados/historico/` ficam abaixo dela. */
+    const val PAINEL = "https://painel.gfvdata.com/"
+
+    /**
+     * Endereço antigo (GitHub Pages), com os mesmos caminhos: usado só quando o
+     * [PAINEL] não responde, enquanto a transição para a Cloudflare não termina.
+     */
+    const val PAINEL_RESERVA = "https://gfvdata-web.github.io/painel-status/"
 
     /** API pública dos Releases (aviso de nova versão). */
     const val RELEASES = "https://api.github.com/repos/gfvdata-web/painel-status/releases?per_page=20"
@@ -49,6 +55,8 @@ class AppContainer(
     val intervaloDeRecargaMs: Long = INTERVALO_DE_RECARGA_MS,
     /** Verificação em segundo plano (WorkManager); os testes passam um dublê. */
     val agendador: Agendador = AgendadorWorkManager(contexto.applicationContext),
+    /** Endereço de reserva; os testes passam null (nada de internet). */
+    urlDeReserva: HttpUrl? = Enderecos.PAINEL_RESERVA.toHttpUrl(),
 ) {
     val clienteHttp: OkHttpClient = OkHttpClient.Builder()
         .connectTimeout(15, TimeUnit.SECONDS)
@@ -56,7 +64,7 @@ class AppContainer(
         .build()
 
     val dados = DadosDoPainel(
-        fonte = FonteRemota(clienteHttp, urlDoPainel),
+        fonte = FonteRemota(clienteHttp, urlDoPainel, urlDeReserva),
         cache = CacheDeArquivos(File(contexto.filesDir, "dados-do-painel")),
     )
 

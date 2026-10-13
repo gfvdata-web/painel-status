@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- Baixar o status.json publicado pelo painel (GitHub Pages). -->
+    <!-- Baixar o status.json publicado pelo painel (Cloudflare; GitHub Pages de reserva). -->
     <uses-permission android:name="android.permission.INTERNET" />
     <!-- Avisos com o app fechado (Android 13+ pede a permissão; o app pergunta antes). -->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />

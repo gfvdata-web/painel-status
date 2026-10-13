@@ -102,5 +102,6 @@ class PainelAppDeTeste : PainelApp() {
         PainelDeTeste.painel.urlDosReleases,
         intervaloDeRecargaMs = 3_600_000,
         agendador = AgendadorDeTeste(),
+        urlDeReserva = null,
     )
 }

@@ -1,11 +1,12 @@
 # Painel de Status — gfvdata-web
 
-Painel único de monitoramento para todos os sites publicados via GitHub Pages pela conta
+Painel único de monitoramento para todos os sites publicados pela conta
 `gfvdata-web`, com destaque para o **Bolão F1**.
 
-**Painel:** https://gfvdata-web.github.io/painel-status/ · **App Android:** APK nos
+**Painel:** https://painel.gfvdata.com/ (o endereço antigo, https://gfvdata-web.github.io/painel-status/,
+segue atualizado até o fim da transição — ver "Cloudflare") · **App Android:** APK nos
 [Releases](https://github.com/gfvdata-web/painel-status/releases) (ver "App Android" abaixo) ·
-**Layout em lista (teste):** https://gfvdata-web.github.io/painel-status/lista.html — um cartão
+**Layout em lista (teste):** https://painel.gfvdata.com/lista.html — um cartão
 por site, com status, form e visitas dos últimos 7 dias; mesmo `status.json` e mesmo switch de tema.
 O switch **V1 / V2** no canto superior das duas páginas alterna entre elas
 
@@ -158,9 +159,11 @@ Pages (`gfvdata-web.github.io/painel-status/`) e o Pages da Cloudflare
 
 App nativo (Kotlin + Jetpack Compose) em `android/`, no mesmo molde do app do Bolão F1
 (`page-bolao-formula1/android`): instalado por APK, fora da Play Store. Não tem servidor nem
-token: **lê o mesmo `docs/dados/status.json`** publicado no GitHub Pages (e
+token: **lê o mesmo `dados/status.json`** que a página, em `painel.gfvdata.com` (e
 `dados/historico/<slug>.json` sob demanda), então tudo que a página mostra vem do mesmo
-lugar e nada é cadastrado no app.
+lugar e nada é cadastrado no app. Se o endereço novo não responder, o app tenta o antigo
+(`gfvdata-web.github.io/painel-status/`, `Enderecos.PAINEL_RESERVA` em `App.kt`, mesmos
+caminhos) — reserva da transição para a Cloudflare.
 
 - **Abas:** **Bolão F1** (situação do site e do pipeline, o passo a passo da última
   atualização, rodada, visitantes e atalhos para o site, o Forms, o histórico e o

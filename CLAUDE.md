@@ -2,7 +2,8 @@
 
 Painel que monitora **todos** os sites publicados pela conta `gfvdata-web` (acesso, dados
 atualizados, pipeline do Bolão F1) e reúne atalhos para Google Forms. Publicado em
-https://gfvdata-web.github.io/painel-status/. Como funciona: [README.md](README.md).
+https://painel.gfvdata.com/ (Worker da Cloudflare; o antigo https://gfvdata-web.github.io/painel-status/
+segue atualizado até o fim da transição). Como funciona: [README.md](README.md).
 
 Tudo sobre o painel, os sites que ele monitora e os forms é documentado **aqui**. O
 `controle-global` é só do projeto de fontes financeiras e não recebe nada sobre este painel.

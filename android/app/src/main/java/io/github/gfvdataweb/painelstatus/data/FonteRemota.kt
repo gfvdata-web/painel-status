@@ -15,13 +15,32 @@ fun interface Fonte {
     fun baixarTexto(caminho: String): String
 }
 
-/** Baixa os JSONs publicados pelo painel no GitHub Pages. */
+/**
+ * Baixa os JSONs publicados pelo painel. Se a [base] falhar (rede ou resposta
+ * de erro), tenta a [reserva] com o mesmo caminho; se as duas falharem, vale o
+ * erro da [base].
+ */
 class FonteRemota(
     private val cliente: OkHttpClient,
     private val base: HttpUrl,
+    private val reserva: HttpUrl? = null,
 ) : Fonte {
     override fun baixarTexto(caminho: String): String {
-        val url = base.resolve(caminho) ?: throw IOException("Caminho inválido: $caminho")
+        try {
+            return baixar(base, caminho)
+        } catch (falha: IOException) {
+            if (reserva == null) throw falha
+            try {
+                return baixar(reserva, caminho)
+            } catch (outra: IOException) {
+                falha.addSuppressed(outra)
+                throw falha
+            }
+        }
+    }
+
+    private fun baixar(raiz: HttpUrl, caminho: String): String {
+        val url = raiz.resolve(caminho) ?: throw IOException("Caminho inválido: $caminho")
         // Sempre da rede, como o fetch "no-store" da página: a recarga de 1 em
         // 1 min só serve se cada consulta pegar o status.json mais novo.
         val pedido = Request.Builder().url(url).cacheControl(CacheControl.FORCE_NETWORK).build()
