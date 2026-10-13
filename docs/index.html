@@ -5,14 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Painel de Status — gfvdata-web</title>
   <link rel="stylesheet" href="css/estilo.css" />
+  <link rel="stylesheet" href="css/lista.css" />
   <script>try{var t=localStorage.getItem("tema");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
   <script data-goatcounter="https://gfvdata.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
+  <!-- Página principal: um cartão por site, em lista (molde B). O painel completo é o v1.html (/v1). -->
   <div class="controles-topo">
     <nav class="versao-switch" aria-label="Versão da página">
-      <a class="versao-switch__link versao-switch__link--ativo" aria-current="page" href="./" title="Painel completo">V1</a>
-      <a class="versao-switch__link" href="lista.html" title="Layout em lista (teste)">V2</a>
+      <a class="versao-switch__link" href="v1" title="Painel completo">V1</a>
+      <a class="versao-switch__link versao-switch__link--ativo" aria-current="page" href="./" title="Layout em lista">V2</a>
     </nav>
     <div class="tema-switch" id="tema-switch" role="group" aria-label="Tema da página">
       <button type="button" class="tema-switch__btn" data-tema="light" aria-pressed="false">
@@ -24,39 +26,20 @@
     </div>
   </div>
 
-  <header class="cabecalho">
-    <div class="conteiner">
-      <p class="sobrelinha">gfvdata-web</p>
-      <h1>Painel de Status</h1>
-      <p class="subtitulo">
-        Acesso e atualização de dados de todos os sites publicados pela conta —
-        com destaque para o Bolão F1.
-      </p>
-      <p class="meta-info" id="meta-gerado">Carregando...</p>
+  <header class="lista-topo">
+    <div class="lista-conteiner">
+      <h1>Painel de status</h1>
+      <p id="lista-resumo">Carregando...</p>
     </div>
   </header>
 
-  <main class="conteiner">
-    <section id="secao-destaque"></section>
-    <section>
-      <h2 class="titulo-secao">Outros sites</h2>
-      <div class="grade-sites" id="grade-sites"></div>
-    </section>
+  <main class="lista-conteiner">
+    <div class="lista-sites" id="lista-sites"></div>
+    <p class="lista-outros" id="lista-outros"></p>
+    <p class="lista-nota">Visitas = soma dos visitantes únicos por dia nos últimos 7 dias.
+      <a href="v1">Painel completo →</a></p>
   </main>
 
-  <!-- Pop-up de detalhes de um site da grade (preenchido por abrirDetalhes() em app.js) -->
-  <dialog class="dialogo" id="dialogo-site" aria-labelledby="dialogo-titulo">
-    <div id="dialogo-conteudo"></div>
-  </dialog>
-
-  <footer class="rodape">
-    <div class="conteiner">
-      <p>Gerado automaticamente a partir da API do GitHub e do GoatCounter — código em
-        <a href="https://github.com/gfvdata-web/painel-status" target="_blank" rel="noopener">gfvdata-web/painel-status</a>.</p>
-    </div>
-  </footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
-  <script src="js/app.js"></script>
+  <script src="js/lista.js"></script>
 </body>
 </html>

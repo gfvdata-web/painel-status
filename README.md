@@ -3,12 +3,12 @@
 Painel único de monitoramento para todos os sites publicados pela conta
 `gfvdata-web`, com destaque para o **Bolão F1**.
 
-**Painel:** https://painel.gfvdata.com/ (reserva: https://painel-status.pages.dev/ — ver
+**Painel (principal, em lista):** https://painel.gfvdata.com/ (reserva: https://painel-status.pages.dev/ — ver
 "Cloudflare") · **App Android:** APK em https://painel.gfvdata.com/app/versao.json, campo `apk`
 (ver "App Android" abaixo) ·
-**Layout em lista (teste):** https://painel.gfvdata.com/lista.html — um cartão
-por site, com status, form e visitas dos últimos 7 dias; mesmo `status.json` e mesmo switch de tema.
-O switch **V1 / V2** no canto superior das duas páginas alterna entre elas
+**Painel completo (V1):** https://painel.gfvdata.com/v1 — a página principal mostra um cartão
+por site, com status, form e visitas dos últimos 7 dias; as duas leem o mesmo `status.json` e têm o mesmo switch de tema.
+O switch **V1 / V2** no canto superior das duas páginas alterna entre elas (V1 = `/v1`, V2 = `/`)
 
 ## O que ele mostra
 
@@ -82,7 +82,7 @@ cada 3 horas — disparado pelo Cron do Worker da Cloudflare, ver "Cloudflare" �
 acima), consulta a API do GitHub — commits
 recentes por caminho de dados, execuções de Actions, resposta HTTP de cada site — e, quando
 configurado, a API do GoatCounter. O resultado vira `docs/dados/status.json` (mais o histórico em
-`docs/dados/historico/`), e é só isso que `docs/index.html` lê. Não é preciso mudar nada nos repositórios monitorados para o status de
+`docs/dados/historico/`), e é só isso que `docs/index.html` e `docs/v1.html` leem. Não é preciso mudar nada nos repositórios monitorados para o status de
 dados funcionar — só o cadastro em `src/config.py`.
 
 ```
@@ -104,12 +104,13 @@ worker/                   # Worker da Cloudflare (painel.gfvdata.com): página +
 ├── migrations/           # tabelas do D1 (arquivos, retratos)
 └── src/index.ts          # serve /dados/* e /app/*, recebe os envios (PUT /api/*), agenda
 docs/                     # a página (publicada pelo Worker e, na transição, pelo GitHub Pages)
-├── index.html
-├── lista.html            # layout de teste em lista (um cartão por site)
+├── index.html            # página principal, em lista (um cartão por site)
+├── v1.html               # painel completo (V1, em /v1)
+├── _redirects            # /lista e /lista.html -> / (links antigos)
 ├── css/estilo.css
 ├── css/lista.css         # só o que é da lista; cores e switch de tema vêm de estilo.css
 ├── js/app.js             # só lê status.json e desenha — nada é cadastrado aqui
-├── js/lista.js           # idem, para lista.html
+├── js/lista.js           # idem, para index.html (página principal)
 └── dados/                # gerado pelo Action; não editar à mão
     ├── status.json
     └── historico/<slug>.json
@@ -241,8 +242,8 @@ instala ao lado).
 **Publicar uma versão:** commit(s) no `main` com a run verde → `git tag -a app-vX.Y.Z -m "…"`
 → `git push origin app-vX.Y.Z`. O job `publicar` assina com a chave oficial, confere a
 assinatura, manda `painel-status-vX.Y.Z-buildN.apk` e depois o `versao.json` ao Worker
-(`painel.gfvdata.com/app/`, secret `PAINEL_TOKEN_ENVIO`) e cria um Release só como arquivo (o
-repositório é privado: Release não baixa sem login). O app consulta
+(`painel.gfvdata.com/app/`, secret `PAINEL_TOKEN_ENVIO`). Esse é o único lugar onde o APK é
+publicado: não há GitHub Release. O app consulta
 `painel.gfvdata.com/app/versao.json` ao abrir e mostra "Nova versão disponível"; versão e build
 saem do nome do APK (não mudar o padrão). Até a versão com esse aviso novo, o app consultava o
 GitHub Releases: quem tem uma versão anterior precisa instalar a nova **à mão, uma vez**.

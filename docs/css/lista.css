@@ -1,4 +1,4 @@
-/* ===== Layout em lista (lista.html) — teste, molde B =====
+/* ===== Layout em lista (index.html, página principal) — molde B =====
    Cores, base e o switch de tema vêm de estilo.css; aqui só o que é da lista. */
 
 .lista-conteiner { width: 100%; max-width: 680px; margin: 0 auto; padding: 0 16px; }

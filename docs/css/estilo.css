@@ -175,8 +175,8 @@ main { padding: 28px 0 48px; }
 .rodape { padding: 24px 0 40px; color: var(--texto-suave); font-size: .8rem; text-align: center; }
 .rodape a { color: inherit; }
 
-/* Canto superior direito, nas duas páginas: switch de versão (V1 = index.html,
-   V2 = lista.html, são só links) e switch de tema. Mesmo visual de pílula. */
+/* Canto superior direito, nas duas páginas: switch de versão (V1 = v1.html,
+   V2 = index.html, são só links) e switch de tema. Mesmo visual de pílula. */
 .controles-topo {
   position: fixed; top: 14px; right: 14px; z-index: 50;
   display: flex; gap: 8px;

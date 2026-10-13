@@ -1,5 +1,5 @@
-// Layout em lista (lista.html) — teste do molde B: um cartão por site, empilhados.
-// Lê o mesmo docs/dados/status.json do index.html; nada é cadastrado aqui.
+// Página principal (index.html), layout em lista — molde B: um cartão por site, empilhados.
+// Lê o mesmo docs/dados/status.json do v1.html (painel completo); nada é cadastrado aqui.
 
 let statusAtual = null;
 

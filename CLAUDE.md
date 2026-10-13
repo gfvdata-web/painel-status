@@ -22,7 +22,7 @@ nada seja quebrado (conferir a página localmente com `python -m http.server --d
 | Form de um site (link ou rótulo) | `form_url` / `form_rotulo` em `src/config.py` e a tabela "Sites monitorados" do `README.md` |
 | Form avulso (card "Outros forms") | `FORMS_AVULSOS` em `src/config.py` e a tabela "Outros forms" do `README.md`; depois rodar o workflow |
 | Campo novo no cadastro de sites | `CAMPOS_SITE` e a docstring de `src/config.py`, todas as entradas de `SITES` (mesmas chaves em todas) |
-| Campo novo/renomeado no `status.json` | docstring de `src/publicacao.py`, o uso em `docs/js/app.js` (e `docs/js/lista.js`, layout de teste) e os modelos do app Android (`android/app/src/main/java/io/github/gfvdataweb/painelstatus/data/modelo/Modelos.kt`). Mudança só aditiva: renomear/mudar tipo quebra o app instalado |
+| Campo novo/renomeado no `status.json` | docstring de `src/publicacao.py`, o uso em `docs/js/app.js` (V1, `/v1`) e `docs/js/lista.js` (página principal, `/`) e os modelos do app Android (`android/app/src/main/java/io/github/gfvdataweb/painelstatus/data/modelo/Modelos.kt`). Mudança só aditiva: renomear/mudar tipo quebra o app instalado |
 | Worker da Cloudflare (`worker/`, `src/envio.py`) | seção "Cloudflare" e árvore do `README.md`. A validação do envio (`problemaNoStatus` em `worker/src/index.ts`) exige `meta.gerado_em`, `sites[].slug`/`nome` e `forms_avulsos`: mexeu nesses campos, mexer lá. Publicar com `npx --prefix worker wrangler deploy --config worker/wrangler.jsonc` depois de testar com `wrangler dev` |
 | App Android (`android/`, `.github/workflows/android.yml`) | regras em `.claude/rules/android.md`; seção "App Android" e árvore do `README.md`. Intervalo de recarga do app = `INTERVALO_RECARGA_MS` do `app.js` (`INTERVALO_DE_RECARGA_MS` em `App.kt`; `INTERVALO_RECARGA_MS` em `lista.js`): mudou um, mudar os outros |
 | Etapas do pipeline do Bolão F1 | `src/etapas_bolao.py` (docstring descreve o fluxo) e a lista em "O que ele mostra" do `README.md`; estado novo de etapa → conferir `fase()` em `src/vigia_bolao.py`, `estadoDaEtapa` em `android/.../ui/painel/Apresentacao.kt` e os avisos em `android/.../data/avisos/Novidades.kt` (usam as chaves `resultado`/`pagina` e os estados `aguardando`/`ok`/`erro`) |
@@ -31,7 +31,7 @@ nada seja quebrado (conferir a página localmente com `python -m http.server --d
 | Acompanhamento do envio do Forms (`bolao_palpite`) | job `vigiar-bolao` em `atualizar-status.yml`, `src/vigia_bolao.py`, parágrafo no `README.md` e o `Code.gs` + `SETUP.md` em `page-bolao-formula1/google-apps-script/` |
 | Arquivo novo em `src/` ou `docs/` | árvore em "Como funciona" do `README.md` |
 
-**Cadastro único:** sites e forms só existem em `src/config.py`. `docs/js/app.js`, `docs/js/lista.js` e o app
+**Cadastro único:** sites e forms só existem em `src/config.py`. `docs/js/app.js` (V1, `/v1`), `docs/js/lista.js` (página principal) e o app
 Android não guardam lista nenhuma — só desenham o que vem no `status.json`. Chamadas HTTP passam por `src/rede.py`
 (capturar `ERROS_REDE`, nunca deixar exceção de rede derrubar a rodada).
 
