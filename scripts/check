@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# Checagem rápida do repo. Sem argumento: tudo. Com um arquivo: só o que vale para ele.
+# Silencioso quando passa; sai com 1 e uma mensagem curta quando falha.
+# Chamado pelo hook global (~/.claude/hooks/run-check.sh) depois de cada edição.
+cd "$(dirname "$0")/.." || exit 1
+alvo="$(printf '%s' "${1:-}" | sed 's#\\#/#g')";alvo="${alvo#"$(pwd -W 2>/dev/null || pwd)/"}"; alvo="${alvo#"$(pwd)/"}"
+falhas=0
+
+checar_py() { python -m py_compile "$@" 2>&1 || falhas=1; }
+checar_json() {
+  for f in "$@"; do
+    python -c "import json,sys; json.load(open(sys.argv[1],encoding='utf-8'))" "$f" 2>/dev/null \
+      || { echo "JSON inválido: $f"; python -c "import json,sys; json.load(open(sys.argv[1],encoding='utf-8'))" "$f" 2>&1 | tail -1; falhas=1; }
+  done
+}
+checar_ts() { (cd worker && npx tsc --noEmit --pretty false 2>&1 | head -20; exit "${PIPESTATUS[0]}") || falhas=1; }
+
+case "$alvo" in
+  "")              checar_py src/*.py; mapfile -t js < <(find docs/dados -name '*.json'); checar_json "${js[@]}"; checar_ts ;;
+  *.py)            checar_py "$alvo" ;;
+  *.json)          checar_json "$alvo" ;;
+  worker/*.ts)     checar_ts ;;
+  *)               : ;;
+esac
+exit $falhas

@@ -122,6 +122,8 @@ android/                  # app Android nativo (lê o mesmo status.json; ver "Ap
 .github/workflows/
 ├── atualizar-status.yml  # coleta (3 em 3 h), vigia do Bolão e vigia do envio do Forms
 └── android.yml           # testes → lint → APK; tag app-vX.Y.Z publica o APK assinado
+scripts/
+└── check                 # checagem rápida (py_compile, JSON de docs/dados, tsc do worker); sem argumento roda tudo
 ```
 
 Um problema de rede em um site (timeout, HTTP 5xx) vira um campo `erro` no card dele e não
