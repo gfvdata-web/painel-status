@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-10-13T18:48:05.174239+00:00",
+    "gerado_em": "2026-10-13T21:01:00.843741+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -1800,52 +1800,7 @@
               "mensagem": "urllib.error.HTTPError: HTTP Error 404: Not Found"
             }
           },
-          "passos_ultima": [
-            {
-              "nome": "Set up job",
-              "conclusao": "success"
-            },
-            {
-              "nome": "Segredos ausentes — nada a fazer",
-              "conclusao": "skipped"
-            },
-            {
-              "nome": "Run actions/checkout@v7",
-              "conclusao": "success"
-            },
-            {
-              "nome": "Run actions/setup-python@v7",
-              "conclusao": "success"
-            },
-            {
-              "nome": "Instalar dependências",
-              "conclusao": "success"
-            },
-            {
-              "nome": "Baixar planilha → data/esp32/",
-              "conclusao": "success"
-            },
-            {
-              "nome": "Commitar dados novos",
-              "conclusao": "success"
-            },
-            {
-              "nome": "Republicar site público (Cloudflare)",
-              "conclusao": "success"
-            },
-            {
-              "nome": "Post Run actions/setup-python@v7",
-              "conclusao": "success"
-            },
-            {
-              "nome": "Post Run actions/checkout@v7",
-              "conclusao": "success"
-            },
-            {
-              "nome": "Complete job",
-              "conclusao": "success"
-            }
-          ]
+          "passos_ultima": []
         },
         "commits_dados": [
           {
