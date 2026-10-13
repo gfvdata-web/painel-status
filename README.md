@@ -58,6 +58,23 @@ aberta confere o `status.json` a cada 1 min e se redesenha sozinha quando ele mu
 O token do Apps Script (`GITHUB_TOKEN` nas Propriedades do script) precisa ter acesso
 também a este repositório (Contents: Read and write).
 
+**Envio do Forms do PlantsCare** (sites com `pipeline_forms` em `src/config.py`). O card
+mostra o **passo a passo do último envio** (`src/etapas_forms.py`), montado a partir dos
+passos da execução do `pipeline.yml` do repositório:
+
+1. Fotos enviadas (Google Forms → Apps Script grava em `inbox/` e dispara o pipeline)
+2. Ficha da planta atualizada
+3. Relatório da IA (Gemini) → PDF → e-mail
+4. Salvo no repositório
+
+Uma falha na última execução vira o alerta "O último envio pelo Forms falhou no pipeline."
+Como no Bolão, o Apps Script do Forms (`PlantsCare/google-apps-script/Code.gs`) manda um
+`repository_dispatch` (`plantas_envio`) para cá; o job `vigiar-forms` do
+`atualizar-status.yml` recoleta só esse card (`python -m src.publicacao --so-forms`) a cada
+1 min até o pipeline terminar (`src/vigia_forms.py`). O token do Apps Script precisa ter
+acesso ao `PlantsCare` e a este repositório (Contents: Read and write). O app Android ainda
+não desenha esse passo a passo (o campo é ignorado), só o alerta.
+
 ## Como funciona
 
 Um workflow do GitHub Actions (`.github/workflows/atualizar-status.yml`) roda a
@@ -78,6 +95,8 @@ src/
 ├── historico.py          # histórico acumulado das execuções (docs/dados/historico/)
 ├── etapas_bolao.py       # passo a passo da última atualização do Bolão F1
 ├── vigia_bolao.py        # fase do pipeline do Bolão para o job vigiar-bolao (até quando acompanhar)
+├── etapas_forms.py       # passo a passo do último envio do Forms (sites com pipeline_forms)
+├── vigia_forms.py        # fase desse pipeline para o job vigiar-forms
 ├── publicacao.py         # monta docs/dados/status.json (formato descrito na docstring)
 └── envio.py              # manda docs/dados ao Worker da Cloudflare (e baixa de lá)
 worker/                   # Worker da Cloudflare (painel.gfvdata.com): página + dados + APK
@@ -101,7 +120,7 @@ android/                  # app Android nativo (lê o mesmo status.json; ver "Ap
     ├── avisos/           # verificação em segundo plano (WorkManager) e notificações
     └── ui/               # telas Compose: Bolão F1, Sites (+ detalhes e histórico), Links, Avisos, Sobre
 .github/workflows/
-├── atualizar-status.yml  # coleta (3 em 3 h) e vigia do Bolão
+├── atualizar-status.yml  # coleta (3 em 3 h), vigia do Bolão e vigia do envio do Forms
 └── android.yml           # testes → lint → APK; tag app-vX.Y.Z publica o APK assinado
 ```
 
@@ -283,7 +302,7 @@ descritos na docstring do arquivo). Hoje são doze:
 | Crédito por modalidade | [`fonte-credito-modalidade`](https://github.com/gfvdata-web/fonte-credito-modalidade) | [painel](https://gfvdata-web.github.io/fonte-credito-modalidade/) | Fonte financeira (BCB/SGS) — projeto documentado no `controle-global` |
 | Simulador de investimentos | [`simulador-investimentos`](https://github.com/gfvdata-web/simulador-investimentos) | [simulador](https://gfvdata-web.github.io/simulador-investimentos/) | Comparação de rendimento de investimentos (bruto, líquido e real); coleta de dados oficiais em dias úteis via Actions |
 | Chess Tracking | [`chess-tracking`](https://github.com/gfvdata-web/chess-tracking) | [página](https://gfvdata-web.github.io/chess-tracking/) | Histórico de partidas no Chess.com (conta `giggsmate`) com estatísticas de rating, aberturas, ritmo, horário e gestão de tempo; coleta diária via Actions |
-| Plants Care | [`PlantsCare-publico`](https://github.com/gfvdata-web/PlantsCare-publico) | [painel](https://gfvdata-web.github.io/PlantsCare-publico/) · [enviar fotos](https://forms.gle/y3uXaukJXmP9GMED7) | Acompanhamento das plantas (fichas, medições, equipamentos); versão pública do `PlantsCare`, republicada a cada sync via `deploy-pages.yml`. Fotos novas chegam pelo Google Forms → pasta do Drive |
+| Plants Care | [`PlantsCare`](https://github.com/gfvdata-web/PlantsCare) (privado) | [painel](https://plantscare.gfvdata.com/) · [enviar fotos](https://forms.gle/y3uXaukJXmP9GMED7) | Acompanhamento das plantas (fichas, sensores, equipamentos). Site na Cloudflare, republicado pelo `sensor-sync.yml` (planilha do ESP32 → `data/`, de hora em hora) — é o workflow do card. Fotos pelo Google Forms → `inbox/` → `pipeline.yml` (ficha → Gemini → PDF → e-mail), com o passo a passo no card (`pipeline_forms`, ver "O que ele mostra") |
 | Eleições 2026 | [`eleicoes-2026`](https://github.com/gfvdata-web/eleicoes-2026) | [mapa](https://gfvdata-web.github.io/eleicoes-2026/) | Mapa das pesquisas para governador e Senado por estado, mais a apuração. Publicado a cada push via `pages.yml` (sem agenda, por isso sem workflow cadastrado) |
 | Painel esportivo | [`painel-esportivo`](https://github.com/gfvdata-web/painel-esportivo) | [painel](https://gfvdata-web.github.io/painel-esportivo/) | Histórico esportivo (Strava + Samsung Health) com dados cifrados. Os dados só existem no branch `gh-pages` (publicados à mão por `scripts/publicar.mjs`), daí `branch_dados: "gh-pages"` |
 | Dashboard dos municípios | [`dashboard-municipios`](https://github.com/gfvdata-web/dashboard-municipios) | [painel](https://gfvdata-web.github.io/dashboard-municipios/) | 18 indicadores públicos dos 5.571 municípios (segurança, saneamento, saúde, educação, finanças, transparência); dados em `site/dados`, coletados localmente |

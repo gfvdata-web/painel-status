@@ -239,6 +239,15 @@ main { padding: 28px 0 48px; }
 .etapa--erro .etapa__estado { color: var(--negativo); }
 .etapa--aguardando .etapa__estado, .etapa--andamento .etapa__estado { color: var(--aviso); }
 
+/* Trilha vertical: sempre no celular; no card estreito da grade (envio do Forms), sempre. */
+.etapas--vertical { margin: 12px 0 4px; padding-top: 12px; border-top: 1px solid var(--borda); }
+.etapas--vertical .etapas__lista { flex-direction: column; gap: 10px; align-items: stretch; }
+.etapas--vertical .etapa { flex-direction: row; text-align: left; padding: 0; gap: 10px; }
+.etapas--vertical .etapa:not(:last-child)::after {
+  left: 11px; right: auto; top: 26px; bottom: -10px; height: auto; width: 2px;
+}
+.etapas--vertical .etapa__texto { margin-top: 0; }
+.etapas--vertical .etapas__titulo { margin-bottom: 10px; }
 @media (max-width: 760px) {
   .etapas__lista { flex-direction: column; gap: 12px; align-items: stretch; }
   .etapa { flex-direction: row; text-align: left; padding: 0; gap: 12px; }

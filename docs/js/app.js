@@ -195,7 +195,8 @@ function badgeStatusPipelineBolao(site) {
   return badgeExecucao(site.ultima_execucao_pipeline);
 }
 
-// ---------- Etapas do pipeline do Bolão F1 (ver src/etapas_bolao.py) ----------
+// ---------- Etapas de pipeline: Bolão F1 (src/etapas_bolao.py) e envio do Forms
+// dos sites com pipeline_forms (src/etapas_forms.py) — mesmo formato ----------
 const ROTULO_ESTADO_ETAPA = {
   ok: "concluída",
   andamento: "em andamento",
@@ -214,10 +215,9 @@ const ICONE_ESTADO_ETAPA = {
   pulado: "–",
 };
 
-function renderizarEtapas(site) {
-  const etapas = site.etapas_pipeline;
+function renderizarEtapas(etapas, execucao, titulo, classe = "") {
   if (!etapas || !etapas.length) return "";
-  const execucao = site.ultima_execucao_pipeline || {};
+  execucao = execucao || {};
   const itens = etapas.map((etapa, indice) => {
     const estadoTexto = `${ROTULO_ESTADO_ETAPA[etapa.estado] || etapa.estado}${etapa.quando ? ` · ${formatarDataHora(etapa.quando)}` : ""}`;
     const titleAttr = etapa.detalhe ? ` title="${escapar(etapa.detalhe)}"` : "";
@@ -232,9 +232,9 @@ function renderizarEtapas(site) {
   `;
   }).join("");
   return `
-    <div class="etapas">
+    <div class="etapas${classe ? ` ${classe}` : ""}">
       <p class="etapas__titulo">
-        Última atualização de dados — passo a passo
+        ${escapar(titulo)}
         ${execucao.url ? linkExterno(execucao.url, "ver execução") : ""}
       </p>
       <ol class="etapas__lista">${itens}</ol>
@@ -283,7 +283,7 @@ function renderizarDestaque(site) {
         <div class="grafico-caixa">${graficoHtml}</div>
       </div>
       <div class="card-destaque__rodape">
-        ${renderizarEtapas(site)}
+        ${renderizarEtapas(site.etapas_pipeline, site.ultima_execucao_pipeline, "Última atualização de dados — passo a passo")}
         <p class="commit-info">
           Último commit em dados: "${escapar(commit.mensagem ?? "—")}"
           ${commit.url ? `(${linkExterno(commit.url, escapar(commit.sha))})` : ""}
@@ -316,6 +316,18 @@ function linhasAlerta(site) {
     .join("");
 }
 
+// Passo a passo do último envio pelo Forms (só sites com pipeline_forms), em trilha vertical.
+function renderizarEnvioForms(site) {
+  const bloco = site.pipeline_forms;
+  if (!bloco) return "";
+  const execucao = bloco.execucao || {};
+  if (execucao.erro || !bloco.etapas) {
+    return `<p class="alerta-linha alerta-linha--aviso">Envio do Forms: ${escapar(execucao.erro || "sem execução registrada")}</p>`;
+  }
+  const quando = execucao.criado_em ? ` · ${formatarRelativo(execucao.criado_em)}` : "";
+  return renderizarEtapas(bloco.etapas, execucao, `Último envio do Forms${quando}`, "etapas--vertical");
+}
+
 function renderizarCardSite(site, idGrafico) {
   const commit = site.ultimo_commit_dados || {};
   const acesso = site.acesso;
@@ -336,6 +348,7 @@ function renderizarCardSite(site, idGrafico) {
       ${periodo ? `<div class="linha"><span>Período coberto</span><strong>${escapar(periodo.inicio)} → ${escapar(periodo.fim)}</strong></div>` : ""}
       <div class="linha"><span>Visitantes (únicos)</span><strong>${escapar(acesso ? acesso.visitantes_unicos ?? "—" : "sem rastreio")}</strong></div>
       ${temSerie(site) ? `<div class="grafico-mini"><canvas id="${idGrafico}"></canvas></div>` : ""}
+      ${renderizarEnvioForms(site)}
       <div class="site-card__links">
         ${linkExterno(site.pages_url, "Abrir site →", "link-site")}
         ${linkForm(site, "link-site")}

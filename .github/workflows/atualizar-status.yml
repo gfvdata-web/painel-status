@@ -17,6 +17,11 @@ name: Atualizar status
 # 1 min; a cada 10 min enquanto o Verificador espera o resultado) e encerra —
 # o painel volta para a rotina de 3 em 3 horas. Ver src/vigia_bolao.py.
 #
+# Envio do Forms do PlantsCare: o Apps Script grava o envio em inbox/ no repositório
+# PlantsCare (o que dispara o pipeline.yml de lá) e manda um repository_dispatch
+# `plantas_envio` para cá. Aí roda o job `vigiar-forms`, que acompanha aquele pipeline
+# (ficha → Gemini → PDF → e-mail → commit) a cada 1 min até o fim. Ver src/vigia_forms.py.
+#
 # Cloudflare (transição): o Worker (D1) é a fonte da verdade — a coleta parte do que está
 # publicado lá (src/envio.py baixar) e, além do commit, os dois jobs mandam docs/dados ao
 # Worker (painel.gfvdata.com, ver worker/). Sem o secret PAINEL_TOKEN_ENVIO, os dois passos
@@ -27,7 +32,7 @@ on:
     - cron: '0 */3 * * *'
   workflow_dispatch: {}
   repository_dispatch:
-    types: [bolao_palpite]
+    types: [bolao_palpite, plantas_envio]
 
 permissions:
   contents: write
@@ -80,7 +85,7 @@ jobs:
         run: python -m src.envio enviar
 
   vigiar-bolao:
-    if: github.event_name == 'repository_dispatch'
+    if: github.event_name == 'repository_dispatch' && github.event.action == 'bolao_palpite'
     runs-on: ubuntu-latest
     timeout-minutes: 345  # vigília do Verificador vai até 5 h
     env:
@@ -140,6 +145,70 @@ jobs:
             esac
             if [ "$minutos" -ge 335 ]; then
               echo '::warning::Pipeline do Bolão ainda não terminou; a rotina de 3 h segue daqui.'
+              break
+            fi
+          done
+
+  vigiar-forms:
+    if: github.event_name == 'repository_dispatch' && github.event.action == 'plantas_envio'
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    env:
+      PAINEL_TOKEN_ENVIO: ${{ secrets.PAINEL_TOKEN_ENVIO }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+
+      - name: Partir do que está publicado na Cloudflare
+        if: env.PAINEL_TOKEN_ENVIO != ''
+        run: python -m src.envio baixar || echo '::warning::Sem os dados do Worker; a vigia parte do Git.'
+
+      - name: Acompanhar o pipeline do Forms até o fim
+        env:
+          # O PlantsCare é privado: sem o PAINEL_TOKEN_LEITURA o card vira erro.
+          GITHUB_TOKEN: ${{ secrets.PAINEL_TOKEN_LEITURA || secrets.GITHUB_TOKEN }}
+          # Opcional no client_payload (ISO, UTC): acompanhar uma execução já começada.
+          DESDE: ${{ github.event.client_payload.desde }}
+        run: |
+          git config user.name  'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          # Margem de 3 min: o Apps Script sobe as fotos e o meta.json (que dispara o
+          # pipeline) antes de avisar o painel.
+          desde=$(date -u -d "${DESDE:-3 minutes ago}" +%Y-%m-%dT%H:%M:%SZ)
+          inicio=$(date +%s)
+          cp docs/dados/status.json "$RUNNER_TEMP/anterior.json"
+          while :; do
+            python -m src.publicacao --so-forms
+            python -m src.vigia_forms --desde "$desde" --anterior "$RUNNER_TEMP/anterior.json" > "$RUNNER_TEMP/vigia.txt"
+            cat "$RUNNER_TEMP/vigia.txt"
+            fase=$(sed -n 's/^fase=//p' "$RUNNER_TEMP/vigia.txt")
+            mudou=$(sed -n 's/^mudou=//p' "$RUNNER_TEMP/vigia.txt")
+            if [ "$mudou" = sim ]; then
+              cp docs/dados/status.json "$RUNNER_TEMP/anterior.json"
+              git add docs/dados
+              git commit -m "Acompanha envio do Forms ($fase) em $(date -u +'%Y-%m-%dT%H:%MZ')"
+              git pull --rebase --quiet
+              git push
+              if [ -n "$PAINEL_TOKEN_ENVIO" ]; then
+                python -m src.envio enviar || echo '::warning::Envio ao Worker da Cloudflare falhou; segue no próximo ciclo.'
+              fi
+            fi
+            minutos=$(( ($(date +%s) - inicio) / 60 ))
+            case "$fase" in
+              concluido) echo 'Pipeline concluído; de volta à rotina.'; break ;;
+              sem_execucao)
+                if [ "$minutos" -ge 10 ]; then
+                  echo '::warning::Nenhuma execução nova do pipeline do Forms em 10 min.'
+                  break
+                fi
+                sleep 30 ;;
+              *) sleep 60 ;;
+            esac
+            if [ "$minutos" -ge 45 ]; then
+              echo '::warning::Pipeline do Forms ainda não terminou; a rotina de 3 h segue daqui.'
               break
             fi
           done

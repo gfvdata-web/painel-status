@@ -27,6 +27,11 @@ Campos de cada site (todos presentes em toda entrada, para servir de molde):
   destaque         True em no máximo um site: vira o card grande do topo
   pipeline_bolao   True só no Bolão F1: monta rodada, vigília e o passo a passo
                    (etapas_bolao.py); exige workflow_arquivo
+  pipeline_forms   arquivo em .github/workflows/ do pipeline disparado pelo
+                   Google Forms do site, ou None; com valor, o card mostra o
+                   passo a passo do último envio (etapas_forms.py) e o
+                   Apps Script do Forms avisa o painel (job vigiar-forms).
+                   Exige form_url. Hoje só o PlantsCare
 
 Rastreio de acesso: um único site GoatCounter (`gfvdata`, ver coleta_goatcounter.py)
 recebe o snippet padrão em todos os sites monitorados — a separação entre eles é
@@ -55,6 +60,7 @@ SITES = [
         "form_rotulo": "Enviar palpites (Google Forms)",
         "destaque": True,
         "pipeline_bolao": True,
+        "pipeline_forms": None,
     },
     {
         "slug": "meios_pagamento_mensal",
@@ -71,6 +77,7 @@ SITES = [
         "form_rotulo": None,
         "destaque": False,
         "pipeline_bolao": False,
+        "pipeline_forms": None,
     },
     {
         "slug": "arrecadacao_federal",
@@ -85,6 +92,7 @@ SITES = [
         "form_rotulo": None,
         "destaque": False,
         "pipeline_bolao": False,
+        "pipeline_forms": None,
     },
     {
         "slug": "credito_modalidade",
@@ -99,6 +107,7 @@ SITES = [
         "form_rotulo": None,
         "destaque": False,
         "pipeline_bolao": False,
+        "pipeline_forms": None,
     },
     {
         "slug": "simulador_investimentos",
@@ -113,6 +122,7 @@ SITES = [
         "form_rotulo": None,
         "destaque": False,
         "pipeline_bolao": False,
+        "pipeline_forms": None,
     },
     {
         "slug": "chess_tracking",
@@ -127,21 +137,27 @@ SITES = [
         "form_rotulo": None,
         "destaque": False,
         "pipeline_bolao": False,
+        "pipeline_forms": None,
     },
     {
         "slug": "plants_care",
         "nome": "Plants Care",
-        "repo": "PlantsCare-publico",
-        "pages_url": "https://gfvdata-web.github.io/PlantsCare-publico/",
-        "caminho_dados": "painel",
+        # Repositório privado (precisa do PAINEL_TOKEN_LEITURA); o site sai dele
+        # direto para a Cloudflare (Worker de arquivos estáticos), sem GitHub Pages.
+        "repo": "PlantsCare",
+        "pages_url": "https://plantscare.gfvdata.com/",
+        "caminho_dados": "data",
         "branch_dados": None,
-        "workflow_arquivo": "deploy-pages.yml",
+        # Planilha do ESP32 → data/ → site, de hora em hora (07h–00h de Brasília).
+        "workflow_arquivo": "sensor-sync.yml",
         "json_meta_url": None,
-        # Envio de fotos de uma planta pelo celular (Forms → pasta do Drive).
+        # Envio de fotos de uma planta pelo celular: o Apps Script grava em inbox/
+        # e o pipeline.yml faz ficha → Gemini → PDF → e-mail.
         "form_url": "https://forms.gle/y3uXaukJXmP9GMED7",
         "form_rotulo": "Enviar fotos",
         "destaque": False,
         "pipeline_bolao": False,
+        "pipeline_forms": "pipeline.yml",
     },
     {
         "slug": "eleicoes_2026",
@@ -158,6 +174,7 @@ SITES = [
         "form_rotulo": None,
         "destaque": False,
         "pipeline_bolao": False,
+        "pipeline_forms": None,
     },
     {
         "slug": "painel_esportivo",
@@ -174,6 +191,7 @@ SITES = [
         "form_rotulo": None,
         "destaque": False,
         "pipeline_bolao": False,
+        "pipeline_forms": None,
     },
     {
         "slug": "dashboard_municipios",
@@ -188,6 +206,7 @@ SITES = [
         "form_rotulo": None,
         "destaque": False,
         "pipeline_bolao": False,
+        "pipeline_forms": None,
     },
     {
         "slug": "var_vendo",
@@ -203,6 +222,7 @@ SITES = [
         "form_rotulo": None,
         "destaque": False,
         "pipeline_bolao": False,
+        "pipeline_forms": None,
     },
     {
         "slug": "evolucao_fotografia",
@@ -220,6 +240,7 @@ SITES = [
         "form_rotulo": None,
         "destaque": False,
         "pipeline_bolao": False,
+        "pipeline_forms": None,
     },
 ]
 
@@ -231,7 +252,7 @@ FORMS_AVULSOS = [
 
 CAMPOS_SITE = {
     "slug", "nome", "repo", "pages_url", "caminho_dados", "branch_dados", "workflow_arquivo",
-    "json_meta_url", "form_url", "form_rotulo", "destaque", "pipeline_bolao",
+    "json_meta_url", "form_url", "form_rotulo", "destaque", "pipeline_bolao", "pipeline_forms",
 }
 
 
@@ -248,6 +269,10 @@ def validar():
             problemas.append(f"{rotulo}: campos desconhecidos {sorted(sobrando)}")
         if site.get("pipeline_bolao") and not site.get("workflow_arquivo"):
             problemas.append(f"{rotulo}: pipeline_bolao exige workflow_arquivo")
+        if site.get("pipeline_forms") and not site.get("form_url"):
+            problemas.append(f"{rotulo}: pipeline_forms exige form_url")
+        if site.get("pipeline_forms") and site.get("pipeline_bolao"):
+            problemas.append(f"{rotulo}: pipeline_forms e pipeline_bolao não se combinam")
         if site.get("form_rotulo") and not site.get("form_url"):
             problemas.append(f"{rotulo}: form_rotulo exige form_url")
     slugs = [site.get("slug") for site in SITES]

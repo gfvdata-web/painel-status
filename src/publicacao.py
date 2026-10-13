@@ -5,6 +5,8 @@ Uso: python -m src.publicacao              rodada completa (todos os sites)
                                            atual (usado pelo vigia_bolao.py, que
                                            roda a cada minuto e não pode gastar
                                            a cota da API com os outros sites)
+     python -m src.publicacao --so-forms   idem, só os sites com pipeline_forms
+                                           (job vigiar-forms, ver vigia_forms.py)
 
 Formato de saída (o único arquivo que docs/js/app.js lê — e o app Android em android/,
 que espelha estes campos em data/modelo/Modelos.kt; mudanças só aditivas):
@@ -15,7 +17,10 @@ que espelha estes campos em data/modelo/Modelos.kt; mudanças só aditivas):
                  periodo_publicado, ultima_execucao_pipeline, acesso e — só no
                  site com pipeline_bolao — rodada_mais_recente, em_vigilia,
                  etapas_pipeline; nos demais, detalhes e alertas (pop-up do card,
-                 formato em detalhes_site.py); em todo site com workflow,
+                 formato em detalhes_site.py); só nos sites com pipeline_forms,
+                 pipeline_forms {workflow, execucao, etapas} — execucao no
+                 formato de ultima_execucao_pipeline, etapas no de
+                 etapas_pipeline (etapas_forms.py); em todo site com workflow,
                  historico_arquivo (caminho do histórico acumulado, formato
                  em historico.py)
   forms_avulsos  [{nome, url}] copiado de config.FORMS_AVULSOS
@@ -31,6 +36,7 @@ from . import coleta_goatcounter as gc
 from . import historico
 from .detalhes_site import montar_detalhes
 from .etapas_bolao import montar_etapas
+from .etapas_forms import montar_etapas as montar_etapas_forms
 from .config import FORMS_AVULSOS, OWNER, SITES, validar
 
 SAIDA = Path(__file__).resolve().parent.parent / "docs" / "dados" / "status.json"
@@ -83,6 +89,12 @@ def coletar_site(site, acesso_por_repo, acesso_anterior, falha_total):
             OWNER, site, commits, recentes, bloco["site_no_ar"]
         )
 
+    if site["pipeline_forms"]:
+        bloco["pipeline_forms"] = coletar_pipeline_forms(site)
+        execucao = bloco["pipeline_forms"]["execucao"]
+        if execucao.get("conclusao") in ("failure", "timed_out"):
+            bloco["alertas"].append({"nivel": "aviso", "texto": "O último envio pelo Forms falhou no pipeline."})
+
     if site["workflow_arquivo"]:
         bloco["historico_arquivo"] = historico.atualizar(OWNER, site, execucoes)
 
@@ -92,6 +104,17 @@ def coletar_site(site, acesso_por_repo, acesso_anterior, falha_total):
     if acesso:
         bloco["acesso"] = acesso
 
+    return bloco
+
+
+def coletar_pipeline_forms(site):
+    """Última execução do pipeline do Forms e o passo a passo dela."""
+    execucoes = gh.execucoes_workflow(OWNER, site["repo"], site["pipeline_forms"], 1)
+    execucao = execucoes[0] if isinstance(execucoes, list) else execucoes
+    bloco = {"workflow": site["pipeline_forms"], "execucao": execucao, "etapas": None}
+    if not execucao.get("erro"):
+        passos = gh.passos_execucao(OWNER, site["repo"], execucao["id"])
+        bloco["etapas"] = montar_etapas_forms(execucao, passos)
     return bloco
 
 
@@ -135,23 +158,33 @@ def montar():
     }
 
 
-def montar_so_bolao():
-    """Recoleta só o site com pipeline_bolao e mantém os outros como estão no
-    status.json atual. Sem status.json anterior, cai na rodada completa."""
+def montar_so(campo):
+    """Recoleta só os sites com `campo` (pipeline_bolao, pipeline_forms) ligado e
+    mantém os outros como estão no status.json atual. Sem status.json anterior, cai
+    na rodada completa."""
     anterior = _status_anterior()
     if not anterior:
         return montar()
     validar()
-    site = next(s for s in SITES if s["pipeline_bolao"])
-    bloco = coletar_site(site, {}, _acesso_anterior_por_slug(anterior), falha_total=True)
-    sites = [bloco if s["slug"] == site["slug"] else s for s in anterior["sites"]]
-    if bloco not in sites:
-        sites.insert(0, bloco)
+    sites = list(anterior["sites"])
+    for site in (s for s in SITES if s[campo]):
+        bloco = coletar_site(site, {}, _acesso_anterior_por_slug(anterior), falha_total=True)
+        indice = next((i for i, s in enumerate(sites) if s["slug"] == site["slug"]), None)
+        if indice is None:
+            sites.insert(0 if site["destaque"] else len(sites), bloco)
+        else:
+            sites[indice] = bloco
     return {**anterior, "meta": _meta(), "sites": sites}
 
 
 def main():
-    status = montar_so_bolao() if "--so-bolao" in sys.argv[1:] else montar()
+    argumentos = sys.argv[1:]
+    if "--so-bolao" in argumentos:
+        status = montar_so("pipeline_bolao")
+    elif "--so-forms" in argumentos:
+        status = montar_so("pipeline_forms")
+    else:
+        status = montar()
     SAIDA.parent.mkdir(parents=True, exist_ok=True)
     SAIDA.write_text(json.dumps(status, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"status.json gerado em {SAIDA}")

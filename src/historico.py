@@ -41,13 +41,22 @@ def caminho_publicado(slug):
     return f"dados/historico/{slug}.json"
 
 
-def _ler(arquivo):
+def _url_workflow(owner, site):
+    return f"https://github.com/{owner}/{site['repo']}/actions/workflows/{site['workflow_arquivo']}"
+
+
+def _ler(arquivo, url_workflow):
+    """Execuções gravadas — vazio se o arquivo é de outro workflow (o site trocou de
+    repositório ou de workflow no cadastro: o histórico antigo não se mistura)."""
     if not arquivo.exists():
         return []
     try:
-        return json.loads(arquivo.read_text(encoding="utf-8")).get("execucoes", [])
+        dados = json.loads(arquivo.read_text(encoding="utf-8"))
     except (json.JSONDecodeError, OSError):
         return []
+    if dados.get("url_workflow") != url_workflow:
+        return []
+    return dados.get("execucoes", [])
 
 
 def _detalhar(owner, repo, execucao):
@@ -80,7 +89,7 @@ def atualizar(owner, site, execucoes):
     `execucoes` é a lista de coleta_github.execucoes_workflow (ou {"erro"}: nada muda).
     Devolve o caminho publicado do arquivo, ou None se ele não existe."""
     arquivo = PASTA / f"{site['slug']}.json"
-    gravadas = _ler(arquivo)
+    gravadas = _ler(arquivo, _url_workflow(owner, site))
     if isinstance(execucoes, list):
         vistas = {e["id"] for e in gravadas}
         novas = [e for e in execucoes if e["status"] == "completed" and e["id"] not in vistas]
@@ -93,7 +102,7 @@ def atualizar(owner, site, execucoes):
                 "slug": site["slug"],
                 "nome": site["nome"],
                 "workflow": site["workflow_arquivo"],
-                "url_workflow": f"https://github.com/{owner}/{site['repo']}/actions/workflows/{site['workflow_arquivo']}",
+                "url_workflow": _url_workflow(owner, site),
                 "atualizado_em": gh.agora_iso(),
                 "execucoes": gravadas,
             }, ensure_ascii=False, indent=1), encoding="utf-8")
