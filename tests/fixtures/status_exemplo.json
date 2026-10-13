@@ -10,6 +10,7 @@
       "repo": "page-bolao-formula1",
       "pages_url": "https://bolaof1.gfvdata.com/",
       "destaque": true,
+      "categoria": null,
       "form_url": "https://forms.gle/7yZAx1WThPf51bv67",
       "form_rotulo": "Enviar palpites (Google Forms)",
       "ultimo_commit_dados": {
@@ -95,6 +96,7 @@
       "repo": "fonte-meios-pagamento",
       "pages_url": "https://meiospagamento.gfvdata.com/index-v2",
       "destaque": false,
+      "categoria": null,
       "ultimo_commit_dados": {
         "data": "2026-10-13T08:00:12Z",
         "mensagem": "Atualiza dados da rodada 21",
@@ -141,6 +143,7 @@
       "repo": "fonte-arrecadacao-federal",
       "pages_url": "https://gfvdata-web.github.io/fonte-arrecadacao-federal/",
       "destaque": false,
+      "categoria": null,
       "ultimo_commit_dados": {
         "data": "2026-10-13T08:00:12Z",
         "mensagem": "Atualiza dados da rodada 21",
@@ -187,6 +190,7 @@
       "repo": "fonte-credito-modalidade",
       "pages_url": "https://gfvdata-web.github.io/fonte-credito-modalidade/",
       "destaque": false,
+      "categoria": null,
       "ultimo_commit_dados": {
         "data": "2026-10-13T08:00:12Z",
         "mensagem": "Atualiza dados da rodada 21",
@@ -233,6 +237,7 @@
       "repo": "simulador-investimentos",
       "pages_url": "https://gfvdata-web.github.io/simulador-investimentos/",
       "destaque": false,
+      "categoria": null,
       "ultimo_commit_dados": {
         "data": "2026-10-13T08:00:12Z",
         "mensagem": "Atualiza dados da rodada 21",
@@ -379,6 +384,7 @@
       "repo": "chess-tracking",
       "pages_url": "https://gfvdata-web.github.io/chess-tracking/",
       "destaque": false,
+      "categoria": null,
       "ultimo_commit_dados": {
         "data": "2026-10-13T08:00:12Z",
         "mensagem": "Atualiza dados da rodada 21",
@@ -542,6 +548,7 @@
       "repo": "PlantsCare",
       "pages_url": "https://plantscare.gfvdata.com/",
       "destaque": false,
+      "categoria": null,
       "form_url": "https://forms.gle/y3uXaukJXmP9GMED7",
       "form_rotulo": "Enviar fotos",
       "ultimo_commit_dados": {
@@ -732,6 +739,7 @@
       "repo": "eleicoes-2026",
       "pages_url": "https://gfvdata-web.github.io/eleicoes-2026/",
       "destaque": false,
+      "categoria": null,
       "ultimo_commit_dados": {
         "data": "2026-10-13T08:00:12Z",
         "mensagem": "Atualiza dados da rodada 21",
@@ -774,6 +782,7 @@
       "repo": "painel-esportivo",
       "pages_url": "https://gfvdata-web.github.io/painel-esportivo/",
       "destaque": false,
+      "categoria": null,
       "ultimo_commit_dados": {
         "data": "2026-10-13T08:00:12Z",
         "mensagem": "Atualiza dados da rodada 21",
@@ -816,6 +825,7 @@
       "repo": "dashboard-municipios",
       "pages_url": "https://gfvdata-web.github.io/dashboard-municipios/",
       "destaque": false,
+      "categoria": null,
       "ultimo_commit_dados": {
         "data": "2026-10-13T08:00:12Z",
         "mensagem": "Atualiza dados da rodada 21",
@@ -858,6 +868,7 @@
       "repo": "var-vendo",
       "pages_url": "https://gfvdata-web.github.io/var-vendo/",
       "destaque": false,
+      "categoria": null,
       "ultimo_commit_dados": {
         "data": "2026-10-13T08:00:12Z",
         "mensagem": "Atualiza dados da rodada 21",
@@ -917,6 +928,7 @@
       "repo": "evolucao-fotografia",
       "pages_url": "https://gfvdata-web.github.io/evolucao-fotografia/",
       "destaque": false,
+      "categoria": null,
       "ultimo_commit_dados": {
         "data": "2026-10-13T08:00:12Z",
         "mensagem": "Atualiza dados da rodada 21",

@@ -129,11 +129,50 @@ test("lista: site fora do ar, alerta e visitas", async () => {
   site(status, "var_vendo").alertas = [{ nivel: "aviso", texto: "A última coleta falhou." }];
   const p = await abrirLista(status);
   const html = p.el("lista-sites").innerHTML;
-  assert.match(html, /cartao--erro/);
+  assert.match(html, /bolinha--erro/);
   assert.match(html, /Site pode estar fora do ar \(HTTP 503\)/);
-  assert.match(html, /cartao--aviso/);
+  assert.match(html, /bolinha--aviso/);
   assert.match(html, /⚠ A última coleta falhou\./);
   assert.equal(p.el("lista-resumo").textContent, `${status.sites.length} sites · 1 com problema de acesso`);
+});
+
+test("lista: faixa = categoria; bolinha = situação; legenda só com categoria atribuída", async () => {
+  const semCategoria = await abrirLista(exemplo);
+  assert.match(semCategoria.el("lista-sites").innerHTML, /cartao--cat-neutra/);
+  assert.equal(semCategoria.el("lista-legenda").hidden, true);
+
+  const status = copia(exemplo);
+  site(status, "meios_pagamento_mensal").categoria = "dados_abertos";
+  site(status, "plants_care").categoria = "hobby";
+  const p = await abrirLista(status);
+  const html = p.el("lista-sites").innerHTML;
+  assert.match(html, /cartao--cat-dados_abertos/);
+  assert.match(html, /cartao--cat-hobby/);
+  assert.equal(p.el("lista-legenda").hidden, false);
+  assert.match(p.el("lista-legenda").innerHTML, /Dados abertos/);
+  assert.match(p.el("lista-legenda").innerHTML, /Hobby/);
+  assert.doesNotMatch(p.el("lista-legenda").innerHTML, /Curiosidade/);
+  assert.match(html, /<span class="bolinha bolinha--ok"/);
+  semLixo(html, "lista com categoria");
+});
+
+test("lista: pipeline do Bolão F1 começa recolhido e expande/oculta ao clicar", async () => {
+  const p = await abrirLista(exemplo);
+  const html = p.el("lista-sites").innerHTML;
+  assert.match(html, /<button type="button" class="cartao__alternar" data-slug="bolao_f1" aria-expanded="false">/);
+  assert.match(html, /<div class="cartao__pipeline" hidden>/);
+  assert.equal((html.match(/cartao__alternar/g) || []).length, 1, "só o Bolão tem pipeline");
+
+  // Clique (delegação em #lista-sites): alvo = botão do Bolão, dentro do cartão dele.
+  const pipeline = { hidden: true };
+  const botao = { dataset: { slug: "bolao_f1" }, textContent: "", setAttribute() {}, closest: (sel) => (sel === ".cartao" ? cartaoFake : null) };
+  const cartaoFake = { querySelector: (sel) => (sel === ".cartao__pipeline" ? pipeline : null) };
+  const clicar = () => p.el("lista-sites").ouvintes.click[0]({ target: { closest: (sel) => (sel === ".cartao__alternar" ? botao : null) } });
+  clicar();
+  assert.equal(pipeline.hidden, false, "expande");
+  clicar();
+  assert.equal(pipeline.hidden, true, "oculta de novo");
+  assert.deepEqual(p.erros, []);
 });
 
 test("lista: visitas = soma dos últimos 7 dias da série; sem rastreio = traço", async () => {

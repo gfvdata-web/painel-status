@@ -32,6 +32,10 @@ Campos de cada site (todos presentes em toda entrada, para servir de molde):
                    passo a passo do último envio (etapas_forms.py) e o
                    Apps Script do Forms avisa o painel (job vigiar-forms).
                    Exige form_url. Hoje só o PlantsCare
+  categoria        cor da faixa do cartão na página principal: "dados_abertos",
+                   "hobby", "curiosidade", ou None (cor neutra enquanto não
+                   atribuída). Os nomes e a atribuição ainda não estão definidos
+                   (ver CATEGORIAS)
 
 Rastreio de acesso: um único site GoatCounter (`gfvdata`, ver coleta_goatcounter.py)
 recebe o snippet padrão em todos os sites monitorados — a separação entre eles é
@@ -61,6 +65,7 @@ SITES = [
         "destaque": True,
         "pipeline_bolao": True,
         "pipeline_forms": None,
+        "categoria": None,
     },
     {
         "slug": "meios_pagamento_mensal",
@@ -78,6 +83,7 @@ SITES = [
         "destaque": False,
         "pipeline_bolao": False,
         "pipeline_forms": None,
+        "categoria": None,
     },
     {
         "slug": "arrecadacao_federal",
@@ -93,6 +99,7 @@ SITES = [
         "destaque": False,
         "pipeline_bolao": False,
         "pipeline_forms": None,
+        "categoria": None,
     },
     {
         "slug": "credito_modalidade",
@@ -108,6 +115,7 @@ SITES = [
         "destaque": False,
         "pipeline_bolao": False,
         "pipeline_forms": None,
+        "categoria": None,
     },
     {
         "slug": "simulador_investimentos",
@@ -123,6 +131,7 @@ SITES = [
         "destaque": False,
         "pipeline_bolao": False,
         "pipeline_forms": None,
+        "categoria": None,
     },
     {
         "slug": "chess_tracking",
@@ -138,6 +147,7 @@ SITES = [
         "destaque": False,
         "pipeline_bolao": False,
         "pipeline_forms": None,
+        "categoria": None,
     },
     {
         "slug": "plants_care",
@@ -158,6 +168,7 @@ SITES = [
         "destaque": False,
         "pipeline_bolao": False,
         "pipeline_forms": "pipeline.yml",
+        "categoria": None,
     },
     {
         "slug": "eleicoes_2026",
@@ -175,6 +186,7 @@ SITES = [
         "destaque": False,
         "pipeline_bolao": False,
         "pipeline_forms": None,
+        "categoria": None,
     },
     {
         "slug": "painel_esportivo",
@@ -192,6 +204,7 @@ SITES = [
         "destaque": False,
         "pipeline_bolao": False,
         "pipeline_forms": None,
+        "categoria": None,
     },
     {
         "slug": "dashboard_municipios",
@@ -207,6 +220,7 @@ SITES = [
         "destaque": False,
         "pipeline_bolao": False,
         "pipeline_forms": None,
+        "categoria": None,
     },
     {
         "slug": "var_vendo",
@@ -223,6 +237,7 @@ SITES = [
         "destaque": False,
         "pipeline_bolao": False,
         "pipeline_forms": None,
+        "categoria": None,
     },
     {
         "slug": "evolucao_fotografia",
@@ -241,6 +256,7 @@ SITES = [
         "destaque": False,
         "pipeline_bolao": False,
         "pipeline_forms": None,
+        "categoria": None,
     },
 ]
 
@@ -253,7 +269,11 @@ FORMS_AVULSOS = [
 CAMPOS_SITE = {
     "slug", "nome", "repo", "pages_url", "caminho_dados", "branch_dados", "workflow_arquivo",
     "json_meta_url", "form_url", "form_rotulo", "destaque", "pipeline_bolao", "pipeline_forms",
+    "categoria",
 }
+
+# Valores aceitos em `categoria` (None = sem categoria, cor neutra).
+CATEGORIAS = {"dados_abertos", "hobby", "curiosidade"}
 
 
 def validar():
@@ -275,6 +295,8 @@ def validar():
             problemas.append(f"{rotulo}: pipeline_forms e pipeline_bolao não se combinam")
         if site.get("form_rotulo") and not site.get("form_url"):
             problemas.append(f"{rotulo}: form_rotulo exige form_url")
+        if site.get("categoria") is not None and site.get("categoria") not in CATEGORIAS:
+            problemas.append(f"{rotulo}: categoria desconhecida {site.get('categoria')!r}")
     slugs = [site.get("slug") for site in SITES]
     if len(slugs) != len(set(slugs)):
         problemas.append("slugs repetidos em SITES")

@@ -53,6 +53,7 @@ def coletar_site(site, acesso_por_repo, acesso_anterior, falha_total):
         "repo": site["repo"],
         "pages_url": site["pages_url"],
         "destaque": site["destaque"],
+        "categoria": site["categoria"],
     }
     if site["form_url"]:
         bloco["form_url"] = site["form_url"]

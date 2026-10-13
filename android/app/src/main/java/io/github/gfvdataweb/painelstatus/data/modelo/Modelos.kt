@@ -31,6 +31,8 @@ data class Site(
     @SerialName("pages_url") val pagesUrl: String = "",
     /** O site em destaque (Bolão F1) tem card e aba próprios. */
     val destaque: Boolean = false,
+    /** Cor da faixa na página principal (dados_abertos, hobby, curiosidade); null = neutra. */
+    val categoria: String? = null,
     @SerialName("form_url") val formUrl: String? = null,
     @SerialName("form_rotulo") val formRotulo: String? = null,
     @SerialName("ultimo_commit_dados") val ultimoCommitDados: Commit? = null,

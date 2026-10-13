@@ -230,8 +230,11 @@ class ClassesDeEstado(unittest.TestCase):
             self.assertIn(f"alerta-linha--{nivel}", self.css)
         for badge in ("ok", "erro", "aviso", "neutro"):
             self.assertIn(badge, self.css)
-        for cartao in ("cartao--erro", "cartao--aviso", "cartao--destaque"):
-            self.assertIn(cartao, self.css)
+        # Faixa = categoria (cartao--cat-*); situação = bolinha (bolinha--*) à direita do cartão.
+        for categoria in ("neutra", "dados_abertos", "hobby", "curiosidade"):
+            self.assertIn(f"cartao--cat-{categoria}", self.css)
+        for nivel in ("ok", "aviso", "erro"):
+            self.assertIn(f"bolinha--{nivel}", self.css)
 
     def test_classes_fixas_do_js_tem_estilo(self):
         sem_estilo_ok = {"hist-vazio"}  # gancho do JS (atributo hidden), sem regra própria

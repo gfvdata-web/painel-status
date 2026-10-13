@@ -12,13 +12,14 @@ from datetime import datetime
 
 ESTADOS_ETAPA = {"ok", "andamento", "aguardando", "erro", "pendente", "pulado"}
 NIVEIS_ALERTA = {"aviso", "erro"}
+CATEGORIAS_VALIDAS = {"dados_abertos", "hobby", "curiosidade"}  # = src/config.py CATEGORIAS
 RE_HISTORICO_ARQUIVO = re.compile(r"^dados/historico/([A-Za-z0-9_-]+)\.json$")
 
 # Todo nome de campo que a página, o Worker ou o app podem ler. O teste das páginas exige que
 # toda propriedade snake_case usada nos JS esteja aqui (renomeou no JS sem renomear aqui = falha).
 CAMPOS_CONHECIDOS = {
     "meta", "gerado_em", "descricao", "sites", "forms_avulsos", "nome", "url",
-    "slug", "repo", "pages_url", "destaque", "form_url", "form_rotulo", "ultimo_commit_dados",
+    "slug", "repo", "pages_url", "destaque", "categoria", "form_url", "form_rotulo", "ultimo_commit_dados",
     "site_no_ar", "periodo_publicado", "ultima_execucao_pipeline", "acesso", "rodada_mais_recente",
     "em_vigilia", "etapas_pipeline", "detalhes", "alertas", "pipeline_forms", "historico_arquivo",
     # site_no_ar / erro de coleta
@@ -174,6 +175,9 @@ def problemas_status(status, cadastro=None):
             _tipo(problemas, f"{onde}.site_no_ar", noar, "status_http", int, opcional=True)
         for campo in ("form_url", "form_rotulo"):
             _tipo(problemas, onde, site, campo, str, opcional=True)
+        # categoria é sempre enviada (null = sem categoria): a página escolhe a cor a partir dela.
+        if "categoria" in site and site["categoria"] is not None and site["categoria"] not in CATEGORIAS_VALIDAS:
+            problemas.append(f"{onde}: categoria desconhecida {site['categoria']!r}")
         if site.get("periodo_publicado") is not None and "periodo_publicado" in site:
             for campo in ("inicio", "fim"):
                 _tipo(problemas, f"{onde}.periodo_publicado", site["periodo_publicado"], campo, str)

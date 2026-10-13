@@ -8,6 +8,9 @@ Painel único de monitoramento para todos os sites publicados pela conta
 (ver "App Android" abaixo) ·
 **Painel completo (V1):** https://painel.gfvdata.com/v1 — a página principal mostra um cartão
 por site, com status, form e visitas dos últimos 7 dias; as duas leem o mesmo `status.json` e têm o mesmo switch de tema.
+Na lista, a **faixa à esquerda** é a categoria do site (`categoria` em `src/config.py`; sem categoria, cinza), a
+**bolinha à direita** é a situação (verde no ar, âmbar com aviso, vermelho fora do ar), e o Bolão F1 tem o botão
+"Pipeline de atualização", recolhido por padrão, que mostra o passo a passo na horizontal.
 O switch **V1 / V2** no canto superior das duas páginas alterna entre elas (V1 = `/v1`, V2 = `/`)
 
 ## O que ele mostra
