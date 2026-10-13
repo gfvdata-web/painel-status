@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-10-13T17:30:46.438225+00:00",
+    "gerado_em": "2026-10-13T18:01:15.489053+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -10,6 +10,7 @@
       "repo": "page-bolao-formula1",
       "pages_url": "https://bolaof1.gfvdata.com/",
       "destaque": true,
+      "categoria": null,
       "form_url": "https://forms.gle/7yZAx1WThPf51bv67",
       "form_rotulo": "Enviar palpites (Google Forms)",
       "ultimo_commit_dados": {
@@ -207,6 +208,7 @@
       "repo": "fonte-meios-pagamento",
       "pages_url": "https://meiospagamento.gfvdata.com/index-v2",
       "destaque": false,
+      "categoria": null,
       "ultimo_commit_dados": {
         "data": "2026-10-13T01:48:38Z",
         "mensagem": "Skill do Claude para a série + CSV público + dados até ago/2026",
@@ -400,6 +402,7 @@
       "repo": "fonte-arrecadacao-federal",
       "pages_url": "https://gfvdata-web.github.io/fonte-arrecadacao-federal/",
       "destaque": false,
+      "categoria": null,
       "ultimo_commit_dados": {
         "data": "2026-08-15T21:48:16Z",
         "mensagem": "Perfil: motor detecta medida guardada como texto",
@@ -581,6 +584,7 @@
       "repo": "fonte-credito-modalidade",
       "pages_url": "https://gfvdata-web.github.io/fonte-credito-modalidade/",
       "destaque": false,
+      "categoria": null,
       "ultimo_commit_dados": {
         "data": "2026-08-15T21:47:58Z",
         "mensagem": "Etapa E: pagina de exploracao dos dados",
@@ -756,6 +760,7 @@
       "repo": "simulador-investimentos",
       "pages_url": "https://gfvdata-web.github.io/simulador-investimentos/",
       "destaque": false,
+      "categoria": null,
       "ultimo_commit_dados": {
         "data": "2026-10-13T02:29:42Z",
         "mensagem": "Dados de mercado em 2026-10-13",
@@ -1171,6 +1176,7 @@
       "repo": "chess-tracking",
       "pages_url": "https://gfvdata-web.github.io/chess-tracking/",
       "destaque": false,
+      "categoria": null,
       "ultimo_commit_dados": {
         "data": "2026-10-13T16:57:26Z",
         "mensagem": "Atualiza partidas em 2026-10-13T16:57Z",
@@ -1452,7 +1458,7 @@
       "alertas": [],
       "historico_arquivo": "dados/historico/chess_tracking.json",
       "acesso": {
-        "visitantes_unicos": 12,
+        "visitantes_unicos": 13,
         "serie_diaria": [
           {
             "data": "2026-09-13",
@@ -1576,7 +1582,7 @@
           },
           {
             "data": "2026-10-13",
-            "visitantes": 0
+            "visitantes": 1
           }
         ]
       }
@@ -1587,6 +1593,7 @@
       "repo": "PlantsCare",
       "pages_url": "https://plantscare.gfvdata.com/",
       "destaque": false,
+      "categoria": null,
       "form_url": "https://forms.gle/y3uXaukJXmP9GMED7",
       "form_rotulo": "Enviar fotos",
       "ultimo_commit_dados": {
@@ -1930,6 +1937,7 @@
       "repo": "eleicoes-2026",
       "pages_url": "https://gfvdata-web.github.io/eleicoes-2026/",
       "destaque": false,
+      "categoria": null,
       "ultimo_commit_dados": {
         "data": "2026-10-06T14:09:24Z",
         "mensagem": "Voto cruzado: subaba Tabela de estados e botões por região no comparativo",
@@ -2119,6 +2127,7 @@
       "repo": "painel-esportivo",
       "pages_url": "https://gfvdata-web.github.io/painel-esportivo/",
       "destaque": false,
+      "categoria": null,
       "ultimo_commit_dados": {
         "data": "2026-09-28T20:07:49Z",
         "mensagem": "Publicação do painel (dados cifrados)",
@@ -2155,6 +2164,7 @@
       "repo": "dashboard-municipios",
       "pages_url": "https://gfvdata-web.github.io/dashboard-municipios/",
       "destaque": false,
+      "categoria": null,
       "ultimo_commit_dados": {
         "data": "2026-09-15T00:56:09Z",
         "mensagem": "Painel de indicadores municipais brasileiros",
@@ -2191,6 +2201,7 @@
       "repo": "var-vendo",
       "pages_url": "https://gfvdata-web.github.io/var-vendo/",
       "destaque": false,
+      "categoria": null,
       "ultimo_commit_dados": {
         "data": "2026-10-12T16:18:29Z",
         "mensagem": "Primeira versão: arbitragem na Série A e na Copa do Brasil 2026",
@@ -2350,6 +2361,7 @@
       "repo": "evolucao-fotografia",
       "pages_url": "https://gfvdata-web.github.io/evolucao-fotografia/",
       "destaque": false,
+      "categoria": null,
       "ultimo_commit_dados": {
         "data": "2026-10-13T11:38:37Z",
         "mensagem": "feat: v0.6.0 — importador no PC e o RAW sem processamento",
@@ -2398,7 +2410,7 @@
       },
       "alertas": [],
       "acesso": {
-        "visitantes_unicos": 7,
+        "visitantes_unicos": 8,
         "serie_diaria": [
           {
             "data": "2026-09-13",
@@ -2522,7 +2534,7 @@
           },
           {
             "data": "2026-10-13",
-            "visitantes": 2
+            "visitantes": 3
           }
         ]
       }

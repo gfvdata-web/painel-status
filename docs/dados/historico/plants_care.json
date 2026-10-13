@@ -3,7 +3,7 @@
  "nome": "Plants Care",
  "workflow": "sensor-sync.yml",
  "url_workflow": "https://github.com/gfvdata-web/PlantsCare/actions/workflows/sensor-sync.yml",
- "atualizado_em": "2026-10-13T17:31:37.309483+00:00",
+ "atualizado_em": "2026-10-13T18:01:36.588072+00:00",
  "execucoes": [
   {
    "id": 38437297122,
@@ -373,6 +373,105 @@
    "conclusao": "success",
    "duracao_s": 20,
    "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/37156674943",
+   "avisos": null
+  },
+  {
+   "id": 37144298106,
+   "criado_em": "2026-10-03T18:28:07Z",
+   "evento": "schedule",
+   "conclusao": "success",
+   "duracao_s": 22,
+   "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/37144298106",
+   "avisos": null
+  },
+  {
+   "id": 37129721811,
+   "criado_em": "2026-10-03T14:28:38Z",
+   "evento": "schedule",
+   "conclusao": "success",
+   "duracao_s": 26,
+   "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/37129721811",
+   "avisos": null
+  },
+  {
+   "id": 37101405969,
+   "criado_em": "2026-10-03T05:55:47Z",
+   "evento": "schedule",
+   "conclusao": "success",
+   "duracao_s": 25,
+   "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/37101405969",
+   "avisos": null
+  },
+  {
+   "id": 37083741282,
+   "criado_em": "2026-10-03T00:50:40Z",
+   "evento": "schedule",
+   "conclusao": "success",
+   "duracao_s": 23,
+   "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/37083741282",
+   "avisos": null
+  },
+  {
+   "id": 37064820237,
+   "criado_em": "2026-10-02T21:06:31Z",
+   "evento": "schedule",
+   "conclusao": "success",
+   "duracao_s": 24,
+   "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/37064820237",
+   "avisos": null
+  },
+  {
+   "id": 37031150791,
+   "criado_em": "2026-10-02T16:02:11Z",
+   "evento": "schedule",
+   "conclusao": "success",
+   "duracao_s": 27,
+   "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/37031150791",
+   "avisos": null
+  },
+  {
+   "id": 36988398948,
+   "criado_em": "2026-10-02T09:12:00Z",
+   "evento": "schedule",
+   "conclusao": "success",
+   "duracao_s": 24,
+   "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/36988398948",
+   "avisos": null
+  },
+  {
+   "id": 36953665873,
+   "criado_em": "2026-10-02T02:01:16Z",
+   "evento": "schedule",
+   "conclusao": "success",
+   "duracao_s": 23,
+   "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/36953665873",
+   "avisos": null
+  },
+  {
+   "id": 36938123290,
+   "criado_em": "2026-10-01T22:57:42Z",
+   "evento": "schedule",
+   "conclusao": "success",
+   "duracao_s": 24,
+   "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/36938123290",
+   "avisos": null
+  },
+  {
+   "id": 36920149230,
+   "criado_em": "2026-10-01T20:14:44Z",
+   "evento": "workflow_dispatch",
+   "conclusao": "success",
+   "duracao_s": 23,
+   "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/36920149230",
+   "avisos": null
+  },
+  {
+   "id": 36918857738,
+   "criado_em": "2026-10-01T20:03:58Z",
+   "evento": "workflow_dispatch",
+   "conclusao": "success",
+   "duracao_s": 24,
+   "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/36918857738",
    "avisos": null
   }
  ]
