@@ -8,7 +8,7 @@ on:
   push:
     branches: [main]
     # Tag app-vX.Y.Z publica o APK assinado (job "publicar") no Worker do painel
-    # (painel.gfvdata.com/app/, de onde o app se atualiza) e num Release (arquivo).
+    # (painel.gfvdata.com/app/, de onde o app se atualiza); não há GitHub Release.
     # Filtro de paths não vale para tags.
     tags: ["app-v*"]
     paths:
@@ -104,16 +104,15 @@ jobs:
           path: android/app/build/reports/
           retention-days: 14
 
-  # Release oficial: só em tag app-vX.Y.Z e só depois do job "build"
-  # (testes + lint) passar no mesmo commit. Único job com permissão de escrita.
+  # Versão oficial: só em tag app-vX.Y.Z e só depois do job "build"
+  # (testes + lint) passar no mesmo commit. Publica só no Worker (sem GitHub
+  # Release), então não precisa de escrita no repositório.
   publicar:
-    name: Release assinado
+    name: APK assinado (Worker)
     needs: build
     if: startsWith(github.ref, 'refs/tags/app-v')
     runs-on: ubuntu-latest
     timeout-minutes: 30
-    permissions:
-      contents: write
     defaults:
       run:
         working-directory: android
@@ -179,7 +178,7 @@ jobs:
             exit 1
           fi
 
-      # O repositório é privado: Release não baixa sem login. O app consulta
+      # Único destino do APK (sem GitHub Release). O app consulta
       # painel.gfvdata.com/app/versao.json e baixa o APK de lá (worker/src/index.ts).
       # O Worker só aceita o versao.json depois que o APK citado chegou.
       - name: Publica no Worker do painel (app/versao.json + APK)
@@ -204,17 +203,10 @@ jobs:
             --data-binary @versao.json "$BASE/api/app/versao.json"
           echo
           curl --fail -sS -o /dev/null "$BASE/app/$APK"
-
-      - name: Publica o Release (arquivo)
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          gh release create "$GITHUB_REF_NAME" "../saida/$APK" --repo "$GITHUB_REPOSITORY" --title "Painel de Status $VERSAO" --notes "$NOTAS"
           {
             echo "### Painel de Status $VERSAO publicado"
             echo ""
-            echo "- Download: https://painel.gfvdata.com/app/$APK"
-            echo "- Release: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/releases/tag/$GITHUB_REF_NAME"
+            echo "- Download: $BASE/app/$APK"
             echo "- Arquivo: \`$APK\` · assinado pela chave oficial"
           } >> "$GITHUB_STEP_SUMMARY"
 
