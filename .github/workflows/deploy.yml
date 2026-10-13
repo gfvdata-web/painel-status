@@ -43,13 +43,11 @@ jobs:
           node-version: 22
           cache: npm
           cache-dependency-path: worker/package-lock.json
-      - name: Instalar e checar o Worker (tsc)
+      - name: Instalar o Worker
         if: steps.token.outputs.ok == 'sim'
         working-directory: worker
         run: |
-          npm ci
-          npx wrangler types   # worker-configuration.d.ts não vai para o git
-          npm run check
+          npm ci   # o tsc roda no pre-commit (scripts/check): aqui faltam os tipos dos segredos (.dev.vars)
       - name: Publicar (wrangler deploy)
         if: steps.token.outputs.ok == 'sim'
         working-directory: worker

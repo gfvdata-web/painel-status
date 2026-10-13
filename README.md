@@ -126,7 +126,7 @@ android/                  # app Android nativo (lê o mesmo status.json; ver "Ap
 .github/workflows/
 ├── atualizar-status.yml  # coleta (3 em 3 h), vigia do Bolão e vigia do envio do Forms
 ├── android.yml           # testes → lint → APK; tag app-vX.Y.Z publica o APK assinado
-└── deploy.yml            # push na main em docs/ ou worker/ → tsc → wrangler deploy (painel.gfvdata.com)
+└── deploy.yml            # push na main em docs/ ou worker/ → wrangler deploy (painel.gfvdata.com)
 scripts/
 └── check                 # testes sem rede/tokens/navegador: sintaxe, JSON, tsc do worker e tests/; sem argumento roda tudo, com um arquivo só o que vale para ele
 tests/                    # testes automáticos (unittest + node --test), rodados pelo scripts/check
