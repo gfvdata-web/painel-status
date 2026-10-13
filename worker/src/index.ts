@@ -13,15 +13,38 @@
 // Sem cópia no R2, /dados/* cai para o arquivo estático de docs/dados/ (reserva da
 // transição). Cada status recebido também vira um retrato em snapshots/AAAA-MM-DD/,
 // apagado pelo R2 depois de 30 dias (regra de ciclo de vida do bucket).
+//
+// Agenda (Cron Trigger "*/30 * * * *", no lugar do `schedule` do Actions, que atrasa e
+// é desligado após 60 dias sem atividade): nas horas múltiplas de 3 (UTC), no minuto 0,
+// dispara o workflow atualizar-status.yml pela API do GitHub. Nas outras meias horas é
+// vigia: se o status publicado passou de ATRASO_MAXIMO_MS, dispara de novo (no máximo
+// uma vez a cada INTERVALO_REDISPARO_MS). O último disparo fica em R2
+// "controle/agenda.json", legível em GET /api/agenda.
 
 const RE_HISTORICO = /^historico\/([A-Za-z0-9_-]+)\.json$/;
 const PREFIXO_DADOS = "/dados/";
 const PREFIXO_ENVIO = "/api/envio/";
 const LIMITE_BYTES = 5 * 1024 * 1024;
 
+const WORKFLOW_DISPATCH =
+  "https://api.github.com/repos/gfvdata-web/painel-status/actions/workflows/atualizar-status.yml/dispatches";
+const HORAS_ENTRE_RODADAS = 3;
+const MINUTO = 60 * 1000;
+const ATRASO_MAXIMO_MS = (HORAS_ENTRE_RODADAS * 60 + 20) * MINUTO;
+const INTERVALO_REDISPARO_MS = 60 * MINUTO;
+const CHAVE_AGENDA = "controle/agenda.json";
+
 export default {
+  async scheduled(controller, env): Promise<void> {
+    await agendar(new Date(controller.scheduledTime), env);
+  },
+
   async fetch(request, env): Promise<Response> {
     const { pathname } = new URL(request.url);
+    if (pathname === "/api/agenda") {
+      const agenda = await env.DADOS.get(CHAVE_AGENDA);
+      return new Response(agenda ? agenda.body : "{}", { headers: cabecalhosJson() });
+    }
     if (pathname.startsWith(PREFIXO_DADOS)) {
       const chave = chaveDoArquivo(pathname.slice(PREFIXO_DADOS.length));
       if (chave === null || !["GET", "HEAD"].includes(request.method)) {
@@ -141,6 +164,68 @@ function problemaNoHistorico(dados: unknown, slug: string): string | null {
 function chaveDoRetrato(geradoEm: string): string {
   const [dia, hora] = new Date(geradoEm).toISOString().split("T");
   return `snapshots/${dia}/${hora.slice(0, 8).replaceAll(":", "-")}.json`;
+}
+
+interface Agenda {
+  ultimo_disparo: string | null; // ISO; o último disparo tentado
+  motivo: "rotina" | "atraso" | null;
+  resultado: string | null; // "ok" ou a descrição da falha
+  ultima_verificacao: string; // ISO; a última execução do Cron
+  status_gerado_em: string | null; // o que estava publicado na última verificação
+}
+
+/** Decide, a cada meia hora, se dispara a coleta; grava o que fez em CHAVE_AGENDA. */
+export async function agendar(agora: Date, env: Env, disparar = dispararWorkflow): Promise<Agenda> {
+  const [cabecalho, anterior] = await Promise.all([
+    env.DADOS.head("status.json"),
+    env.DADOS.get(CHAVE_AGENDA).then((o) => (o ? (o.json() as Promise<Agenda>) : null)),
+  ]);
+  const geradoEm = cabecalho?.customMetadata?.gerado_em ?? null;
+  const agenda: Agenda = {
+    ultimo_disparo: anterior?.ultimo_disparo ?? null,
+    motivo: anterior?.motivo ?? null,
+    resultado: anterior?.resultado ?? null,
+    ultima_verificacao: agora.toISOString(),
+    status_gerado_em: geradoEm,
+  };
+
+  const rotina = agora.getUTCMinutes() < 30 && agora.getUTCHours() % HORAS_ENTRE_RODADAS === 0;
+  const atrasado = geradoEm === null || agora.getTime() - Date.parse(geradoEm) > ATRASO_MAXIMO_MS;
+  const disparouHaPouco =
+    agenda.ultimo_disparo !== null && agora.getTime() - Date.parse(agenda.ultimo_disparo) < INTERVALO_REDISPARO_MS;
+  const motivo = rotina ? "rotina" : atrasado && !disparouHaPouco ? "atraso" : null;
+
+  if (motivo) {
+    agenda.ultimo_disparo = agora.toISOString();
+    agenda.motivo = motivo;
+    agenda.resultado = await disparar(env);
+    console.log(`disparo (${motivo}): ${agenda.resultado}`);
+  }
+  await env.DADOS.put(CHAVE_AGENDA, JSON.stringify(agenda, null, 1), {
+    httpMetadata: { contentType: "application/json; charset=utf-8" },
+  });
+  return agenda;
+}
+
+/** workflow_dispatch do atualizar-status.yml; "ok" ou a descrição da falha. */
+async function dispararWorkflow(env: Env): Promise<string> {
+  if (!env.GITHUB_TOKEN_DISPARO) return "sem GITHUB_TOKEN_DISPARO";
+  try {
+    const resposta = await fetch(WORKFLOW_DISPATCH, {
+      method: "POST",
+      headers: {
+        authorization: `Bearer ${env.GITHUB_TOKEN_DISPARO}`,
+        accept: "application/vnd.github+json",
+        "x-github-api-version": "2022-11-28",
+        "user-agent": "painel-status-worker",
+      },
+      body: JSON.stringify({ ref: "main" }),
+    });
+    if (resposta.ok) return "ok";
+    return `HTTP ${resposta.status}: ${(await resposta.text()).slice(0, 200)}`;
+  } catch (falha) {
+    return `falha de rede: ${falha}`;
+  }
 }
 
 function erro(status: number, mensagem: string): Response {

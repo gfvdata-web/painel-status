@@ -59,8 +59,8 @@ também a este repositório (Contents: Read and write).
 
 ## Como funciona
 
-Sem servidor: um workflow do GitHub Actions (`.github/workflows/atualizar-status.yml`) roda a
-cada 3 horas (e sob demanda via `workflow_dispatch`, ou pelo envio do Forms do Bolão — ver
+Um workflow do GitHub Actions (`.github/workflows/atualizar-status.yml`) roda a
+cada 3 horas — disparado pelo Cron do Worker da Cloudflare, ver "Cloudflare" — (e sob demanda via `workflow_dispatch`, ou pelo envio do Forms do Bolão — ver
 acima), consulta a API pública do GitHub — commits
 recentes por caminho de dados, execuções de Actions, resposta HTTP de cada site — e, quando
 configurado, a API do GoatCounter. O resultado vira `docs/dados/status.json` (mais o histórico em
@@ -122,7 +122,16 @@ serve a página (os arquivos de `docs/`) e os dados (`/dados/status.json`,
 Pages (`gfvdata-web.github.io/painel-status/`) e o Pages da Cloudflare
 (`painel-status.pages.dev`) continuam atualizados pelos commits até o fim da transição.
 
-- **A coleta continua em Python, no Actions.** Depois de gerar, o job manda os arquivos ao
+- **Agenda:** o Cron do Worker (`*/30 * * * *`, `agendar()` em `worker/src/index.ts`) dispara o
+  workflow pela API do GitHub nas horas múltiplas de 3 (UTC) — no lugar do `schedule` do
+  Actions, que atrasa e é desligado após 60 dias sem atividade (o `schedule` fica de reserva
+  até a validação). Nas outras meias horas é vigia: status com mais de 3h20 → dispara de novo
+  (no máximo 1 vez por hora). O último disparo e o resultado ficam em
+  https://painel.gfvdata.com/api/agenda. O disparo usa o segredo `GITHUB_TOKEN_DISPARO` do
+  Worker: token fine-grained só deste repositório, permissão **Actions: Read and write**. Quando
+  ele expirar, `/api/agenda` mostra `HTTP 401` e o `schedule` de reserva segura as rodadas.
+- **A coleta continua em Python, no Actions.** Antes de coletar, o job baixa o que está
+  publicado no Worker (`python -m src.envio baixar`: o R2 é a fonte da verdade). Depois de gerar, o job manda os arquivos ao
   Worker (`python -m src.envio enviar`, `PUT /api/envio/...` com o token do secret
   `PAINEL_TOKEN_ENVIO`, que é o `TOKEN_ENVIO` do Worker). O Worker guarda os bytes como
   vieram — o formato é o de `publicacao.py`/`historico.py`, sem tradução.
@@ -137,7 +146,13 @@ Pages (`gfvdata-web.github.io/painel-status/`) e o Pages da Cloudflare
   `npx --prefix worker wrangler dev --config worker/wrangler.jsonc` (R2 simulado, token em
   `worker/.dev.vars`: `TOKEN_ENVIO=teste-local`) e
   `PAINEL_URL=http://localhost:8787 PAINEL_TOKEN_ENVIO=teste-local python -m src.envio enviar`.
+- **Testar a agenda localmente:** acrescentar `--test-scheduled` ao `wrangler dev` e abrir
+  `http://localhost:8787/cdn-cgi/handler/scheduled?cron=*/30+*+*+*+*&time=<ms>`; o resultado
+  aparece em `/api/agenda`.
 - **Publicar o Worker:** `npx --prefix worker wrangler deploy --config worker/wrangler.jsonc`.
+- **Rollback:** a agenda volta a ser só o `schedule` do Actions removendo `triggers` do
+  `wrangler.jsonc` e publicando; o app e a página voltam ao GitHub Pages trocando o endereço.
+  Retratos do status em `snapshots/` no R2 (`npx wrangler r2 object get`).
 
 ## App Android
 

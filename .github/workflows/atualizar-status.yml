@@ -4,9 +4,12 @@ name: Atualizar status
 # site monitorado e publica docs/dados/status.json — o único arquivo que a
 # página lida.
 #
-# Horário: a cada 3 horas. Não há janela "certa" aqui como nas fontes
-# financeiras (o bolão F1 é orientado a evento, não a calendário), então um
-# intervalo curto e regular é o suficiente pra pegar mudanças com atraso baixo.
+# Horário: a cada 3 horas, disparado pelo Cron do Worker da Cloudflare (worker/, agendar())
+# via workflow_dispatch — pontual e sem o desligamento após 60 dias sem atividade. O
+# `schedule` abaixo fica como reserva até a agenda da Cloudflare ser validada. Não há
+# janela "certa" aqui como nas fontes financeiras (o bolão F1 é orientado a evento, não a
+# calendário), então um intervalo curto e regular é o suficiente pra pegar mudanças com
+# atraso baixo.
 #
 # Envio do Forms do Bolão F1: o Apps Script, além de disparar o pipeline no
 # page-bolao-formula1, manda um repository_dispatch `bolao_palpite` para cá. Aí
@@ -14,9 +17,10 @@ name: Atualizar status
 # 1 min; a cada 10 min enquanto o Verificador espera o resultado) e encerra —
 # o painel volta para a rotina de 3 em 3 horas. Ver src/vigia_bolao.py.
 #
-# Cloudflare (transição): além do commit, os dois jobs mandam docs/dados ao Worker
-# (painel.gfvdata.com, ver worker/ e src/envio.py). Sem o secret PAINEL_TOKEN_ENVIO,
-# o envio é pulado.
+# Cloudflare (transição): o R2 do Worker é a fonte da verdade — a coleta parte do que está
+# publicado lá (src/envio.py baixar) e, além do commit, os dois jobs mandam docs/dados ao
+# Worker (painel.gfvdata.com, ver worker/). Sem o secret PAINEL_TOKEN_ENVIO, os dois passos
+# são pulados.
 
 on:
   schedule:
@@ -45,6 +49,10 @@ jobs:
         with:
           python-version: '3.13'
 
+      - name: Partir do que está publicado na Cloudflare
+        if: env.PAINEL_TOKEN_ENVIO != ''
+        run: python -m src.envio baixar || echo '::warning::Sem os dados do Worker; a coleta parte do Git.'
+
       - name: Coletar status
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -61,6 +69,7 @@ jobs:
           fi
           git add docs/dados  # status.json + historico/<slug>.json
           git commit -m "Atualiza status em $(date -u +'%Y-%m-%dT%H:%MZ')"
+          git pull --rebase --quiet
           git push
 
       - name: Enviar ao Worker da Cloudflare
