@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-10-12T20:49:27.380486+00:00",
+    "gerado_em": "2026-10-13T02:23:28.319230+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -8,7 +8,7 @@
       "slug": "bolao_f1",
       "nome": "Bolão F1",
       "repo": "page-bolao-formula1",
-      "pages_url": "https://gfvdata-web.github.io/page-bolao-formula1/",
+      "pages_url": "https://bolaof1.gfvdata.com/",
       "destaque": true,
       "form_url": "https://forms.gle/7yZAx1WThPf51bv67",
       "form_rotulo": "Enviar palpites (Google Forms)",
@@ -74,10 +74,6 @@
       "acesso": {
         "visitantes_unicos": 43,
         "serie_diaria": [
-          {
-            "data": "2026-09-12",
-            "visitantes": 0
-          },
           {
             "data": "2026-09-13",
             "visitantes": 1
@@ -205,17 +201,17 @@
       "slug": "meios_pagamento_mensal",
       "nome": "Meios de pagamento",
       "repo": "fonte-meios-pagamento",
-      "pages_url": "https://gfvdata-web.github.io/fonte-meios-pagamento/index-v2.html",
+      "pages_url": "https://meiospagamento.gfvdata.com/index-v2",
       "destaque": false,
       "ultimo_commit_dados": {
-        "data": "2026-09-22T17:17:53Z",
-        "mensagem": "v2: adiciona 9 novos marcos temporais pesquisados por forma de pagamento",
-        "sha": "621250f",
-        "url": "https://github.com/gfvdata-web/fonte-meios-pagamento/commit/621250f71ccc89c72fdd13ff7f45b9d2eba8a6aa"
+        "data": "2026-10-13T01:48:38Z",
+        "mensagem": "Skill do Claude para a série + CSV público + dados até ago/2026",
+        "sha": "dff0fc4",
+        "url": "https://github.com/gfvdata-web/fonte-meios-pagamento/commit/dff0fc4ebb900f5fe1cee49ae5a95889d6175858"
       },
       "periodo_publicado": {
         "inicio": "2002-04",
-        "fim": "2026-06"
+        "fim": "2026-08"
       },
       "site_no_ar": {
         "ok": true,
@@ -224,6 +220,12 @@
       "detalhes": {
         "coleta": null,
         "commits_dados": [
+          {
+            "data": "2026-10-13T01:48:38Z",
+            "mensagem": "Skill do Claude para a série + CSV público + dados até ago/2026",
+            "sha": "dff0fc4",
+            "url": "https://github.com/gfvdata-web/fonte-meios-pagamento/commit/dff0fc4ebb900f5fe1cee49ae5a95889d6175858"
+          },
           {
             "data": "2026-09-22T17:17:53Z",
             "mensagem": "v2: adiciona 9 novos marcos temporais pesquisados por forma de pagamento",
@@ -247,30 +249,20 @@
             "mensagem": "Perfil: motor detecta medida guardada como texto",
             "sha": "cd01517",
             "url": "https://github.com/gfvdata-web/fonte-meios-pagamento/commit/cd01517fee25c4d0533c79aea8dd60068d9501b0"
-          },
-          {
-            "data": "2026-08-15T21:29:26Z",
-            "mensagem": "Etapa E: pagina de exploracao dos dados",
-            "sha": "f8e5436",
-            "url": "https://github.com/gfvdata-web/fonte-meios-pagamento/commit/f8e5436cdc452ba4e46239b62c5f4c683d2c285a"
           }
         ],
         "deploy_pages": {
           "status": "completed",
           "conclusao": "success",
-          "criado_em": "2026-09-22T17:35:38Z",
-          "atualizado_em": "2026-09-22T17:36:27Z",
-          "url": "https://github.com/gfvdata-web/fonte-meios-pagamento/actions/runs/35761717524"
+          "criado_em": "2026-10-13T02:07:47Z",
+          "atualizado_em": "2026-10-13T02:08:23Z",
+          "url": "https://github.com/gfvdata-web/fonte-meios-pagamento/actions/runs/38335410190"
         }
       },
       "alertas": [],
       "acesso": {
         "visitantes_unicos": 7,
         "serie_diaria": [
-          {
-            "data": "2026-09-12",
-            "visitantes": 0
-          },
           {
             "data": "2026-09-13",
             "visitantes": 2
@@ -449,10 +441,6 @@
         "visitantes_unicos": 12,
         "serie_diaria": [
           {
-            "data": "2026-09-12",
-            "visitantes": 0
-          },
-          {
             "data": "2026-09-13",
             "visitantes": 0
           },
@@ -624,10 +612,6 @@
         "visitantes_unicos": 3,
         "serie_diaria": [
           {
-            "data": "2026-09-12",
-            "visitantes": 0
-          },
-          {
             "data": "2026-09-13",
             "visitantes": 0
           },
@@ -763,13 +747,13 @@
         "url": "https://github.com/gfvdata-web/simulador-investimentos/commit/f9d8e53d61ef5dca6be83b9bcc12d85ad4402206"
       },
       "ultima_execucao_pipeline": {
-        "id": 38008752064,
+        "id": 38336219013,
         "evento": "schedule",
-        "status": "completed",
-        "conclusao": "success",
-        "criado_em": "2026-10-10T00:22:15Z",
-        "atualizado_em": "2026-10-10T00:33:01Z",
-        "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/38008752064"
+        "status": "in_progress",
+        "conclusao": null,
+        "criado_em": "2026-10-13T02:17:58Z",
+        "atualizado_em": "2026-10-13T02:18:02Z",
+        "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/38336219013"
       },
       "site_no_ar": {
         "ok": true,
@@ -786,6 +770,16 @@
             }
           ],
           "historico": [
+            {
+              "id": 38336219013,
+              "evento": "schedule",
+              "status": "in_progress",
+              "conclusao": null,
+              "criado_em": "2026-10-13T02:17:58Z",
+              "atualizado_em": "2026-10-13T02:18:02Z",
+              "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/38336219013",
+              "duracao_s": null
+            },
             {
               "id": 38008752064,
               "evento": "schedule",
@@ -925,16 +919,6 @@
               "atualizado_em": "2026-09-23T23:28:18Z",
               "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/35932766017",
               "duracao_s": 707
-            },
-            {
-              "id": 35797006340,
-              "evento": "schedule",
-              "status": "completed",
-              "conclusao": "success",
-              "criado_em": "2026-09-22T23:21:23Z",
-              "atualizado_em": "2026-09-22T23:32:45Z",
-              "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/35797006340",
-              "duracao_s": 682
             }
           ],
           "ultimo_sucesso": {
@@ -975,27 +959,23 @@
             },
             {
               "nome": "Coletar",
-              "conclusao": "success"
+              "conclusao": "in_progress"
             },
             {
               "nome": "Validar o que foi coletado",
-              "conclusao": "success"
+              "conclusao": "pending"
             },
             {
               "nome": "Commitar se algo mudou",
-              "conclusao": "success"
+              "conclusao": "pending"
             },
             {
               "nome": "Post Run actions/setup-python@v7",
-              "conclusao": "success"
+              "conclusao": "pending"
             },
             {
               "nome": "Post Run actions/checkout@v7",
-              "conclusao": "success"
-            },
-            {
-              "nome": "Complete job",
-              "conclusao": "success"
+              "conclusao": "pending"
             }
           ]
         },
@@ -1038,10 +1018,6 @@
       "acesso": {
         "visitantes_unicos": 1,
         "serie_diaria": [
-          {
-            "data": "2026-09-12",
-            "visitantes": 0
-          },
           {
             "data": "2026-09-13",
             "visitantes": 0
@@ -1455,10 +1431,6 @@
         "visitantes_unicos": 12,
         "serie_diaria": [
           {
-            "data": "2026-09-12",
-            "visitantes": 0
-          },
-          {
             "data": "2026-09-13",
             "visitantes": 0
           },
@@ -1590,19 +1562,19 @@
       "form_url": "https://forms.gle/y3uXaukJXmP9GMED7",
       "form_rotulo": "Enviar fotos",
       "ultimo_commit_dados": {
-        "data": "2026-10-12T19:32:09Z",
-        "mensagem": "Atualiza site a partir de PlantsCare@ef050a7",
-        "sha": "52f9045",
-        "url": "https://github.com/gfvdata-web/PlantsCare-publico/commit/52f9045d84b4de5f6d4175483d0b827f44f522e8"
+        "data": "2026-10-13T01:44:37Z",
+        "mensagem": "Atualiza site a partir de PlantsCare@7fe5a55",
+        "sha": "aca44d5",
+        "url": "https://github.com/gfvdata-web/PlantsCare-publico/commit/aca44d5d9de98610ccce6ec2b3a18882990077a8"
       },
       "ultima_execucao_pipeline": {
-        "id": 38298298503,
+        "id": 38333578636,
         "evento": "push",
         "status": "completed",
         "conclusao": "success",
-        "criado_em": "2026-10-12T19:32:12Z",
-        "atualizado_em": "2026-10-12T19:32:44Z",
-        "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/38298298503"
+        "criado_em": "2026-10-13T01:44:40Z",
+        "atualizado_em": "2026-10-13T01:45:12Z",
+        "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/38333578636"
       },
       "site_no_ar": {
         "ok": true,
@@ -1614,6 +1586,16 @@
           "url_workflow": "https://github.com/gfvdata-web/PlantsCare-publico/actions/workflows/deploy-pages.yml",
           "agenda": [],
           "historico": [
+            {
+              "id": 38333578636,
+              "evento": "push",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-10-13T01:44:40Z",
+              "atualizado_em": "2026-10-13T01:45:12Z",
+              "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/38333578636",
+              "duracao_s": 32
+            },
             {
               "id": 38298298503,
               "evento": "push",
@@ -1753,26 +1735,16 @@
               "atualizado_em": "2026-10-09T02:41:22Z",
               "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/37875711491",
               "duracao_s": 34
-            },
-            {
-              "id": 37855108370,
-              "evento": "push",
-              "status": "completed",
-              "conclusao": "success",
-              "criado_em": "2026-10-08T22:42:05Z",
-              "atualizado_em": "2026-10-08T22:42:46Z",
-              "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/37855108370",
-              "duracao_s": 41
             }
           ],
           "ultimo_sucesso": {
-            "id": 38298298503,
+            "id": 38333578636,
             "evento": "push",
             "status": "completed",
             "conclusao": "success",
-            "criado_em": "2026-10-12T19:32:12Z",
-            "atualizado_em": "2026-10-12T19:32:44Z",
-            "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/38298298503"
+            "criado_em": "2026-10-13T01:44:40Z",
+            "atualizado_em": "2026-10-13T01:45:12Z",
+            "url": "https://github.com/gfvdata-web/PlantsCare-publico/actions/runs/38333578636"
           },
           "ultima_falha": null,
           "passos_ultima": [
@@ -1824,6 +1796,12 @@
         },
         "commits_dados": [
           {
+            "data": "2026-10-13T01:44:37Z",
+            "mensagem": "Atualiza site a partir de PlantsCare@7fe5a55",
+            "sha": "aca44d5",
+            "url": "https://github.com/gfvdata-web/PlantsCare-publico/commit/aca44d5d9de98610ccce6ec2b3a18882990077a8"
+          },
+          {
             "data": "2026-10-12T19:32:09Z",
             "mensagem": "Atualiza site a partir de PlantsCare@ef050a7",
             "sha": "52f9045",
@@ -1846,12 +1824,6 @@
             "mensagem": "Atualiza site a partir de PlantsCare@e0e9691",
             "sha": "d14ef3d",
             "url": "https://github.com/gfvdata-web/PlantsCare-publico/commit/d14ef3d180426a00e2b1256ed4de54ddfac47d16"
-          },
-          {
-            "data": "2026-10-11T16:04:52Z",
-            "mensagem": "Atualiza site a partir de PlantsCare@a52709d",
-            "sha": "a85f986",
-            "url": "https://github.com/gfvdata-web/PlantsCare-publico/commit/a85f98662e1c1702ff6a61cea525bf8fb969c7bf"
           }
         ],
         "deploy_pages": null
@@ -1921,10 +1893,6 @@
       "acesso": {
         "visitantes_unicos": 1,
         "serie_diaria": [
-          {
-            "data": "2026-09-12",
-            "visitantes": 0
-          },
           {
             "data": "2026-09-13",
             "visitantes": 0
@@ -2153,10 +2121,6 @@
         "visitantes_unicos": 3,
         "serie_diaria": [
           {
-            "data": "2026-09-12",
-            "visitantes": 0
-          },
-          {
             "data": "2026-09-13",
             "visitantes": 0
           },
@@ -2286,10 +2250,10 @@
       "pages_url": "https://gfvdata-web.github.io/evolucao-fotografia/",
       "destaque": false,
       "ultimo_commit_dados": {
-        "data": "2026-10-12T20:04:19Z",
-        "mensagem": "fix: v0.4.1 — aviso quando outra aba antiga segura os dados do app",
-        "sha": "92b8377",
-        "url": "https://github.com/gfvdata-web/evolucao-fotografia/commit/92b8377e75094424f00b091784e8bd9f30ebf9a7"
+        "data": "2026-10-13T01:57:24Z",
+        "mensagem": "fix: v0.5.4 — aviso de atualização não some sozinho",
+        "sha": "8fd8f4e",
+        "url": "https://github.com/gfvdata-web/evolucao-fotografia/commit/8fd8f4eda85bc9e762ab86de77596008083d4cd9"
       },
       "site_no_ar": {
         "ok": true,
@@ -2299,46 +2263,42 @@
         "coleta": null,
         "commits_dados": [
           {
-            "data": "2026-10-12T20:04:19Z",
-            "mensagem": "fix: v0.4.1 — aviso quando outra aba antiga segura os dados do app",
-            "sha": "92b8377",
-            "url": "https://github.com/gfvdata-web/evolucao-fotografia/commit/92b8377e75094424f00b091784e8bd9f30ebf9a7"
+            "data": "2026-10-13T01:57:24Z",
+            "mensagem": "fix: v0.5.4 — aviso de atualização não some sozinho",
+            "sha": "8fd8f4e",
+            "url": "https://github.com/gfvdata-web/evolucao-fotografia/commit/8fd8f4eda85bc9e762ab86de77596008083d4cd9"
           },
           {
-            "data": "2026-10-12T19:27:28Z",
-            "mensagem": "feat: v0.4.0 — Google Drive, sincronização, app instalável e backup",
-            "sha": "bd79356",
-            "url": "https://github.com/gfvdata-web/evolucao-fotografia/commit/bd79356de6e8550eaf412cc37e4f32e51541b6c4"
+            "data": "2026-10-13T01:47:40Z",
+            "mensagem": "fix: v0.5.3 — aparelho com app antigo é avisado e para sem estragar dados",
+            "sha": "2da1e4d",
+            "url": "https://github.com/gfvdata-web/evolucao-fotografia/commit/2da1e4daf11f5f89cdcf6aa29c46e0c0d891eae5"
           },
           {
-            "data": "2026-10-12T19:05:03Z",
-            "mensagem": "Merge remote-tracking branch 'origin/main' into v0.4",
-            "sha": "3b7e810",
-            "url": "https://github.com/gfvdata-web/evolucao-fotografia/commit/3b7e810f51aa206687ac709e29689a160c4a7049"
+            "data": "2026-10-13T01:19:00Z",
+            "mensagem": "fix: v0.5.2 — toque logo depois de soltar uma foto não é mais ignorado",
+            "sha": "def8ff2",
+            "url": "https://github.com/gfvdata-web/evolucao-fotografia/commit/def8ff2131c6d1ddc91bee5fda79edebe5e37ee1"
           },
           {
-            "data": "2026-10-12T19:03:07Z",
-            "mensagem": "feat: v0.3.1 — avaliação por sintoma (nitidez 1–5, problema principal, onde/luz)",
-            "sha": "648e5d2",
-            "url": "https://github.com/gfvdata-web/evolucao-fotografia/commit/648e5d2de252b6e53109c5172c0c1af24009700e"
+            "data": "2026-10-13T01:05:33Z",
+            "mensagem": "feat: v0.5.1 — cenas na sessão, diagnóstico por cena e arrastar e soltar",
+            "sha": "15d1cac",
+            "url": "https://github.com/gfvdata-web/evolucao-fotografia/commit/15d1cac09a33c8f0738751489296c525390d7367"
           },
           {
-            "data": "2026-10-12T18:46:28Z",
-            "mensagem": "feat: v0.4 pronta no ramo — Google Drive, sincronização, PWA e backup",
-            "sha": "64e26a0",
-            "url": "https://github.com/gfvdata-web/evolucao-fotografia/commit/64e26a02c671ef8d461f1189e5a18f0f41c51e56"
+            "data": "2026-10-12T23:50:58Z",
+            "mensagem": "feat: v0.5.0 — diagnóstico de uma foto com orientação",
+            "sha": "2db214f",
+            "url": "https://github.com/gfvdata-web/evolucao-fotografia/commit/2db214ff599c9ca7b2547a050cfc1ba24ad72350"
           }
         ],
         "deploy_pages": null
       },
       "alertas": [],
       "acesso": {
-        "visitantes_unicos": 4,
+        "visitantes_unicos": 5,
         "serie_diaria": [
-          {
-            "data": "2026-09-12",
-            "visitantes": 0
-          },
           {
             "data": "2026-09-13",
             "visitantes": 0
@@ -2457,7 +2417,7 @@
           },
           {
             "data": "2026-10-12",
-            "visitantes": 4
+            "visitantes": 5
           }
         ]
       }
