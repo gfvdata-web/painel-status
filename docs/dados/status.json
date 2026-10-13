@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-10-13T13:09:15.562714+00:00",
+    "gerado_em": "2026-10-13T17:30:46.438225+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -1172,19 +1172,19 @@
       "pages_url": "https://gfvdata-web.github.io/chess-tracking/",
       "destaque": false,
       "ultimo_commit_dados": {
-        "data": "2026-10-12T19:03:21Z",
-        "mensagem": "Atualiza partidas em 2026-10-12T19:03Z",
-        "sha": "c5ba16f",
-        "url": "https://github.com/gfvdata-web/chess-tracking/commit/c5ba16f1301b4bdd750815f1383d180785411cba"
+        "data": "2026-10-13T16:57:26Z",
+        "mensagem": "Atualiza partidas em 2026-10-13T16:57Z",
+        "sha": "ecf3e07",
+        "url": "https://github.com/gfvdata-web/chess-tracking/commit/ecf3e07e98579a861f850bdf616347f56be2037c"
       },
       "ultima_execucao_pipeline": {
-        "id": 38294933548,
+        "id": 38434588774,
         "evento": "schedule",
         "status": "completed",
         "conclusao": "success",
-        "criado_em": "2026-10-12T19:02:07Z",
-        "atualizado_em": "2026-10-12T19:03:25Z",
-        "url": "https://github.com/gfvdata-web/chess-tracking/actions/runs/38294933548"
+        "criado_em": "2026-10-13T16:56:25Z",
+        "atualizado_em": "2026-10-13T16:57:31Z",
+        "url": "https://github.com/gfvdata-web/chess-tracking/actions/runs/38434588774"
       },
       "site_no_ar": {
         "ok": true,
@@ -1201,6 +1201,16 @@
             }
           ],
           "historico": [
+            {
+              "id": 38434588774,
+              "evento": "schedule",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-10-13T16:56:25Z",
+              "atualizado_em": "2026-10-13T16:57:31Z",
+              "url": "https://github.com/gfvdata-web/chess-tracking/actions/runs/38434588774",
+              "duracao_s": 66
+            },
             {
               "id": 38294933548,
               "evento": "schedule",
@@ -1340,26 +1350,16 @@
               "atualizado_em": "2026-09-30T16:25:50Z",
               "url": "https://github.com/gfvdata-web/chess-tracking/actions/runs/36740319230",
               "duracao_s": 1862
-            },
-            {
-              "id": 36593294276,
-              "evento": "schedule",
-              "status": "completed",
-              "conclusao": "success",
-              "criado_em": "2026-09-29T15:50:47Z",
-              "atualizado_em": "2026-09-29T16:26:59Z",
-              "url": "https://github.com/gfvdata-web/chess-tracking/actions/runs/36593294276",
-              "duracao_s": 2172
             }
           ],
           "ultimo_sucesso": {
-            "id": 38294933548,
+            "id": 38434588774,
             "evento": "schedule",
             "status": "completed",
             "conclusao": "success",
-            "criado_em": "2026-10-12T19:02:07Z",
-            "atualizado_em": "2026-10-12T19:03:25Z",
-            "url": "https://github.com/gfvdata-web/chess-tracking/actions/runs/38294933548"
+            "criado_em": "2026-10-13T16:56:25Z",
+            "atualizado_em": "2026-10-13T16:57:31Z",
+            "url": "https://github.com/gfvdata-web/chess-tracking/actions/runs/38434588774"
           },
           "ultima_falha": null,
           "passos_ultima": [
@@ -1411,6 +1411,12 @@
         },
         "commits_dados": [
           {
+            "data": "2026-10-13T16:57:26Z",
+            "mensagem": "Atualiza partidas em 2026-10-13T16:57Z",
+            "sha": "ecf3e07",
+            "url": "https://github.com/gfvdata-web/chess-tracking/commit/ecf3e07e98579a861f850bdf616347f56be2037c"
+          },
+          {
             "data": "2026-10-12T19:03:21Z",
             "mensagem": "Atualiza partidas em 2026-10-12T19:03Z",
             "sha": "c5ba16f",
@@ -1433,20 +1439,14 @@
             "mensagem": "Atualiza partidas em 2026-10-09T16:12Z",
             "sha": "9008f76",
             "url": "https://github.com/gfvdata-web/chess-tracking/commit/9008f765c973fc67da9ec66d6d28c10651c6482e"
-          },
-          {
-            "data": "2026-10-08T16:28:58Z",
-            "mensagem": "Atualiza partidas em 2026-10-08T16:28Z",
-            "sha": "52c1d05",
-            "url": "https://github.com/gfvdata-web/chess-tracking/commit/52c1d056167359aab09127a5eeeede096fe49ef9"
           }
         ],
         "deploy_pages": {
           "status": "completed",
           "conclusao": "success",
-          "criado_em": "2026-10-12T19:03:24Z",
-          "atualizado_em": "2026-10-12T19:04:14Z",
-          "url": "https://github.com/gfvdata-web/chess-tracking/actions/runs/38295078459"
+          "criado_em": "2026-10-13T16:57:29Z",
+          "atualizado_em": "2026-10-13T16:58:15Z",
+          "url": "https://github.com/gfvdata-web/chess-tracking/actions/runs/38434734503"
         }
       },
       "alertas": [],
@@ -1590,10 +1590,19 @@
       "form_url": "https://forms.gle/y3uXaukJXmP9GMED7",
       "form_rotulo": "Enviar fotos",
       "ultimo_commit_dados": {
-        "erro": "HTTP 404 ao consultar commits"
+        "data": "2026-10-13T17:16:31Z",
+        "mensagem": "dados: leituras do esp32-01 até 2026-10-13T17:04",
+        "sha": "5ee388e",
+        "url": "https://github.com/gfvdata-web/PlantsCare/commit/5ee388e3b8f7839e8238e62ab247bca2aaa80a9e"
       },
       "ultima_execucao_pipeline": {
-        "erro": "HTTP 404 ao consultar execuções"
+        "id": 38437297122,
+        "evento": "schedule",
+        "status": "completed",
+        "conclusao": "success",
+        "criado_em": "2026-10-13T17:16:16Z",
+        "atualizado_em": "2026-10-13T17:17:06Z",
+        "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/38437297122"
       },
       "site_no_ar": {
         "ok": true,
@@ -1603,23 +1612,315 @@
         "coleta": {
           "workflow": "sensor-sync.yml",
           "url_workflow": "https://github.com/gfvdata-web/PlantsCare/actions/workflows/sensor-sync.yml",
-          "agenda": [],
-          "historico": [],
-          "ultimo_sucesso": null,
-          "ultima_falha": null,
-          "passos_ultima": [],
-          "erro": "HTTP 404 ao consultar execuções"
+          "agenda": [
+            {
+              "cron": "0 0-3,10-23 * * *",
+              "descricao": "0 0-3,10-23 * * * (UTC)"
+            }
+          ],
+          "historico": [
+            {
+              "id": 38437297122,
+              "evento": "schedule",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-10-13T17:16:16Z",
+              "atualizado_em": "2026-10-13T17:17:06Z",
+              "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/38437297122",
+              "duracao_s": 50
+            },
+            {
+              "id": 38399903002,
+              "evento": "workflow_dispatch",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-10-13T12:47:22Z",
+              "atualizado_em": "2026-10-13T12:48:12Z",
+              "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/38399903002",
+              "duracao_s": 50
+            },
+            {
+              "id": 38371477163,
+              "evento": "schedule",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-10-13T08:45:39Z",
+              "atualizado_em": "2026-10-13T08:45:57Z",
+              "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/38371477163",
+              "duracao_s": 18
+            },
+            {
+              "id": 38333555540,
+              "evento": "schedule",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-10-13T01:44:21Z",
+              "atualizado_em": "2026-10-13T01:44:41Z",
+              "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/38333555540",
+              "duracao_s": 20
+            },
+            {
+              "id": 38298260652,
+              "evento": "schedule",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-10-12T19:31:51Z",
+              "atualizado_em": "2026-10-12T19:32:14Z",
+              "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/38298260652",
+              "duracao_s": 23
+            },
+            {
+              "id": 38214401715,
+              "evento": "schedule",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-10-12T06:49:01Z",
+              "atualizado_em": "2026-10-12T06:49:25Z",
+              "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/38214401715",
+              "duracao_s": 24
+            },
+            {
+              "id": 38186822455,
+              "evento": "schedule",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-10-12T00:07:38Z",
+              "atualizado_em": "2026-10-12T00:08:01Z",
+              "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/38186822455",
+              "duracao_s": 23
+            },
+            {
+              "id": 38173382079,
+              "evento": "schedule",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-10-11T20:43:12Z",
+              "atualizado_em": "2026-10-11T20:43:33Z",
+              "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/38173382079",
+              "duracao_s": 21
+            },
+            {
+              "id": 38153940660,
+              "evento": "schedule",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-10-11T16:04:38Z",
+              "atualizado_em": "2026-10-11T16:04:56Z",
+              "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/38153940660",
+              "duracao_s": 18
+            },
+            {
+              "id": 38107436693,
+              "evento": "schedule",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-10-11T03:08:39Z",
+              "atualizado_em": "2026-10-11T03:08:58Z",
+              "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/38107436693",
+              "duracao_s": 19
+            },
+            {
+              "id": 38093882853,
+              "evento": "schedule",
+              "status": "completed",
+              "conclusao": "failure",
+              "criado_em": "2026-10-10T23:06:49Z",
+              "atualizado_em": "2026-10-10T23:07:14Z",
+              "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/38093882853",
+              "duracao_s": 25
+            },
+            {
+              "id": 38080638014,
+              "evento": "schedule",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-10-10T19:39:03Z",
+              "atualizado_em": "2026-10-10T19:39:24Z",
+              "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/38080638014",
+              "duracao_s": 21
+            },
+            {
+              "id": 38064449254,
+              "evento": "schedule",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-10-10T15:38:49Z",
+              "atualizado_em": "2026-10-10T15:39:14Z",
+              "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/38064449254",
+              "duracao_s": 25
+            },
+            {
+              "id": 38036151349,
+              "evento": "schedule",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-10-10T07:56:25Z",
+              "atualizado_em": "2026-10-10T07:56:49Z",
+              "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/38036151349",
+              "duracao_s": 24
+            },
+            {
+              "id": 38013085675,
+              "evento": "schedule",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-10-10T01:24:55Z",
+              "atualizado_em": "2026-10-10T01:25:17Z",
+              "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/38013085675",
+              "duracao_s": 22
+            }
+          ],
+          "ultimo_sucesso": {
+            "id": 38437297122,
+            "evento": "schedule",
+            "status": "completed",
+            "conclusao": "success",
+            "criado_em": "2026-10-13T17:16:16Z",
+            "atualizado_em": "2026-10-13T17:17:06Z",
+            "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/38437297122"
+          },
+          "ultima_falha": {
+            "id": 38093882853,
+            "evento": "schedule",
+            "status": "completed",
+            "conclusao": "failure",
+            "criado_em": "2026-10-10T23:06:49Z",
+            "atualizado_em": "2026-10-10T23:07:14Z",
+            "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/38093882853",
+            "motivo": {
+              "job": "sincronizar",
+              "passo": "Baixar planilha → data/esp32/",
+              "mensagem": "urllib.error.HTTPError: HTTP Error 404: Not Found"
+            }
+          },
+          "passos_ultima": [
+            {
+              "nome": "Set up job",
+              "conclusao": "success"
+            },
+            {
+              "nome": "Segredos ausentes — nada a fazer",
+              "conclusao": "skipped"
+            },
+            {
+              "nome": "Run actions/checkout@v7",
+              "conclusao": "success"
+            },
+            {
+              "nome": "Run actions/setup-python@v7",
+              "conclusao": "success"
+            },
+            {
+              "nome": "Instalar dependências",
+              "conclusao": "success"
+            },
+            {
+              "nome": "Baixar planilha → data/esp32/",
+              "conclusao": "success"
+            },
+            {
+              "nome": "Commitar dados novos",
+              "conclusao": "success"
+            },
+            {
+              "nome": "Republicar site público (Cloudflare)",
+              "conclusao": "success"
+            },
+            {
+              "nome": "Post Run actions/setup-python@v7",
+              "conclusao": "success"
+            },
+            {
+              "nome": "Post Run actions/checkout@v7",
+              "conclusao": "success"
+            },
+            {
+              "nome": "Complete job",
+              "conclusao": "success"
+            }
+          ]
         },
-        "commits_dados": [],
+        "commits_dados": [
+          {
+            "data": "2026-10-13T17:16:31Z",
+            "mensagem": "dados: leituras do esp32-01 até 2026-10-13T17:04",
+            "sha": "5ee388e",
+            "url": "https://github.com/gfvdata-web/PlantsCare/commit/5ee388e3b8f7839e8238e62ab247bca2aaa80a9e"
+          },
+          {
+            "data": "2026-10-13T12:47:39Z",
+            "mensagem": "dados: leituras do esp32-01 até 2026-10-13T12:34",
+            "sha": "697cb59",
+            "url": "https://github.com/gfvdata-web/PlantsCare/commit/697cb5925ea8ba59c45a22631181afa85eaa3e28"
+          },
+          {
+            "data": "2026-10-13T08:45:51Z",
+            "mensagem": "dados: leituras do esp32-01 até 2026-10-13T08:34",
+            "sha": "c2e6b4d",
+            "url": "https://github.com/gfvdata-web/PlantsCare/commit/c2e6b4d90d337ebdcab34791fd1f1c4a73719592"
+          },
+          {
+            "data": "2026-10-13T01:44:35Z",
+            "mensagem": "dados: leituras do esp32-01 até 2026-10-13T01:33",
+            "sha": "7fe5a55",
+            "url": "https://github.com/gfvdata-web/PlantsCare/commit/7fe5a558b15b51c1c8c2d448c61d41d1c5167fe9"
+          },
+          {
+            "data": "2026-10-12T19:32:06Z",
+            "mensagem": "dados: leituras do esp32-01 até 2026-10-12T19:18",
+            "sha": "ef050a7",
+            "url": "https://github.com/gfvdata-web/PlantsCare/commit/ef050a78ddf54bbe0311c7f85f6625f7bdba5028"
+          }
+        ],
         "deploy_pages": null
       },
-      "alertas": [],
+      "alertas": [
+        {
+          "nivel": "aviso",
+          "texto": "O último envio pelo Forms falhou no pipeline."
+        }
+      ],
       "pipeline_forms": {
         "workflow": "pipeline.yml",
         "execucao": {
-          "erro": "HTTP 404 ao consultar execuções"
+          "id": 35626297267,
+          "evento": "workflow_dispatch",
+          "status": "completed",
+          "conclusao": "failure",
+          "criado_em": "2026-09-21T16:32:55Z",
+          "atualizado_em": "2026-09-21T16:33:25Z",
+          "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/35626297267"
         },
-        "etapas": null
+        "etapas": [
+          {
+            "chave": "forms",
+            "titulo": "Fotos enviadas (Google Forms)",
+            "estado": "pulado",
+            "detalhe": "Execução manual no GitHub — não houve envio novo pelo Forms.",
+            "quando": "2026-09-21T16:32:55Z"
+          },
+          {
+            "chave": "ficha",
+            "titulo": "Ficha da planta atualizada",
+            "estado": "ok",
+            "detalhe": "Fotos copiadas e entrada nova escrita na ficha.",
+            "quando": "2026-09-21T16:33:19Z"
+          },
+          {
+            "chave": "relatorio",
+            "titulo": "Relatório da IA (Gemini) → PDF → e-mail",
+            "estado": "erro",
+            "detalhe": "Falhou (Gemini, PDF ou e-mail). A ficha foi salva; refazer com `gh workflow run pipeline.yml -f plantas=<planta>`.",
+            "quando": "2026-09-21T16:33:23Z"
+          },
+          {
+            "chave": "commit",
+            "titulo": "Salvo no repositório",
+            "estado": "pulado",
+            "detalhe": "Nada a salvar.",
+            "quando": null
+          }
+        ]
       },
       "historico_arquivo": "dados/historico/plants_care.json"
     },
