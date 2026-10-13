@@ -1,5 +1,7 @@
-// Worker único do painel: serve a página (docs/, como arquivos estáticos) e os dados
-// (/dados/*) guardados no R2. Como funciona: seção "Cloudflare" do README.md.
+// Worker único do painel: serve a página (docs/, como arquivos estáticos), os dados
+// (/dados/*, no D1) e o APK do app (/app/*, no KV). Como funciona: seção "Cloudflare"
+// do README.md. Só serviços do plano grátis que param no limite em vez de cobrar
+// (sem R2, que cobra o excedente).
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "painel-status",
@@ -10,11 +12,19 @@
   "assets": {
     "directory": "../docs",
     "binding": "ASSETS",
-    // /dados/* sai do R2 (com o arquivo estático como reserva); /app/* é o APK e o
-    // versao.json do app Android (R2); /api/* recebe os envios.
+    // /dados/* sai do D1 (com o arquivo estático como reserva); /app/* é o APK (KV) e
+    // o versao.json (D1) do app Android; /api/* recebe os envios.
     "run_worker_first": ["/dados/*", "/app/*", "/api/*"]
   },
-  "r2_buckets": [{ "binding": "DADOS", "bucket_name": "painel-status-dados" }],
+  "d1_databases": [
+    {
+      "binding": "BANCO",
+      "database_name": "painel-status",
+      "database_id": "037d686d-1ecb-4ba6-a623-44aff9d6753e",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "kv_namespaces": [{ "binding": "APKS", "id": "3ed1317237a0402399b22cf450e976e7" }],
   // Agenda da coleta (ver agendar() em src/index.ts). Usa 1 dos 5 Cron Triggers da conta.
   "triggers": { "crons": ["*/30 * * * *"] }
   // Segredos (wrangler secret put):

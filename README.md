@@ -80,9 +80,10 @@ src/
 ├── vigia_bolao.py        # fase do pipeline do Bolão para o job vigiar-bolao (até quando acompanhar)
 ├── publicacao.py         # monta docs/dados/status.json (formato descrito na docstring)
 └── envio.py              # manda docs/dados ao Worker da Cloudflare (e baixa de lá)
-worker/                   # Worker da Cloudflare (painel.gfvdata.com): página + /dados do R2
-├── wrangler.jsonc        # nome, domínio, arquivos estáticos (../docs) e bucket R2
-└── src/index.ts          # serve /dados/* do R2 e recebe os envios (PUT /api/envio/*)
+worker/                   # Worker da Cloudflare (painel.gfvdata.com): página + dados + APK
+├── wrangler.jsonc        # nome, domínio, arquivos estáticos (../docs), banco D1, KV e Cron
+├── migrations/           # tabelas do D1 (arquivos, retratos)
+└── src/index.ts          # serve /dados/* e /app/*, recebe os envios (PUT /api/*), agenda
 docs/                     # a página (publicada pelo Worker e, na transição, pelo GitHub Pages)
 ├── index.html
 ├── lista.html            # layout de teste em lista (um cartão por site)
@@ -115,15 +116,22 @@ python -m src.publicacao
 python -m http.server --directory docs 8000
 ```
 
-## Cloudflare (Worker + R2)
+## Cloudflare (Worker + D1 + KV)
 
 **Em transição.** O endereço novo é **https://painel.gfvdata.com/**: um Worker (`worker/`)
 serve a página (os arquivos de `docs/`) e os dados (`/dados/status.json`,
-`/dados/historico/<slug>.json`) guardados no R2 (bucket `painel-status-dados`), e o APK do
-app (`/app/`). O Pages da Cloudflare (`painel-status.pages.dev`, publicado a cada commit)
+`/dados/historico/<slug>.json`) guardados no D1 (banco `painel-status`, tabela `arquivos`),
+e o app Android (`/app/versao.json` no D1, o APK no KV `painel-status-app`). O Pages da Cloudflare (`painel-status.pages.dev`, publicado a cada commit)
 é a reserva, atualizado pelos commits de dados até o fim da transição. O repositório vai
 ficar privado e o GitHub Pages dele, desligado: nada aqui depende de `github.io`.
 
+- **Custo zero garantido:** só serviços do plano grátis que **dão erro no limite em vez de
+  cobrar**, e a conta não tem forma de pagamento cadastrada. Por isso **não usamos R2**: ele
+  exige cartão e cobra o excedente (só tem alerta de gasto, não teto). Limites diários e uso
+  esperado: D1 100 mil gravações (usamos ~500) e 5 milhões de leituras; KV 1.000 gravações,
+  100 mil leituras e 1 GB (ficam só os 3 APKs mais novos, ~27 MB); Worker 100 mil chamadas.
+  No pior caso, o painel para de atualizar até 00:00 UTC (21h em Brasília) e o app usa a
+  reserva. **Nunca** cadastrar cartão nem assinar o Workers Paid sem rever isto.
 - **Repositórios privados:** a coleta lê a API do GitHub com o secret `PAINEL_TOKEN_LEITURA`
   — token fine-grained com dono `gfvdata-web`, todos os repositórios, permissões só de
   leitura: **Actions**, **Contents** e **Metadata**. Sem ele, o workflow usa o `GITHUB_TOKEN`,
@@ -138,19 +146,23 @@ ficar privado e o GitHub Pages dele, desligado: nada aqui depende de `github.io`
   Worker: token fine-grained só deste repositório, permissão **Actions: Read and write**. Quando
   ele expirar, `/api/agenda` mostra `HTTP 401` e o `schedule` de reserva segura as rodadas.
 - **A coleta continua em Python, no Actions.** Antes de coletar, o job baixa o que está
-  publicado no Worker (`python -m src.envio baixar`: o R2 é a fonte da verdade). Depois de gerar, o job manda os arquivos ao
+  publicado no Worker (`python -m src.envio baixar`: o Worker é a fonte da verdade). Depois de gerar, o job manda os arquivos ao
   Worker (`python -m src.envio enviar`, `PUT /api/envio/...` com o token do secret
   `PAINEL_TOKEN_ENVIO`, que é o `TOKEN_ENVIO` do Worker). O Worker guarda os bytes como
   vieram — o formato é o de `publicacao.py`/`historico.py`, sem tradução.
 - **O Worker recusa** status malformado (sem `meta.gerado_em`, `sites` vazio, site sem
   `slug`/`nome`, sem `forms_avulsos`) e status mais antigo que o publicado — um envio
   atrasado nunca apaga um mais novo.
-- **Retratos:** cada status recebido também é gravado em `snapshots/AAAA-MM-DD/HH-MM-SS.json`
-  no R2 (apagados depois de 30 dias). Servem para voltar a um status anterior.
-- **Por que R2:** leitura sempre a mais nova (o KV leva até 60 s para propagar, e a recarga
-  é de 1 min), cota gratuita folgada, e guarda arquivos — o mesmo formato por construção.
+- **Retratos:** o status recebido também vai para a tabela `retratos` do D1 (no máximo 1 a
+  cada 25 min; o Cron apaga os de mais de 30 dias). Servem para voltar a um status anterior.
+- **Por que D1 para os dados:** leitura sempre a mais nova (o KV leva até 60 s para propagar,
+  e a recarga é de 1 min), e guarda o texto como veio — o mesmo formato por construção (até
+  2 MB por arquivo; o Worker recusa acima de 1,9 MB). O APK (~9 MB) passa do limite do D1 e
+  vai para o KV (até 25 MiB); um APK novo pode levar até 1 min para aparecer em todo lugar.
+- **Banco:** a estrutura fica em `worker/migrations/`. Mudou? Nova migração e
+  `npx --prefix worker wrangler d1 migrations apply painel-status --remote --config worker/wrangler.jsonc`.
 - **Rodar localmente:** `npm install --prefix worker`, depois
-  `npx --prefix worker wrangler dev --config worker/wrangler.jsonc` (R2 simulado, token em
+  `npx --prefix worker wrangler dev --config worker/wrangler.jsonc` (D1 e KV simulados — antes, `wrangler d1 migrations apply painel-status --local`; token em
   `worker/.dev.vars`: `TOKEN_ENVIO=teste-local`) e
   `PAINEL_URL=http://localhost:8787 PAINEL_TOKEN_ENVIO=teste-local python -m src.envio enviar`.
 - **Testar a agenda localmente:** acrescentar `--test-scheduled` ao `wrangler dev` e abrir
@@ -158,8 +170,10 @@ ficar privado e o GitHub Pages dele, desligado: nada aqui depende de `github.io`
   aparece em `/api/agenda`.
 - **Publicar o Worker:** `npx --prefix worker wrangler deploy --config worker/wrangler.jsonc`.
 - **Rollback:** a agenda volta a ser só o `schedule` do Actions removendo `triggers` do
-  `wrangler.jsonc` e publicando; o app e a página voltam ao GitHub Pages trocando o endereço.
-  Retratos do status em `snapshots/` no R2 (`npx wrangler r2 object get`).
+  `wrangler.jsonc` e publicando; o app usa sozinho a reserva (`painel-status.pages.dev`) se o
+  Worker cair.
+  Retratos do status: `npx --prefix worker wrangler d1 execute painel-status --remote --config
+  worker/wrangler.jsonc --command "SELECT gerado_em FROM retratos ORDER BY gerado_em DESC"`.
 
 ## App Android
 

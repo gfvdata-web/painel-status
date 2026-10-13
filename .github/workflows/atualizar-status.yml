@@ -17,7 +17,7 @@ name: Atualizar status
 # 1 min; a cada 10 min enquanto o Verificador espera o resultado) e encerra —
 # o painel volta para a rotina de 3 em 3 horas. Ver src/vigia_bolao.py.
 #
-# Cloudflare (transição): o R2 do Worker é a fonte da verdade — a coleta parte do que está
+# Cloudflare (transição): o Worker (D1) é a fonte da verdade — a coleta parte do que está
 # publicado lá (src/envio.py baixar) e, além do commit, os dois jobs mandam docs/dados ao
 # Worker (painel.gfvdata.com, ver worker/). Sem o secret PAINEL_TOKEN_ENVIO, os dois passos
 # são pulados.

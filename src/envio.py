@@ -2,7 +2,7 @@
 
 Uso: python -m src.envio enviar   manda docs/dados/status.json e docs/dados/historico/*.json
      python -m src.envio baixar   traz do Worker o status.json e os históricos publicados
-                                  para docs/dados/ (o R2 é a fonte da verdade; a coleta
+                                  para docs/dados/ (o Worker é a fonte da verdade; a coleta
                                   parte do que já está publicado lá)
 
 O Worker guarda os bytes como vieram — formato em publicacao.py e historico.py. Ao
