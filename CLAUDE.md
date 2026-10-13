@@ -16,6 +16,11 @@ commitar, fazer `grep` pelo nome/slug/URL alterado.
 Pedido do Guilherme: commit e push podem ser feitos sem pedir autorização de novo, desde que
 nada seja quebrado (conferir a página localmente com `python -m http.server --directory docs`).
 
+Deploy: automático no push para `main` que mexe em `docs/` ou `worker/` (`.github/workflows/deploy.yml`,
+secret `CLOUDFLARE_API_TOKEN`). Depois do push, conferir a run do workflow e o site no ar (agente `site-checker`).
+Sem o secret (ou com a run falhando), o deploy é manual — `npx --prefix worker wrangler deploy --config worker/wrangler.jsonc` —
+só com OK do Guilherme no pedido (a autorização de push acima não cobre deploy manual).
+
 | Mudança | Onde atualizar |
 |---|---|
 | Site entra, sai ou muda de nome/URL | `src/config.py` (`SITES`) e a tabela "Sites monitorados" do `README.md`; depois rodar o workflow `atualizar-status.yml` para regenerar `docs/dados/status.json` |

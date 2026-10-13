@@ -125,7 +125,8 @@ android/                  # app Android nativo (lê o mesmo status.json; ver "Ap
     └── ui/               # telas Compose: Bolão F1, Sites (+ detalhes e histórico), Links, Avisos, Sobre
 .github/workflows/
 ├── atualizar-status.yml  # coleta (3 em 3 h), vigia do Bolão e vigia do envio do Forms
-└── android.yml           # testes → lint → APK; tag app-vX.Y.Z publica o APK assinado
+├── android.yml           # testes → lint → APK; tag app-vX.Y.Z publica o APK assinado
+└── deploy.yml            # push na main em docs/ ou worker/ → tsc → wrangler deploy (painel.gfvdata.com)
 scripts/
 └── check                 # testes sem rede/tokens/navegador: sintaxe, JSON, tsc do worker e tests/; sem argumento roda tudo, com um arquivo só o que vale para ele
 tests/                    # testes automáticos (unittest + node --test), rodados pelo scripts/check
@@ -206,7 +207,9 @@ ficar privado e o GitHub Pages dele, desligado: nada aqui depende de `github.io`
 - **Testar a agenda localmente:** acrescentar `--test-scheduled` ao `wrangler dev` e abrir
   `http://localhost:8787/cdn-cgi/handler/scheduled?cron=*/30+*+*+*+*&time=<ms>`; o resultado
   aparece em `/api/agenda`.
-- **Publicar o Worker:** `npx --prefix worker wrangler deploy --config worker/wrangler.jsonc`.
+- **Publicar o Worker:** automático a cada push na `main` que mexe em `docs/` ou `worker/`
+  (`.github/workflows/deploy.yml`, secret `CLOUDFLARE_API_TOKEN`). À mão:
+  `npx --prefix worker wrangler deploy --config worker/wrangler.jsonc`. Migrações do D1 seguem manuais.
 - **Rollback:** a agenda volta a ser só o `schedule` do Actions removendo `triggers` do
   `wrangler.jsonc` e publicando; o app usa sozinho a reserva (`painel-status.pages.dev`) se o
   Worker cair.

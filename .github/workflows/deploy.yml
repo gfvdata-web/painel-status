@@ -1,0 +1,55 @@
+name: Publicar Worker (Cloudflare)
+
+# Cada push na main que mexe na página (docs/) ou no Worker (worker/) publica painel.gfvdata.com.
+# Commits do próprio Actions (atualizar-status.yml, com o GITHUB_TOKEN) não disparam este workflow.
+# Segredo: CLOUDFLARE_API_TOKEN (modelo "Edit Cloudflare Workers" da Cloudflare). Sem ele, o
+# workflow avisa e não publica. Migrações do D1 continuam manuais (seção "Cloudflare" do README.md). Plano grátis: só Workers/D1/KV/Cron, sem R2.
+
+on:
+  push:
+    branches: [main]
+    paths: ['docs/**', 'worker/**', '.github/workflows/deploy.yml']
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-worker
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: 24bbd7ba409d9e38e4636846172bd76d
+    steps:
+      - name: Conferir o token
+        id: token
+        run: |
+          if [ -z "$CLOUDFLARE_API_TOKEN" ]; then
+            echo "::warning::Secret CLOUDFLARE_API_TOKEN ausente; o Worker não foi publicado."
+            echo "ok=nao" >> "$GITHUB_OUTPUT"
+          else
+            echo "ok=sim" >> "$GITHUB_OUTPUT"
+          fi
+      - uses: actions/checkout@v7
+        if: steps.token.outputs.ok == 'sim'
+      - uses: actions/setup-node@v7
+        if: steps.token.outputs.ok == 'sim'
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: worker/package-lock.json
+      - name: Instalar e checar o Worker (tsc)
+        if: steps.token.outputs.ok == 'sim'
+        working-directory: worker
+        run: |
+          npm ci
+          npm run check
+      - name: Publicar (wrangler deploy)
+        if: steps.token.outputs.ok == 'sim'
+        working-directory: worker
+        run: npx wrangler deploy
