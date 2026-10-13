@@ -48,6 +48,7 @@ jobs:
         working-directory: worker
         run: |
           npm ci
+          npx wrangler types   # worker-configuration.d.ts não vai para o git
           npm run check
       - name: Publicar (wrangler deploy)
         if: steps.token.outputs.ok == 'sim'
