@@ -11,56 +11,57 @@ import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
-/** Aviso de nova versão (9f) contra uma "API do GitHub" local. */
+/** Aviso de nova versão contra um `app/versao.json` local (o do Worker do painel). */
 class VerificadorDeAtualizacaoTest {
 
-    private val github = MockWebServer().apply { start() }
-    private val verificador = VerificadorDeAtualizacao(OkHttpClient(), github.url("/repos/x/y/releases"))
+    private val painel = MockWebServer().apply { start() }
+    private val urlDaVersao = painel.url("/app/versao.json")
+    private val verificador = VerificadorDeAtualizacao(OkHttpClient(), urlDaVersao)
 
     @After
     fun encerra() {
-        github.close()
+        painel.close()
     }
 
-    private fun release(tag: String, apk: String, rascunho: Boolean = false, preRelease: Boolean = false) = """
-        {"tag_name": "$tag", "html_url": "https://github.com/x/y/releases/tag/$tag",
-         "draft": $rascunho, "prerelease": $preRelease, "campo_novo": 1,
-         "assets": [{"name": "$apk", "browser_download_url": "https://github.com/x/y/releases/download/$tag/$apk"}]}
+    private fun versao(apk: String) = """
+        {"versao": "0.2.0", "build": 20, "apk": "$apk", "notas": "Notas da versão.",
+         "publicado_em": "2026-10-13T12:00:00Z", "campo_novo": 1}
     """.trimIndent()
 
     @Test
-    fun escolheOMaiorBuildEntreOsReleasesDoApp() = runTest {
-        val lista = listOf(
-            release("app-v0.1.0", "painel-status-v0.1.0-build12.apk"),
-            release("app-v0.2.0", "painel-status-v0.2.0-build20.apk"),
-            release("app-v0.3.0", "painel-status-v0.3.0-build25.apk", rascunho = true),
-            release("app-v0.4.0", "painel-status-v0.4.0-build30.apk", preRelease = true),
-            release("outra-coisa", "painel-status-v9.9.9-build99.apk"),
-            release("app-v0.5.0", "nome-fora-do-padrao.apk"),
-        )
-        github.enqueue(MockResponse(body = lista.joinToString(prefix = "[", postfix = "]")))
+    fun leVersaoEBuildDoNomeDoApkEMontaOEnderecoAoLadoDoVersaoJson() = runTest {
+        painel.enqueue(MockResponse(body = versao("painel-status-v0.2.0-build20.apk")))
 
         val publicada = verificador.maisRecente()
 
         assertEquals("0.2.0", publicada?.versao)
         assertEquals(20, publicada?.build)
-        assertEquals("https://github.com/x/y/releases/download/app-v0.2.0/painel-status-v0.2.0-build20.apk", publicada?.urlDoApk)
-        assertEquals("application/vnd.github+json", github.takeRequest().headers["Accept"])
+        assertEquals(painel.url("/app/painel-status-v0.2.0-build20.apk").toString(), publicada?.urlDoApk)
+        assertEquals("Notas da versão.", publicada?.notas)
+        assertEquals("/app/versao.json", painel.takeRequest().url.encodedPath)
+    }
+
+    @Test
+    fun apkForaDoPadraoOuLinkDeForaNaoViramAviso() = runTest {
+        painel.enqueue(MockResponse(body = versao("nome-fora-do-padrao.apk")))
+        assertNull(verificador.maisRecente())
+        painel.enqueue(MockResponse(body = versao("https://outro.site/painel-status-v9.9.9-build99.apk")))
+        assertNull(verificador.maisRecente())
     }
 
     @Test
     fun falhaNaConsultaNaoAtrapalha() = runTest {
-        github.enqueue(MockResponse(code = 403, body = """{"message":"API rate limit exceeded"}"""))
+        painel.enqueue(MockResponse(code = 404))
         assertNull(verificador.maisRecente())
-        github.enqueue(MockResponse(body = "isto não é json"))
+        painel.enqueue(MockResponse(body = "isto não é json"))
         assertNull(verificador.maisRecente())
-        github.close()
+        painel.close()
         assertNull(verificador.maisRecente())
     }
 
     @Test
     fun soAvisaQuandoOBuildPublicadoEMaior() {
-        val publicada = VersaoPublicada("0.2.0", build = 20, urlDoApk = "", urlDaPagina = "")
+        val publicada = VersaoPublicada("0.2.0", build = 20, urlDoApk = "", notas = "")
         assertTrue(haAtualizacao(publicada, buildInstalado = 12))
         assertFalse(haAtualizacao(publicada, buildInstalado = 20))
         assertFalse(haAtualizacao(publicada, buildInstalado = 31))

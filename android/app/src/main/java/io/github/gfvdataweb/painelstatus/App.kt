@@ -28,13 +28,13 @@ object Enderecos {
     const val PAINEL = "https://painel.gfvdata.com/"
 
     /**
-     * Endereço antigo (GitHub Pages), com os mesmos caminhos: usado só quando o
-     * [PAINEL] não responde, enquanto a transição para a Cloudflare não termina.
+     * Reserva com os mesmos caminhos (Cloudflare Pages, publicado a cada commit do
+     * repositório): usado só quando o [PAINEL] não responde.
      */
-    const val PAINEL_RESERVA = "https://gfvdata-web.github.io/painel-status/"
+    const val PAINEL_RESERVA = "https://painel-status.pages.dev/"
 
-    /** API pública dos Releases (aviso de nova versão). */
-    const val RELEASES = "https://api.github.com/repos/gfvdata-web/painel-status/releases?per_page=20"
+    /** Versão oficial mais recente do app (aviso de nova versão); o APK fica ao lado. */
+    const val VERSAO = "https://painel.gfvdata.com/app/versao.json"
 }
 
 /**
@@ -51,7 +51,7 @@ const val INTERVALO_DE_RECARGA_MS = 60_000L
 class AppContainer(
     contexto: Context,
     urlDoPainel: HttpUrl = Enderecos.PAINEL.toHttpUrl(),
-    urlDosReleases: HttpUrl = Enderecos.RELEASES.toHttpUrl(),
+    urlDaVersao: HttpUrl = Enderecos.VERSAO.toHttpUrl(),
     val intervaloDeRecargaMs: Long = INTERVALO_DE_RECARGA_MS,
     /** Verificação em segundo plano (WorkManager); os testes passam um dublê. */
     val agendador: Agendador = AgendadorWorkManager(contexto.applicationContext),
@@ -68,7 +68,7 @@ class AppContainer(
         cache = CacheDeArquivos(File(contexto.filesDir, "dados-do-painel")),
     )
 
-    val verificadorDeAtualizacao = VerificadorDeAtualizacao(clienteHttp, urlDosReleases)
+    val verificadorDeAtualizacao = VerificadorDeAtualizacao(clienteHttp, urlDaVersao)
 
     // Avisos com o app fechado: preferências, último status visto e notificações.
     private val pastaDosAvisos = CacheDeArquivos(File(contexto.filesDir, "avisos"))

@@ -39,7 +39,7 @@ data class EstadoDaVersao(
     val mostrarAviso: Boolean get() = temAtualizacao && !avisoDispensado
 }
 
-/** Consulta os Releases uma vez ao abrir o app. */
+/** Consulta o versao.json do painel uma vez ao abrir o app. */
 class VersaoViewModel(verificador: VerificadorDeAtualizacao, buildInstalado: Int) : ViewModel() {
 
     private val _estado = MutableStateFlow(EstadoDaVersao(buildInstalado = buildInstalado))

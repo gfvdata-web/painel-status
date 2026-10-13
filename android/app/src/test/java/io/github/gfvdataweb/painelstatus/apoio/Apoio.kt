@@ -65,8 +65,8 @@ class PainelLocal : Closeable {
 
     val urlDoPainel: HttpUrl get() = servidor.url("/painel-status/")
 
-    /** Sem Releases publicados no painel local (responde 404): o app não mostra aviso. */
-    val urlDosReleases: HttpUrl get() = servidor.url("/releases")
+    /** Sem versao.json no painel local (responde 404): o app não mostra aviso. */
+    val urlDaVersao: HttpUrl get() = servidor.url("/painel-status/app/versao.json")
 
     override fun close() = servidor.close()
 }
@@ -99,7 +99,7 @@ class PainelAppDeTeste : PainelApp() {
     override fun criarContainer(): AppContainer = AppContainer(
         this,
         PainelDeTeste.painel.urlDoPainel,
-        PainelDeTeste.painel.urlDosReleases,
+        PainelDeTeste.painel.urlDaVersao,
         intervaloDeRecargaMs = 3_600_000,
         agendador = AgendadorDeTeste(),
         urlDeReserva = null,

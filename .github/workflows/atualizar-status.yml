@@ -55,7 +55,10 @@ jobs:
 
       - name: Coletar status
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Token fine-grained só leitura (Actions, Contents, Metadata) dos repositórios da
+          # gfvdata-web: o GITHUB_TOKEN não enxerga os repositórios privados. Sem ele, cai no
+          # GITHUB_TOKEN (só os públicos).
+          GITHUB_TOKEN: ${{ secrets.PAINEL_TOKEN_LEITURA || secrets.GITHUB_TOKEN }}
           GOATCOUNTER_TOKEN: ${{ secrets.GOATCOUNTER_TOKEN }}
         run: python -m src.publicacao
 
@@ -91,7 +94,10 @@ jobs:
 
       - name: Acompanhar o pipeline do Bolão F1 até o fim
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Token fine-grained só leitura (Actions, Contents, Metadata) dos repositórios da
+          # gfvdata-web: o GITHUB_TOKEN não enxerga os repositórios privados. Sem ele, cai no
+          # GITHUB_TOKEN (só os públicos).
+          GITHUB_TOKEN: ${{ secrets.PAINEL_TOKEN_LEITURA || secrets.GITHUB_TOKEN }}
           # Opcional no client_payload (ISO, UTC): acompanhar uma execução já
           # começada, ex. num teste manual com `gh api .../dispatches`.
           DESDE: ${{ github.event.client_payload.desde }}

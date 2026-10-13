@@ -1,8 +1,11 @@
-"""Coleta de sinais públicos da API do GitHub para cada site monitorado.
+"""Coleta de sinais da API do GitHub para cada site monitorado.
 
 Usa GITHUB_TOKEN (variável de ambiente) quando disponível, para elevar o
-limite de taxa e para ler logs de execução (a API de logs exige token mesmo
-em repositório público) — nenhuma permissão de escrita é exercida aqui.
+limite de taxa, para ler logs de execução (a API de logs exige token mesmo
+em repositório público) e para enxergar os repositórios privados — no Actions,
+o workflow passa o secret PAINEL_TOKEN_LEITURA (fine-grained, só leitura de
+Actions, Contents e Metadata dos repositórios da gfvdata-web) nessa variável.
+Nenhuma permissão de escrita é exercida aqui.
 
 Toda função devolve um valor mesmo com a API fora do ar: dict com "erro" (ou
 None, onde indicado), nunca exceção — um site com problema não derruba a coleta

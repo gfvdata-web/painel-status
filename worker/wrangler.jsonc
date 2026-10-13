@@ -10,8 +10,9 @@
   "assets": {
     "directory": "../docs",
     "binding": "ASSETS",
-    // /dados/* sai do R2 (com o arquivo estático como reserva); /api/* recebe os envios.
-    "run_worker_first": ["/dados/*", "/api/*"]
+    // /dados/* sai do R2 (com o arquivo estático como reserva); /app/* é o APK e o
+    // versao.json do app Android (R2); /api/* recebe os envios.
+    "run_worker_first": ["/dados/*", "/app/*", "/api/*"]
   },
   "r2_buckets": [{ "binding": "DADOS", "bucket_name": "painel-status-dados" }],
   // Agenda da coleta (ver agendar() em src/index.ts). Usa 1 dos 5 Cron Triggers da conta.

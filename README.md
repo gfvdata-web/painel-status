@@ -3,9 +3,9 @@
 Painel único de monitoramento para todos os sites publicados pela conta
 `gfvdata-web`, com destaque para o **Bolão F1**.
 
-**Painel:** https://painel.gfvdata.com/ (o endereço antigo, https://gfvdata-web.github.io/painel-status/,
-segue atualizado até o fim da transição — ver "Cloudflare") · **App Android:** APK nos
-[Releases](https://github.com/gfvdata-web/painel-status/releases) (ver "App Android" abaixo) ·
+**Painel:** https://painel.gfvdata.com/ (reserva: https://painel-status.pages.dev/ — ver
+"Cloudflare") · **App Android:** APK em https://painel.gfvdata.com/app/versao.json, campo `apk`
+(ver "App Android" abaixo) ·
 **Layout em lista (teste):** https://painel.gfvdata.com/lista.html — um cartão
 por site, com status, form e visitas dos últimos 7 dias; mesmo `status.json` e mesmo switch de tema.
 O switch **V1 / V2** no canto superior das duas páginas alterna entre elas
@@ -62,7 +62,7 @@ também a este repositório (Contents: Read and write).
 
 Um workflow do GitHub Actions (`.github/workflows/atualizar-status.yml`) roda a
 cada 3 horas — disparado pelo Cron do Worker da Cloudflare, ver "Cloudflare" — (e sob demanda via `workflow_dispatch`, ou pelo envio do Forms do Bolão — ver
-acima), consulta a API pública do GitHub — commits
+acima), consulta a API do GitHub — commits
 recentes por caminho de dados, execuções de Actions, resposta HTTP de cada site — e, quando
 configurado, a API do GoatCounter. O resultado vira `docs/dados/status.json` (mais o histórico em
 `docs/dados/historico/`), e é só isso que `docs/index.html` lê. Não é preciso mudar nada nos repositórios monitorados para o status de
@@ -119,9 +119,15 @@ python -m http.server --directory docs 8000
 
 **Em transição.** O endereço novo é **https://painel.gfvdata.com/**: um Worker (`worker/`)
 serve a página (os arquivos de `docs/`) e os dados (`/dados/status.json`,
-`/dados/historico/<slug>.json`) guardados no R2 (bucket `painel-status-dados`). O GitHub
-Pages (`gfvdata-web.github.io/painel-status/`) e o Pages da Cloudflare
-(`painel-status.pages.dev`) continuam atualizados pelos commits até o fim da transição.
+`/dados/historico/<slug>.json`) guardados no R2 (bucket `painel-status-dados`), e o APK do
+app (`/app/`). O Pages da Cloudflare (`painel-status.pages.dev`, publicado a cada commit)
+é a reserva, atualizado pelos commits de dados até o fim da transição. O repositório vai
+ficar privado e o GitHub Pages dele, desligado: nada aqui depende de `github.io`.
+
+- **Repositórios privados:** a coleta lê a API do GitHub com o secret `PAINEL_TOKEN_LEITURA`
+  — token fine-grained com dono `gfvdata-web`, todos os repositórios, permissões só de
+  leitura: **Actions**, **Contents** e **Metadata**. Sem ele, o workflow usa o `GITHUB_TOKEN`,
+  que só enxerga os repositórios públicos (os privados viram erro no card).
 
 - **Agenda:** o Cron do Worker (`*/30 * * * *`, `agendar()` em `worker/src/index.ts`) dispara o
   workflow pela API do GitHub nas horas múltiplas de 3 (UTC) — no lugar do `schedule` do
@@ -161,9 +167,8 @@ App nativo (Kotlin + Jetpack Compose) em `android/`, no mesmo molde do app do Bo
 (`page-bolao-formula1/android`): instalado por APK, fora da Play Store. Não tem servidor nem
 token: **lê o mesmo `dados/status.json`** que a página, em `painel.gfvdata.com` (e
 `dados/historico/<slug>.json` sob demanda), então tudo que a página mostra vem do mesmo
-lugar e nada é cadastrado no app. Se o endereço novo não responder, o app tenta o antigo
-(`gfvdata-web.github.io/painel-status/`, `Enderecos.PAINEL_RESERVA` em `App.kt`, mesmos
-caminhos) — reserva da transição para a Cloudflare.
+lugar e nada é cadastrado no app. Se o endereço novo não responder, o app tenta a reserva
+(`painel-status.pages.dev`, `Enderecos.PAINEL_RESERVA` em `App.kt`, mesmos caminhos).
 
 - **Abas:** **Bolão F1** (situação do site e do pipeline, o passo a passo da última
   atualização, rodada, visitantes e atalhos para o site, o Forms, o histórico e o
@@ -200,15 +205,21 @@ instala ao lado).
 
 **Publicar uma versão:** commit(s) no `main` com a run verde → `git tag -a app-vX.Y.Z -m "…"`
 → `git push origin app-vX.Y.Z`. O job `publicar` assina com a chave oficial, confere a
-assinatura e cria o Release com `painel-status-vX.Y.Z-buildN.apk` (nome lido pelo aviso de
-versão do app — não mudar). Quem tem o app vê "Nova versão disponível" ao abrir.
+assinatura, manda `painel-status-vX.Y.Z-buildN.apk` e depois o `versao.json` ao Worker
+(`painel.gfvdata.com/app/`, secret `PAINEL_TOKEN_ENVIO`) e cria um Release só como arquivo (o
+repositório é privado: Release não baixa sem login). O app consulta
+`painel.gfvdata.com/app/versao.json` ao abrir e mostra "Nova versão disponível"; versão e build
+saem do nome do APK (não mudar o padrão). Até a versão com esse aviso novo, o app consultava o
+GitHub Releases: quem tem uma versão anterior precisa instalar a nova **à mão, uma vez**.
 
 **Assinatura:** a mesma chave do app do Bolão F1 (um keystore só para guardar, em
 `Documents/BolaoF1-assinatura-app/`, fora do Git), cadastrada aqui como os secrets
 `ANDROID_KEYSTORE_B64`, `ANDROID_KEYSTORE_SENHA`, `ANDROID_KEY_ALIAS` e
 `ANDROID_KEY_SENHA`. Perder o keystore = nenhuma atualização instala por cima dos dois apps.
 
-**Instalar no celular:** abrir o Release pelo celular, baixar o `.apk` e instalar
+**Instalar no celular:** abrir `https://painel.gfvdata.com/app/<apk>` pelo celular (o nome
+está no campo `apk` de `painel.gfvdata.com/app/versao.json`, ou toque em "Nova versão
+disponível" no app), baixar o `.apk` e instalar
 (o Android pede para permitir instalação desta fonte). Valem as mesmas observações do app do
 Bolão sobre a verificação de desenvolvedor do Android.
 
