@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-10-13T11:14:43.681459+00:00",
+    "gerado_em": "2026-10-13T11:56:39.814219+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -258,9 +258,9 @@
         "deploy_pages": {
           "status": "completed",
           "conclusao": "success",
-          "criado_em": "2026-10-13T02:07:47Z",
-          "atualizado_em": "2026-10-13T02:08:23Z",
-          "url": "https://github.com/gfvdata-web/fonte-meios-pagamento/actions/runs/38335410190"
+          "criado_em": "2026-10-13T11:28:00Z",
+          "atualizado_em": "2026-10-13T11:28:55Z",
+          "url": "https://github.com/gfvdata-web/fonte-meios-pagamento/actions/runs/38390397873"
         }
       },
       "alertas": [],
@@ -439,9 +439,9 @@
         "deploy_pages": {
           "status": "completed",
           "conclusao": "success",
-          "criado_em": "2026-09-15T16:28:45Z",
-          "atualizado_em": "2026-09-15T16:29:24Z",
-          "url": "https://github.com/gfvdata-web/fonte-arrecadacao-federal/actions/runs/34995244975"
+          "criado_em": "2026-10-13T11:32:18Z",
+          "atualizado_em": "2026-10-13T11:33:19Z",
+          "url": "https://github.com/gfvdata-web/fonte-arrecadacao-federal/actions/runs/38390906713"
         }
       },
       "alertas": [],
@@ -614,9 +614,9 @@
         "deploy_pages": {
           "status": "completed",
           "conclusao": "success",
-          "criado_em": "2026-09-21T16:34:06Z",
-          "atualizado_em": "2026-09-21T16:37:49Z",
-          "url": "https://github.com/gfvdata-web/fonte-credito-modalidade/actions/runs/35626424956"
+          "criado_em": "2026-10-13T11:32:21Z",
+          "atualizado_em": "2026-10-13T11:33:22Z",
+          "url": "https://github.com/gfvdata-web/fonte-credito-modalidade/actions/runs/38390911510"
         }
       },
       "alertas": [],
@@ -2286,10 +2286,10 @@
       "pages_url": "https://gfvdata-web.github.io/evolucao-fotografia/",
       "destaque": false,
       "ultimo_commit_dados": {
-        "data": "2026-10-13T01:57:24Z",
-        "mensagem": "fix: v0.5.4 — aviso de atualização não some sozinho",
-        "sha": "8fd8f4e",
-        "url": "https://github.com/gfvdata-web/evolucao-fotografia/commit/8fd8f4eda85bc9e762ab86de77596008083d4cd9"
+        "data": "2026-10-13T11:38:37Z",
+        "mensagem": "feat: v0.6.0 — importador no PC e o RAW sem processamento",
+        "sha": "ba9019c",
+        "url": "https://github.com/gfvdata-web/evolucao-fotografia/commit/ba9019cc414b359b99b72947498ee2153d0a9dfa"
       },
       "site_no_ar": {
         "ok": true,
@@ -2298,6 +2298,24 @@
       "detalhes": {
         "coleta": null,
         "commits_dados": [
+          {
+            "data": "2026-10-13T11:38:37Z",
+            "mensagem": "feat: v0.6.0 — importador no PC e o RAW sem processamento",
+            "sha": "ba9019c",
+            "url": "https://github.com/gfvdata-web/evolucao-fotografia/commit/ba9019cc414b359b99b72947498ee2153d0a9dfa"
+          },
+          {
+            "data": "2026-10-13T10:57:48Z",
+            "mensagem": "Merge remote-tracking branch 'origin/main' into v0.6",
+            "sha": "74b3748",
+            "url": "https://github.com/gfvdata-web/evolucao-fotografia/commit/74b37483c28a02da8bebac3e314e1dd297e3b0e6"
+          },
+          {
+            "data": "2026-10-13T10:57:48Z",
+            "mensagem": "feat: v0.6 em andamento — importador Python e importação do pacote no site",
+            "sha": "73a5699",
+            "url": "https://github.com/gfvdata-web/evolucao-fotografia/commit/73a56999521275039ce95473a97dd4c55d612874"
+          },
           {
             "data": "2026-10-13T01:57:24Z",
             "mensagem": "fix: v0.5.4 — aviso de atualização não some sozinho",
@@ -2309,24 +2327,6 @@
             "mensagem": "fix: v0.5.3 — aparelho com app antigo é avisado e para sem estragar dados",
             "sha": "2da1e4d",
             "url": "https://github.com/gfvdata-web/evolucao-fotografia/commit/2da1e4daf11f5f89cdcf6aa29c46e0c0d891eae5"
-          },
-          {
-            "data": "2026-10-13T01:19:00Z",
-            "mensagem": "fix: v0.5.2 — toque logo depois de soltar uma foto não é mais ignorado",
-            "sha": "def8ff2",
-            "url": "https://github.com/gfvdata-web/evolucao-fotografia/commit/def8ff2131c6d1ddc91bee5fda79edebe5e37ee1"
-          },
-          {
-            "data": "2026-10-13T01:05:33Z",
-            "mensagem": "feat: v0.5.1 — cenas na sessão, diagnóstico por cena e arrastar e soltar",
-            "sha": "15d1cac",
-            "url": "https://github.com/gfvdata-web/evolucao-fotografia/commit/15d1cac09a33c8f0738751489296c525390d7367"
-          },
-          {
-            "data": "2026-10-12T23:50:58Z",
-            "mensagem": "feat: v0.5.0 — diagnóstico de uma foto com orientação",
-            "sha": "2db214f",
-            "url": "https://github.com/gfvdata-web/evolucao-fotografia/commit/2db214ff599c9ca7b2547a050cfc1ba24ad72350"
           }
         ],
         "deploy_pages": null
