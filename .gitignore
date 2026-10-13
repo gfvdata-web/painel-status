@@ -19,3 +19,4 @@ android/captures/
 node_modules/
 .wrangler/
 .dev.vars
+worker/worker-configuration.d.ts

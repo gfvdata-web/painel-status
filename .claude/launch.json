@@ -4,8 +4,29 @@
     {
       "name": "painel-status",
       "runtimeExecutable": "python",
-      "runtimeArgs": ["-m", "http.server", "8731", "--directory", "docs"],
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8731",
+        "--directory",
+        "docs"
+      ],
       "port": 8731
+    },
+    {
+      "name": "painel-worker",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": [
+        "--prefix",
+        "worker",
+        "wrangler",
+        "dev",
+        "--config",
+        "worker/wrangler.jsonc",
+        "--port",
+        "8787"
+      ],
+      "port": 8787
     }
   ]
 }

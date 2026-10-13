@@ -13,6 +13,10 @@ name: Atualizar status
 # roda o job `vigiar-bolao`, que acompanha aquele pipeline até o fim (a cada
 # 1 min; a cada 10 min enquanto o Verificador espera o resultado) e encerra —
 # o painel volta para a rotina de 3 em 3 horas. Ver src/vigia_bolao.py.
+#
+# Cloudflare (transição): além do commit, os dois jobs mandam docs/dados ao Worker
+# (painel.gfvdata.com, ver worker/ e src/envio.py). Sem o secret PAINEL_TOKEN_ENVIO,
+# o envio é pulado.
 
 on:
   schedule:
@@ -32,6 +36,8 @@ jobs:
   coletar:
     if: github.event_name != 'repository_dispatch'
     runs-on: ubuntu-latest
+    env:
+      PAINEL_TOKEN_ENVIO: ${{ secrets.PAINEL_TOKEN_ENVIO }}
     steps:
       - uses: actions/checkout@v7
 
@@ -57,10 +63,16 @@ jobs:
           git commit -m "Atualiza status em $(date -u +'%Y-%m-%dT%H:%MZ')"
           git push
 
+      - name: Enviar ao Worker da Cloudflare
+        if: env.PAINEL_TOKEN_ENVIO != ''
+        run: python -m src.envio enviar
+
   vigiar-bolao:
     if: github.event_name == 'repository_dispatch'
     runs-on: ubuntu-latest
     timeout-minutes: 345  # vigília do Verificador vai até 5 h
+    env:
+      PAINEL_TOKEN_ENVIO: ${{ secrets.PAINEL_TOKEN_ENVIO }}
     steps:
       - uses: actions/checkout@v7
 
@@ -92,6 +104,9 @@ jobs:
               git commit -m "Acompanha Bolão F1 ($fase) em $(date -u +'%Y-%m-%dT%H:%MZ')"
               git pull --rebase --quiet
               git push
+              if [ -n "$PAINEL_TOKEN_ENVIO" ]; then
+                python -m src.envio enviar || echo '::warning::Envio ao Worker da Cloudflare falhou; segue no próximo ciclo.'
+              fi
             else
               git checkout -- docs/dados
               git clean -fdq docs/dados

@@ -1,0 +1,18 @@
+// Worker único do painel: serve a página (docs/, como arquivos estáticos) e os dados
+// (/dados/*) guardados no R2. Como funciona: seção "Cloudflare" do README.md.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "painel-status",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-10-01",
+  "observability": { "enabled": true },
+  "routes": [{ "pattern": "painel.gfvdata.com", "custom_domain": true }],
+  "assets": {
+    "directory": "../docs",
+    "binding": "ASSETS",
+    // /dados/* sai do R2 (com o arquivo estático como reserva); /api/* recebe os envios.
+    "run_worker_first": ["/dados/*", "/api/*"]
+  },
+  "r2_buckets": [{ "binding": "DADOS", "bucket_name": "painel-status-dados" }]
+  // Segredo (wrangler secret put): TOKEN_ENVIO — o mesmo do secret PAINEL_TOKEN_ENVIO no GitHub.
+}

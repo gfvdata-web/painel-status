@@ -77,8 +77,12 @@ src/
 ├── historico.py          # histórico acumulado das execuções (docs/dados/historico/)
 ├── etapas_bolao.py       # passo a passo da última atualização do Bolão F1
 ├── vigia_bolao.py        # fase do pipeline do Bolão para o job vigiar-bolao (até quando acompanhar)
-└── publicacao.py         # monta docs/dados/status.json (formato descrito na docstring)
-docs/                     # o que o GitHub Pages publica
+├── publicacao.py         # monta docs/dados/status.json (formato descrito na docstring)
+└── envio.py              # manda docs/dados ao Worker da Cloudflare (e baixa de lá)
+worker/                   # Worker da Cloudflare (painel.gfvdata.com): página + /dados do R2
+├── wrangler.jsonc        # nome, domínio, arquivos estáticos (../docs) e bucket R2
+└── src/index.ts          # serve /dados/* do R2 e recebe os envios (PUT /api/envio/*)
+docs/                     # a página (publicada pelo Worker e, na transição, pelo GitHub Pages)
 ├── index.html
 ├── lista.html            # layout de teste em lista (um cartão por site)
 ├── css/estilo.css
@@ -109,6 +113,31 @@ Rodar localmente:
 python -m src.publicacao
 python -m http.server --directory docs 8000
 ```
+
+## Cloudflare (Worker + R2)
+
+**Em transição.** O endereço novo é **https://painel.gfvdata.com/**: um Worker (`worker/`)
+serve a página (os arquivos de `docs/`) e os dados (`/dados/status.json`,
+`/dados/historico/<slug>.json`) guardados no R2 (bucket `painel-status-dados`). O GitHub
+Pages (`gfvdata-web.github.io/painel-status/`) e o Pages da Cloudflare
+(`painel-status.pages.dev`) continuam atualizados pelos commits até o fim da transição.
+
+- **A coleta continua em Python, no Actions.** Depois de gerar, o job manda os arquivos ao
+  Worker (`python -m src.envio enviar`, `PUT /api/envio/...` com o token do secret
+  `PAINEL_TOKEN_ENVIO`, que é o `TOKEN_ENVIO` do Worker). O Worker guarda os bytes como
+  vieram — o formato é o de `publicacao.py`/`historico.py`, sem tradução.
+- **O Worker recusa** status malformado (sem `meta.gerado_em`, `sites` vazio, site sem
+  `slug`/`nome`, sem `forms_avulsos`) e status mais antigo que o publicado — um envio
+  atrasado nunca apaga um mais novo.
+- **Retratos:** cada status recebido também é gravado em `snapshots/AAAA-MM-DD/HH-MM-SS.json`
+  no R2 (apagados depois de 30 dias). Servem para voltar a um status anterior.
+- **Por que R2:** leitura sempre a mais nova (o KV leva até 60 s para propagar, e a recarga
+  é de 1 min), cota gratuita folgada, e guarda arquivos — o mesmo formato por construção.
+- **Rodar localmente:** `npm install --prefix worker`, depois
+  `npx --prefix worker wrangler dev --config worker/wrangler.jsonc` (R2 simulado, token em
+  `worker/.dev.vars`: `TOKEN_ENVIO=teste-local`) e
+  `PAINEL_URL=http://localhost:8787 PAINEL_TOKEN_ENVIO=teste-local python -m src.envio enviar`.
+- **Publicar o Worker:** `npx --prefix worker wrangler deploy --config worker/wrangler.jsonc`.
 
 ## App Android
 

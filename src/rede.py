@@ -1,4 +1,4 @@
-"""Acesso HTTP compartilhado pelos coletores (GitHub e GoatCounter).
+"""Acesso HTTP compartilhado pelos coletores (GitHub e GoatCounter) e pelo envio ao Worker.
 
 Só biblioteca padrão. ERROS_REDE agrupa tudo o que uma chamada pode levantar
 por causa de rede instável ou resposta inválida (HTTP 4xx/5xx, DNS, timeout,
@@ -45,6 +45,15 @@ def get_texto(url, headers=None):
 
 def get_json(url, headers=None):
     return json.loads(get_texto(url, headers))
+
+
+def put(url, corpo, headers=None):
+    """PUT de bytes; devolve o corpo da resposta como texto (levanta HTTPError para 4xx/5xx)."""
+    req = urllib.request.Request(
+        url, data=corpo, method="PUT", headers={"User-Agent": USER_AGENT, **(headers or {})}
+    )
+    with _abrir(req, timeout=TIMEOUT_S) as resp:
+        return resp.read().decode("utf-8", errors="replace")
 
 
 def get_status(url):
