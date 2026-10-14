@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-10-14T12:00:27.183412+00:00",
+    "gerado_em": "2026-10-14T12:33:59.526960+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -400,14 +400,14 @@
       "slug": "arrecadacao_federal",
       "nome": "Arrecadação federal",
       "repo": "fonte-arrecadacao-federal",
-      "pages_url": "https://gfvdata-web.github.io/fonte-arrecadacao-federal/",
+      "pages_url": "https://arrecadacaofederal.gfvdata.com/",
       "destaque": false,
       "categoria": null,
       "ultimo_commit_dados": {
-        "data": "2026-08-15T21:48:16Z",
-        "mensagem": "Perfil: motor detecta medida guardada como texto",
-        "sha": "c81ae4e",
-        "url": "https://github.com/gfvdata-web/fonte-arrecadacao-federal/commit/c81ae4edefbe8813b0e02f48cba0844bb117713d"
+        "data": "2026-10-14T12:07:41Z",
+        "mensagem": "Eventos: fonte da recessao 2014-2016 aponta para o Codace/IBRE",
+        "sha": "efe9366",
+        "url": "https://github.com/gfvdata-web/fonte-arrecadacao-federal/commit/efe936603a40acfceaf8617a91020511a4a8ad0c"
       },
       "periodo_publicado": {
         "inicio": "1994-01",
@@ -420,6 +420,18 @@
       "detalhes": {
         "coleta": null,
         "commits_dados": [
+          {
+            "data": "2026-10-14T12:07:41Z",
+            "mensagem": "Eventos: fonte da recessao 2014-2016 aponta para o Codace/IBRE",
+            "sha": "efe9366",
+            "url": "https://github.com/gfvdata-web/fonte-arrecadacao-federal/commit/efe936603a40acfceaf8617a91020511a4a8ad0c"
+          },
+          {
+            "data": "2026-10-14T11:44:28Z",
+            "mensagem": "V2 oficial: narrativa, marcos com fonte, skill do Claude e deploy na Cloudflare (V1 em /v1/)",
+            "sha": "3ab6984",
+            "url": "https://github.com/gfvdata-web/fonte-arrecadacao-federal/commit/3ab698460293fd6cf838dfc45fcc1c495e34c6b0"
+          },
           {
             "data": "2026-08-15T21:48:16Z",
             "mensagem": "Perfil: motor detecta medida guardada como texto",
@@ -442,9 +454,9 @@
         "deploy_pages": {
           "status": "completed",
           "conclusao": "success",
-          "criado_em": "2026-10-13T11:32:18Z",
-          "atualizado_em": "2026-10-13T11:33:19Z",
-          "url": "https://github.com/gfvdata-web/fonte-arrecadacao-federal/actions/runs/38390906713"
+          "criado_em": "2026-10-14T12:19:55Z",
+          "atualizado_em": "2026-10-14T12:21:03Z",
+          "url": "https://github.com/gfvdata-web/fonte-arrecadacao-federal/actions/runs/38562987715"
         }
       },
       "alertas": [],
@@ -582,18 +594,18 @@
       "slug": "credito_modalidade",
       "nome": "Crédito por modalidade",
       "repo": "fonte-credito-modalidade",
-      "pages_url": "https://gfvdata-web.github.io/fonte-credito-modalidade/",
+      "pages_url": "https://creditomodalidade.gfvdata.com/",
       "destaque": false,
       "categoria": null,
       "ultimo_commit_dados": {
-        "data": "2026-08-15T21:47:58Z",
-        "mensagem": "Etapa E: pagina de exploracao dos dados",
-        "sha": "3bb1bd2",
-        "url": "https://github.com/gfvdata-web/fonte-credito-modalidade/commit/3bb1bd27ec9c0fb0e464416658fa22ce78607dfb"
+        "data": "2026-10-14T11:34:38Z",
+        "mensagem": "Painel narrativo com eventos, skill do Claude e preparação para Cloudflare Pages",
+        "sha": "bfaa7de",
+        "url": "https://github.com/gfvdata-web/fonte-credito-modalidade/commit/bfaa7ded8238e84a0eff2e896e7f223863b61c35"
       },
       "periodo_publicado": {
         "inicio": "2011-03",
-        "fim": "2026-06"
+        "fim": "2026-08"
       },
       "site_no_ar": {
         "ok": true,
@@ -602,6 +614,12 @@
       "detalhes": {
         "coleta": null,
         "commits_dados": [
+          {
+            "data": "2026-10-14T11:34:38Z",
+            "mensagem": "Painel narrativo com eventos, skill do Claude e preparação para Cloudflare Pages",
+            "sha": "bfaa7de",
+            "url": "https://github.com/gfvdata-web/fonte-credito-modalidade/commit/bfaa7ded8238e84a0eff2e896e7f223863b61c35"
+          },
           {
             "data": "2026-08-15T21:47:58Z",
             "mensagem": "Etapa E: pagina de exploracao dos dados",
@@ -618,9 +636,9 @@
         "deploy_pages": {
           "status": "completed",
           "conclusao": "success",
-          "criado_em": "2026-10-13T11:32:21Z",
-          "atualizado_em": "2026-10-13T11:33:22Z",
-          "url": "https://github.com/gfvdata-web/fonte-credito-modalidade/actions/runs/38390911510"
+          "criado_em": "2026-10-14T12:13:06Z",
+          "atualizado_em": "2026-10-14T12:14:09Z",
+          "url": "https://github.com/gfvdata-web/fonte-credito-modalidade/actions/runs/38562162063"
         }
       },
       "alertas": [],
