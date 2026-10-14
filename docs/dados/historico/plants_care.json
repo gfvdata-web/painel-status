@@ -3,8 +3,17 @@
  "nome": "Plants Care",
  "workflow": "sensor-sync.yml",
  "url_workflow": "https://github.com/gfvdata-web/PlantsCare/actions/workflows/sensor-sync.yml",
- "atualizado_em": "2026-10-14T19:08:45.950494+00:00",
+ "atualizado_em": "2026-10-14T23:37:30.917293+00:00",
  "execucoes": [
+  {
+   "id": 38650642570,
+   "criado_em": "2026-10-14T22:53:23Z",
+   "evento": "schedule",
+   "conclusao": "success",
+   "duracao_s": 49,
+   "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/38650642570",
+   "avisos": null
+  },
   {
    "id": 38620786374,
    "criado_em": "2026-10-14T19:05:59Z",
