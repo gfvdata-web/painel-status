@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-10-14T19:08:23.330758+00:00",
+    "gerado_em": "2026-10-14T21:01:07.976244+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -71,136 +71,7 @@
         "ok": true,
         "status_http": 200
       },
-      "historico_arquivo": "dados/historico/bolao_f1.json",
-      "acesso": {
-        "visitantes_unicos": 43,
-        "serie_diaria": [
-          {
-            "data": "2026-09-14",
-            "visitantes": 2
-          },
-          {
-            "data": "2026-09-15",
-            "visitantes": 2
-          },
-          {
-            "data": "2026-09-16",
-            "visitantes": 1
-          },
-          {
-            "data": "2026-09-17",
-            "visitantes": 1
-          },
-          {
-            "data": "2026-09-18",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-19",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-20",
-            "visitantes": 1
-          },
-          {
-            "data": "2026-09-21",
-            "visitantes": 2
-          },
-          {
-            "data": "2026-09-22",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-23",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-24",
-            "visitantes": 1
-          },
-          {
-            "data": "2026-09-25",
-            "visitantes": 3
-          },
-          {
-            "data": "2026-09-26",
-            "visitantes": 1
-          },
-          {
-            "data": "2026-09-27",
-            "visitantes": 1
-          },
-          {
-            "data": "2026-09-28",
-            "visitantes": 2
-          },
-          {
-            "data": "2026-09-29",
-            "visitantes": 1
-          },
-          {
-            "data": "2026-09-30",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-01",
-            "visitantes": 1
-          },
-          {
-            "data": "2026-10-02",
-            "visitantes": 1
-          },
-          {
-            "data": "2026-10-03",
-            "visitantes": 2
-          },
-          {
-            "data": "2026-10-04",
-            "visitantes": 3
-          },
-          {
-            "data": "2026-10-05",
-            "visitantes": 1
-          },
-          {
-            "data": "2026-10-06",
-            "visitantes": 3
-          },
-          {
-            "data": "2026-10-07",
-            "visitantes": 1
-          },
-          {
-            "data": "2026-10-08",
-            "visitantes": 1
-          },
-          {
-            "data": "2026-10-09",
-            "visitantes": 3
-          },
-          {
-            "data": "2026-10-10",
-            "visitantes": 4
-          },
-          {
-            "data": "2026-10-11",
-            "visitantes": 3
-          },
-          {
-            "data": "2026-10-12",
-            "visitantes": 1
-          },
-          {
-            "data": "2026-10-13",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-14",
-            "visitantes": 0
-          }
-        ]
-      }
+      "historico_arquivo": "dados/historico/bolao_f1.json"
     },
     {
       "slug": "meios_pagamento_mensal",
@@ -1059,7 +930,7 @@
       "alertas": [],
       "historico_arquivo": "dados/historico/simulador_investimentos.json",
       "acesso": {
-        "visitantes_unicos": 1,
+        "visitantes_unicos": 2,
         "serie_diaria": [
           {
             "data": "2026-09-14",
@@ -1183,7 +1054,7 @@
           },
           {
             "data": "2026-10-14",
-            "visitantes": 0
+            "visitantes": 1
           }
         ]
       }
