@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-10-14T00:01:07.290768+00:00",
+    "gerado_em": "2026-10-14T00:05:35.574007+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -1853,51 +1853,46 @@
         ],
         "deploy_pages": null
       },
-      "alertas": [
-        {
-          "nivel": "aviso",
-          "texto": "O último envio pelo Forms falhou no pipeline."
-        }
-      ],
+      "alertas": [],
       "pipeline_forms": {
         "workflow": "pipeline.yml",
         "execucao": {
-          "id": 35626297267,
-          "evento": "workflow_dispatch",
+          "id": 38488020153,
+          "evento": "push",
           "status": "completed",
-          "conclusao": "failure",
-          "criado_em": "2026-09-21T16:32:55Z",
-          "atualizado_em": "2026-09-21T16:33:25Z",
-          "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/35626297267"
+          "conclusao": "success",
+          "criado_em": "2026-10-14T00:04:21Z",
+          "atualizado_em": "2026-10-14T00:05:10Z",
+          "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/38488020153"
         },
         "etapas": [
           {
             "chave": "forms",
             "titulo": "Fotos enviadas (Google Forms)",
-            "estado": "pulado",
-            "detalhe": "Execução manual no GitHub — não houve envio novo pelo Forms.",
-            "quando": "2026-09-21T16:32:55Z"
+            "estado": "ok",
+            "detalhe": "Apps Script gravou o envio em inbox/ no GitHub e disparou o pipeline.",
+            "quando": "2026-10-14T00:04:21Z"
           },
           {
             "chave": "ficha",
             "titulo": "Ficha da planta atualizada",
             "estado": "ok",
             "detalhe": "Fotos copiadas e entrada nova escrita na ficha.",
-            "quando": "2026-09-21T16:33:19Z"
+            "quando": "2026-10-14T00:04:55Z"
           },
           {
             "chave": "relatorio",
             "titulo": "Relatório da IA (Gemini) → PDF → e-mail",
-            "estado": "erro",
-            "detalhe": "Falhou (Gemini, PDF ou e-mail). A ficha foi salva; refazer com `gh workflow run pipeline.yml -f plantas=<planta>`.",
-            "quando": "2026-09-21T16:33:23Z"
+            "estado": "ok",
+            "detalhe": "Síntese do Gemini, PDF e e-mail enviados.",
+            "quando": "2026-10-14T00:05:03Z"
           },
           {
             "chave": "commit",
             "titulo": "Salvo no repositório",
-            "estado": "pulado",
-            "detalhe": "Nada a salvar.",
-            "quando": null
+            "estado": "ok",
+            "detalhe": "Ficha, fotos e PDF commitados; envio retirado de inbox/.",
+            "quando": "2026-10-14T00:05:06Z"
           }
         ]
       },
