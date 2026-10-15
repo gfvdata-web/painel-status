@@ -3,8 +3,22 @@
  "nome": "Plants Care",
  "workflow": "sensor-sync.yml",
  "url_workflow": "https://github.com/gfvdata-web/PlantsCare/actions/workflows/sensor-sync.yml",
- "atualizado_em": "2026-10-15T07:58:40.276738+00:00",
+ "atualizado_em": "2026-10-15T15:01:17.159429+00:00",
  "execucoes": [
+  {
+   "id": 38752601048,
+   "criado_em": "2026-10-15T14:34:24Z",
+   "evento": "schedule",
+   "conclusao": "failure",
+   "duracao_s": 68,
+   "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/38752601048",
+   "avisos": null,
+   "motivo": {
+    "job": "sincronizar",
+    "passo": "Baixar planilha → data/esp32/",
+    "mensagem": "urllib.error.HTTPError: HTTP Error 404: Not Found"
+   }
+  },
   {
    "id": 38694527596,
    "criado_em": "2026-10-15T06:47:18Z",
