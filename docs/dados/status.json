@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-10-14T23:37:11.409593+00:00",
+    "gerado_em": "2026-10-15T00:00:54.983327+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -75,10 +75,6 @@
       "acesso": {
         "visitantes_unicos": 43,
         "serie_diaria": [
-          {
-            "data": "2026-09-14",
-            "visitantes": 2
-          },
           {
             "data": "2026-09-15",
             "visitantes": 2
@@ -270,10 +266,6 @@
         "visitantes_unicos": 7,
         "serie_diaria": [
           {
-            "data": "2026-09-14",
-            "visitantes": 1
-          },
-          {
             "data": "2026-09-15",
             "visitantes": 0
           },
@@ -464,10 +456,6 @@
         "visitantes_unicos": 12,
         "serie_diaria": [
           {
-            "data": "2026-09-14",
-            "visitantes": 2
-          },
-          {
             "data": "2026-09-15",
             "visitantes": 1
           },
@@ -646,10 +634,6 @@
         "visitantes_unicos": 4,
         "serie_diaria": [
           {
-            "data": "2026-09-14",
-            "visitantes": 0
-          },
-          {
             "data": "2026-09-15",
             "visitantes": 0
           },
@@ -788,10 +772,10 @@
       "ultima_execucao_pipeline": {
         "id": 38654595476,
         "evento": "schedule",
-        "status": "in_progress",
-        "conclusao": null,
+        "status": "completed",
+        "conclusao": "failure",
         "criado_em": "2026-10-14T23:31:24Z",
-        "atualizado_em": "2026-10-14T23:31:28Z",
+        "atualizado_em": "2026-10-14T23:39:00Z",
         "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/38654595476"
       },
       "site_no_ar": {
@@ -812,12 +796,12 @@
             {
               "id": 38654595476,
               "evento": "schedule",
-              "status": "in_progress",
-              "conclusao": null,
+              "status": "completed",
+              "conclusao": "failure",
               "criado_em": "2026-10-14T23:31:24Z",
-              "atualizado_em": "2026-10-14T23:31:28Z",
+              "atualizado_em": "2026-10-14T23:39:00Z",
               "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/38654595476",
-              "duracao_s": null
+              "duracao_s": 456
             },
             {
               "id": 38487595477,
@@ -970,17 +954,17 @@
             "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/38487595477"
           },
           "ultima_falha": {
-            "id": 36795108679,
+            "id": 38654595476,
             "evento": "schedule",
             "status": "completed",
             "conclusao": "failure",
-            "criado_em": "2026-10-01T00:13:49Z",
-            "atualizado_em": "2026-10-01T00:20:40Z",
-            "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/36795108679",
+            "criado_em": "2026-10-14T23:31:24Z",
+            "atualizado_em": "2026-10-14T23:39:00Z",
+            "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/38654595476",
             "motivo": {
               "job": "coletar",
               "passo": "Coletar",
-              "mensagem": "http.client.IncompleteRead: IncompleteRead(14718209 bytes read, 71589081 more expected)"
+              "mensagem": "zlib.error: Error -3 while decompressing data: invalid stored block lengths"
             }
           },
           "passos_ultima": [
@@ -998,23 +982,27 @@
             },
             {
               "nome": "Coletar",
-              "conclusao": "in_progress"
+              "conclusao": "failure"
             },
             {
               "nome": "Validar o que foi coletado",
-              "conclusao": "pending"
+              "conclusao": "skipped"
             },
             {
               "nome": "Commitar se algo mudou",
-              "conclusao": "pending"
+              "conclusao": "skipped"
             },
             {
               "nome": "Post Run actions/setup-python@v7",
-              "conclusao": "pending"
+              "conclusao": "skipped"
             },
             {
               "nome": "Post Run actions/checkout@v7",
-              "conclusao": "pending"
+              "conclusao": "success"
+            },
+            {
+              "nome": "Complete job",
+              "conclusao": "success"
             }
           ]
         },
@@ -1052,15 +1040,16 @@
         ],
         "deploy_pages": null
       },
-      "alertas": [],
+      "alertas": [
+        {
+          "nivel": "aviso",
+          "texto": "A última coleta falhou."
+        }
+      ],
       "historico_arquivo": "dados/historico/simulador_investimentos.json",
       "acesso": {
         "visitantes_unicos": 2,
         "serie_diaria": [
-          {
-            "data": "2026-09-14",
-            "visitantes": 1
-          },
           {
             "data": "2026-09-15",
             "visitantes": 0
@@ -1474,10 +1463,6 @@
       "acesso": {
         "visitantes_unicos": 13,
         "serie_diaria": [
-          {
-            "data": "2026-09-14",
-            "visitantes": 0
-          },
           {
             "data": "2026-09-15",
             "visitantes": 0
@@ -1991,10 +1976,6 @@
         "visitantes_unicos": 1,
         "serie_diaria": [
           {
-            "data": "2026-09-14",
-            "visitantes": 0
-          },
-          {
             "data": "2026-09-15",
             "visitantes": 0
           },
@@ -2225,10 +2206,6 @@
         "visitantes_unicos": 4,
         "serie_diaria": [
           {
-            "data": "2026-09-14",
-            "visitantes": 0
-          },
-          {
             "data": "2026-09-15",
             "visitantes": 0
           },
@@ -2408,10 +2385,6 @@
       "acesso": {
         "visitantes_unicos": 9,
         "serie_diaria": [
-          {
-            "data": "2026-09-14",
-            "visitantes": 0
-          },
           {
             "data": "2026-09-15",
             "visitantes": 0

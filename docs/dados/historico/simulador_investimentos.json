@@ -3,8 +3,35 @@
  "nome": "Simulador de investimentos",
  "workflow": "atualizar-dados.yml",
  "url_workflow": "https://github.com/gfvdata-web/simulador-investimentos/actions/workflows/atualizar-dados.yml",
- "atualizado_em": "2026-10-14T03:01:25.804208+00:00",
+ "atualizado_em": "2026-10-15T00:01:03.547284+00:00",
  "execucoes": [
+  {
+   "id": 38654595476,
+   "criado_em": "2026-10-14T23:31:24Z",
+   "evento": "schedule",
+   "conclusao": "failure",
+   "duracao_s": 456,
+   "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/38654595476",
+   "avisos": [
+    {
+     "nivel": "warning",
+     "mensagem": "B3 COTAHIST 2026: download completo na tentativa 2 (93509689 bytes)"
+    },
+    {
+     "nivel": "warning",
+     "mensagem": "B3 COTAHIST 2026: tentativa 1 caiu com 15964823 de 85075031 bytes (conexao fechada pelo servidor); retomando"
+    },
+    {
+     "nivel": "notice",
+     "mensagem": "\"The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748\""
+    }
+   ],
+   "motivo": {
+    "job": "coletar",
+    "passo": "Coletar",
+    "mensagem": "zlib.error: Error -3 while decompressing data: invalid stored block lengths"
+   }
+  },
   {
    "id": 38487595477,
    "criado_em": "2026-10-14T00:00:08Z",
