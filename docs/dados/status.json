@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-10-15T06:00:50.277891+00:00",
+    "gerado_em": "2026-10-15T07:58:24.071190+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -201,132 +201,7 @@
           "url": "https://github.com/gfvdata-web/fonte-arrecadacao-federal/actions/runs/38562987715"
         }
       },
-      "alertas": [],
-      "acesso": {
-        "visitantes_unicos": 12,
-        "serie_diaria": [
-          {
-            "data": "2026-09-15",
-            "visitantes": 1
-          },
-          {
-            "data": "2026-09-16",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-17",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-18",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-19",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-20",
-            "visitantes": 1
-          },
-          {
-            "data": "2026-09-21",
-            "visitantes": 2
-          },
-          {
-            "data": "2026-09-22",
-            "visitantes": 1
-          },
-          {
-            "data": "2026-09-23",
-            "visitantes": 1
-          },
-          {
-            "data": "2026-09-24",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-25",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-26",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-27",
-            "visitantes": 1
-          },
-          {
-            "data": "2026-09-28",
-            "visitantes": 1
-          },
-          {
-            "data": "2026-09-29",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-30",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-01",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-02",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-03",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-04",
-            "visitantes": 2
-          },
-          {
-            "data": "2026-10-05",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-06",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-07",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-08",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-09",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-10",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-11",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-12",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-13",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-14",
-            "visitantes": 0
-          }
-        ]
-      }
+      "alertas": []
     },
     {
       "slug": "credito_modalidade",
@@ -379,132 +254,7 @@
           "url": "https://github.com/gfvdata-web/fonte-credito-modalidade/actions/runs/38562162063"
         }
       },
-      "alertas": [],
-      "acesso": {
-        "visitantes_unicos": 4,
-        "serie_diaria": [
-          {
-            "data": "2026-09-15",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-16",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-17",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-18",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-19",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-20",
-            "visitantes": 1
-          },
-          {
-            "data": "2026-09-21",
-            "visitantes": 1
-          },
-          {
-            "data": "2026-09-22",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-23",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-24",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-25",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-26",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-27",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-28",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-29",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-30",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-01",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-02",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-03",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-04",
-            "visitantes": 1
-          },
-          {
-            "data": "2026-10-05",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-06",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-07",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-08",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-09",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-10",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-11",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-12",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-13",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-14",
-            "visitantes": 1
-          }
-        ]
-      }
+      "alertas": []
     },
     {
       "slug": "simulador_investimentos",
@@ -1084,132 +834,7 @@
         }
       },
       "alertas": [],
-      "historico_arquivo": "dados/historico/chess_tracking.json",
-      "acesso": {
-        "visitantes_unicos": 13,
-        "serie_diaria": [
-          {
-            "data": "2026-09-15",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-16",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-17",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-18",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-19",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-20",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-21",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-22",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-23",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-24",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-25",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-26",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-27",
-            "visitantes": 6
-          },
-          {
-            "data": "2026-09-28",
-            "visitantes": 4
-          },
-          {
-            "data": "2026-09-29",
-            "visitantes": 2
-          },
-          {
-            "data": "2026-09-30",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-01",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-02",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-03",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-04",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-05",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-06",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-07",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-08",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-09",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-10",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-11",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-12",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-13",
-            "visitantes": 1
-          },
-          {
-            "data": "2026-10-14",
-            "visitantes": 0
-          }
-        ]
-      }
+      "historico_arquivo": "dados/historico/chess_tracking.json"
     },
     {
       "slug": "plants_care",
@@ -1221,19 +846,19 @@
       "form_url": "https://forms.gle/y3uXaukJXmP9GMED7",
       "form_rotulo": "Enviar fotos",
       "ultimo_commit_dados": {
-        "data": "2026-10-15T01:08:34Z",
-        "mensagem": "dados: leituras do esp32-01 até 2026-10-15T01:06",
-        "sha": "47ad4b6",
-        "url": "https://github.com/gfvdata-web/PlantsCare/commit/47ad4b6b057717d336d40e8a8c0ea96d4d6d93ea"
+        "data": "2026-10-15T06:47:36Z",
+        "mensagem": "dados: leituras do esp32-01 até 2026-10-15T06:37",
+        "sha": "3e76901",
+        "url": "https://github.com/gfvdata-web/PlantsCare/commit/3e76901b484433c31bf13c9b23d0685df6a70380"
       },
       "ultima_execucao_pipeline": {
-        "id": 38663976773,
+        "id": 38694527596,
         "evento": "schedule",
         "status": "completed",
         "conclusao": "success",
-        "criado_em": "2026-10-15T01:08:09Z",
-        "atualizado_em": "2026-10-15T01:09:15Z",
-        "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/38663976773"
+        "criado_em": "2026-10-15T06:47:18Z",
+        "atualizado_em": "2026-10-15T06:48:09Z",
+        "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/38694527596"
       },
       "site_no_ar": {
         "ok": true,
@@ -1250,6 +875,16 @@
             }
           ],
           "historico": [
+            {
+              "id": 38694527596,
+              "evento": "schedule",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-10-15T06:47:18Z",
+              "atualizado_em": "2026-10-15T06:48:09Z",
+              "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/38694527596",
+              "duracao_s": 51
+            },
             {
               "id": 38663976773,
               "evento": "schedule",
@@ -1389,26 +1024,16 @@
               "atualizado_em": "2026-10-12T00:08:01Z",
               "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/38186822455",
               "duracao_s": 23
-            },
-            {
-              "id": 38173382079,
-              "evento": "schedule",
-              "status": "completed",
-              "conclusao": "success",
-              "criado_em": "2026-10-11T20:43:12Z",
-              "atualizado_em": "2026-10-11T20:43:33Z",
-              "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/38173382079",
-              "duracao_s": 21
             }
           ],
           "ultimo_sucesso": {
-            "id": 38663976773,
+            "id": 38694527596,
             "evento": "schedule",
             "status": "completed",
             "conclusao": "success",
-            "criado_em": "2026-10-15T01:08:09Z",
-            "atualizado_em": "2026-10-15T01:09:15Z",
-            "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/38663976773"
+            "criado_em": "2026-10-15T06:47:18Z",
+            "atualizado_em": "2026-10-15T06:48:09Z",
+            "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/38694527596"
           },
           "ultima_falha": null,
           "passos_ultima": [
@@ -1460,6 +1085,12 @@
         },
         "commits_dados": [
           {
+            "data": "2026-10-15T06:47:36Z",
+            "mensagem": "dados: leituras do esp32-01 até 2026-10-15T06:37",
+            "sha": "3e76901",
+            "url": "https://github.com/gfvdata-web/PlantsCare/commit/3e76901b484433c31bf13c9b23d0685df6a70380"
+          },
+          {
             "data": "2026-10-15T01:08:34Z",
             "mensagem": "dados: leituras do esp32-01 até 2026-10-15T01:06",
             "sha": "47ad4b6",
@@ -1482,12 +1113,6 @@
             "mensagem": "dados: leituras do esp32-01 até 2026-10-14T14:35",
             "sha": "56edb8f",
             "url": "https://github.com/gfvdata-web/PlantsCare/commit/56edb8fa824c4afe9995ed47c9a2417bbe75d3bf"
-          },
-          {
-            "data": "2026-10-14T06:56:13Z",
-            "mensagem": "dados: leituras do esp32-01 até 2026-10-14T06:50",
-            "sha": "e46e4dd",
-            "url": "https://github.com/gfvdata-web/PlantsCare/commit/e46e4dd187bb2eb867f9e36d69ddb2aa9707bdc7"
           }
         ],
         "deploy_pages": null
@@ -1701,132 +1326,7 @@
         ],
         "deploy_pages": null
       },
-      "alertas": [],
-      "acesso": {
-        "visitantes_unicos": 4,
-        "serie_diaria": [
-          {
-            "data": "2026-09-15",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-16",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-17",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-18",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-19",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-20",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-21",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-22",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-23",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-24",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-25",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-26",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-27",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-28",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-29",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-30",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-01",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-02",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-03",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-04",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-05",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-06",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-07",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-08",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-09",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-10",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-11",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-12",
-            "visitantes": 3
-          },
-          {
-            "data": "2026-10-13",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-14",
-            "visitantes": 1
-          }
-        ]
-      }
+      "alertas": []
     },
     {
       "slug": "evolucao_fotografia",
@@ -1881,132 +1381,7 @@
         ],
         "deploy_pages": null
       },
-      "alertas": [],
-      "acesso": {
-        "visitantes_unicos": 9,
-        "serie_diaria": [
-          {
-            "data": "2026-09-15",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-16",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-17",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-18",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-19",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-20",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-21",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-22",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-23",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-24",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-25",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-26",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-27",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-28",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-29",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-09-30",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-01",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-02",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-03",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-04",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-05",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-06",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-07",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-08",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-09",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-10",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-11",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-12",
-            "visitantes": 5
-          },
-          {
-            "data": "2026-10-13",
-            "visitantes": 3
-          },
-          {
-            "data": "2026-10-14",
-            "visitantes": 1
-          }
-        ]
-      }
+      "alertas": []
     }
   ],
   "forms_avulsos": [
