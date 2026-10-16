@@ -99,7 +99,8 @@ object IaFixtures {
  */
 class IaLocal : Closeable {
     var senha = "segredo"
-    val cookie = "${IaFixtures.AGORA_MS + 86_400_000}.assinaturadeteste"
+    // Vence em 2100: os testes com o relógio real (Robolectric) não podem depender da data de hoje.
+    val cookie = "4102444800000.assinaturadeteste"
     val substituicoes = ConcurrentHashMap<String, MockResponse>()
     val pedidos = CopyOnWriteArrayList<String>()
     val cookiesRecebidos = CopyOnWriteArrayList<String>()

@@ -46,6 +46,7 @@ fun AvisosTela(
     aoAtivar: (Boolean) -> Unit,
     aoMudarBolao: (Boolean) -> Unit,
     aoMudarSites: (Boolean) -> Unit,
+    aoMudarLimites: (Boolean) -> Unit,
     aoTestar: () -> Unit,
     aoAbrirConfiguracoesDoAndroid: () -> Unit,
     modifier: Modifier = Modifier,
@@ -86,6 +87,13 @@ fun AvisosTela(
             ligado = preferencias.sites,
             habilitado = preferencias.ativado,
             aoMudar = aoMudarSites,
+        )
+        LinhaDeChave(
+            titulo = stringResource(R.string.avisos_limites),
+            descricao = stringResource(R.string.avisos_limites_descricao),
+            ligado = preferencias.limites,
+            habilitado = preferencias.ativado,
+            aoMudar = aoMudarLimites,
         )
         if (preferencias.ativado && !permitido) {
             val (frente, fundo) = coresDoTom(Tom.ERRO)

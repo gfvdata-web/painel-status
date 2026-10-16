@@ -220,6 +220,7 @@
     <string name="sobre_texto">Acompanha os sites publicados pela conta gfvdata-web: se estão no ar, quando os dados mudaram, as rotinas de coleta e o passo a passo de cada atualização do Bolão F1. Tudo vem do painel publicado em painel.gfvdata.com; o app só lê. Com o app fechado, ele pode avisar por notificação (ícone do sino).</string>
     <string name="sobre_recarga">Com o app aberto, o painel é conferido a cada %1$d min (o mesmo intervalo da página). Puxe a tela para baixo para conferir na hora.</string>
     <string name="abrir_painel_web">Abrir o painel na web</string>
+    <string name="sobre_limites">Avisos dos limites do Claude: o coletor roda no PC a cada 30 min, então o aviso só chega com o PC ligado e pode atrasar uns 45 min.</string>
     <string name="sobre_versao">Versão %1$s · build %2$d</string>
 
     <!-- Avisos com o app fechado -->
@@ -230,6 +231,8 @@
     <string name="avisos_bolao_descricao">Palpites recebidos, aguardando o resultado do quali, página atualizada ou falha no pipeline.</string>
     <string name="avisos_sites">Alertas dos sites</string>
     <string name="avisos_sites_descricao">Site fora do ar, coleta que falhou, foi cancelada ou parou.</string>
+    <string name="avisos_limites">Limites do Claude</string>
+    <string name="avisos_limites_descricao">Janela de 5 horas ou de 7 dias passou de 80 por cento do limite ou zerou. Precisa estar logado na aba IA; o coletor roda no PC, então o aviso só chega com ele ligado e pode atrasar uns 45 min.</string>
     <string name="avisos_bloqueados">As notificações deste app estão bloqueadas no Android. Libere para receber os avisos.</string>
     <string name="avisos_abrir_configuracoes">Abrir configurações de notificação</string>
     <string name="avisos_sem_verificacao">Ainda não houve verificação em segundo plano.</string>
@@ -245,6 +248,8 @@
     <string name="canal_bolao_descricao">Passo a passo da atualização do Bolão F1.</string>
     <string name="canal_sites">Alertas dos sites</string>
     <string name="canal_sites_descricao">Site fora do ar ou coleta de dados com problema.</string>
+    <string name="canal_limites">Limites do Claude</string>
+    <string name="canal_limites_descricao">Janela de 5 horas ou de 7 dias do plano perto do limite ou zerada.</string>
     <string name="aviso_comecou_titulo">Bolão F1: palpites recebidos</string>
     <string name="aviso_manual_titulo">Bolão F1: pipeline rodando de novo</string>
     <string name="aviso_comecou_texto">O pipeline começou. O próximo aviso chega quando a página for atualizada.</string>
@@ -260,6 +265,13 @@
     <string name="aviso_fora_do_ar_texto">O site não respondeu na última checagem.</string>
     <string name="aviso_teste_titulo">Painel de Status: teste</string>
     <string name="aviso_teste_texto">As notificações estão funcionando.</string>
+    <string name="aviso_teste_limites_titulo">Limites do Claude: teste</string>
+    <string name="aviso_janela_5h">5 horas</string>
+    <string name="aviso_janela_7d">7 dias</string>
+    <string name="aviso_limite_passou_titulo">Claude: janela de %1$s acima de %2$d%%</string>
+    <string name="aviso_limite_passou_texto">O uso da janela de %1$s passou de %2$d%% do limite do plano.</string>
+    <string name="aviso_limite_zerou_titulo">Claude: janela de %1$s zerou</string>
+    <string name="aviso_limite_zerou_texto">O limite voltou a ficar livre.</string>
 
     <!-- Aviso de nova versão -->
     <string name="versao_nova">Nova versão %1$s disponível</string>

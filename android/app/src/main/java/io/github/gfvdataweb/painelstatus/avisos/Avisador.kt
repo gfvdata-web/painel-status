@@ -11,7 +11,10 @@ import android.content.pm.PackageManager
 import android.os.Build
 import io.github.gfvdataweb.painelstatus.MainActivity
 import io.github.gfvdataweb.painelstatus.R
+import io.github.gfvdataweb.painelstatus.data.avisos.JanelaLimite
+import io.github.gfvdataweb.painelstatus.data.avisos.LIMITE_AVISO_PCT
 import io.github.gfvdataweb.painelstatus.data.avisos.Novidade
+import io.github.gfvdataweb.painelstatus.data.avisos.NovidadeIa
 import io.github.gfvdataweb.painelstatus.data.avisos.PreferenciasDeAvisos
 import io.github.gfvdataweb.painelstatus.data.avisos.doBolao
 import io.github.gfvdataweb.painelstatus.data.avisos.principalDoPipeline
@@ -20,12 +23,21 @@ import io.github.gfvdataweb.painelstatus.data.avisos.principalDoPipeline
 interface Avisador {
     fun avisar(novidades: List<Novidade>, preferencias: PreferenciasDeAvisos)
 
+    /** Limites do Claude (canal próprio); respeita [PreferenciasDeAvisos.limites]. */
+    fun avisarLimites(novidades: List<NovidadeIa>, preferencias: PreferenciasDeAvisos)
+
     /** Notificação de exemplo, para conferir se o celular está deixando o app avisar. */
     fun testar()
 }
 
 /** Aba que a notificação abre ao ser tocada (extra [EXTRA_ABA] da MainActivity). */
-enum class AbaDoAviso { BOLAO, SITES }
+enum class AbaDoAviso {
+    BOLAO,
+    SITES,
+
+    /** Abre a aba IA; o nome tem que ser igual a `ABA_INICIAL_IA` (ui/AppPainel.kt). */
+    IA,
+}
 
 const val EXTRA_ABA = "io.github.gfvdataweb.painelstatus.ABA"
 
@@ -64,6 +76,27 @@ class AvisadorDeNotificacoes(private val contexto: Context) : Avisador {
         }
     }
 
+    override fun avisarLimites(novidades: List<NovidadeIa>, preferencias: PreferenciasDeAvisos) {
+        if (novidades.isEmpty() || !preferencias.limites) return
+        criarCanais()
+        novidades.forEach { novidade ->
+            val janela = contexto.getString(
+                if (novidade.janela == JanelaLimite.CINCO_HORAS) R.string.aviso_janela_5h else R.string.aviso_janela_7d,
+            )
+            val texto = when (novidade) {
+                is NovidadeIa.LimitePassou80 -> {
+                    val pct = LIMITE_AVISO_PCT.toInt()
+                    contexto.getString(R.string.aviso_limite_passou_titulo, janela, pct) to
+                        contexto.getString(R.string.aviso_limite_passou_texto, janela, pct)
+                }
+                is NovidadeIa.LimiteZerou ->
+                    contexto.getString(R.string.aviso_limite_zerou_titulo, janela) to contexto.getString(R.string.aviso_limite_zerou_texto)
+            }
+            // Um aviso por janela: o seguinte (ex.: "zerou" depois de "passou") substitui o anterior.
+            mostrar(ID_LIMITES + novidade.janela.ordinal, CANAL_LIMITES, AbaDoAviso.IA, texto)
+        }
+    }
+
     override fun testar() {
         criarCanais()
         mostrar(
@@ -71,6 +104,12 @@ class AvisadorDeNotificacoes(private val contexto: Context) : Avisador {
             CANAL_BOLAO,
             AbaDoAviso.BOLAO,
             contexto.getString(R.string.aviso_teste_titulo) to contexto.getString(R.string.aviso_teste_texto),
+        )
+        mostrar(
+            ID_TESTE_LIMITES,
+            CANAL_LIMITES,
+            AbaDoAviso.IA,
+            contexto.getString(R.string.aviso_teste_limites_titulo) to contexto.getString(R.string.aviso_teste_texto),
         )
     }
 
@@ -101,6 +140,10 @@ class AvisadorDeNotificacoes(private val contexto: Context) : Avisador {
         gerenciador.createNotificationChannel(
             NotificationChannel(CANAL_SITES, contexto.getString(R.string.canal_sites), NotificationManager.IMPORTANCE_DEFAULT)
                 .apply { description = contexto.getString(R.string.canal_sites_descricao) },
+        )
+        gerenciador.createNotificationChannel(
+            NotificationChannel(CANAL_LIMITES, contexto.getString(R.string.canal_limites), NotificationManager.IMPORTANCE_DEFAULT)
+                .apply { description = contexto.getString(R.string.canal_limites_descricao) },
         )
     }
 
@@ -136,9 +179,12 @@ class AvisadorDeNotificacoes(private val contexto: Context) : Avisador {
     companion object {
         const val CANAL_BOLAO = "bolao"
         const val CANAL_SITES = "sites"
+        const val CANAL_LIMITES = "limites"
         const val ID_PIPELINE = 1
         const val ID_BOLAO_FORA_DO_AR = 2
         const val ID_TESTE = 3
+        const val ID_TESTE_LIMITES = 4
+        const val ID_LIMITES = 100_000 // acima de ID_SITES + 0xFFFF
         const val ID_SITES = 1000
     }
 }

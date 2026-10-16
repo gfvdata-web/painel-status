@@ -3,6 +3,7 @@ package io.github.gfvdataweb.painelstatus.avisos
 import android.content.Context
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
+import io.github.gfvdataweb.painelstatus.AppContainer
 import io.github.gfvdataweb.painelstatus.PainelApp
 import io.github.gfvdataweb.painelstatus.data.ErroDeDados
 import io.github.gfvdataweb.painelstatus.ui.painel.destaqueDe
@@ -12,7 +13,8 @@ import kotlinx.coroutines.CancellationException
 /**
  * Verificação em segundo plano: baixa o status.json, compara com o último
  * visto, notifica o que mudou e, se o fluxo do Bolão estiver andando, agenda
- * a próxima conferência para daqui a ~5 min.
+ * a próxima conferência para daqui a ~5 min. Com sessão no painel de IA,
+ * também confere os limites do Claude.
  */
 class VerificacaoWorker(contexto: Context, parametros: WorkerParameters) : CoroutineWorker(contexto, parametros) {
 
@@ -20,6 +22,8 @@ class VerificacaoWorker(contexto: Context, parametros: WorkerParameters) : Corou
         val container = (applicationContext as PainelApp).container
         val preferencias = container.preferencias.atuais.value
         if (!preferencias.ativado) return Result.success()
+
+        if (preferencias.limites) avisarLimites(container)
 
         val verificacao = try {
             container.vigia.verificar()
@@ -37,5 +41,21 @@ class VerificacaoWorker(contexto: Context, parametros: WorkerParameters) : Corou
             container.agendador.conferirLogo(emSequencia = AgendadorWorkManager.TAG_RAPIDA in tags)
         }
         return Result.success()
+    }
+
+    /**
+     * Limites do Claude, só com sessão no painel de IA. Sem sessão, 401 ou sem internet
+     * não notifica e não derruba o worker (o resto da verificação segue).
+     */
+    private suspend fun avisarLimites(container: AppContainer) {
+        val novidades = try {
+            container.vigiaDeLimites.verificar()
+        } catch (e: CancellationException) {
+            throw e
+        } catch (e: Exception) {
+            if (ErroDeDados.de(e) == null) throw e
+            return
+        }
+        container.avisador.avisarLimites(novidades, container.preferencias.atuais.value)
     }
 }

@@ -68,6 +68,14 @@ class ModelosIaTest {
         assertEquals(0L, comNulos.sessoes.single().total)
     }
 
+    @Test
+    fun vezesAceitaTextoNumeroENulo() {
+        val catalogo = lerCatalogo(
+            """{"candidatos": [{"vezes": "2"}, {"vezes": 3}, {"vezes": 1.5}, {"vezes": null}, {"tarefa": "sem vezes"}]}""",
+        )
+        assertEquals(listOf("2", "3", "1.5", "", ""), catalogo.candidatos.map { it.vezes })
+    }
+
     @Test(expected = IllegalArgumentException::class)
     fun jsonQuebradoLancaIllegalArgument() {
         lerCatalogo("não é json")

@@ -54,6 +54,8 @@ class AvisosViewModel(
 
     fun mudarSites(sim: Boolean) = preferencias.salvar(estado.value.copy(sites = sim))
 
+    fun mudarLimites(sim: Boolean) = preferencias.salvar(estado.value.copy(limites = sim))
+
     companion object {
         fun fabrica(
             preferencias: ArquivoDePreferencias,

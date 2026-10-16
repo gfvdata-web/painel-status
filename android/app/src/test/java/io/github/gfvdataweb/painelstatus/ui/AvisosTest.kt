@@ -44,6 +44,7 @@ class AvisosTest {
                     aoAtivar = { pedidoDeAtivar = it },
                     aoMudarBolao = {},
                     aoMudarSites = {},
+                    aoMudarLimites = {},
                     aoTestar = {},
                     aoAbrirConfiguracoesDoAndroid = {},
                 )
@@ -66,6 +67,7 @@ class AvisosTest {
                     aoAtivar = {},
                     aoMudarBolao = {},
                     aoMudarSites = {},
+                    aoMudarLimites = {},
                     aoTestar = {},
                     aoAbrirConfiguracoesDoAndroid = {},
                     agora = { 1_800_000_000_000L },

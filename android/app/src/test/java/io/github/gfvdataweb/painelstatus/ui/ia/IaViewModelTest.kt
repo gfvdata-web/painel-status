@@ -5,6 +5,7 @@ import io.github.gfvdataweb.painelstatus.apoio.IaLocal
 import io.github.gfvdataweb.painelstatus.data.CacheDeArquivos
 import io.github.gfvdataweb.painelstatus.data.ia.CofreEmMemoria
 import io.github.gfvdataweb.painelstatus.data.ia.FonteIa
+import io.github.gfvdataweb.painelstatus.data.ia.LimitesIa
 import io.github.gfvdataweb.painelstatus.data.ia.SessaoIa
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -44,7 +45,7 @@ class IaViewModelTest {
 
     private fun pedidosDeUso() = ia.pedidos.count { it == "GET /dados/uso.json" }
 
-    private fun viewModel() = IaViewModel(
+    private fun viewModel(aoVerLimites: suspend (LimitesIa) -> Unit = {}) = IaViewModel(
         FonteIa(
             cliente = cliente,
             base = ia.url,
@@ -55,6 +56,7 @@ class IaViewModelTest {
         ),
         intervaloMs = INTERVALO,
         relogio = { agendador.currentTime },
+        aoVerLimites = aoVerLimites,
     )
 
     @Before
@@ -148,6 +150,20 @@ class IaViewModelTest {
         val pronto = vm.estado.value as EstadoIa.Pronto
         assertTrue(pronto.desatualizado)
         assertNotNull(pronto.dados.limites)
+    }
+
+    @Test
+    fun limitesBaixadosAvisamOVigiaDeLimitesMasOsDoCacheNao() = runTest(agendador) {
+        cofre.guardar(ia.cookie)
+        val vistos = mutableListOf<LimitesIa>()
+        viewModel { vistos += it }
+        runCurrent()
+        assertEquals(1, vistos.size)
+
+        ia.foraDoAr = true
+        viewModel { vistos += it } // abre com o cache e falha a rede: nada novo foi visto
+        runCurrent()
+        assertEquals(1, vistos.size)
     }
 
     @Test

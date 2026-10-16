@@ -16,6 +16,8 @@ data class PreferenciasDeAvisos(
     val bolao: Boolean = true,
     /** Alertas novos dos outros sites (fora do ar, coleta falhou ou parou). */
     val sites: Boolean = true,
+    /** Limites do Claude (painel de IA): passou de 80% ou zerou. Só vale com sessão no painel de IA. */
+    val limites: Boolean = true,
     /** A faixa "Receber avisos?" já foi respondida: não aparece de novo. */
     val perguntado: Boolean = false,
 )

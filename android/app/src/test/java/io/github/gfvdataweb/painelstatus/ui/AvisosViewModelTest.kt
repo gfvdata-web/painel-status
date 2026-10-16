@@ -55,6 +55,8 @@ class AvisosViewModelTest {
 
         vm.mudarSites(false)
         assertFalse(preferencias.atuais.value.sites)
+        vm.mudarLimites(false)
+        assertFalse(preferencias.atuais.value.limites)
         vm.definirAtivado(false)
         assertEquals(listOf(false, true, false), agendador.aplicados)
     }

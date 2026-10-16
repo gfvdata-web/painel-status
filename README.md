@@ -121,7 +121,7 @@ docs/                     # a página (publicada pelo Worker e, na transição, 
 android/                  # app Android nativo (lê o mesmo status.json; ver "App Android")
 └── app/src/main/java/io/github/gfvdataweb/painelstatus/
     ├── data/             # modelos do status.json/histórico, download, cache offline, aviso de versão
-    │   ├── avisos/       # o que mudou desde o último status visto (Novidades.kt), preferências
+    │   ├── avisos/       # o que mudou desde o último status visto (Novidades.kt) e nos limites do Claude (NovidadesIa.kt, VigiaDeLimites.kt), preferências
     │   └── ia/           # painel de IA: modelos dos 3 JSONs, login (SessaoIa), cofre cifrado do cookie, download e cache (FonteIa)
     ├── avisos/           # verificação em segundo plano (WorkManager) e notificações
     └── ui/               # telas Compose: Status (a lista da página principal), IA (login, abas Agora/Modelos/Sessões/Agentes/Catálogo), detalhes do site e histórico, Avisos, Sobre
@@ -259,6 +259,15 @@ lugar e nada é cadastrado no app. Se o endereço novo não responder, o app ten
   O que a pessoa viu com o app aberto não vira notificação. Tocar abre o app na aba Status. Dá para
   desligar cada tipo e mandar uma notificação de teste. Não há servidor nem Firebase: o atraso
   depende do Android (economia de bateria pode adiar).
+- **Avisos dos limites do Claude** (mesma tela de avisos, chave "Limites do Claude", canal próprio):
+  só com sessão no painel de IA (aba IA logada) e com a chave ligada, a mesma verificação de
+  ~15 min baixa o `limites.json` e notifica quando a janela de **5 horas** ou de **7 dias**
+  passa de **80%** (uma vez por ciclo; o `zera_em` identifica o ciclo) e quando ela **zera**
+  depois de ter passado disso. A primeira leitura só guarda a linha de base, e o que a aba IA
+  já mostrou não vira aviso. Tocar abre o app na aba IA. Sessão vencida/recusada (401) ou sem
+  internet: sem aviso e sem erro. As regras estão em `data/avisos/NovidadesIa.kt`. **Atenção:**
+  o coletor roda no PC (a cada 30 min), então o aviso só chega com o PC ligado e pode atrasar
+  uns 45 min (30 min do coletor + até 15 min da verificação); a tela Sobre repete isso.
 - **Offline:** o último `status.json` bom fica no aparelho; sem internet o app abre com ele e
   avisa no topo. JSON quebrado no painel nunca apaga o cache.
 - **Contrato:** o app é um **segundo consumidor** do `status.json`. Campos novos não quebram

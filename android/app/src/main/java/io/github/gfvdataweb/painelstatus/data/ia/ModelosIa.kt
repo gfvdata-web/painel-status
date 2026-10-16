@@ -1,12 +1,34 @@
 package io.github.gfvdataweb.painelstatus.data.ia
 
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.descriptors.PrimitiveKind
+import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
+import kotlinx.serialization.descriptors.SerialDescriptor
+import kotlinx.serialization.encoding.Decoder
+import kotlinx.serialization.encoding.Encoder
+import kotlinx.serialization.json.JsonDecoder
+import kotlinx.serialization.json.JsonNull
+import kotlinx.serialization.json.JsonPrimitive
 
 // Modelos dos JSONs do painel de IA (ia.gfvdata.com, repo painel-ia): uso.json,
 // limites.json e catalogo.json. Lidos com `leitorJson` (campos novos são
 // ignorados e null vira o padrão). Tudo opcional: o coletor roda no PC do
 // Guilherme e pode deixar de publicar qualquer campo.
+
+/** Lê texto ou número JSON como texto (ex.: `"vezes": "2"` ou `"vezes": 2`); null vira vazio. */
+object TextoOuNumeroSerializer : KSerializer<String> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor("TextoOuNumero", PrimitiveKind.STRING)
+
+    override fun deserialize(decoder: Decoder): String {
+        if (decoder !is JsonDecoder) return decoder.decodeString()
+        val elemento = decoder.decodeJsonElement()
+        return if (elemento is JsonPrimitive && elemento !is JsonNull) elemento.content else ""
+    }
+
+    override fun serialize(encoder: Encoder, value: String) = encoder.encodeString(value)
+}
 
 @Serializable
 data class MetaIa(
@@ -113,14 +135,14 @@ data class SkillCatalogo(
     val descricao: String = "",
 )
 
-/** Ideia de agente/skill ainda não criada (`~/.claude/catalogo/candidatos.md`); `vezes` vem como texto. */
+/** Ideia de agente/skill ainda não criada (`~/.claude/catalogo/candidatos.md`); `vezes` vem como texto ou número. */
 @Serializable
 data class CandidatoCatalogo(
     @SerialName("data") val quando: String = "",
     val projeto: String = "",
     val tarefa: String = "",
     val tipo: String = "",
-    val vezes: String = "",
+    @Serializable(with = TextoOuNumeroSerializer::class) val vezes: String = "",
 )
 
 @Serializable

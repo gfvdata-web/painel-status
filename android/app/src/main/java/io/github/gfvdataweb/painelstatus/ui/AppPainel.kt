@@ -220,7 +220,7 @@ fun AppPainel(container: AppContainer, versao: String, build: Int, abaInicial: S
                 }
                 composable<RotaIa> {
                     // O ViewModel só nasce aqui: quem nunca abre a aba IA não faz pedido nenhum.
-                    val ia: IaViewModel = viewModel(factory = IaViewModel.fabrica(container.fonteIa, container.intervaloDeRecargaMs))
+                    val ia: IaViewModel = viewModel(factory = IaViewModel.fabrica(container.fonteIa, container.intervaloDeRecargaMs, container.vigiaDeLimites::marcarComoVisto))
                     LaunchedEffect(ciclo, ia) {
                         ciclo.repeatOnLifecycle(Lifecycle.State.STARTED) { ia.acompanhar() }
                     }
@@ -260,6 +260,7 @@ fun AppPainel(container: AppContainer, versao: String, build: Int, abaInicial: S
                         aoAtivar = ativarAvisos,
                         aoMudarBolao = avisos::mudarBolao,
                         aoMudarSites = avisos::mudarSites,
+                        aoMudarLimites = avisos::mudarLimites,
                         aoTestar = container.avisador::testar,
                         aoAbrirConfiguracoesDoAndroid = {
                             val abrir = Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS)

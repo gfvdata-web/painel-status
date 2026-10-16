@@ -7,6 +7,7 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import io.github.gfvdataweb.painelstatus.data.ia.DadosIa
 import io.github.gfvdataweb.painelstatus.data.ia.FonteIa
+import io.github.gfvdataweb.painelstatus.data.ia.LimitesIa
 import io.github.gfvdataweb.painelstatus.data.ia.ResultadoIa
 import io.github.gfvdataweb.painelstatus.data.ia.ResultadoLogin
 import kotlinx.coroutines.CancellationException
@@ -43,6 +44,8 @@ class IaViewModel(
     private val fonte: FonteIa,
     private val intervaloMs: Long,
     private val relogio: () -> Long = System::currentTimeMillis,
+    /** Chamado a cada limites.json baixado da rede: a verificação em segundo plano não repete o que a tela mostrou. */
+    private val aoVerLimites: suspend (LimitesIa) -> Unit = {},
 ) : ViewModel() {
 
     private val _estado = MutableStateFlow<EstadoIa>(EstadoIa.Carregando)
@@ -126,7 +129,10 @@ class IaViewModel(
         _atualizando.value = true
         try {
             _estado.value = when (val resultado = fonte.carregar()) {
-                is ResultadoIa.Dados -> EstadoIa.Pronto(resultado.dados, resultado.desatualizado)
+                is ResultadoIa.Dados -> {
+                    if (!resultado.desatualizado) resultado.dados.limites?.let { aoVerLimites(it) }
+                    EstadoIa.Pronto(resultado.dados, resultado.desatualizado)
+                }
                 ResultadoIa.PrecisaEntrar -> EstadoIa.PrecisaEntrar()
                 ResultadoIa.Erro -> EstadoIa.Erro
             }
@@ -137,8 +143,12 @@ class IaViewModel(
     }
 
     companion object {
-        fun fabrica(fonte: FonteIa, intervaloMs: Long): ViewModelProvider.Factory = viewModelFactory {
-            initializer { IaViewModel(fonte, intervaloMs) }
+        fun fabrica(
+            fonte: FonteIa,
+            intervaloMs: Long,
+            aoVerLimites: suspend (LimitesIa) -> Unit = {},
+        ): ViewModelProvider.Factory = viewModelFactory {
+            initializer { IaViewModel(fonte, intervaloMs, aoVerLimites = aoVerLimites) }
         }
     }
 }

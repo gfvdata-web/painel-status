@@ -32,7 +32,9 @@ Mesmo molde do app do Bolão F1 (`page-bolao-formula1/android` e a regra
   `NovidadesTest`; o worker só baixa, compara, notifica e agenda. Nada de
   servidor nem Firebase. Intervalos em `AgendadorWorkManager` (15 min é o
   mínimo do Android; 5 min só enquanto o fluxo do Bolão anda). Os testes usam
-  o `AgendadorDeTeste` (o WorkManager não roda nos testes).
+  o `AgendadorDeTeste` (o WorkManager não roda nos testes). Os avisos dos limites do
+  Claude seguem o mesmo molde (`novidadesIa()` em `NovidadesIa.kt`, `NovidadesIaTest`) e só
+  rodam com sessão no painel de IA; o `AbaDoAviso.IA` tem que ter o mesmo nome de `ABA_INICIAL_IA`.
 - **Versões só em `gradle/libs.versions.toml`** (inclusive SDKs), as mesmas do
   app do Bolão. Atualizar **uma coisa por commit**, com run verde.
 - **Gradle wrapper:** trocar só com o jar oficial (checksum de

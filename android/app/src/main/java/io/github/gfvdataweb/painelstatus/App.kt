@@ -11,6 +11,7 @@ import io.github.gfvdataweb.painelstatus.data.DadosDoPainel
 import io.github.gfvdataweb.painelstatus.data.FonteRemota
 import io.github.gfvdataweb.painelstatus.data.VerificadorDeAtualizacao
 import io.github.gfvdataweb.painelstatus.data.avisos.ArquivoDePreferencias
+import io.github.gfvdataweb.painelstatus.data.avisos.VigiaDeLimites
 import io.github.gfvdataweb.painelstatus.data.avisos.VigiaDoPainel
 import io.github.gfvdataweb.painelstatus.data.ia.CofreDeSegredo
 import io.github.gfvdataweb.painelstatus.data.ia.CofreKeystore
@@ -94,6 +95,9 @@ class AppContainer(
     val preferencias = ArquivoDePreferencias(pastaDosAvisos)
 
     val vigia = VigiaDoPainel(dados, pastaDosAvisos)
+
+    /** Limites do Claude: só roda com sessão no painel de IA (ver VerificacaoWorker). */
+    val vigiaDeLimites = VigiaDeLimites(fonteIa, pastaDosAvisos)
 
     val avisador: Avisador = AvisadorDeNotificacoes(contexto.applicationContext)
 

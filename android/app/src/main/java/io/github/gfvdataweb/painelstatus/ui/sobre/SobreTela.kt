@@ -43,6 +43,11 @@ fun SobreTela(
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
+        Text(
+            stringResource(R.string.sobre_limites),
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
         OutlinedButton(onClick = { abrir(Enderecos.PAINEL) }, modifier = Modifier.fillMaxWidth()) {
             Text(stringResource(R.string.abrir_painel_web))
         }

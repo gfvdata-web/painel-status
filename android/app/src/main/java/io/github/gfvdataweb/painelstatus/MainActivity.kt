@@ -14,7 +14,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         val container = (application as PainelApp).container
-        // Aberto por uma notificação: a aba que ela indica (Bolão ou Sites).
+        // Aberto por uma notificação: a aba que ela indica (Status ou IA).
         val abaInicial = intent?.getStringExtra(EXTRA_ABA)
         setContent {
             PainelStatusTheme {

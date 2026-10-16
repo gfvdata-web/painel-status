@@ -78,6 +78,24 @@ class FonteIa(
         }
     }
 
+    /**
+     * Só o limites.json, para a verificação em segundo plano. Sem sessão ou com 401 →
+     * [ResultadoIa.PrecisaEntrar]; rede ou formato falhando → [ResultadoIa.Erro] (sem cache).
+     */
+    suspend fun carregarLimites(): ResultadoIa = withContext(io) {
+        val cookie = sessao.cabecalhoCookie() ?: return@withContext ResultadoIa.PrecisaEntrar
+        try {
+            ResultadoIa.Dados(DadosIa(limites = baixar("limites.json", cookie, ::lerLimites)), desatualizado = false)
+        } catch (e: SessaoRecusada) {
+            sair()
+            ResultadoIa.PrecisaEntrar
+        } catch (e: IOException) {
+            ResultadoIa.Erro
+        } catch (e: IllegalArgumentException) {
+            ResultadoIa.Erro
+        }
+    }
+
     private fun guardadoOuErro(): ResultadoIa =
         dadosGuardados()?.let { ResultadoIa.Dados(it, desatualizado = true) } ?: ResultadoIa.Erro
 
