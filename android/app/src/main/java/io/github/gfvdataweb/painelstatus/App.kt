@@ -12,6 +12,10 @@ import io.github.gfvdataweb.painelstatus.data.FonteRemota
 import io.github.gfvdataweb.painelstatus.data.VerificadorDeAtualizacao
 import io.github.gfvdataweb.painelstatus.data.avisos.ArquivoDePreferencias
 import io.github.gfvdataweb.painelstatus.data.avisos.VigiaDoPainel
+import io.github.gfvdataweb.painelstatus.data.ia.CofreDeSegredo
+import io.github.gfvdataweb.painelstatus.data.ia.CofreKeystore
+import io.github.gfvdataweb.painelstatus.data.ia.FonteIa
+import io.github.gfvdataweb.painelstatus.data.ia.SessaoIa
 import io.github.gfvdataweb.painelstatus.data.modelo.Status
 import io.github.gfvdataweb.painelstatus.ui.painel.destaqueDe
 import io.github.gfvdataweb.painelstatus.ui.painel.fluxoEmAndamento
@@ -35,6 +39,9 @@ object Enderecos {
 
     /** Versão oficial mais recente do app (aviso de nova versão); o APK fica ao lado. */
     const val VERSAO = "https://painel.gfvdata.com/app/versao.json"
+
+    /** Painel de IA (privado, atrás de senha): `entrar` e `dados/{uso,limites,catalogo}.json`. Sem reserva. */
+    const val IA = "https://ia.gfvdata.com/"
 }
 
 /**
@@ -57,6 +64,9 @@ class AppContainer(
     val agendador: Agendador = AgendadorWorkManager(contexto.applicationContext),
     /** Endereço de reserva; os testes passam null (nada de internet). */
     urlDeReserva: HttpUrl? = Enderecos.PAINEL_RESERVA.toHttpUrl(),
+    urlDaIa: HttpUrl = Enderecos.IA.toHttpUrl(),
+    /** Onde fica o cookie do painel de IA; os testes passam um cofre em memória (sem Keystore). */
+    cofreDaIa: CofreDeSegredo = CofreKeystore(File(contexto.filesDir, "ia/sessao.bin")),
 ) {
     val clienteHttp: OkHttpClient = OkHttpClient.Builder()
         .connectTimeout(15, TimeUnit.SECONDS)
@@ -69,6 +79,14 @@ class AppContainer(
     )
 
     val verificadorDeAtualizacao = VerificadorDeAtualizacao(clienteHttp, urlDaVersao)
+
+    // Painel de IA (privado): sessão por cookie cifrado e dados com cache offline próprio.
+    val fonteIa = FonteIa(
+        cliente = clienteHttp,
+        base = urlDaIa,
+        sessao = SessaoIa(clienteHttp, urlDaIa, cofreDaIa),
+        cache = CacheDeArquivos(File(contexto.filesDir, "ia/dados")),
+    )
 
     // Avisos com o app fechado: preferências, último status visto e notificações.
     private val pastaDosAvisos = CacheDeArquivos(File(contexto.filesDir, "avisos"))

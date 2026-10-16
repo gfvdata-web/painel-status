@@ -121,9 +121,10 @@ docs/                     # a página (publicada pelo Worker e, na transição, 
 android/                  # app Android nativo (lê o mesmo status.json; ver "App Android")
 └── app/src/main/java/io/github/gfvdataweb/painelstatus/
     ├── data/             # modelos do status.json/histórico, download, cache offline, aviso de versão
-    │   └── avisos/       # o que mudou desde o último status visto (Novidades.kt), preferências
+    │   ├── avisos/       # o que mudou desde o último status visto (Novidades.kt), preferências
+    │   └── ia/           # painel de IA: modelos dos 3 JSONs, login (SessaoIa), cofre cifrado do cookie, download e cache (FonteIa)
     ├── avisos/           # verificação em segundo plano (WorkManager) e notificações
-    └── ui/               # telas Compose: Status (a lista da página principal), IA, detalhes do site e histórico, Avisos, Sobre
+    └── ui/               # telas Compose: Status (a lista da página principal), IA (login, abas Agora/Modelos/Sessões/Agentes/Catálogo), detalhes do site e histórico, Avisos, Sobre
 .github/workflows/
 ├── atualizar-status.yml  # coleta (3 em 3 h), vigia do Bolão e vigia do envio do Forms
 ├── android.yml           # testes → lint → APK; tag app-vX.Y.Z publica o APK assinado
@@ -231,8 +232,19 @@ lugar e nada é cadastrado no app. Se o endereço novo não responder, o app ten
   alerta, botão do Forms, visitas dos 7 dias, bolinha de situação, o pipeline recolhível com
   o passo a passo e o link da execução (no Bolão e no envio do Forms do PlantsCare), o aviso "Fluxo em andamento" no card do Bolão e os "Outros forms" no rodapé; toque no card abre os
   detalhes — rotina de coleta, última falha e motivo, execuções recentes, commits, deploy —
-  e dali o histórico completo) e **IA** (por ora um aviso "em breve"; o painel de uso do
-  Claude entra aí). "Sobre" (ícone ⓘ) mostra a versão e o aviso de versão nova.
+  e dali o histórico completo) e **IA** (o painel de uso do Claude, veja o item "Painel de IA"
+  abaixo). "Sobre" (ícone ⓘ) mostra a versão e o aviso de versão nova.
+- **Painel de IA** (aba IA): lê o painel privado `ia.gfvdata.com` (repo `painel-ia`; `Enderecos.IA`
+  em `App.kt`). Pede a **senha uma vez** (`POST /entrar`); o app guarda só o
+  cookie `painel_ia` que o Worker devolve (válido por 30 dias), **cifrado com AES-GCM e chave no
+  Android Keystore** (`CofreKeystore`), nunca a senha. Logado, mostra as abas **Agora** (barras
+  de 5 h e semanal, quando zera, "lido há…", gráfico dos limites e totais de hoje/7 dias),
+  **Modelos** (barras empilhadas de 30 dias e totais), **Sessões**, **Agentes** (modelo
+  configurado × modelos que rodaram) e **Catálogo**, com os mesmos cálculos de `painel.js` do
+  painel-ia, e "Sair do painel de IA" no rodapé (apaga o cookie e os dados guardados). Cookie
+  vencido ou recusado (401) volta para a tela de senha; sem internet mostra os últimos dados
+  guardados, com aviso. Recarrega no mesmo intervalo do painel enquanto a aba está visível; sem
+  sessão, não faz pedido nenhum. Sem Firebase e sem reserva de domínio.
 - **Mesmo ritmo da página:** com o app aberto, o `status.json` é conferido a cada **1 min**
   (`INTERVALO_DE_RECARGA_MS` em `App.kt`, igual a `INTERVALO_RECARGA_MS` do `app.js`), então
   as etapas do Bolão andam no app junto com o job `vigiar-bolao`. Em segundo plano, para; ao

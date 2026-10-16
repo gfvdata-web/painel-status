@@ -66,6 +66,7 @@ import io.github.gfvdataweb.painelstatus.ui.comum.dataHora
 import io.github.gfvdataweb.painelstatus.ui.historico.HistoricoTela
 import io.github.gfvdataweb.painelstatus.ui.historico.HistoricoViewModel
 import io.github.gfvdataweb.painelstatus.ui.ia.IaTela
+import io.github.gfvdataweb.painelstatus.ui.ia.IaViewModel
 import io.github.gfvdataweb.painelstatus.ui.painel.PainelViewModel
 import io.github.gfvdataweb.painelstatus.ui.sites.SiteTela
 import io.github.gfvdataweb.painelstatus.ui.status.StatusTela
@@ -217,7 +218,14 @@ fun AppPainel(container: AppContainer, versao: String, build: Int, abaInicial: S
                         StatusTela(status, aoAbrirSite = { slug -> navegacao.navigate(RotaSite(slug)) }, intervaloMin = intervaloMin)
                     }
                 }
-                composable<RotaIa> { IaTela() }
+                composable<RotaIa> {
+                    // O ViewModel só nasce aqui: quem nunca abre a aba IA não faz pedido nenhum.
+                    val ia: IaViewModel = viewModel(factory = IaViewModel.fabrica(container.fonteIa, container.intervaloDeRecargaMs))
+                    LaunchedEffect(ciclo, ia) {
+                        ciclo.repeatOnLifecycle(Lifecycle.State.STARTED) { ia.acompanhar() }
+                    }
+                    IaTela(ia)
+                }
                 composable<RotaSite> { entrada ->
                     val slug = entrada.toRoute<RotaSite>().slug
                     ConteudoComDados(estado, painel::atualizar, complemento = complemento) { status ->

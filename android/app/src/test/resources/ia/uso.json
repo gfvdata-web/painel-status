@@ -1,0 +1,270 @@
+{
+ "meta": {
+  "gerado_em": "2026-10-15T14:55:00+00:00",
+  "provedor": "claude"
+ },
+ "dias": [
+  {
+   "dia": "2026-10-10",
+   "modelo": "claude-sonnet-5",
+   "entrada": 100,
+   "saida": 2000,
+   "cache_leitura": 300000,
+   "escrita_5m": 0,
+   "escrita_1h": 5000,
+   "respostas": 10,
+   "cache_escrita": 5000,
+   "total": 307100,
+   "custo_usd": 1.25
+  },
+  {
+   "dia": "2026-10-10",
+   "modelo": "claude-opus-5-5",
+   "entrada": 50,
+   "saida": 1000,
+   "cache_leitura": 200000,
+   "escrita_5m": 0,
+   "escrita_1h": 4000,
+   "respostas": 5,
+   "cache_escrita": 4000,
+   "total": 205050,
+   "custo_usd": 3.5
+  },
+  {
+   "dia": "2026-10-13",
+   "modelo": "claude-sonnet-5",
+   "entrada": 120,
+   "saida": 2500,
+   "cache_leitura": 500000,
+   "escrita_5m": 0,
+   "escrita_1h": 6000,
+   "respostas": 12,
+   "cache_escrita": 6000,
+   "total": 508620,
+   "custo_usd": 2.0
+  },
+  {
+   "dia": "2026-10-14",
+   "modelo": "claude-opus-5-5",
+   "entrada": 80,
+   "saida": 1500,
+   "cache_leitura": 1200000,
+   "escrita_5m": 0,
+   "escrita_1h": 9000,
+   "respostas": 9,
+   "cache_escrita": 9000,
+   "total": 1210580,
+   "custo_usd": 7.75
+  },
+  {
+   "dia": "2026-10-15",
+   "modelo": "claude-sonnet-5",
+   "entrada": 60,
+   "saida": 900,
+   "cache_leitura": 150000,
+   "escrita_5m": 0,
+   "escrita_1h": 2000,
+   "respostas": 4,
+   "cache_escrita": 2000,
+   "total": 152960,
+   "custo_usd": 0.8
+  },
+  {
+   "dia": "2026-10-15",
+   "modelo": "claude-haiku-5-5",
+   "entrada": 20,
+   "saida": 300,
+   "cache_leitura": 50000,
+   "escrita_5m": 0,
+   "escrita_1h": 500,
+   "respostas": 3,
+   "cache_escrita": 500,
+   "total": 50820,
+   "custo_usd": 0.05
+  },
+  {
+   "dia": "2026-08-01",
+   "modelo": "claude-sonnet-5",
+   "entrada": 10,
+   "saida": 200,
+   "cache_leitura": 10000,
+   "escrita_5m": 0,
+   "escrita_1h": 100,
+   "respostas": 1,
+   "cache_escrita": 100,
+   "total": 10310,
+   "custo_usd": 0.1
+  }
+ ],
+ "agentes": {
+  "principal": {
+   "modelos": {
+    "claude-opus-5-5": {
+     "entrada": 100,
+     "saida": 2000,
+     "cache_leitura": 900000,
+     "escrita_5m": 0,
+     "escrita_1h": 8000,
+     "respostas": 20,
+     "cache_escrita": 8000,
+     "total": 910100,
+     "custo_usd": 6.5
+    },
+    "claude-sonnet-5": {
+     "entrada": 40,
+     "saida": 800,
+     "cache_leitura": 100000,
+     "escrita_5m": 0,
+     "escrita_1h": 1000,
+     "respostas": 5,
+     "cache_escrita": 1000,
+     "total": 101840,
+     "custo_usd": 0.6
+    }
+   },
+   "total": 1011940,
+   "custo_usd": 7.1,
+   "sessoes": 3
+  },
+  "android-dev": {
+   "modelos": {
+    "claude-sonnet-5": {
+     "entrada": 10,
+     "saida": 300,
+     "cache_leitura": 50000,
+     "escrita_5m": 0,
+     "escrita_1h": 500,
+     "respostas": 4,
+     "cache_escrita": 500,
+     "total": 50810,
+     "custo_usd": 0.4
+    },
+    "claude-opus-5-5": {
+     "entrada": 5,
+     "saida": 100,
+     "cache_leitura": 20000,
+     "escrita_5m": 0,
+     "escrita_1h": 200,
+     "respostas": 1,
+     "cache_escrita": 200,
+     "total": 20305,
+     "custo_usd": 0.9
+    }
+   },
+   "total": 71115,
+   "custo_usd": 1.3,
+   "sessoes": 2
+  },
+  "Explore": {
+   "modelos": {
+    "claude-haiku-5-5": {
+     "entrada": 5,
+     "saida": 100,
+     "cache_leitura": 20000,
+     "escrita_5m": 0,
+     "escrita_1h": 200,
+     "respostas": 2,
+     "cache_escrita": 200,
+     "total": 20305,
+     "custo_usd": 0.02
+    }
+   },
+   "total": 20305,
+   "custo_usd": 0.02,
+   "sessoes": 1
+  },
+  "agente-fantasma": {
+   "modelos": {
+    "claude-sonnet-5": {
+     "entrada": 1,
+     "saida": 10,
+     "cache_leitura": 100,
+     "escrita_5m": 0,
+     "escrita_1h": 10,
+     "respostas": 1,
+     "cache_escrita": 10,
+     "total": 121,
+     "custo_usd": 0.01
+    }
+   },
+   "total": 121,
+   "custo_usd": 0.01,
+   "sessoes": 1
+  }
+ },
+ "sessoes": [
+  {
+   "id": "s-antiga",
+   "titulo": "Sessão antiga de teste",
+   "projeto": "ProjetoA",
+   "inicio": "2026-10-10T10:00:00.000Z",
+   "fim": "2026-10-10T10:30:00.000Z",
+   "modelos": {
+    "claude-sonnet-5": {
+     "entrada": 100,
+     "saida": 2000,
+     "cache_leitura": 300000,
+     "escrita_5m": 0,
+     "escrita_1h": 5000,
+     "respostas": 10,
+     "cache_escrita": 5000,
+     "total": 307100,
+     "custo_usd": 1.25
+    }
+   },
+   "agentes": {
+    "principal": 307100
+   },
+   "total": 307100,
+   "custo_usd": 1.25
+  },
+  {
+   "id": "s-nova",
+   "titulo": "Sessão nova de teste",
+   "projeto": "ProjetoB",
+   "inicio": "2026-10-15T12:00:00.000Z",
+   "fim": "2026-10-15T14:05:00.000Z",
+   "modelos": {
+    "claude-opus-5-5": {
+     "entrada": 80,
+     "saida": 1500,
+     "cache_leitura": 1200000,
+     "escrita_5m": 0,
+     "escrita_1h": 9000,
+     "respostas": 9,
+     "cache_escrita": 9000,
+     "total": 1210580,
+     "custo_usd": 7.75
+    },
+    "claude-sonnet-5": {
+     "entrada": 60,
+     "saida": 900,
+     "cache_leitura": 150000,
+     "escrita_5m": 0,
+     "escrita_1h": 2000,
+     "respostas": 4,
+     "cache_escrita": 2000,
+     "total": 152960,
+     "custo_usd": 0.8
+    }
+   },
+   "agentes": {
+    "principal": 1200000,
+    "android-dev": 150000
+   },
+   "total": 1363540,
+   "custo_usd": 8.55
+  },
+  {
+   "id": "s-sem-titulo",
+   "titulo": "",
+   "projeto": "ProjetoC",
+   "inicio": "2026-10-12T09:00:00.000Z",
+   "fim": "2026-10-12T09:00:20.000Z",
+   "modelos": {},
+   "agentes": {},
+   "total": 0,
+   "custo_usd": 0
+  }
+ ]
+}

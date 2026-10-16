@@ -153,8 +153,68 @@
     <string name="outros_forms">Outros forms:</string>
     <string name="form_avulso_link">%1$s ↗</string>
 
-    <!-- Painel de IA (provisório: o bloco B o substitui) -->
-    <string name="ia_em_breve">Painel de IA — em breve</string>
+    <!-- Painel de IA (ia.gfvdata.com, privado) -->
+    <string name="ia_entrar_titulo">Painel de IA</string>
+    <string name="ia_entrar_texto">Uso e limites do Claude. O painel é privado: digite a senha uma vez; o app guarda só a sessão, cifrada, e nunca a senha.</string>
+    <string name="ia_senha">Senha</string>
+    <string name="ia_entrar">Entrar</string>
+    <string name="ia_entrando">Entrando…</string>
+    <string name="ia_senha_errada">Senha incorreta.</string>
+    <string name="ia_login_sem_conexao">Não foi possível falar com o painel de IA. Confira a internet e tente de novo.</string>
+    <string name="ia_erro">Não foi possível baixar os dados do painel de IA. Confira a internet e tente de novo.</string>
+    <string name="ia_desatualizado">Sem conexão: mostrando os últimos dados guardados no aparelho.</string>
+    <string name="ia_gerado">Gerado em %1$s</string>
+    <string name="ia_sair">Sair do painel de IA</string>
+    <string name="ia_aba_agora">Agora</string>
+    <string name="ia_aba_modelos">Modelos</string>
+    <string name="ia_aba_sessoes">Sessões</string>
+    <string name="ia_aba_agentes">Agentes</string>
+    <string name="ia_aba_catalogo">Catálogo</string>
+    <string name="ia_sem_dados_uso">Ainda sem dados de uso.</string>
+    <string name="ia_sem_dados_limites">Ainda sem leitura dos limites.</string>
+    <string name="ia_sem_dados_catalogo">Ainda sem dados do catálogo.</string>
+    <string name="ia_sem_dados">Ainda sem dados: o coletor não publicou nada até agora.</string>
+    <string name="ia_janela_5h">Janela de 5 horas</string>
+    <string name="ia_janela_semanal">Janela semanal</string>
+    <string name="ia_perto_do_limite">Perto do limite</string>
+    <string name="ia_limite_estourando">Quase no limite!</string>
+    <string name="ia_ja_zerou">já zerou desde a leitura</string>
+    <string name="ia_zera_em">zera em %1$s</string>
+    <string name="ia_lido_ha">lido há %1$s</string>
+    <string name="ia_leitura_antiga">Leitura antiga: os números só atualizam quando uma sessão do Claude Code responde.</string>
+    <string name="ia_historico_titulo">Limites nos últimos 7 dias</string>
+    <string name="ia_legenda_5h">5 h</string>
+    <string name="ia_legenda_semana">7 dias</string>
+    <string name="ia_hoje">Hoje</string>
+    <string name="ia_ultimos_7_dias">Últimos 7 dias</string>
+    <string name="ia_resumo_periodo">%1$s: %2$s tokens · %3$s</string>
+    <string name="ia_sem_uso_no_periodo">%1$s: sem uso no período.</string>
+    <string name="ia_modelo_linha">%1$s · %2$s tokens · %3$s</string>
+    <string name="ia_nota_custo">Custo = equivalente da API; no plano Pro não há cobrança por token.</string>
+    <string name="ia_grafico_titulo">Tokens por dia, por modelo (últimos 30 dias)</string>
+    <string name="ia_grafico_descricao">Barras empilhadas de tokens totais por dia e modelo</string>
+    <string name="ia_grafico_maximo">Maior dia: %1$s tokens</string>
+    <string name="ia_totais_titulo">Total por modelo (todo o período coletado)</string>
+    <string name="ia_tokens_entrada_saida">Entrada %1$s · Saída %2$s</string>
+    <string name="ia_tokens_cache">Cache: leitura %1$s · escrita %2$s</string>
+    <string name="ia_sem_titulo">(sem título)</string>
+    <string name="ia_sessao_total">%1$s tokens · %2$s</string>
+    <string name="ia_nenhuma_sessao">Nenhuma sessão coletada.</string>
+    <string name="ia_agentes_nota">Compara o modelo configurado de cada agente (catálogo) com os modelos que realmente rodaram. Em âmbar: rodou também em outro modelo.</string>
+    <string name="ia_agente_resumo">%1$s tokens · %2$s · %3$d sessões</string>
+    <string name="ia_agente_configurado">configurado: %1$s</string>
+    <string name="ia_agente_sem_cadastro">sem cadastro no catálogo</string>
+    <string name="ia_agente_usado">usado: %1$s</string>
+    <string name="ia_agente_modelo_usado">%1$s (%2$s)</string>
+    <string name="ia_agentes_titulo">Agentes (%1$d)</string>
+    <string name="ia_skills_titulo">Skills (%1$d)</string>
+    <string name="ia_candidatos_titulo">Candidatos (%1$d)</string>
+    <string name="ia_nenhum_item">Nenhum item.</string>
+    <string name="ia_candidato_vezes">%1$sx · %2$s</string>
+    <string name="ia_tempo_menos_de_um_min">menos de 1 min</string>
+    <string name="ia_tempo_min">%1$d min</string>
+    <string name="ia_tempo_h_min">%1$d h %2$02d min</string>
+    <string name="ia_tempo_d_h">%1$d d %2$d h</string>
 
     <!-- Sobre -->
     <string name="sobre_texto">Acompanha os sites publicados pela conta gfvdata-web: se estão no ar, quando os dados mudaram, as rotinas de coleta e o passo a passo de cada atualização do Bolão F1. Tudo vem do painel publicado em painel.gfvdata.com; o app só lê. Com o app fechado, ele pode avisar por notificação (ícone do sino).</string>

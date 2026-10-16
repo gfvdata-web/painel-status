@@ -17,6 +17,13 @@ Mesmo molde do app do Bolão F1 (`page-bolao-formula1/android` e a regra
   `data/modelo/Modelos.kt` (com padrão) + uso na tela; o leitor ignora campos
   desconhecidos e troca `null` pelo padrão. Renomear/mudar tipo quebra o app
   instalado: evitar.
+- **Painel de IA** (`data/ia/`, `ui/ia/`): lê `ia.gfvdata.com` (repo `painel-ia`), privado.
+  Guarda só o cookie `painel_ia`, cifrado no Keystore (`CofreKeystore`), nunca a senha;
+  sem Firebase, sem reserva de domínio, sem pedido enquanto não há sessão. Os cálculos
+  e rótulos seguem `painel-ia/docs/js/painel.js` (`ui/ia/ApresentacaoIa.kt`). Os testes usam
+  fixtures sintéticas em `app/src/test/resources/ia/` (o painel real é privado) e o
+  `IaLocal` (MockWebServer) com o contrato do Worker; formato novo nos JSONs do
+  painel-ia → `data/ia/ModelosIa.kt` (aditivo) e as fixtures.
 - **Recarga = página:** `INTERVALO_DE_RECARGA_MS` (`App.kt`) igual a
   `INTERVALO_RECARGA_MS` (`docs/js/app.js`). A recarga roda só com o app
   visível (`repeatOnLifecycle(STARTED)` → `PainelViewModel.acompanhar`).

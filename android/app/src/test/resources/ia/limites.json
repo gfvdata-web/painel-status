@@ -1,0 +1,47 @@
+{
+ "meta": {
+  "gerado_em": "2026-10-15T14:50:00+00:00",
+  "provedor": "claude"
+ },
+ "atual": {
+  "five_hour": {
+   "usado_pct": 0.0,
+   "zera_em": null,
+   "lido_em": 1792075800,
+   "zerou_desde_a_leitura": false
+  },
+  "seven_day": {
+   "usado_pct": 82.5,
+   "zera_em": 1792339200,
+   "lido_em": 1792075800,
+   "zerou_desde_a_leitura": false
+  }
+ },
+ "historico": [
+  {
+   "ts": 1791903600,
+   "five_hour": 80,
+   "seven_day": 70
+  },
+  {
+   "ts": 1791905400,
+   "five_hour": null,
+   "seven_day": 71.0
+  },
+  {
+   "ts": 1791990000,
+   "five_hour": 10.0,
+   "seven_day": 75.0
+  },
+  {
+   "ts": 1792072800,
+   "five_hour": 30.0,
+   "seven_day": 82.5
+  },
+  {
+   "ts": 1789484400,
+   "five_hour": 1,
+   "seven_day": 1
+  }
+ ]
+}

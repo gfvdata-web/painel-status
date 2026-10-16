@@ -1,0 +1,38 @@
+{
+ "meta": {
+  "gerado_em": "2026-10-15T14:50:00+00:00",
+  "provedor": "claude"
+ },
+ "agentes": [
+  {
+   "nome": "android-dev",
+   "modelo": "sonnet",
+   "descricao": "Implementa telas Android de teste."
+  },
+  {
+   "nome": "Explore",
+   "modelo": "haiku",
+   "descricao": "Explora o código."
+  },
+  {
+   "nome": "principal-x",
+   "modelo": "opus",
+   "descricao": "Outro."
+  }
+ ],
+ "skills": [
+  {
+   "nome": "skill-de-teste",
+   "descricao": "Faz uma coisa de teste."
+  }
+ ],
+ "candidatos": [
+  {
+   "data": "2026-10-13",
+   "projeto": "ProjetoA",
+   "tarefa": "Automatizar o passo repetido",
+   "tipo": "skill",
+   "vezes": "2"
+  }
+ ]
+}

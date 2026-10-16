@@ -5,6 +5,7 @@ import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
+import androidx.compose.ui.test.performTextInput
 import io.github.gfvdataweb.painelstatus.apoio.PainelAppDeTeste
 import io.github.gfvdataweb.painelstatus.apoio.PainelPublicado
 import io.github.gfvdataweb.painelstatus.ui.painel.outrosSites
@@ -48,10 +49,26 @@ class MainActivityTest {
     }
 
     @Test
-    fun abaIaMostraOPlaceholder() {
+    fun abaIaPedeASenhaEEntraComAsenhaCertaESai() {
         esperarTexto(status.sites.first().nome)
         compose.onNodeWithText("IA").performClick()
-        esperarTexto("Painel de IA — em breve")
+        esperarTexto("Painel de IA")
+        compose.onNodeWithText("Senha").performTextInput("segredo")
+        compose.onNodeWithText("Entrar").performClick()
+        esperarTexto("Sair do painel de IA")
+        esperarTexto("Janela semanal")
+
+        compose.onNodeWithText("Sair do painel de IA").performClick()
+        esperarTexto("Entrar")
+    }
+
+    @Test
+    fun abaIaComSenhaErradaMostraAMensagem() {
+        esperarTexto(status.sites.first().nome)
+        compose.onNodeWithText("IA").performClick()
+        compose.onNodeWithText("Senha").performTextInput("errada")
+        compose.onNodeWithText("Entrar").performClick()
+        esperarTexto("Senha incorreta.")
     }
 
     @Test

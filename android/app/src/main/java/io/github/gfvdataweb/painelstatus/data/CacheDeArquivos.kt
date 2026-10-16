@@ -30,6 +30,11 @@ class CacheDeArquivos(private val pasta: File) {
         }
     }
 
+    /** Apaga tudo o que está guardado (ex.: ao sair de um painel privado). */
+    fun limpar() {
+        pasta.deleteRecursively()
+    }
+
     private fun arquivoDe(caminho: String): File {
         val arquivo = File(pasta, caminho).canonicalFile
         require(arquivo.path.startsWith(pasta.canonicalPath)) { "Caminho fora do cache: $caminho" }

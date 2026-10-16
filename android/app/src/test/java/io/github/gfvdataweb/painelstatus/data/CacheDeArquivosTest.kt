@@ -33,6 +33,15 @@ class CacheDeArquivosTest {
         assertEquals("novo", cache.ler("seasons.json")?.texto)
     }
 
+    @Test
+    fun limparApagaTudoEPodeGuardarDeNovo() {
+        cache.salvar("dados/uso.json", "a", salvoEm = 1_000_000)
+        cache.limpar()
+        assertNull(cache.ler("dados/uso.json"))
+        cache.salvar("dados/uso.json", "b", salvoEm = 2_000_000)
+        assertEquals("b", cache.ler("dados/uso.json")?.texto)
+    }
+
     @Test(expected = IllegalArgumentException::class)
     fun recusaCaminhoForaDaPasta() {
         cache.salvar("../fora.json", "x", salvoEm = 1_000_000)
