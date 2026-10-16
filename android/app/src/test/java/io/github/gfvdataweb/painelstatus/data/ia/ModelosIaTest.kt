@@ -37,9 +37,9 @@ class ModelosIaTest {
     fun limitesAceitamZeraEmNuloEPontosSemJanela() {
         val atual = limites.atual!!
         assertNull(atual.cincoHoras!!.zeraEm)
-        assertFalse(atual.cincoHoras!!.zerouDesdeALeitura)
+        assertFalse(atual.cincoHoras.zerouDesdeALeitura)
         assertEquals(82.5, atual.seteDias!!.usadoPct, 0.0)
-        assertNotNull(atual.seteDias!!.zeraEm)
+        assertNotNull(atual.seteDias.zeraEm)
         assertEquals(5, limites.historico.size)
         assertTrue(limites.historico.any { it.cincoHoras == null && it.seteDias != null })
     }
