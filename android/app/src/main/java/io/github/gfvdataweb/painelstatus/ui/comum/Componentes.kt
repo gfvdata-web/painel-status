@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -42,15 +43,20 @@ import io.github.gfvdataweb.painelstatus.R
 import io.github.gfvdataweb.painelstatus.data.ErroDeDados
 import io.github.gfvdataweb.painelstatus.data.EstadoDados
 import io.github.gfvdataweb.painelstatus.data.modelo.Alerta
+import io.github.gfvdataweb.painelstatus.data.modelo.Etapa
 import io.github.gfvdataweb.painelstatus.data.modelo.Execucao
 import io.github.gfvdataweb.painelstatus.data.modelo.Motivo
 import io.github.gfvdataweb.painelstatus.data.modelo.Site
+import io.github.gfvdataweb.painelstatus.ui.painel.EstadoDaEtapa
 import io.github.gfvdataweb.painelstatus.ui.painel.SituacaoDaExecucao
 import io.github.gfvdataweb.painelstatus.ui.painel.Tom
+import io.github.gfvdataweb.painelstatus.ui.painel.estadoDaEtapa
 import io.github.gfvdataweb.painelstatus.ui.painel.linkSeguro
+import io.github.gfvdataweb.painelstatus.ui.painel.rotuloDaEtapa
 import io.github.gfvdataweb.painelstatus.ui.painel.rotuloDoEvento
 import io.github.gfvdataweb.painelstatus.ui.painel.rotuloDoResultado
 import io.github.gfvdataweb.painelstatus.ui.painel.situacaoDaExecucao
+import io.github.gfvdataweb.painelstatus.ui.painel.tomDaEtapa
 import io.github.gfvdataweb.painelstatus.ui.painel.tomDoAlerta
 import io.github.gfvdataweb.painelstatus.ui.theme.LocalCoresDoPainel
 import java.time.Instant
@@ -308,6 +314,63 @@ fun Sparkline(valores: List<Int>, cor: Color, modifier: Modifier = Modifier) {
             if (indice == 0) caminho.moveTo(x, y) else caminho.lineTo(x, y)
         }
         drawPath(caminho, cor, style = Stroke(width = 2.dp.toPx(), cap = StrokeCap.Round, join = StrokeJoin.Round))
+    }
+}
+
+/** Uma etapa do passo a passo do pipeline (src/etapas_bolao.py): marca, título, estado e detalhe. */
+@Composable
+fun LinhaDaEtapa(etapa: Etapa, numero: Int, modifier: Modifier = Modifier) {
+    val estado = estadoDaEtapa(etapa.estado)
+    val (frente, fundo) = coresDoTom(tomDaEtapa(estado))
+    Row(modifier.fillMaxWidth().padding(vertical = 6.dp), verticalAlignment = Alignment.Top) {
+        Box(Modifier.size(28.dp).background(fundo, CircleShape), contentAlignment = Alignment.Center) {
+            Text(
+                marcaDaEtapa(estado, numero),
+                style = MaterialTheme.typography.labelLarge,
+                fontWeight = FontWeight.Bold,
+                color = frente,
+            )
+        }
+        Spacer(Modifier.width(12.dp))
+        Column(Modifier.weight(1f)) {
+            Text(etapa.titulo, style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.Medium)
+            val rotulo = rotuloDaEtapa(estado)?.let { stringResource(it) } ?: etapa.estado
+            val quando = dataHora(etapa.quando, ZoneId.systemDefault())
+            Text(
+                if (quando != null) stringResource(R.string.par, rotulo, quando) else rotulo,
+                style = MaterialTheme.typography.bodySmall,
+                color = frente,
+            )
+            if (etapa.detalhe.isNotBlank()) {
+                Text(
+                    etapa.detalhe,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
+        }
+    }
+}
+
+/** ✓ … ⏳ ✕ – como na página; etapa ainda não iniciada mostra o número. */
+@Composable
+private fun marcaDaEtapa(estado: EstadoDaEtapa, numero: Int): String = when (estado) {
+    EstadoDaEtapa.OK -> stringResource(R.string.marca_ok)
+    EstadoDaEtapa.ANDAMENTO -> stringResource(R.string.marca_andamento)
+    EstadoDaEtapa.AGUARDANDO -> stringResource(R.string.marca_aguardando)
+    EstadoDaEtapa.ERRO -> stringResource(R.string.marca_erro)
+    EstadoDaEtapa.PULADO -> stringResource(R.string.marca_pulado)
+    EstadoDaEtapa.PENDENTE, EstadoDaEtapa.DESCONHECIDO -> numero.toString()
+}
+
+/** Visitantes únicos; "sem rastreio" quando o GoatCounter não cobre o site. */
+@Composable
+fun textoDosVisitantes(site: Site): String {
+    val acesso = site.acesso
+    return when {
+        acesso == null -> stringResource(R.string.sem_rastreio)
+        acesso.visitantesUnicos != null -> acesso.visitantesUnicos.toString()
+        else -> stringResource(R.string.sem_valor)
     }
 }
 

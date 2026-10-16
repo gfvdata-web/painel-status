@@ -123,7 +123,7 @@ android/                  # app Android nativo (lê o mesmo status.json; ver "Ap
     ├── data/             # modelos do status.json/histórico, download, cache offline, aviso de versão
     │   └── avisos/       # o que mudou desde o último status visto (Novidades.kt), preferências
     ├── avisos/           # verificação em segundo plano (WorkManager) e notificações
-    └── ui/               # telas Compose: Bolão F1, Sites (+ detalhes e histórico), Links, Avisos, Sobre
+    └── ui/               # telas Compose: Status (a lista da página principal), IA, detalhes do site e histórico, Avisos, Sobre
 .github/workflows/
 ├── atualizar-status.yml  # coleta (3 em 3 h), vigia do Bolão e vigia do envio do Forms
 ├── android.yml           # testes → lint → APK; tag app-vX.Y.Z publica o APK assinado
@@ -226,12 +226,13 @@ token: **lê o mesmo `dados/status.json`** que a página, em `painel.gfvdata.com
 lugar e nada é cadastrado no app. Se o endereço novo não responder, o app tenta a reserva
 (`painel-status.pages.dev`, `Enderecos.PAINEL_RESERVA` em `App.kt`, mesmos caminhos).
 
-- **Abas:** **Bolão F1** (situação do site e do pipeline, o passo a passo da última
-  atualização, rodada, visitantes e atalhos para o site, o Forms, o histórico e o
-  repositório), **Sites** (um card por site, com alertas; toque abre os detalhes — rotina de
-  coleta, última falha e motivo, execuções recentes, commits, deploy — e dali o histórico
-  completo) e **Links** (todos os sites e todos os Google Forms, inclusive os avulsos).
-  "Sobre" (ícone ⓘ) mostra a versão e o aviso de versão nova.
+- **Abas:** **Status** (a lista da página principal: "N sites · todos no ar", legenda das
+  categorias, o Bolão F1 no topo e um card por site com faixa da categoria, endereço ou
+  alerta, botão do Forms, visitas dos 7 dias, bolinha de situação, o pipeline recolhível com
+  o passo a passo e o link da execução (no Bolão e no envio do Forms do PlantsCare), o aviso "Fluxo em andamento" no card do Bolão e os "Outros forms" no rodapé; toque no card abre os
+  detalhes — rotina de coleta, última falha e motivo, execuções recentes, commits, deploy —
+  e dali o histórico completo) e **IA** (por ora um aviso "em breve"; o painel de uso do
+  Claude entra aí). "Sobre" (ícone ⓘ) mostra a versão e o aviso de versão nova.
 - **Mesmo ritmo da página:** com o app aberto, o `status.json` é conferido a cada **1 min**
   (`INTERVALO_DE_RECARGA_MS` em `App.kt`, igual a `INTERVALO_RECARGA_MS` do `app.js`), então
   as etapas do Bolão andam no app junto com o job `vigiar-bolao`. Em segundo plano, para; ao
@@ -243,7 +244,7 @@ lugar e nada é cadastrado no app. Se o endereço novo não responder, o app ten
   **Bolão F1** — palpites recebidos (ou retry manual), aguardando o resultado do quali,
   página atualizada com a rodada, falha numa etapa, site fora do ar; **sites** — alerta novo
   (os mesmos de `src/detalhes_site.py`; "há 5 dias"/"há 6 dias" contam como o mesmo).
-  O que a pessoa viu com o app aberto não vira notificação. Tocar abre a aba certa. Dá para
+  O que a pessoa viu com o app aberto não vira notificação. Tocar abre o app na aba Status. Dá para
   desligar cada tipo e mandar uma notificação de teste. Não há servidor nem Firebase: o atraso
   depende do Android (economia de bateria pode adiar).
 - **Offline:** o último `status.json` bom fica no aparelho; sem internet o app abre com ele e

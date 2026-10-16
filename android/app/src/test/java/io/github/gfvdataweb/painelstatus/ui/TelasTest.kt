@@ -12,14 +12,13 @@ import io.github.gfvdataweb.painelstatus.data.lerHistorico
 import io.github.gfvdataweb.painelstatus.data.modelo.Etapa
 import io.github.gfvdataweb.painelstatus.data.modelo.Execucao
 import io.github.gfvdataweb.painelstatus.data.modelo.Status
-import io.github.gfvdataweb.painelstatus.ui.bolao.BolaoTela
 import io.github.gfvdataweb.painelstatus.ui.comum.ConteudoComDados
 import io.github.gfvdataweb.painelstatus.ui.historico.HistoricoTela
-import io.github.gfvdataweb.painelstatus.ui.links.LinksTela
 import io.github.gfvdataweb.painelstatus.ui.painel.destaqueDe
 import io.github.gfvdataweb.painelstatus.ui.painel.outrosSites
+import io.github.gfvdataweb.painelstatus.ui.painel.resumoDosSites
 import io.github.gfvdataweb.painelstatus.ui.sites.SiteTela
-import io.github.gfvdataweb.painelstatus.ui.sites.SitesTela
+import io.github.gfvdataweb.painelstatus.ui.status.StatusTela
 import io.github.gfvdataweb.painelstatus.ui.theme.PainelStatusTheme
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
@@ -47,15 +46,28 @@ class TelasTest {
         assertTrue("\"$texto\" não aparece", compose.onAllNodesWithText(texto).fetchSemanticsNodes().isNotEmpty())
 
     @Test
-    fun bolaoMostraOPassoAPasso() {
-        compose.setContent { PainelStatusTheme(escuro = false) { BolaoTela(bolao, aoAbrirHistorico = {}) } }
-        existe(bolao.nome)
-        existe("Última atualização de dados — passo a passo")
+    fun statusMostraResumoETodosOsCards() {
+        compose.setContent { PainelStatusTheme(escuro = false) { StatusTela(status, aoAbrirSite = {}) } }
+        val resumo = resumoDosSites(status.sites)
+        existe(
+            if (resumo.foraDoAr == 0) "${resumo.total} sites · todos no ar"
+            else "${resumo.total} sites · ${resumo.foraDoAr} com problema de acesso",
+        )
+        status.sites.forEach { existe(it.nome) }
+        status.formsAvulsos.forEach { existe("${it.nome} ↗") }
+    }
+
+    @Test
+    fun statusMostraOPassoAPassoAoAbrirOPipeline() {
+        compose.setContent { PainelStatusTheme(escuro = false) { StatusTela(status, aoAbrirSite = {}) } }
+        compose.onAllNodesWithText("▸ Mostrar pipeline")[0].performClick()
+        existe("Última atualização de dados")
+        existe("▾ Ocultar pipeline")
         bolao.etapasPipeline.forEach { existe(it.titulo) }
     }
 
     @Test
-    fun bolaoComFluxoAndandoAvisaQueEstaAoVivo() {
+    fun statusComFluxoAndandoMostraAsEtapas() {
         val andando = bolao.copy(
             ultimaExecucao = Execucao(status = "in_progress"),
             etapasPipeline = listOf(
@@ -64,29 +76,21 @@ class TelasTest {
                 Etapa(chave = "pagina", titulo = "Página atualizada", estado = "pendente"),
             ),
         )
-        compose.setContent { PainelStatusTheme(escuro = true) { BolaoTela(andando, aoAbrirHistorico = {}) } }
+        val emAndamento = status.copy(sites = status.sites.map { if (it.destaque) andando else it })
+        compose.setContent { PainelStatusTheme(escuro = true) { StatusTela(emAndamento, aoAbrirSite = {}) } }
+        compose.onAllNodesWithText("▸ Mostrar pipeline")[0].performClick()
         existe("Fluxo em andamento")
-        existe("Execução em andamento")
         existe("aguardando")
         existe("não iniciada")
     }
 
     @Test
-    fun bolaoAbreOHistorico() {
-        var abriu = false
-        compose.setContent { PainelStatusTheme { BolaoTela(bolao, aoAbrirHistorico = { abriu = true }) } }
-        compose.onNodeWithText("Histórico de execuções").performClick()
-        assertTrue(abriu)
-    }
-
-    @Test
-    fun sitesMostraTodosOsCardsEAbreDetalhes() {
-        val sites = outrosSites(status)
+    fun statusAbreOSiteAoTocarNoCard() {
         var aberto: String? = null
-        compose.setContent { PainelStatusTheme(escuro = true) { SitesTela(sites, aoAbrirSite = { aberto = it }) } }
-        sites.forEach { existe(it.nome) }
-        compose.onAllNodesWithText("Ver detalhes")[0].performClick()
-        assertEquals(sites.first { it.detalhes != null }.slug, aberto)
+        val outro = outrosSites(status).first()
+        compose.setContent { PainelStatusTheme(escuro = true) { StatusTela(status, aoAbrirSite = { aberto = it }) } }
+        compose.onAllNodesWithText(outro.nome)[0].performClick()
+        assertEquals(outro.slug, aberto)
     }
 
     @Test
@@ -107,13 +111,6 @@ class TelasTest {
         existe("Resumo")
         compose.onNodeWithText("Só com falha ou aviso").performClick()
         compose.onNodeWithText("Só com falha ou aviso").assertIsDisplayed()
-    }
-
-    @Test
-    fun linksTemSitesEForms() {
-        compose.setContent { PainelStatusTheme { LinksTela(status) } }
-        status.sites.forEach { existe(it.nome) }
-        status.formsAvulsos.forEach { existe(it.nome) }
     }
 
     @Test

@@ -4,6 +4,7 @@ import androidx.annotation.StringRes
 import io.github.gfvdataweb.painelstatus.R
 import io.github.gfvdataweb.painelstatus.data.modelo.Alerta
 import io.github.gfvdataweb.painelstatus.data.modelo.Aviso
+import io.github.gfvdataweb.painelstatus.data.modelo.Etapa
 import io.github.gfvdataweb.painelstatus.data.modelo.Execucao
 import io.github.gfvdataweb.painelstatus.data.modelo.Historico
 import io.github.gfvdataweb.painelstatus.data.modelo.Site
@@ -128,23 +129,92 @@ fun outrosSites(status: Status): List<Site> = status.sites.filterNot { it.destaq
 fun linkSeguro(url: String?): String? =
     url?.takeIf { it.startsWith("https://") || it.startsWith("http://") }
 
-/** Um atalho da aba Links. [titulo] null = rótulo padrão ("Abrir Google Forms"). */
-data class Atalho(val titulo: String?, val detalhe: String?, val url: String)
+/** Repositório do site na conta gfvdata-web (mesmo link do pop-up da página). */
+fun urlDoRepositorio(site: Site): String = "https://github.com/gfvdata-web/${site.repo}"
 
-/** Os sites, com o destaque primeiro. */
-fun atalhosDosSites(status: Status): List<Atalho> =
-    status.sites.sortedByDescending { it.destaque }.mapNotNull { site ->
-        linkSeguro(site.pagesUrl)?.let { Atalho(site.nome, it, it) }
-    }
+// ---------- Aba Status (a lista de docs/js/lista.js) ----------
 
-/** Forms dos sites (rótulo do cadastro + nome do site) e depois os forms avulsos. */
-fun atalhosDosForms(status: Status): List<Atalho> {
-    val dosSites = status.sites.sortedByDescending { it.destaque }.mapNotNull { site ->
-        linkSeguro(site.formUrl)?.let { Atalho(site.formRotulo, site.nome, it) }
-    }
-    val avulsos = status.formsAvulsos.mapNotNull { form -> linkSeguro(form.url)?.let { Atalho(form.nome, null, it) } }
-    return dosSites + avulsos
+/** Dias somados no "visitas · 7d" do card. */
+const val DIAS_VISITAS = 7
+
+/** Categoria do card (config.py: CATEGORIAS); valor ausente ou desconhecido = [NEUTRA]. */
+enum class Categoria { DADOS_ABERTOS, HOBBY, CURIOSIDADE, NEUTRA }
+
+fun categoriaDe(valor: String?): Categoria = when (valor) {
+    "dados_abertos" -> Categoria.DADOS_ABERTOS
+    "hobby" -> Categoria.HOBBY
+    "curiosidade" -> Categoria.CURIOSIDADE
+    else -> Categoria.NEUTRA
 }
+
+/** Cor da faixa do card (ARGB), as `--cat-*` de docs/css/estilo.css. */
+fun corDaCategoria(categoria: Categoria): Long = when (categoria) {
+    Categoria.DADOS_ABERTOS -> 0xFF0891B2
+    Categoria.HOBBY -> 0xFF7C3AED
+    Categoria.CURIOSIDADE -> 0xFF16A34A
+    Categoria.NEUTRA -> 0xFF94A3B8
+}
+
+@StringRes
+fun rotuloDaCategoria(categoria: Categoria): Int = when (categoria) {
+    Categoria.DADOS_ABERTOS -> R.string.categoria_dados_abertos
+    Categoria.HOBBY -> R.string.categoria_hobby
+    Categoria.CURIOSIDADE -> R.string.categoria_curiosidade
+    Categoria.NEUTRA -> R.string.categoria_neutra
+}
+
+/** O destaque (Bolão F1) primeiro; o resto na ordem do cadastro. */
+fun sitesNaOrdemDaLista(status: Status): List<Site> = status.sites.sortedByDescending { it.destaque }
+
+/** Categorias com algum site, sem repetir e sem a neutra (a legenda some se não houver nenhuma). */
+fun categoriasUsadas(sites: List<Site>): List<Categoria> =
+    sites.map { categoriaDe(it.categoria) }.filter { it != Categoria.NEUTRA }.distinct()
+
+/** Soma dos visitantes únicos dos últimos [DIAS_VISITAS] dias da série; null = site sem rastreio. */
+fun visitasRecentes(site: Site): Int? =
+    site.acesso?.serieDiaria?.takeIf { it.isNotEmpty() }?.takeLast(DIAS_VISITAS)?.sumOf { it.visitantes }
+
+/** Cabeçalho da lista: quantos sites e quantos não responderam. */
+data class ResumoDosSites(val total: Int, val foraDoAr: Int)
+
+fun resumoDosSites(sites: List<Site>): ResumoDosSites =
+    ResumoDosSites(sites.size, sites.count { it.siteNoAr?.ok != true })
+
+/** O que vai embaixo do nome no card (a ordem de prioridade é a do lista.js). */
+sealed interface SubLinha {
+    data class Endereco(val texto: String) : SubLinha
+    data class ForaDoAr(val statusHttp: Int?) : SubLinha
+    data class Alertas(val texto: String) : SubLinha
+    object Vigilia : SubLinha
+}
+
+/** [tom] vira a bolinha do card (OK, AVISO ou ERRO) e a cor da sub-linha. */
+data class SituacaoDoSite(val tom: Tom, val subLinha: SubLinha)
+
+fun situacaoDoSite(site: Site): SituacaoDoSite = when {
+    site.siteNoAr?.ok != true -> SituacaoDoSite(Tom.ERRO, SubLinha.ForaDoAr(site.siteNoAr?.statusHttp?.takeIf { it != 0 }))
+    site.alertas.isNotEmpty() -> SituacaoDoSite(
+        if (site.alertas.any { it.nivel == "erro" }) Tom.ERRO else Tom.AVISO,
+        SubLinha.Alertas("⚠ " + site.alertas.joinToString(" ") { it.texto }),
+    )
+    site.destaque && site.emVigilia -> SituacaoDoSite(Tom.OK, SubLinha.Vigilia)
+    else -> SituacaoDoSite(Tom.OK, SubLinha.Endereco(enderecoCurto(site.pagesUrl)))
+}
+
+/** Passo a passo do card: etapas, link da execução e se é o envio do Forms (senão, a atualização de dados). */
+data class PipelineDoSite(val etapas: List<Etapa>, val urlDaExecucao: String?, val doForms: Boolean)
+
+/** Pipeline do Bolão (etapas_pipeline) ou, na falta, o do Forms (pipeline_forms); null = card sem pipeline. */
+fun pipelineDoSite(site: Site): PipelineDoSite? {
+    if (site.etapasPipeline.isNotEmpty()) return PipelineDoSite(site.etapasPipeline, site.ultimaExecucao?.url, false)
+    val bloco = site.pipelineForms ?: return null
+    val execucao = bloco.execucao
+    if (execucao == null || execucao.erro != null || bloco.etapas.isEmpty()) return null
+    return PipelineDoSite(bloco.etapas, execucao.url, true)
+}
+
+/** `https://x.io/y/` vira `x.io/y`. */
+fun enderecoCurto(url: String): String = url.removePrefix("https://").removePrefix("http://").removeSuffix("/")
 
 // ---------- Histórico acumulado (formato em src/historico.py) ----------
 

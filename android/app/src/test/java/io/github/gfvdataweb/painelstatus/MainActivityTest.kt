@@ -7,7 +7,6 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import io.github.gfvdataweb.painelstatus.apoio.PainelAppDeTeste
 import io.github.gfvdataweb.painelstatus.apoio.PainelPublicado
-import io.github.gfvdataweb.painelstatus.ui.painel.destaqueDe
 import io.github.gfvdataweb.painelstatus.ui.painel.outrosSites
 import org.junit.Rule
 import org.junit.Test
@@ -36,26 +35,23 @@ class MainActivityTest {
     }
 
     @Test
-    fun abreNoBolaoComOPassoAPasso() {
-        esperarTexto("Última atualização de dados — passo a passo")
-        checkNotNull(destaqueDe(status)).etapasPipeline.forEach { esperarTexto(it.titulo) }
+    fun abreNoStatusComOsSites() {
+        status.sites.forEach { esperarTexto(it.nome) }
     }
 
     @Test
-    fun trocaParaAAbaSitesEAbreUmSite() {
-        esperarTexto("Última atualização de dados — passo a passo")
-        compose.onNodeWithText("Sites").performClick()
-        val site = outrosSites(status).first { it.detalhes != null }
+    fun cardAbreOsDetalhesDoSite() {
+        val site = outrosSites(status).first()
         esperarTexto(site.nome)
-        compose.onAllNodesWithText("Ver detalhes")[0].performClick()
+        compose.onAllNodesWithText(site.nome)[0].performClick()
         esperarTexto("Publicação e acesso")
     }
 
     @Test
-    fun abaLinksTemOsForms() {
-        esperarTexto("Última atualização de dados — passo a passo")
-        compose.onNodeWithText("Links").performClick()
-        status.formsAvulsos.forEach { esperarTexto(it.nome) }
+    fun abaIaMostraOPlaceholder() {
+        esperarTexto(status.sites.first().nome)
+        compose.onNodeWithText("IA").performClick()
+        esperarTexto("Painel de IA — em breve")
     }
 
     @Test
@@ -72,7 +68,7 @@ class MainActivityTest {
 
     @Test
     fun sobreMostraAVersaoInstalada() {
-        esperarTexto("Última atualização de dados — passo a passo")
+        esperarTexto(status.sites.first().nome)
         compose.onNodeWithContentDescription("Sobre").performClick()
         esperarTexto("Versão ${BuildConfig.VERSION_NAME} · build ${BuildConfig.VERSION_CODE}")
     }

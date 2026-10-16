@@ -24,7 +24,6 @@ import io.github.gfvdataweb.painelstatus.R
 import io.github.gfvdataweb.painelstatus.data.modelo.Coleta
 import io.github.gfvdataweb.painelstatus.data.modelo.Execucao
 import io.github.gfvdataweb.painelstatus.data.modelo.Site
-import io.github.gfvdataweb.painelstatus.ui.bolao.urlDoRepositorio
 import io.github.gfvdataweb.painelstatus.ui.comum.Bolinha
 import io.github.gfvdataweb.painelstatus.ui.comum.CaixaDeMotivo
 import io.github.gfvdataweb.painelstatus.ui.comum.LinhaDeAlerta
@@ -36,10 +35,12 @@ import io.github.gfvdataweb.painelstatus.ui.comum.dataHora
 import io.github.gfvdataweb.painelstatus.ui.comum.lembrarAbridorDeLinks
 import io.github.gfvdataweb.painelstatus.ui.comum.textoDataComDias
 import io.github.gfvdataweb.painelstatus.ui.comum.textoDoResultado
+import io.github.gfvdataweb.painelstatus.ui.comum.textoDosVisitantes
 import io.github.gfvdataweb.painelstatus.ui.painel.Tom
 import io.github.gfvdataweb.painelstatus.ui.painel.linkSeguro
 import io.github.gfvdataweb.painelstatus.ui.painel.resultadoDe
 import io.github.gfvdataweb.painelstatus.ui.painel.tomDoResultado
+import io.github.gfvdataweb.painelstatus.ui.painel.urlDoRepositorio
 import java.time.Instant
 import java.time.ZoneId
 

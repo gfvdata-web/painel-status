@@ -48,8 +48,18 @@ data class Site(
     // Nos demais sites (pop-up de detalhes da página):
     val detalhes: Detalhes? = null,
     val alertas: List<Alerta> = emptyList(),
+    /** Só nos sites com envio por Forms (hoje o PlantsCare): último envio e seu passo a passo. */
+    @SerialName("pipeline_forms") val pipelineForms: PipelineForms? = null,
     /** Caminho do histórico acumulado, relativo à raiz do painel (`dados/historico/<slug>.json`). */
     @SerialName("historico_arquivo") val historicoArquivo: String? = null,
+)
+
+@Serializable
+data class PipelineForms(
+    val workflow: String = "",
+    val execucao: Execucao? = null,
+    /** Vazio quando não deu para montar (API do GitHub falhou: o JSON traz null). */
+    val etapas: List<Etapa> = emptyList(),
 )
 
 /** Um commit, ou só `erro` quando a API do GitHub não respondeu. */

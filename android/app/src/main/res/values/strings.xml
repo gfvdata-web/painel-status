@@ -9,9 +9,8 @@
     <string name="par">%1$s · %2$s</string>
 
     <!-- Abas e títulos -->
-    <string name="aba_bolao">Bolão F1</string>
-    <string name="aba_sites">Sites</string>
-    <string name="aba_links">Links</string>
+    <string name="aba_status">Status</string>
+    <string name="aba_ia">IA</string>
     <string name="sobre_titulo">Sobre</string>
     <string name="historico_titulo">Histórico · %1$s</string>
 
@@ -63,14 +62,7 @@
     <string name="evento_push">push</string>
 
     <!-- Bolão F1 -->
-    <string name="kpi_rodada">Rodada mais recente</string>
     <string name="kpi_visitantes">Visitantes (únicos)</string>
-    <string name="kpi_dados">Dados atualizados</string>
-    <string name="ultimo_commit">Último commit em dados: “%1$s” (%2$s)</string>
-    <string name="visitas_por_dia">Visitantes únicos por dia · últimos %1$d dias</string>
-    <string name="ao_vivo_titulo">Fluxo em andamento</string>
-    <string name="ao_vivo_texto">Com o app aberto, o painel é conferido a cada %1$d min, igual à página: as etapas abaixo mudam sozinhas.</string>
-    <string name="etapas_titulo">Última atualização de dados — passo a passo</string>
     <string name="etapa_ok">concluída</string>
     <string name="etapa_andamento">em andamento</string>
     <string name="etapa_aguardando">aguardando</string>
@@ -83,20 +75,14 @@
     <string name="marca_erro" translatable="false">✕</string>
     <string name="marca_pulado" translatable="false">–</string>
     <string name="ver_execucao">Ver execução no GitHub</string>
-    <string name="abrir_site_nome">Abrir %1$s</string>
-    <string name="ver_historico">Histórico de execuções</string>
-    <string name="sem_destaque">Nenhum site em destaque no painel.</string>
 
     <!-- Sites -->
     <string name="abrir_site">Abrir site</string>
     <string name="abrir_form">Abrir Google Forms</string>
     <string name="abrir_repositorio">Repositório no GitHub</string>
-    <string name="ver_detalhes">Ver detalhes</string>
-    <string name="alerta_descricao">Alerta</string>
     <string name="periodo_coberto">Período coberto</string>
     <string name="periodo">%1$s → %2$s</string>
     <string name="sem_rastreio">sem rastreio</string>
-    <string name="sem_sites">Nenhum outro site cadastrado no painel.</string>
     <string name="site_nao_encontrado">Este site não está mais no painel.</string>
 
     <!-- Detalhes de um site -->
@@ -143,10 +129,32 @@
     <string name="hist_avisos_nao_lidos">Avisos não lidos nesta execução.</string>
     <string name="sem_historico">Este site não tem histórico de execuções.</string>
 
-    <!-- Links -->
-    <string name="links_sites">Sites</string>
-    <string name="links_forms">Google Forms</string>
-    <string name="form_avulso">Form avulso</string>
+    <!-- Aba Status (a lista da página principal) -->
+    <string name="resumo_todos_no_ar">%1$d sites · todos no ar</string>
+    <string name="resumo_com_problema">%1$d sites · %2$d com problema de acesso</string>
+    <string name="categoria_dados_abertos">Dados abertos</string>
+    <string name="categoria_hobby">Hobby</string>
+    <string name="categoria_curiosidade">Curiosidade</string>
+    <string name="categoria_neutra">Sem categoria</string>
+    <string name="sub_fora_do_ar">Site pode estar fora do ar</string>
+    <string name="sub_fora_do_ar_http">Site pode estar fora do ar (HTTP %1$d)</string>
+    <string name="sub_vigilia">● Em vigília — aguardando resultado</string>
+    <string name="visitas_valor">visitas · %1$dd</string>
+    <string name="visitas_sem_rastreio">Sem rastreio de visitas</string>
+    <string name="bolinha_ok">No ar</string>
+    <string name="bolinha_aviso">Com aviso</string>
+    <string name="bolinha_erro">Com problema</string>
+    <string name="pipeline_mostrar">▸ Mostrar pipeline</string>
+    <string name="pipeline_ocultar">▾ Ocultar pipeline</string>
+    <string name="pipeline_titulo">Última atualização de dados</string>
+    <string name="pipeline_titulo_forms">Último envio do Forms</string>
+    <string name="ao_vivo_titulo">Fluxo em andamento</string>
+    <string name="ao_vivo_texto">Com o app aberto, o painel é conferido a cada %1$d min, igual à página: as etapas mudam sozinhas.</string>
+    <string name="outros_forms">Outros forms:</string>
+    <string name="form_avulso_link">%1$s ↗</string>
+
+    <!-- Painel de IA (provisório: o bloco B o substitui) -->
+    <string name="ia_em_breve">Painel de IA — em breve</string>
 
     <!-- Sobre -->
     <string name="sobre_texto">Acompanha os sites publicados pela conta gfvdata-web: se estão no ar, quando os dados mudaram, as rotinas de coleta e o passo a passo de cada atualização do Bolão F1. Tudo vem do painel publicado em painel.gfvdata.com; o app só lê. Com o app fechado, ele pode avisar por notificação (ícone do sino).</string>

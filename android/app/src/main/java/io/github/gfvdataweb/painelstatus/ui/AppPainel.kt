@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.automirrored.filled.ExitToApp
 import androidx.compose.material.icons.automirrored.filled.List
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Notifications
@@ -56,24 +55,20 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import io.github.gfvdataweb.painelstatus.AppContainer
 import io.github.gfvdataweb.painelstatus.R
-import io.github.gfvdataweb.painelstatus.avisos.AbaDoAviso
 import io.github.gfvdataweb.painelstatus.avisos.podeNotificar
 import io.github.gfvdataweb.painelstatus.data.DadosDoPainel
 import io.github.gfvdataweb.painelstatus.data.modelo.Status
 import io.github.gfvdataweb.painelstatus.ui.avisos.AvisosTela
 import io.github.gfvdataweb.painelstatus.ui.avisos.AvisosViewModel
 import io.github.gfvdataweb.painelstatus.ui.avisos.FaixaDeAvisos
-import io.github.gfvdataweb.painelstatus.ui.bolao.BolaoTela
 import io.github.gfvdataweb.painelstatus.ui.comum.ConteudoComDados
 import io.github.gfvdataweb.painelstatus.ui.comum.dataHora
 import io.github.gfvdataweb.painelstatus.ui.historico.HistoricoTela
 import io.github.gfvdataweb.painelstatus.ui.historico.HistoricoViewModel
-import io.github.gfvdataweb.painelstatus.ui.links.LinksTela
+import io.github.gfvdataweb.painelstatus.ui.ia.IaTela
 import io.github.gfvdataweb.painelstatus.ui.painel.PainelViewModel
-import io.github.gfvdataweb.painelstatus.ui.painel.destaqueDe
-import io.github.gfvdataweb.painelstatus.ui.painel.outrosSites
 import io.github.gfvdataweb.painelstatus.ui.sites.SiteTela
-import io.github.gfvdataweb.painelstatus.ui.sites.SitesTela
+import io.github.gfvdataweb.painelstatus.ui.status.StatusTela
 import io.github.gfvdataweb.painelstatus.ui.sobre.SobreTela
 import io.github.gfvdataweb.painelstatus.ui.versao.AvisoDeNovaVersao
 import io.github.gfvdataweb.painelstatus.ui.versao.SituacaoDaVersao
@@ -83,13 +78,10 @@ import java.time.ZoneId
 
 // Rotas da navegação (type-safe: cada tela é um objeto ou classe serializável).
 @Serializable
-object RotaBolao
+object RotaStatus
 
 @Serializable
-object RotaSites
-
-@Serializable
-object RotaLinks
+object RotaIa
 
 @Serializable
 data class RotaSite(val slug: String)
@@ -106,10 +98,15 @@ object RotaAvisos
 private data class Aba(val rota: Any, @param:StringRes val rotulo: Int, val icone: ImageVector)
 
 private val ABAS = listOf(
-    Aba(RotaBolao, R.string.aba_bolao, Icons.Filled.Star),
-    Aba(RotaSites, R.string.aba_sites, Icons.AutoMirrored.Filled.List),
-    Aba(RotaLinks, R.string.aba_links, Icons.AutoMirrored.Filled.ExitToApp),
+    Aba(RotaStatus, R.string.aba_status, Icons.AutoMirrored.Filled.List),
+    Aba(RotaIa, R.string.aba_ia, Icons.Filled.Star),
 )
+
+/** Valor de `abaInicial` (extra da notificação) que abre a aba IA; qualquer outro abre Status. */
+const val ABA_INICIAL_IA = "IA"
+
+/** Aba em que o app abre: as notificações do Bolão e dos sites levam ao Status. */
+fun rotaInicial(abaInicial: String?): Any = if (abaInicial == ABA_INICIAL_IA) RotaIa else RotaStatus
 
 /** Raiz da interface: barra superior, abas embaixo e a tela escolhida. */
 @OptIn(ExperimentalMaterial3Api::class)
@@ -214,33 +211,13 @@ fun AppPainel(container: AppContainer, versao: String, build: Int, abaInicial: S
             }
             val complemento = dataHora(estado.dados?.meta?.geradoEm, ZoneId.systemDefault())
                 ?.let { stringResource(R.string.status_gerado, it) }
-            // Aberto por uma notificação dos sites: começa na aba Sites.
-            val inicio: Any = if (abaInicial == AbaDoAviso.SITES.name) RotaSites else RotaBolao
-            NavHost(navegacao, startDestination = inicio, modifier = Modifier.weight(1f)) {
-                composable<RotaBolao> {
+            NavHost(navegacao, startDestination = rotaInicial(abaInicial), modifier = Modifier.weight(1f)) {
+                composable<RotaStatus> {
                     ConteudoComDados(estado, painel::atualizar, complemento = complemento) { status ->
-                        val destaque = destaqueDe(status)
-                        if (destaque != null) {
-                            BolaoTela(
-                                destaque,
-                                aoAbrirHistorico = { navegacao.navigate(RotaHistorico(destaque.slug)) },
-                                intervaloMin = intervaloMin,
-                            )
-                        } else {
-                            MensagemSimples(stringResource(R.string.sem_destaque))
-                        }
+                        StatusTela(status, aoAbrirSite = { slug -> navegacao.navigate(RotaSite(slug)) }, intervaloMin = intervaloMin)
                     }
                 }
-                composable<RotaSites> {
-                    ConteudoComDados(estado, painel::atualizar, complemento = complemento) { status ->
-                        SitesTela(outrosSites(status), aoAbrirSite = { slug -> navegacao.navigate(RotaSite(slug)) })
-                    }
-                }
-                composable<RotaLinks> {
-                    ConteudoComDados(estado, painel::atualizar, complemento = complemento) { status ->
-                        LinksTela(status)
-                    }
-                }
+                composable<RotaIa> { IaTela() }
                 composable<RotaSite> { entrada ->
                     val slug = entrada.toRoute<RotaSite>().slug
                     ConteudoComDados(estado, painel::atualizar, complemento = complemento) { status ->

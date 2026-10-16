@@ -4,10 +4,13 @@ import io.github.gfvdataweb.painelstatus.data.modelo.Alerta
 import io.github.gfvdataweb.painelstatus.data.modelo.Aviso
 import io.github.gfvdataweb.painelstatus.data.modelo.Etapa
 import io.github.gfvdataweb.painelstatus.data.modelo.Execucao
-import io.github.gfvdataweb.painelstatus.data.modelo.FormAvulso
 import io.github.gfvdataweb.painelstatus.data.modelo.Historico
 import io.github.gfvdataweb.painelstatus.data.modelo.Site
+import io.github.gfvdataweb.painelstatus.data.modelo.PipelineForms
+import io.github.gfvdataweb.painelstatus.data.modelo.SiteNoAr
 import io.github.gfvdataweb.painelstatus.data.modelo.Status
+import io.github.gfvdataweb.painelstatus.data.modelo.Acesso
+import io.github.gfvdataweb.painelstatus.data.modelo.VisitasDoDia
 import io.github.gfvdataweb.painelstatus.ui.comum.Duracao
 import io.github.gfvdataweb.painelstatus.ui.comum.Idade
 import io.github.gfvdataweb.painelstatus.ui.comum.dataHora
@@ -16,8 +19,19 @@ import io.github.gfvdataweb.painelstatus.ui.comum.duracao
 import io.github.gfvdataweb.painelstatus.ui.comum.idadeDosDados
 import io.github.gfvdataweb.painelstatus.ui.painel.SituacaoDaExecucao
 import io.github.gfvdataweb.painelstatus.ui.painel.Tom
-import io.github.gfvdataweb.painelstatus.ui.painel.atalhosDosForms
-import io.github.gfvdataweb.painelstatus.ui.painel.atalhosDosSites
+import io.github.gfvdataweb.painelstatus.ui.painel.Categoria
+import io.github.gfvdataweb.painelstatus.ui.painel.PipelineDoSite
+import io.github.gfvdataweb.painelstatus.ui.painel.SubLinha
+import io.github.gfvdataweb.painelstatus.ui.painel.pipelineDoSite
+import io.github.gfvdataweb.painelstatus.ui.painel.categoriaDe
+import io.github.gfvdataweb.painelstatus.ui.painel.categoriasUsadas
+import io.github.gfvdataweb.painelstatus.ui.painel.corDaCategoria
+import io.github.gfvdataweb.painelstatus.ui.painel.enderecoCurto
+import io.github.gfvdataweb.painelstatus.ui.painel.resumoDosSites
+import io.github.gfvdataweb.painelstatus.ui.painel.situacaoDoSite
+import io.github.gfvdataweb.painelstatus.ui.painel.sitesNaOrdemDaLista
+import io.github.gfvdataweb.painelstatus.ui.painel.urlDoRepositorio
+import io.github.gfvdataweb.painelstatus.ui.painel.visitasRecentes
 import io.github.gfvdataweb.painelstatus.ui.painel.fluxoEmAndamento
 import io.github.gfvdataweb.painelstatus.ui.painel.linkSeguro
 import io.github.gfvdataweb.painelstatus.ui.painel.mediana
@@ -100,23 +114,102 @@ class ApresentacaoTest {
         assertNull(linkSeguro(null))
     }
 
+    private val noAr = SiteNoAr(ok = true, statusHttp = 200)
+    private val comum = Site(slug = "a", nome = "A", pagesUrl = "https://a.gfvdata.com/", siteNoAr = noAr)
+
     @Test
-    fun atalhosComDestaquePrimeiroEFormsAvulsosNoFim() {
-        val status = Status(
-            sites = listOf(
-                Site(slug = "a", nome = "A", pagesUrl = "https://a/", formUrl = "https://forms.gle/a"),
-                bolao.copy(pagesUrl = "https://b/", formUrl = "https://forms.gle/b", formRotulo = "Enviar palpites"),
-                Site(slug = "c", nome = "C", pagesUrl = "https://c/"),
-            ),
-            formsAvulsos = listOf(FormAvulso("Notas fiscais", "https://forms.gle/n")),
-        )
-        assertEquals(listOf("Bolão F1", "A", "C"), atalhosDosSites(status).map { it.titulo })
-        val forms = atalhosDosForms(status)
-        assertEquals(listOf("https://forms.gle/b", "https://forms.gle/a", "https://forms.gle/n"), forms.map { it.url })
-        assertEquals("Enviar palpites", forms[0].titulo)
-        assertNull("sem rótulo = padrão da tela", forms[1].titulo)
-        assertEquals("A", forms[1].detalhe)
-        assertNull("form avulso não tem site", forms[2].detalhe)
+    fun categoriaTemCorEValorNeutroPadrao() {
+        assertEquals(Categoria.DADOS_ABERTOS, categoriaDe("dados_abertos"))
+        assertEquals(Categoria.HOBBY, categoriaDe("hobby"))
+        assertEquals(Categoria.CURIOSIDADE, categoriaDe("curiosidade"))
+        assertEquals(Categoria.NEUTRA, categoriaDe(null))
+        assertEquals(Categoria.NEUTRA, categoriaDe("outra"))
+        assertEquals(0xFF0891B2, corDaCategoria(Categoria.DADOS_ABERTOS))
+        assertEquals(0xFF94A3B8, corDaCategoria(Categoria.NEUTRA))
+    }
+
+    @Test
+    fun legendaSoTemCategoriasUsadasSemRepetir() {
+        val sites = listOf(comum, comum.copy(categoria = "hobby"), comum.copy(categoria = "hobby"), comum.copy(categoria = "x"))
+        assertEquals(listOf(Categoria.HOBBY), categoriasUsadas(sites))
+        assertTrue(categoriasUsadas(listOf(comum)).isEmpty())
+    }
+
+    @Test
+    fun destaqueVaiPrimeiroEORestoFicaNaOrdemDoCadastro() {
+        val status = Status(sites = listOf(comum, comum.copy(slug = "b"), bolao, comum.copy(slug = "c")))
+        assertEquals(listOf("bolao_f1", "a", "b", "c"), sitesNaOrdemDaLista(status).map { it.slug })
+    }
+
+    @Test
+    fun visitasSomamOsUltimosSeteDias() {
+        assertNull(visitasRecentes(comum))
+        assertNull(visitasRecentes(comum.copy(acesso = Acesso())))
+        val serie = (1..10).map { VisitasDoDia("2026-10-%02d".format(it), it) }
+        // 4+5+...+10 = 49: os três primeiros dias ficam de fora.
+        assertEquals(49, visitasRecentes(comum.copy(acesso = Acesso(serieDiaria = serie))))
+        assertEquals(3, visitasRecentes(comum.copy(acesso = Acesso(serieDiaria = serie.take(2)))))
+    }
+
+    @Test
+    fun resumoContaSitesForaDoAr() {
+        assertEquals(0, resumoDosSites(listOf(comum, comum)).foraDoAr)
+        val resumo = resumoDosSites(listOf(comum, comum.copy(siteNoAr = SiteNoAr(ok = false)), comum.copy(siteNoAr = null)))
+        assertEquals(3, resumo.total)
+        assertEquals(2, resumo.foraDoAr)
+    }
+
+    @Test
+    fun situacaoDoSiteSegueAOrdemDaPagina() {
+        // No ar e sem nada: o endereço curto, bolinha verde.
+        val normal = situacaoDoSite(comum)
+        assertEquals(Tom.OK, normal.tom)
+        assertEquals(SubLinha.Endereco("a.gfvdata.com"), normal.subLinha)
+        // Fora do ar vence alertas e vigília.
+        val fora = situacaoDoSite(bolao.copy(siteNoAr = SiteNoAr(ok = false, statusHttp = 503), emVigilia = true, alertas = listOf(Alerta("aviso", "x"))))
+        assertEquals(Tom.ERRO, fora.tom)
+        assertEquals(SubLinha.ForaDoAr(503), fora.subLinha)
+        assertEquals(SubLinha.ForaDoAr(null), situacaoDoSite(comum.copy(siteNoAr = SiteNoAr(ok = false))).subLinha)
+        // Alertas: âmbar, ou vermelho se algum for erro; vencem a vigília.
+        val avisos = situacaoDoSite(bolao.copy(siteNoAr = noAr, emVigilia = true, alertas = listOf(Alerta("aviso", "um"), Alerta("aviso", "dois"))))
+        assertEquals(Tom.AVISO, avisos.tom)
+        assertEquals(SubLinha.Alertas("⚠ um dois"), avisos.subLinha)
+        assertEquals(Tom.ERRO, situacaoDoSite(comum.copy(alertas = listOf(Alerta("aviso", "a"), Alerta("erro", "b")))).tom)
+        // Vigília só vale para o destaque.
+        assertEquals(SubLinha.Vigilia, situacaoDoSite(bolao.copy(siteNoAr = noAr, emVigilia = true)).subLinha)
+        assertTrue(situacaoDoSite(comum.copy(emVigilia = true)).subLinha is SubLinha.Endereco)
+    }
+
+    @Test
+    fun pipelineDoCardVemDoBolaoOuDoForms() {
+        assertNull(pipelineDoSite(comum))
+        val bolaoComEtapas = bolao.copy(etapasPipeline = listOf(Etapa(estado = "ok")), ultimaExecucao = Execucao(url = "https://g/1"))
+        assertEquals(PipelineDoSite(bolaoComEtapas.etapasPipeline, "https://g/1", false), pipelineDoSite(bolaoComEtapas))
+        val etapas = listOf(Etapa(estado = "ok"))
+        val forms = comum.copy(pipelineForms = PipelineForms("pipeline.yml", Execucao(url = "https://g/2"), etapas))
+        assertEquals(PipelineDoSite(etapas, "https://g/2", true), pipelineDoSite(forms))
+        assertNull(pipelineDoSite(comum.copy(pipelineForms = PipelineForms("p.yml", Execucao(erro = "HTTP 500"), etapas))))
+        assertNull(pipelineDoSite(comum.copy(pipelineForms = PipelineForms("p.yml", Execucao(), emptyList()))))
+    }
+
+    @Test
+    fun enderecoCurtoTiraProtocoloEBarraFinal() {
+        assertEquals("a.gfvdata.com", enderecoCurto("https://a.gfvdata.com/"))
+        assertEquals("x.io/y", enderecoCurto("http://x.io/y/"))
+        assertEquals("", enderecoCurto(""))
+    }
+
+    @Test
+    fun repositorioFicaNaContaDoPainel() {
+        assertEquals("https://github.com/gfvdata-web/BolaoF1", urlDoRepositorio(bolao.copy(repo = "BolaoF1")))
+    }
+
+    @Test
+    fun abaInicialDaNotificacao() {
+        assertEquals(RotaStatus, rotaInicial(null))
+        assertEquals(RotaStatus, rotaInicial("BOLAO"))
+        assertEquals(RotaStatus, rotaInicial("SITES"))
+        assertEquals(RotaIa, rotaInicial("IA"))
     }
 
     @Test
