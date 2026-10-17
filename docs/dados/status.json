@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-10-17T02:44:57.165394+00:00",
+    "gerado_em": "2026-10-17T03:00:57.547881+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -194,6 +194,10 @@
           {
             "data": "2026-10-16",
             "visitantes": 0
+          },
+          {
+            "data": "2026-10-17",
+            "visitantes": 0
           }
         ]
       }
@@ -383,6 +387,10 @@
           },
           {
             "data": "2026-10-16",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-17",
             "visitantes": 0
           }
         ]
@@ -574,6 +582,10 @@
           {
             "data": "2026-10-16",
             "visitantes": 0
+          },
+          {
+            "data": "2026-10-17",
+            "visitantes": 0
           }
         ]
       }
@@ -751,6 +763,10 @@
           },
           {
             "data": "2026-10-16",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-17",
             "visitantes": 0
           }
         ]
@@ -1164,6 +1180,10 @@
           {
             "data": "2026-10-16",
             "visitantes": 0
+          },
+          {
+            "data": "2026-10-17",
+            "visitantes": 0
           }
         ]
       }
@@ -1576,6 +1596,10 @@
           },
           {
             "data": "2026-10-16",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-17",
             "visitantes": 0
           }
         ]
@@ -2102,6 +2126,10 @@
           {
             "data": "2026-10-16",
             "visitantes": 0
+          },
+          {
+            "data": "2026-10-17",
+            "visitantes": 0
           }
         ]
       }
@@ -2332,6 +2360,10 @@
           {
             "data": "2026-10-16",
             "visitantes": 0
+          },
+          {
+            "data": "2026-10-17",
+            "visitantes": 0
           }
         ]
       }
@@ -2511,6 +2543,10 @@
           },
           {
             "data": "2026-10-16",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-17",
             "visitantes": 0
           }
         ]
