@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-10-18T17:45:02.072758+00:00",
+    "gerado_em": "2026-10-18T18:00:28.403790+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -215,7 +215,10 @@
         "sha": "dff0fc4",
         "url": "https://github.com/gfvdata-web/fonte-meios-pagamento/commit/dff0fc4ebb900f5fe1cee49ae5a95889d6175858"
       },
-      "periodo_publicado": null,
+      "periodo_publicado": {
+        "inicio": "2002-04",
+        "fim": "2026-08"
+      },
       "site_no_ar": {
         "ok": true,
         "status_http": 200
