@@ -59,6 +59,7 @@ import io.github.gfvdataweb.painelstatus.ui.painel.resumoDosSites
 import io.github.gfvdataweb.painelstatus.ui.painel.rotuloDaCategoria
 import io.github.gfvdataweb.painelstatus.ui.painel.situacaoDoSite
 import io.github.gfvdataweb.painelstatus.ui.painel.sitesNaOrdemDaLista
+import io.github.gfvdataweb.painelstatus.ui.painel.downloadsRecentes
 import io.github.gfvdataweb.painelstatus.ui.painel.visitasRecentes
 import io.github.gfvdataweb.painelstatus.ui.theme.LocalCoresDoPainel
 
@@ -161,6 +162,13 @@ private fun CartaoDoSite(
                     Spacer(Modifier.width(12.dp))
                     val rotulo = stringResource(R.string.par, stringResource(rotuloDaBolinha(situacao.tom)), stringResource(rotuloDaCategoria(categoria)))
                     Bolinha(situacao.tom, Modifier.semantics { contentDescription = rotulo })
+                }
+                downloadsRecentes(site)?.let { d ->
+                    Text(
+                        stringResource(R.string.downloads_linha, DIAS_VISITAS, d.recentes, d.skill, d.csv),
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
                 }
                 if (site.destaque && fluxoEmAndamento(site)) AvisoAoVivo(intervaloMin)
                 val pipeline = pipelineDoSite(site)

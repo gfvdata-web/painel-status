@@ -2,7 +2,12 @@ package io.github.gfvdataweb.painelstatus.ui
 
 import io.github.gfvdataweb.painelstatus.data.modelo.Alerta
 import io.github.gfvdataweb.painelstatus.data.modelo.Aviso
+import io.github.gfvdataweb.painelstatus.data.lerStatus
+import io.github.gfvdataweb.painelstatus.data.modelo.Downloads
+import io.github.gfvdataweb.painelstatus.data.modelo.DownloadsDoDia
 import io.github.gfvdataweb.painelstatus.data.modelo.Etapa
+import io.github.gfvdataweb.painelstatus.ui.painel.ResumoDownloads
+import io.github.gfvdataweb.painelstatus.ui.painel.downloadsRecentes
 import io.github.gfvdataweb.painelstatus.data.modelo.Execucao
 import io.github.gfvdataweb.painelstatus.data.modelo.Historico
 import io.github.gfvdataweb.painelstatus.data.modelo.Site
@@ -149,6 +154,33 @@ class ApresentacaoTest {
         // 4+5+...+10 = 49: os três primeiros dias ficam de fora.
         assertEquals(49, visitasRecentes(comum.copy(acesso = Acesso(serieDiaria = serie))))
         assertEquals(3, visitasRecentes(comum.copy(acesso = Acesso(serieDiaria = serie.take(2)))))
+    }
+
+    @Test
+    fun downloadsLeEDesserializaComESemBloco() {
+        val json = """{"sites":[
+            {"slug":"a","nome":"A","downloads":{"total":8,"skill":3,"csv":5,"por_navegador":6,"por_script":2,
+              "desde":"2026-09-14","serie_diaria":[{"data":"2026-09-14","downloads":1}]}},
+            {"slug":"b","nome":"B","downloads":{"total":null,"desde":null}},
+            {"slug":"c","nome":"C"}]}"""
+        val (com, vazio, sem) = lerStatus(json).sites
+        val d = checkNotNull(com.downloads)
+        assertEquals(8, d.total)
+        assertEquals(6, d.porNavegador)
+        assertEquals("2026-09-14", d.desde)
+        assertEquals(1, d.serieDiaria.single().downloads)
+        assertEquals(0, checkNotNull(vazio.downloads).total)
+        assertNull(sem.downloads)
+    }
+
+    @Test
+    fun downloadsSomamOsUltimosSeteDiasEMantemSkillECsv() {
+        assertNull(downloadsRecentes(comum))
+        val serie = (1..10).map { DownloadsDoDia("2026-10-%02d".format(it), it) }
+        val site = comum.copy(downloads = Downloads(total = 99, skill = 4, csv = 7, serieDiaria = serie))
+        // 4+5+...+10 = 49: os três primeiros dias ficam de fora.
+        assertEquals(ResumoDownloads(49, 4, 7), downloadsRecentes(site))
+        assertEquals(ResumoDownloads(0, 0, 0), downloadsRecentes(comum.copy(downloads = Downloads())))
     }
 
     @Test

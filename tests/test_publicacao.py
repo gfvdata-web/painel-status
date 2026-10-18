@@ -14,7 +14,7 @@ from tests import contrato
 from tests.apoio import RedeFalsa, TesteBase, fixture, relogio_fixo
 from src import config, publicacao
 
-RELOGIOS = ("src.detalhes_site", "src.coleta_goatcounter")
+RELOGIOS = ("src.detalhes_site", "src.coleta_goatcounter", "src.coleta_downloads")
 REPO_BOLAO = "page-bolao-formula1"
 
 

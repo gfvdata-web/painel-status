@@ -41,6 +41,8 @@ data class Site(
     /** Última execução do workflow cadastrado (coleta ou pipeline do Bolão). */
     @SerialName("ultima_execucao_pipeline") val ultimaExecucao: Execucao? = null,
     val acesso: Acesso? = null,
+    /** Ausente nos sites sem contagem de downloads. */
+    val downloads: Downloads? = null,
     // Só no site com pipeline do Bolão F1:
     @SerialName("rodada_mais_recente") val rodadaMaisRecente: Int? = null,
     @SerialName("em_vigilia") val emVigilia: Boolean = false,
@@ -131,6 +133,22 @@ data class Acesso(
 
 @Serializable
 data class VisitasDoDia(val data: String = "", val visitantes: Int = 0)
+
+/** Só nos sites de dados abertos: downloads acumulados (skill, CSV) e a série diária. */
+@Serializable
+data class Downloads(
+    val total: Int = 0,
+    val skill: Int = 0,
+    val csv: Int = 0,
+    @SerialName("por_navegador") val porNavegador: Int = 0,
+    @SerialName("por_script") val porScript: Int = 0,
+    /** Primeiro dia da contagem (YYYY-MM-DD); null = sem data. */
+    val desde: String? = null,
+    @SerialName("serie_diaria") val serieDiaria: List<DownloadsDoDia> = emptyList(),
+)
+
+@Serializable
+data class DownloadsDoDia(val data: String = "", val downloads: Int = 0)
 
 @Serializable
 data class Detalhes(

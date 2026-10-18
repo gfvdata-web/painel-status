@@ -82,21 +82,24 @@ class RedeFalsa:
     falhar=True       toda chamada levanta URLError (API fora do ar)
     sites_fora        pages_url que respondem com erro (ex.: {"https://...": 503})
     sem_goatcounter   /paths do GoatCounter falha (URLError)
+    sem_contagem      todo <site>/contagem.json falha (URLError)
     runs / commits    trocam a resposta das execuções / commits (lista no formato da API)
     `chamadas` guarda cada URL pedida, para os testes conferirem o que foi (ou não) consultado.
     """
 
-    def __init__(self, falhar=False, sites_fora=None, sem_goatcounter=False, runs=None, commits=None):
+    def __init__(self, falhar=False, sites_fora=None, sem_goatcounter=False, runs=None, commits=None,
+                 sem_contagem=False):
         self.runs = runs
         self.commits = commits
         self.falhar = falhar
         self.sites_fora = sites_fora or {}
         self.sem_goatcounter = sem_goatcounter
+        self.sem_contagem = sem_contagem
         self.chamadas = []
         self._pilha = contextlib.ExitStack()
 
     def __enter__(self):
-        for alvo in ("src.coleta_github", "src.coleta_goatcounter"):
+        for alvo in ("src.coleta_github", "src.coleta_goatcounter", "src.coleta_downloads"):
             self._pilha.enter_context(mock.patch(f"{alvo}.get_json", self.get_json))
         self._pilha.enter_context(mock.patch("src.coleta_github.get_texto", self.get_texto))
         self._pilha.enter_context(mock.patch("src.coleta_github.get_status", self.get_status))
@@ -129,6 +132,10 @@ class RedeFalsa:
             return {"workflow_runs": self.runs} if self.runs is not None else fixture("runs.json")
         if "/commits?path=" in url:
             return self.commits if self.commits is not None else fixture("commits.json")
+        if url.endswith("/contagem.json"):  # contagem_url do cadastro
+            if self.sem_contagem:
+                raise urllib.error.URLError("contagem fora do ar")
+            return fixture("contagem.json")
         if url.endswith(".json"):  # json_meta_url do cadastro
             return fixture("meta_publicado.json")
         raise AssertionError(f"URL sem fixture: {url}")

@@ -20,7 +20,7 @@ RE_HISTORICO_ARQUIVO = re.compile(r"^dados/historico/([A-Za-z0-9_-]+)\.json$")
 CAMPOS_CONHECIDOS = {
     "meta", "gerado_em", "descricao", "sites", "forms_avulsos", "nome", "url",
     "slug", "repo", "pages_url", "destaque", "categoria", "form_url", "form_rotulo", "ultimo_commit_dados",
-    "site_no_ar", "periodo_publicado", "ultima_execucao_pipeline", "acesso", "rodada_mais_recente",
+    "site_no_ar", "periodo_publicado", "ultima_execucao_pipeline", "acesso", "downloads", "rodada_mais_recente",
     "em_vigilia", "etapas_pipeline", "detalhes", "alertas", "pipeline_forms", "historico_arquivo",
     # site_no_ar / erro de coleta
     "ok", "status_http", "erro",
@@ -31,6 +31,8 @@ CAMPOS_CONHECIDOS = {
     "job", "passo", "nivel", "texto", "inicio", "fim",
     # acesso
     "visitantes_unicos", "serie_diaria", "visitantes",
+    # downloads
+    "total", "skill", "csv", "por_navegador", "por_script", "desde",
     # etapas
     "chave", "titulo", "estado", "detalhe", "quando",
     # detalhes
@@ -190,6 +192,16 @@ def problemas_status(status, cadastro=None):
             for j, dia in enumerate(acesso.get("serie_diaria", [])):
                 _tipo(problemas, f"{onde}.acesso.serie_diaria[{j}]", dia, "data", str)
                 _tipo(problemas, f"{onde}.acesso.serie_diaria[{j}]", dia, "visitantes", int)
+        if "downloads" in site:
+            baixados = site["downloads"]
+            onde_d = f"{onde}.downloads"
+            for campo in ("total", "skill", "csv", "por_navegador", "por_script"):
+                _tipo(problemas, onde_d, baixados, campo, int)
+            _tipo(problemas, onde_d, baixados, "desde", (str, type(None)))
+            _tipo(problemas, onde_d, baixados, "serie_diaria", list)
+            for j, dia in enumerate(baixados.get("serie_diaria", [])):
+                _tipo(problemas, f"{onde_d}.serie_diaria[{j}]", dia, "data", str)
+                _tipo(problemas, f"{onde_d}.serie_diaria[{j}]", dia, "downloads", int)
         if "etapas_pipeline" in site:
             _etapas(problemas, f"{onde}.etapas_pipeline", site["etapas_pipeline"])
         if "detalhes" in site:

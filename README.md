@@ -95,6 +95,7 @@ src/
 ├── rede.py               # HTTP compartilhado pelos coletores (GET JSON/texto, erros de rede)
 ├── coleta_github.py      # commits, execuções de Actions, "site no ar", período publicado
 ├── coleta_goatcounter.py # visitantes únicos via API do GoatCounter (opcional por site)
+├── coleta_downloads.py   # downloads (CSV/skill) lidos do <site>/contagem.json dos sites de dados abertos
 ├── detalhes_site.py      # pop-up de detalhes e alertas dos sites da grade
 ├── historico.py          # histórico acumulado das execuções (docs/dados/historico/)
 ├── etapas_bolao.py       # passo a passo da última atualização do Bolão F1
@@ -229,7 +230,7 @@ lugar e nada é cadastrado no app. Se o endereço novo não responder, o app ten
 
 - **Abas:** **Status** (a lista da página principal: "N sites · todos no ar", legenda das
   categorias, o Bolão F1 no topo e um card por site com faixa da categoria, endereço ou
-  alerta, botão do Forms, visitas dos 7 dias, bolinha de situação, o pipeline recolhível com
+  alerta, botão do Forms, visitas dos 7 dias, a linha "Downloads (7 dias)" (só nos sites de dados abertos), bolinha de situação, o pipeline recolhível com
   o passo a passo e o link da execução (no Bolão e no envio do Forms do PlantsCare), o aviso "Fluxo em andamento" no card do Bolão e os "Outros forms" no rodapé; toque no card abre os
   detalhes — rotina de coleta, última falha e motivo, execuções recentes, commits, deploy —
   e dali o histórico completo) e **IA** (o painel de uso do Claude, veja o item "Painel de IA"
@@ -325,14 +326,32 @@ GoatCounter; a separação por site é feita em `src/coleta_goatcounter.py` filt
 caminhos pelo prefixo `/<repo>/`.
 
 **Sites que migraram para domínio próprio na Cloudflare** (`bolaof1.gfvdata.com`,
-`meiospagamento.gfvdata.com`): lá o caminho não tem mais o prefixo `/<repo>/`, então o snippet
-padrão registra `/` e as visitas novas não entram na conta do site. A correção é no snippet do
-próprio site, prefixando o caminho com o nome do repositório:
+`meiospagamento.gfvdata.com`, `arrecadacaofederal.gfvdata.com`,
+`creditomodalidade.gfvdata.com`): lá o caminho não tem mais o prefixo `/<repo>/`, então o
+snippet padrão registra `/` e as visitas novas não entram na conta do site. A correção é no
+snippet do próprio site, prefixando o caminho com o nome do repositório:
 ```html
 <script>window.goatcounter = { path: (p) => "/<repo>" + p };</script>
 ```
-(antes do snippet padrão). O Bolão F1 ainda está sem isso; o Meios de pagamento não tem
-snippet.
+(antes do snippet padrão). Os 3 sites de dados abertos (Meios de pagamento, Arrecadação
+federal e Crédito por modalidade) já têm o prefixo desde 2026-10-18. O Bolão F1 ainda está
+sem isso.
+
+## Contagem de downloads
+
+Os 3 sites de dados abertos contam quantas vezes seus arquivos (o CSV público e o zip da
+skill do Claude) são baixados. A contagem não passa pelo GoatCounter: cada site tem um
+contador próprio na Cloudflare (`cloudflare/contagem.mjs`, no repo do site) que grava num
+banco D1 `downloads` compartilhado pelos 3 sites. Cada download é classificado em
+`navegador`, `script` ou `robo` (pelo cabeçalho da requisição) e só os contadores agregados
+são guardados — nenhum IP. Cada site publica o resumo em `<site>/contagem.json` (público,
+sem token), e o campo `contagem_url` de `src/config.py` aponta para ele.
+
+`src/coleta_downloads.py` lê esse JSON a cada rodada e põe no card do site o bloco
+`downloads` do `status.json`: `total`, `skill`, `csv` (sem robôs), `por_navegador` e
+`por_script`, `desde` (início da contagem) e `serie_diaria` (30 dias contínuos até hoje em
+Brasília, com zeros). Se a leitura falhar, o painel mantém o `downloads` da rodada anterior
+em vez de apagar os números. Site sem `contagem_url` fica sem o bloco.
 
 ## Sites monitorados
 

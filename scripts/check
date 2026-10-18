@@ -11,6 +11,7 @@
 #   HTTP e erros de rede, token não vaza em redirecionamento             src/rede.py            tests/test_rede.py
 #   Coleta GitHub (commits, execuções, jobs, logs, cron, Pages, no ar)   src/coleta_github.py   tests/test_coleta_github.py
 #   Coleta GoatCounter (visitantes por repo, sem token, falhas)          src/coleta_goatcounter.py  tests/test_coleta_goatcounter.py
+#   Coleta de downloads (contagem.json dos sites de dados abertos)       src/coleta_downloads.py  tests/test_coleta_downloads.py
 #   Pop-up de detalhes e alertas dos sites da grade                      src/detalhes_site.py   tests/test_detalhes_site.py
 #   Etapas do Bolão F1 e do envio do Forms (todos os estados)            src/etapas_bolao.py, src/etapas_forms.py   tests/test_etapas.py
 #   Histórico acumulado das execuções (docs/dados/historico/)            src/historico.py       tests/test_historico.py

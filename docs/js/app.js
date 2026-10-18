@@ -514,8 +514,19 @@ function secaoPublicacao(site) {
       ${linhaDetalhe("Último deploy (Pages)", deploy
         ? `${linkExterno(deploy.url, dataComRelativo(deploy.criado_em))} <span class="suave">· ${escapar(ROTULO_CONCLUSAO[deploy.conclusao || deploy.status] || deploy.status)}</span>`
         : `<span class="suave">sem deploy automático do Pages registrado (publicado por workflow próprio)</span>`)}
-      ${linhaDetalhe("Visitantes (únicos)", escapar(acesso ? acesso.visitantes_unicos ?? "—" : "sem rastreio"))}
+      ${linhaDetalhe("Visitantes (únicos)", escapar(acesso ? acesso.visitantes_unicos ?? "—" : "sem rastreio"))}${linhasDownloads(site)}
     </section>`;
+}
+
+// Linhas de downloads (só sites com o bloco `downloads`; skill/CSV/script são acumulados desde "Contando desde").
+function linhasDownloads(site) {
+  const b = site.downloads;
+  if (!b) return "";
+  return `
+      ${linhaDetalhe("Downloads da skill", escapar(b.skill))}
+      ${linhaDetalhe("Downloads do CSV", escapar(b.csv))}
+      ${linhaDetalhe("Uso por script", `${escapar(b.por_script)} <span class="suave">· total sem robôs: ${escapar(b.total)} · por navegador: ${escapar(b.por_navegador)}</span>`)}
+      ${linhaDetalhe("Contando desde", b.desde ? escapar(formatarDataCurta(b.desde)) : `<span class="suave">sem registro</span>`)}`;
 }
 
 // ---------- Histórico completo de execuções (formato em src/historico.py) ----------

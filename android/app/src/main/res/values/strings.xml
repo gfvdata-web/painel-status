@@ -140,6 +140,7 @@
     <string name="sub_fora_do_ar_http">Site pode estar fora do ar (HTTP %1$d)</string>
     <string name="sub_vigilia">● Em vigília — aguardando resultado</string>
     <string name="visitas_valor">visitas · %1$dd</string>
+    <string name="downloads_linha">Downloads (%1$d dias): %2$d · skill %3$d · CSV %4$d</string>
     <string name="visitas_sem_rastreio">Sem rastreio de visitas</string>
     <string name="bolinha_ok">No ar</string>
     <string name="bolinha_aviso">Com aviso</string>

@@ -50,6 +50,9 @@
 .cartao__sub--aviso { color: var(--aviso); font-weight: 600; white-space: normal; }
 .cartao__sub--erro { color: var(--negativo); font-weight: 600; white-space: normal; }
 
+.cartao__downloads { margin: 2px 0 0; font-size: .72rem; color: var(--texto-suave); }
+.cartao__downloads strong { color: var(--texto); font-variant-numeric: tabular-nums; }
+
 .cartao__form {
   font-size: .78rem; font-weight: 600; color: var(--acento); text-decoration: none;
   border: 1px solid var(--acento-suave); border-radius: 8px; padding: 4px 10px; white-space: nowrap;

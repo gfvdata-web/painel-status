@@ -36,12 +36,19 @@ Campos de cada site (todos presentes em toda entrada, para servir de molde):
                    "hobby", "curiosidade", ou None (cor neutra enquanto não
                    atribuída). Os nomes e a atribuição ainda não estão definidos
                    (ver CATEGORIAS)
+  contagem_url     JSON público de downloads do site (<site>/contagem.json, sem token),
+                   ou None; com valor, o status.json ganha o bloco "downloads"
+                   (coleta_downloads.py). Hoje só os 3 sites de dados abertos
 
 Rastreio de acesso: um único site GoatCounter (`gfvdata`, ver coleta_goatcounter.py)
 recebe o snippet padrão em todos os sites monitorados — a separação entre eles é
 feita pelo prefixo do caminho (o nome do repositório), já que todos viviam sob
 gfvdata-web.github.io/<repo>/. Site em domínio próprio precisa prefixar o caminho no
-snippet (ver README). Não há campo por-site aqui para isso.
+snippet (ver README); os 3 sites de dados abertos já prefixam desde 2026-10-18, o Bolão
+F1 ainda não. Não há campo por-site aqui para isso.
+
+Contagem de downloads: independente do GoatCounter. Os sites de dados abertos publicam
+<site>/contagem.json (contador próprio na Cloudflare, sem IP); `contagem_url` aponta para ele.
 """
 
 OWNER = "gfvdata-web"
@@ -66,6 +73,7 @@ SITES = [
         "pipeline_bolao": True,
         "pipeline_forms": None,
         "categoria": None,
+        "contagem_url": None,
     },
     {
         "slug": "meios_pagamento_mensal",
@@ -84,6 +92,7 @@ SITES = [
         "pipeline_bolao": False,
         "pipeline_forms": None,
         "categoria": None,
+        "contagem_url": "https://meiospagamento.gfvdata.com/contagem.json",
     },
     {
         "slug": "arrecadacao_federal",
@@ -100,6 +109,7 @@ SITES = [
         "pipeline_bolao": False,
         "pipeline_forms": None,
         "categoria": None,
+        "contagem_url": "https://arrecadacaofederal.gfvdata.com/contagem.json",
     },
     {
         "slug": "credito_modalidade",
@@ -116,6 +126,7 @@ SITES = [
         "pipeline_bolao": False,
         "pipeline_forms": None,
         "categoria": None,
+        "contagem_url": "https://creditomodalidade.gfvdata.com/contagem.json",
     },
     {
         "slug": "simulador_investimentos",
@@ -132,6 +143,7 @@ SITES = [
         "pipeline_bolao": False,
         "pipeline_forms": None,
         "categoria": None,
+        "contagem_url": None,
     },
     {
         "slug": "chess_tracking",
@@ -148,6 +160,7 @@ SITES = [
         "pipeline_bolao": False,
         "pipeline_forms": None,
         "categoria": None,
+        "contagem_url": None,
     },
     {
         "slug": "plants_care",
@@ -169,6 +182,7 @@ SITES = [
         "pipeline_bolao": False,
         "pipeline_forms": "pipeline.yml",
         "categoria": None,
+        "contagem_url": None,
     },
     {
         "slug": "eleicoes_2026",
@@ -187,6 +201,7 @@ SITES = [
         "pipeline_bolao": False,
         "pipeline_forms": None,
         "categoria": None,
+        "contagem_url": None,
     },
     {
         "slug": "painel_esportivo",
@@ -205,6 +220,7 @@ SITES = [
         "pipeline_bolao": False,
         "pipeline_forms": None,
         "categoria": None,
+        "contagem_url": None,
     },
     {
         "slug": "dashboard_municipios",
@@ -221,6 +237,7 @@ SITES = [
         "pipeline_bolao": False,
         "pipeline_forms": None,
         "categoria": None,
+        "contagem_url": None,
     },
     {
         "slug": "var_vendo",
@@ -238,6 +255,7 @@ SITES = [
         "pipeline_bolao": False,
         "pipeline_forms": None,
         "categoria": None,
+        "contagem_url": None,
     },
     {
         "slug": "evolucao_fotografia",
@@ -257,6 +275,7 @@ SITES = [
         "pipeline_bolao": False,
         "pipeline_forms": None,
         "categoria": None,
+        "contagem_url": None,
     },
 ]
 
@@ -269,7 +288,7 @@ FORMS_AVULSOS = [
 CAMPOS_SITE = {
     "slug", "nome", "repo", "pages_url", "caminho_dados", "branch_dados", "workflow_arquivo",
     "json_meta_url", "form_url", "form_rotulo", "destaque", "pipeline_bolao", "pipeline_forms",
-    "categoria",
+    "categoria", "contagem_url",
 }
 
 # Valores aceitos em `categoria` (None = sem categoria, cor neutra).

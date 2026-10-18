@@ -199,6 +199,22 @@ test("lista: visitas = soma dos últimos 7 dias da série; sem rastreio = traço
   assert.match(p.el("lista-sites").innerHTML, /<strong>—<\/strong>/);
 });
 
+test("lista: linha de downloads só nos sites com o bloco (7 dias = soma dos últimos 7)", async () => {
+  const status = copia(exemplo);
+  const meios = site(status, "meios_pagamento_mensal");
+  meios.downloads.serie_diaria = Array.from({ length: 10 }, (_, i) => ({ data: `2026-10-${String(i + 1).padStart(2, "0")}`, downloads: i + 1 }));
+  const p = await abrirLista(status);
+  assert.equal(p.ctx("downloadsRecentes")(meios), 4 + 5 + 6 + 7 + 8 + 9 + 10);
+  assert.equal(p.ctx("downloadsRecentes")(site(status, "chess_tracking")), null);
+  const html = p.el("lista-sites").innerHTML;
+  const { total, skill, csv } = meios.downloads;
+  assert.ok(html.includes(`Downloads (7 dias): <strong>49</strong> · total ${total} · skill ${skill} · CSV ${csv}`));
+  assert.match(html, /title="Total sem robôs: 8 · por navegador: 3 · por script \(ex\.: skill do Claude\): 5 — Contando desde 08\/10\/2026"/);
+  // 3 sites de dados abertos têm o bloco; os demais cartões não mostram a linha (nem "0")
+  assert.equal((html.match(/cartao__downloads/g) || []).length, 3);
+  semLixo(html, "lista-sites");
+});
+
 test("lista: texto vindo do status é escapado (sem HTML injetado)", async () => {
   const status = copia(exemplo);
   const s = site(status, "chess_tracking");
@@ -300,6 +316,24 @@ test("v1: pop-up de detalhes mostra rotina, falha, dados e publicação", async 
   // site sem rotina automática
   p.ctx('abrirDetalhes("eleicoes_2026")');
   assert.match(p.el("dialogo-conteudo").innerHTML, /Sem rotina automática cadastrada/);
+});
+
+test("v1: pop-up mostra downloads da skill, do CSV, uso por script e desde quando; sem bloco, nada", async () => {
+  const p = await abrirV1(exemplo);
+  p.ctx('abrirDetalhes("meios_pagamento_mensal")');
+  const html = p.el("dialogo-conteudo").innerHTML;
+  for (const trecho of ["Downloads da skill", "Downloads do CSV", "Uso por script", "Contando desde", "08/10/2026"]) {
+    assert.ok(html.includes(trecho), trecho);
+  }
+  semLixo(html, "pop-up meios_pagamento_mensal");
+  p.ctx('abrirDetalhes("chess_tracking")');
+  assert.doesNotMatch(p.el("dialogo-conteudo").innerHTML, /Downloads da skill|Contando desde/);
+  // desde nulo (coleta sem data) não quebra
+  const status = copia(exemplo);
+  site(status, "meios_pagamento_mensal").downloads.desde = null;
+  const q = await abrirV1(status);
+  q.ctx('abrirDetalhes("meios_pagamento_mensal")');
+  assert.match(q.el("dialogo-conteudo").innerHTML, /Contando desde[\s\S]*sem registro/);
 });
 
 test("v1: abrirDetalhes ignora slug desconhecido e o Bolão (sem detalhes)", async () => {

@@ -58,6 +58,25 @@ function visitasRecentes(site) {
   return serie.slice(-DIAS_VISITAS).reduce((total, dia) => total + (dia.visitantes || 0), 0);
 }
 
+// Downloads dos últimos 7 dias da série (mesma janela das visitas); null = site sem o bloco `downloads`.
+function downloadsRecentes(site) {
+  const bloco = site.downloads;
+  if (!bloco) return null;
+  return (bloco.serie_diaria || []).slice(-DIAS_VISITAS).reduce((total, dia) => total + (dia.downloads || 0), 0);
+}
+
+// Linha discreta do cartão: 7 dias em destaque; total, skill e CSV (acumulados) ao lado; o resto na dica.
+function linhaDownloads(site) {
+  const recentes = downloadsRecentes(site);
+  if (recentes === null) return "";
+  const b = site.downloads;
+  const dica = [
+    `Total sem robôs: ${b.total} · por navegador: ${b.por_navegador} · por script (ex.: skill do Claude): ${b.por_script}`,
+    b.desde ? `Contando desde ${b.desde.split("-").reverse().join("/")}` : "",
+  ].filter(Boolean).join(" — ");
+  return `<p class="cartao__downloads" title="${escapar(dica)}">Downloads (${DIAS_VISITAS} dias): <strong>${escapar(recentes)}</strong> · total ${escapar(b.total)} · skill ${escapar(b.skill)} · CSV ${escapar(b.csv)}</p>`;
+}
+
 // Situação do cartão: nível (bolinha à direita) + texto embaixo do nome (o endereço, se estiver tudo bem).
 function situacao(site) {
   const noAr = site.site_no_ar || {};
@@ -170,6 +189,7 @@ function cartao(site) {
             ${botaoPipeline(site)}
           </div>
           ${sub}
+          ${linhaDownloads(site)}
         </div>
         ${form}
         <div class="cartao__visitas" title="${visitas === null ? "Sem rastreio de visitas" : `Visitantes únicos nos últimos ${DIAS_VISITAS} dias`}">

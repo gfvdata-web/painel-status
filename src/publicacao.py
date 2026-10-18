@@ -22,7 +22,10 @@ que espelha estes campos em data/modelo/Modelos.kt; mudanças só aditivas):
                  formato de ultima_execucao_pipeline, etapas no de
                  etapas_pipeline (etapas_forms.py); em todo site com workflow,
                  historico_arquivo (caminho do histórico acumulado, formato
-                 em historico.py)
+                 em historico.py); só nos sites com contagem_url, downloads
+                 {total, skill, csv, por_navegador, por_script, desde,
+                 serie_diaria [{data, downloads}]} (coleta_downloads.py: sem
+                 robôs; série dos últimos 30 dias contínuos, com zeros)
   forms_avulsos  [{nome, url}] copiado de config.FORMS_AVULSOS
 """
 
@@ -31,6 +34,7 @@ import re
 import sys
 from pathlib import Path
 
+from . import coleta_downloads
 from . import coleta_github as gh
 from . import coleta_goatcounter as gc
 from . import historico
@@ -46,7 +50,7 @@ EXECUCOES_NO_POPUP = 15
 EXECUCOES_RECENTES = 100  # uma página da API; o histórico acumulado só acrescenta
 
 
-def coletar_site(site, acesso_por_repo, acesso_anterior, falha_total):
+def coletar_site(site, acesso_por_repo, acesso_anterior, falha_total, downloads_anterior=None):
     bloco = {
         "slug": site["slug"],
         "nome": site["nome"],
@@ -105,6 +109,13 @@ def coletar_site(site, acesso_por_repo, acesso_anterior, falha_total):
     if acesso:
         bloco["acesso"] = acesso
 
+    if site["contagem_url"]:
+        downloads = coleta_downloads.coletar(site["contagem_url"])
+        if downloads is None and downloads_anterior:
+            downloads = downloads_anterior.get(site["slug"])
+        if downloads:
+            bloco["downloads"] = downloads
+
     return bloco
 
 
@@ -136,6 +147,13 @@ def _acesso_anterior_por_slug(anterior):
     return {site["slug"]: site["acesso"] for site in anterior.get("sites", []) if site.get("acesso")}
 
 
+def _downloads_anterior_por_slug(anterior):
+    """'downloads' de cada site no status.json anterior — reaproveitado quando a leitura do contagem.json falha."""
+    if not anterior:
+        return {}
+    return {site["slug"]: site["downloads"] for site in anterior.get("sites", []) if site.get("downloads")}
+
+
 def _meta():
     return {
         "gerado_em": gh.agora_iso(),
@@ -147,13 +165,16 @@ def montar():
     validar()
     acesso_por_repo = gc.estatisticas_por_repo([site["repo"] for site in SITES])
     falha_total = acesso_por_repo is None
-    acesso_anterior = _acesso_anterior_por_slug(_status_anterior()) if falha_total else {}
+    anterior = _status_anterior()
+    acesso_anterior = _acesso_anterior_por_slug(anterior) if falha_total else {}
+    downloads_anterior = _downloads_anterior_por_slug(anterior)
     if falha_total:
         acesso_por_repo = {}
     return {
         "meta": _meta(),
         "sites": [
-            coletar_site(site, acesso_por_repo, acesso_anterior, falha_total) for site in SITES
+            coletar_site(site, acesso_por_repo, acesso_anterior, falha_total, downloads_anterior)
+            for site in SITES
         ],
         "forms_avulsos": FORMS_AVULSOS,
     }
@@ -169,7 +190,9 @@ def montar_so(campo):
     validar()
     sites = list(anterior["sites"])
     for site in (s for s in SITES if s[campo]):
-        bloco = coletar_site(site, {}, _acesso_anterior_por_slug(anterior), falha_total=True)
+        bloco = coletar_site(
+            site, {}, _acesso_anterior_por_slug(anterior), True, _downloads_anterior_por_slug(anterior)
+        )
         indice = next((i for i, s in enumerate(sites) if s["slug"] == site["slug"]), None)
         if indice is None:
             sites.insert(0 if site["destaque"] else len(sites), bloco)

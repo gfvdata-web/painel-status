@@ -174,6 +174,15 @@ fun categoriasUsadas(sites: List<Site>): List<Categoria> =
 fun visitasRecentes(site: Site): Int? =
     site.acesso?.serieDiaria?.takeIf { it.isNotEmpty() }?.takeLast(DIAS_VISITAS)?.sumOf { it.visitantes }
 
+/** Linha de downloads do card: [recentes] = soma dos últimos [DIAS_VISITAS] dias; skill e CSV são acumulados. */
+data class ResumoDownloads(val recentes: Int, val skill: Int, val csv: Int)
+
+/** null = site sem bloco de downloads. */
+fun downloadsRecentes(site: Site): ResumoDownloads? =
+    site.downloads?.let { d ->
+        ResumoDownloads(d.serieDiaria.takeLast(DIAS_VISITAS).sumOf { it.downloads }, d.skill, d.csv)
+    }
+
 /** Cabeçalho da lista: quantos sites e quantos não responderam. */
 data class ResumoDosSites(val total: Int, val foraDoAr: Int)
 

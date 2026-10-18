@@ -14,7 +14,7 @@ from unittest import mock
 
 from tests.apoio import FIXTURES, RedeFalsa, relogio_fixo
 
-RELOGIOS = ("src.detalhes_site", "src.coleta_goatcounter", "src.coleta_github")
+RELOGIOS = ("src.detalhes_site", "src.coleta_goatcounter", "src.coleta_github", "src.coleta_downloads")
 
 
 def gerar():
