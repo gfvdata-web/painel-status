@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-10-19T18:00:56.894095+00:00",
+    "gerado_em": "2026-10-19T21:00:58.744621+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -2753,10 +2753,10 @@
       "destaque": false,
       "categoria": null,
       "ultimo_commit_dados": {
-        "data": "2026-10-14T00:39:42Z",
-        "mensagem": "feat: v2.0 — reprocessar fotos com medidas antigas",
-        "sha": "2ad798c",
-        "url": "https://github.com/gfvdata-web/evolucao-fotografia/commit/2ad798c6cf9c8eea6a07800e2dba64db469c5223"
+        "data": "2026-10-19T17:47:28Z",
+        "mensagem": "feat: v2.1 — Painel de padrões",
+        "sha": "7752099",
+        "url": "https://github.com/gfvdata-web/evolucao-fotografia/commit/77520993faf88b32b178f40f091ab26fe7496d7f"
       },
       "site_no_ar": {
         "ok": true,
@@ -2765,6 +2765,18 @@
       "detalhes": {
         "coleta": null,
         "commits_dados": [
+          {
+            "data": "2026-10-19T17:47:28Z",
+            "mensagem": "feat: v2.1 — Painel de padrões",
+            "sha": "7752099",
+            "url": "https://github.com/gfvdata-web/evolucao-fotografia/commit/77520993faf88b32b178f40f091ab26fe7496d7f"
+          },
+          {
+            "data": "2026-10-19T17:33:56Z",
+            "mensagem": "feat: v2.0.1 — os números por trás do \"Boa\" no diagnóstico",
+            "sha": "38e35c5",
+            "url": "https://github.com/gfvdata-web/evolucao-fotografia/commit/38e35c5737c71dddd26d7bbd7c4c172d8c666af2"
+          },
           {
             "data": "2026-10-14T00:39:42Z",
             "mensagem": "feat: v2.0 — reprocessar fotos com medidas antigas",
@@ -2782,18 +2794,6 @@
             "mensagem": "feat: v1.0 — aviso no topo quando falta recurso essencial do navegador",
             "sha": "050b910",
             "url": "https://github.com/gfvdata-web/evolucao-fotografia/commit/050b91067697186557ec20cf22e8d006ddf4a12b"
-          },
-          {
-            "data": "2026-10-13T23:51:04Z",
-            "mensagem": "feat: v1.0 — Painel (beta) com o site disse × você marcou",
-            "sha": "7196dc3",
-            "url": "https://github.com/gfvdata-web/evolucao-fotografia/commit/7196dc3ac81b2eb9fe7bd22786cb3ab1fb6a4931"
-          },
-          {
-            "data": "2026-10-13T23:33:38Z",
-            "mensagem": "feat: v1.0 — conferir compatibilidade do navegador (Samsung Internet)",
-            "sha": "88f3589",
-            "url": "https://github.com/gfvdata-web/evolucao-fotografia/commit/88f3589ef0c5c3145b0f61ff75fb5198248e788a"
           }
         ],
         "deploy_pages": null
