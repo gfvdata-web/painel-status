@@ -3,8 +3,22 @@
  "nome": "Simulador de investimentos",
  "workflow": "atualizar-dados.yml",
  "url_workflow": "https://github.com/gfvdata-web/simulador-investimentos/actions/workflows/atualizar-dados.yml",
- "atualizado_em": "2026-10-17T00:01:23.444584+00:00",
+ "atualizado_em": "2026-10-20T03:01:05.485211+00:00",
  "execucoes": [
+  {
+   "id": 39345086434,
+   "criado_em": "2026-10-20T00:01:02Z",
+   "evento": "schedule",
+   "conclusao": "success",
+   "duracao_s": 771,
+   "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/39345086434",
+   "avisos": [
+    {
+     "nivel": "notice",
+     "mensagem": "\"The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748\""
+    }
+   ]
+  },
   {
    "id": 38979497782,
    "criado_em": "2026-10-16T23:05:14Z",
