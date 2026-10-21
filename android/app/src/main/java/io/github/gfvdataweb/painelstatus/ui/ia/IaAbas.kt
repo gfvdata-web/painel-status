@@ -1,6 +1,7 @@
 package io.github.gfvdataweb.painelstatus.ui.ia
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -20,14 +21,29 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material3.Card
+import androidx.compose.material3.DatePickerDialog
+import androidx.compose.material3.DateRangePicker
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FilterChip
+import androidx.compose.material3.Icon
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.material3.rememberDateRangePickerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
@@ -37,6 +53,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import io.github.gfvdataweb.painelstatus.R
 import io.github.gfvdataweb.painelstatus.data.ia.DadosIa
+import io.github.gfvdataweb.painelstatus.data.ia.DiaUso
 import io.github.gfvdataweb.painelstatus.data.ia.FaixaLimite
 import io.github.gfvdataweb.painelstatus.data.ia.SessaoUso
 import io.github.gfvdataweb.painelstatus.ui.comum.Secao
@@ -44,7 +61,10 @@ import io.github.gfvdataweb.painelstatus.ui.comum.Selo
 import io.github.gfvdataweb.painelstatus.ui.comum.coresDoTom
 import io.github.gfvdataweb.painelstatus.ui.comum.dataHora
 import io.github.gfvdataweb.painelstatus.ui.painel.Tom
+import java.time.Instant
+import java.time.LocalDate
 import java.time.ZoneId
+import java.time.ZoneOffset
 
 // Conteúdo de cada aba do painel de IA. Os números e rótulos saem de
 // ApresentacaoIa.kt (as mesmas regras da página); aqui só se desenha.
@@ -130,15 +150,74 @@ internal fun AbaAgora(dados: DadosIa, agoraMs: Long, fuso: ZoneId) {
         }
         dados.uso?.let { uso ->
             val hoje = hojeEm(agoraMs, fuso)
-            Periodo(stringResource(R.string.ia_hoje), resumoDoPeriodo(diasNoPeriodo(uso.dias, hoje, hoje)))
-            Periodo(
-                stringResource(R.string.ia_ultimos_7_dias),
-                resumoDoPeriodo(diasNoPeriodo(uso.dias, hoje.minusDays(DIAS_SEMANA - 1L), hoje)),
-            )
+            SeletorDePeriodo(uso.dias, hoje)
             Nota()
         }
     }
 }
+
+/** Chips de período + um único resumo do intervalo escolhido. Estado salvo na rotação. */
+@OptIn(ExperimentalMaterial3Api::class) // DateRangePicker
+@Composable
+private fun SeletorDePeriodo(dias: List<DiaUso>, hoje: LocalDate) {
+    var periodo by rememberSaveable { mutableStateOf(PeriodoIa.HOJE) }
+    // Dias personalizados como epochDay (Long salva sem Saver).
+    var deDia by rememberSaveable { mutableStateOf<Long?>(null) }
+    var ateDia by rememberSaveable { mutableStateOf<Long?>(null) }
+    var escolhendo by rememberSaveable { mutableStateOf(false) }
+
+    val rotulos = listOf(
+        PeriodoIa.HOJE to R.string.ia_chip_hoje,
+        PeriodoIa.SETE_DIAS to R.string.ia_chip_7_dias,
+        PeriodoIa.TRINTA_DIAS to R.string.ia_chip_30_dias,
+        PeriodoIa.SEMPRE to R.string.ia_chip_sempre,
+        PeriodoIa.PERSONALIZADO to R.string.ia_chip_personalizado,
+    )
+    Row(Modifier.horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        rotulos.forEach { (valor, rotulo) ->
+            FilterChip(
+                selected = periodo == valor,
+                onClick = { if (valor == PeriodoIa.PERSONALIZADO) escolhendo = true else periodo = valor },
+                label = { Text(stringResource(rotulo)) },
+            )
+        }
+    }
+
+    if (escolhendo) {
+        val estado = rememberDateRangePickerState()
+        DatePickerDialog(
+            onDismissRequest = { escolhendo = false },
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        deDia = estado.selectedStartDateMillis?.let(::diaDoSeletor)?.toEpochDay()
+                        ateDia = estado.selectedEndDateMillis?.let(::diaDoSeletor)?.toEpochDay()
+                        periodo = PeriodoIa.PERSONALIZADO
+                        escolhendo = false
+                    },
+                    enabled = estado.selectedStartDateMillis != null,
+                ) { Text(stringResource(R.string.ia_periodo_confirmar)) }
+            },
+            dismissButton = { TextButton(onClick = { escolhendo = false }) { Text(stringResource(R.string.ia_periodo_cancelar)) } },
+        ) {
+            DateRangePicker(estado, modifier = Modifier.height(480.dp))
+        }
+    }
+
+    val intervalo = intervaloDo(periodo, hoje, dias, deDia?.let(LocalDate::ofEpochDay), ateDia?.let(LocalDate::ofEpochDay))
+    val titulo = when (periodo) {
+        PeriodoIa.HOJE -> stringResource(R.string.ia_hoje)
+        PeriodoIa.SETE_DIAS -> stringResource(R.string.ia_ultimos_7_dias)
+        PeriodoIa.TRINTA_DIAS -> stringResource(R.string.ia_ultimos_30_dias)
+        PeriodoIa.SEMPRE -> stringResource(R.string.ia_desde_sempre)
+        PeriodoIa.PERSONALIZADO ->
+            stringResource(R.string.ia_intervalo, dataCurta(intervalo.de), dataCurta(intervalo.ate))
+    }
+    Periodo(titulo, resumoDoPeriodo(diasNoPeriodo(dias, intervalo.de, intervalo.ate)))
+}
+
+/** O seletor devolve meia-noite UTC do dia tocado. */
+private fun diaDoSeletor(millis: Long): LocalDate = Instant.ofEpochMilli(millis).atZone(ZoneOffset.UTC).toLocalDate()
 
 @Composable
 private fun Nota() {
@@ -276,27 +355,41 @@ internal fun AbaSessoes(dados: DadosIa, fuso: ZoneId) {
         Vazio(stringResource(R.string.ia_nenhuma_sessao))
         return
     }
+    // Ids abertos ficam fora da lista: a recarga dos dados não fecha os cartões.
+    val abertos = remember { mutableStateListOf<String>() }
     LazyColumn(
         Modifier.fillMaxSize(),
         contentPadding = PaddingValues(16.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
-        items(lista) { CartaoDeSessao(it, fuso) }
+        items(lista, key = { it.id }) { sessao ->
+            val aberto = sessao.id in abertos
+            CartaoDeSessao(sessao, fuso, aberto) { if (aberto) abertos.remove(sessao.id) else abertos.add(sessao.id) }
+        }
     }
 }
 
 @Composable
-private fun CartaoDeSessao(sessao: SessaoUso, fuso: ZoneId) {
+private fun CartaoDeSessao(sessao: SessaoUso, fuso: ZoneId, aberto: Boolean, aoAlternar: () -> Unit) {
     val duracao = duracaoDaSessaoS(sessao)?.let { textoDoTempo(tempoDe(it.toDouble())) }
-    Card(Modifier.fillMaxWidth()) {
+    Card(onClick = aoAlternar, modifier = Modifier.fillMaxWidth()) {
         Column(Modifier.padding(12.dp), verticalArrangement = Arrangement.spacedBy(2.dp)) {
-            Text(
-                sessao.titulo.ifEmpty { stringResource(R.string.ia_sem_titulo) },
-                style = MaterialTheme.typography.titleSmall,
-                fontWeight = FontWeight.SemiBold,
-                maxLines = 2,
-                overflow = TextOverflow.Ellipsis,
-            )
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text(
+                    sessao.titulo.ifEmpty { stringResource(R.string.ia_sem_titulo) },
+                    style = MaterialTheme.typography.titleSmall,
+                    fontWeight = FontWeight.SemiBold,
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis,
+                    modifier = Modifier.weight(1f),
+                )
+                // Só a seta "para baixo" (material-icons-core), girada quando aberto.
+                Icon(
+                    Icons.Filled.ArrowDropDown,
+                    contentDescription = stringResource(if (aberto) R.string.ia_sessao_recolher else R.string.ia_sessao_expandir),
+                    modifier = Modifier.rotate(if (aberto) 180f else 0f),
+                )
+            }
             Text(juntar(sessao.projeto, dataHora(sessao.fim, fuso)), style = MaterialTheme.typography.bodySmall)
             Text(juntar(duracao, modelosDaSessao(sessao).joinToString(", ")), style = MaterialTheme.typography.bodySmall)
             Text(
@@ -304,7 +397,36 @@ private fun CartaoDeSessao(sessao: SessaoUso, fuso: ZoneId) {
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
+            if (aberto) DetalheDaSessao(detalheDaSessao(sessao))
         }
+    }
+}
+
+/** "Por modelo" sempre; "Por subagente" só quando a sessão traz `agentes_detalhe`. */
+@Composable
+private fun DetalheDaSessao(detalhe: DetalheSessao) {
+    Column(Modifier.padding(top = 8.dp), verticalArrangement = Arrangement.spacedBy(2.dp)) {
+        BlocoDeLinhas(stringResource(R.string.ia_sessao_por_modelo), detalhe.modelos)
+        if (detalhe.agentes.isNotEmpty()) {
+            Spacer(Modifier.height(6.dp))
+            BlocoDeLinhas(stringResource(R.string.ia_sessao_por_agente), detalhe.agentes)
+        }
+    }
+}
+
+@Composable
+private fun BlocoDeLinhas(titulo: String, linhas: List<LinhaDetalhe>) {
+    Text(titulo, style = MaterialTheme.typography.labelLarge, fontWeight = FontWeight.SemiBold)
+    linhas.forEach { linha ->
+        val custo = linha.custoUsd
+        Text(
+            if (custo == null) {
+                stringResource(R.string.ia_agente_so_tokens, linha.nome, tokensCompactos(linha.tokens))
+            } else {
+                stringResource(R.string.ia_modelo_linha, linha.nome, tokensCompactos(linha.tokens), dolar(custo))
+            },
+            style = MaterialTheme.typography.bodySmall,
+        )
     }
 }
 

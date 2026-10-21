@@ -70,6 +70,14 @@ data class AgenteUso(
     val sessoes: Long = 0,
 )
 
+/** Um agente dentro de uma sessão (`agentes_detalhe`); `custo_usd` pode faltar (só tokens). */
+@Serializable
+data class AgenteDaSessao(
+    val modelos: Map<String, UsoModelo> = emptyMap(),
+    val total: Long = 0,
+    @SerialName("custo_usd") val custoUsd: Double? = null,
+)
+
 @Serializable
 data class SessaoUso(
     val id: String = "",
@@ -80,6 +88,8 @@ data class SessaoUso(
     val modelos: Map<String, UsoModelo> = emptyMap(),
     /** Tokens por agente ("principal" e os subagentes). */
     val agentes: Map<String, Long> = emptyMap(),
+    /** Modelos e custo por agente da sessão; ausente em sessões coletadas antes do campo existir. */
+    @SerialName("agentes_detalhe") val agentesDetalhe: Map<String, AgenteDaSessao> = emptyMap(),
     val total: Long = 0,
     @SerialName("custo_usd") val custoUsd: Double = 0.0,
 )

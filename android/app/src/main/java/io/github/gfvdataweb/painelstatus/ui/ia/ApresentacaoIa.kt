@@ -13,6 +13,7 @@ import java.time.Duration
 import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 import java.util.Locale
 import kotlin.math.roundToLong
 
@@ -177,6 +178,40 @@ fun resumoDoPeriodo(dias: List<DiaUso>): ResumoPeriodo {
 fun diasNoPeriodo(dias: List<DiaUso>, de: LocalDate, ate: LocalDate): List<DiaUso> =
     dias.filter { it.dia >= de.toString() && it.dia <= ate.toString() }
 
+/** Períodos da aba Agora; [PERSONALIZADO] usa as datas escolhidas no seletor. */
+enum class PeriodoIa { HOJE, SETE_DIAS, TRINTA_DIAS, SEMPRE, PERSONALIZADO }
+
+/** Intervalo de dias (inclusive) de um [PeriodoIa]. */
+data class IntervaloIa(val de: LocalDate, val ate: LocalDate)
+
+/**
+ * Intervalo do [periodo] terminando em [hoje]. [SEMPRE] vai do primeiro ao último dia de [dias];
+ * [PERSONALIZADO] usa [de]/[ate] (um só preenchido vale um dia; nenhum vale hoje; invertidos são trocados).
+ */
+fun intervaloDo(
+    periodo: PeriodoIa,
+    hoje: LocalDate,
+    dias: List<DiaUso> = emptyList(),
+    de: LocalDate? = null,
+    ate: LocalDate? = null,
+): IntervaloIa = when (periodo) {
+    PeriodoIa.HOJE -> IntervaloIa(hoje, hoje)
+    PeriodoIa.SETE_DIAS -> IntervaloIa(hoje.minusDays(DIAS_SEMANA - 1L), hoje)
+    PeriodoIa.TRINTA_DIAS -> IntervaloIa(hoje.minusDays(DIAS_GRAFICO - 1L), hoje)
+    PeriodoIa.SEMPRE -> {
+        val datas = dias.mapNotNull { runCatching { LocalDate.parse(it.dia) }.getOrNull() }
+        IntervaloIa(datas.minOrNull() ?: hoje, maxOf(datas.maxOrNull() ?: hoje, hoje))
+    }
+    PeriodoIa.PERSONALIZADO -> {
+        val inicio = de ?: ate ?: hoje
+        val fim = ate ?: de ?: hoje
+        if (inicio <= fim) IntervaloIa(inicio, fim) else IntervaloIa(fim, inicio)
+    }
+}
+
+/** `2026-10-05` vira `05/10/2026`. */
+fun dataCurta(data: LocalDate): String = DateTimeFormatter.ofPattern("dd/MM/yyyy", PT_BR).format(data)
+
 /** Dia de calendário de "agora" no fuso do celular. */
 fun hojeEm(agoraMs: Long, fuso: ZoneId): LocalDate = Instant.ofEpochMilli(agoraMs).atZone(fuso).toLocalDate()
 
@@ -211,6 +246,19 @@ fun duracaoDaSessaoS(sessao: SessaoUso): Long? {
 /** Modelos usados na sessão, do que mais gastou para o que menos. */
 fun modelosDaSessao(sessao: SessaoUso): List<String> =
     sessao.modelos.entries.sortedByDescending { it.value.total }.map { nomeModelo(it.key) }
+
+/** Uma linha do detalhe de sessão; [custoUsd] é null quando só há tokens. */
+data class LinhaDetalhe(val nome: String, val tokens: Long, val custoUsd: Double?)
+
+/** Quebra de uma sessão por modelo e por agente, do mais caro ao mais barato (sem custo vai para o fim). */
+data class DetalheSessao(val modelos: List<LinhaDetalhe>, val agentes: List<LinhaDetalhe>)
+
+fun detalheDaSessao(sessao: SessaoUso): DetalheSessao {
+    val modelos = sessao.modelos.map { (nome, uso) -> LinhaDetalhe(nomeModelo(nome), uso.total, uso.custoUsd) }
+    val agentes = sessao.agentesDetalhe.map { (nome, agente) -> LinhaDetalhe(nome, agente.total, agente.custoUsd) }
+    val porCusto = compareByDescending<LinhaDetalhe> { it.custoUsd ?: -1.0 }.thenByDescending { it.tokens }
+    return DetalheSessao(modelos.sortedWith(porCusto), agentes.sortedWith(porCusto))
+}
 
 data class LinhaDeAgente(
     val nome: String,

@@ -112,9 +112,24 @@ class IaTelasTest {
         existe("lido há 10 min", trecho = true)
         existe("Limites nos últimos 7 dias")
         existe("Hoje: ", trecho = true)
-        existe("Últimos 7 dias: ", trecho = true)
         existe("Gerado em", trecho = true)
         existe("Sair do painel de IA")
+    }
+
+    @Test
+    fun tocarNoChipTrocaOPeriodoETotal() {
+        mostrar(EstadoIa.Pronto(dados, desatualizado = false))
+        existe("Hoje: ", trecho = true)
+        existe("US$ 0,85", trecho = true)
+
+        compose.onNodeWithText("30 dias").performClick()
+        existe("Últimos 30 dias: ", trecho = true)
+        existe("US$ 15,35", trecho = true)
+
+        // A linha de 01/08 só entra em "Desde sempre".
+        compose.onNodeWithText("Desde sempre").performClick()
+        existe("Desde sempre: ", trecho = true)
+        existe("US$ 15,45", trecho = true)
     }
 
     @Test
@@ -160,6 +175,27 @@ class IaTelasTest {
         existe("(sem título)")
         existe("ProjetoB", trecho = true)
         existe("2 h 05 min", trecho = true)
+    }
+
+    @Test
+    fun tocarNaSessaoMostraCustoPorModeloEPorSubagente() {
+        mostrar(EstadoIa.Pronto(dados, desatualizado = false))
+        compose.onNodeWithText("Sessões").performClick()
+        assertTrue(compose.onAllNodesWithText("Por modelo").fetchSemanticsNodes().isEmpty())
+
+        compose.onNodeWithText("Sessão nova de teste").performClick()
+        existe("Por modelo")
+        existe("Por subagente")
+        existe("android-dev · 153,0 mil tokens · US$ 0,80")
+
+        // A sessão antiga não tem agentes_detalhe: só "Por modelo".
+        compose.onNodeWithText("Sessão antiga de teste").performClick()
+        assertEquals(2, compose.onAllNodesWithText("Por modelo").fetchSemanticsNodes().size)
+        assertEquals(1, compose.onAllNodesWithText("Por subagente").fetchSemanticsNodes().size)
+
+        compose.onNodeWithText("Sessão nova de teste").performClick() // recolhe
+        assertEquals(1, compose.onAllNodesWithText("Por modelo").fetchSemanticsNodes().size)
+        assertTrue(compose.onAllNodesWithText("Por subagente").fetchSemanticsNodes().isEmpty())
     }
 
     @Test

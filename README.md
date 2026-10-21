@@ -239,8 +239,10 @@ lugar e nada é cadastrado no app. Se o endereço novo não responder, o app ten
   em `App.kt`). Pede a **senha uma vez** (`POST /entrar`); o app guarda só o
   cookie `painel_ia` que o Worker devolve (válido por 30 dias), **cifrado com AES-GCM e chave no
   Android Keystore** (`CofreKeystore`), nunca a senha. Logado, mostra as abas **Agora** (barras
-  de 5 h e semanal, quando zera, "lido há…", gráfico dos limites e totais de hoje/7 dias),
-  **Modelos** (barras empilhadas de 30 dias e totais), **Sessões**, **Agentes** (modelo
+  de 5 h e semanal, quando zera, "lido há…", gráfico dos limites e totais do período
+  escolhido nos chips Hoje / 7 dias / 30 dias / Desde sempre / Personalizado, este com seletor de
+  datas), **Modelos** (barras empilhadas de 30 dias e totais), **Sessões** (toque no cartão abre
+  o custo por modelo e, se o `uso.json` trouxer `agentes_detalhe`, por subagente), **Agentes** (modelo
   configurado × modelos que rodaram) e **Catálogo**, com os mesmos cálculos de `painel.js` do
   painel-ia, e "Sair do painel de IA" no rodapé (apaga o cookie e os dados guardados). Cookie
   vencido ou recusado (401) volta para a tela de senha; sem internet mostra os últimos dados

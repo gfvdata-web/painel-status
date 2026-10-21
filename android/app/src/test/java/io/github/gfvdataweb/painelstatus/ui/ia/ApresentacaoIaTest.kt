@@ -124,6 +124,57 @@ class ApresentacaoIaTest {
     }
 
     @Test
+    fun intervaloDeCadaPeriodo() {
+        assertEquals(IntervaloIa(hoje, hoje), intervaloDo(PeriodoIa.HOJE, hoje))
+        assertEquals(IntervaloIa(hoje.minusDays(6), hoje), intervaloDo(PeriodoIa.SETE_DIAS, hoje))
+        assertEquals(IntervaloIa(LocalDate.of(2026, 9, 16), hoje), intervaloDo(PeriodoIa.TRINTA_DIAS, hoje))
+        // Desde sempre vai do primeiro dia de uso (01/08) até hoje.
+        assertEquals(IntervaloIa(LocalDate.of(2026, 8, 1), hoje), intervaloDo(PeriodoIa.SEMPRE, hoje, uso.dias))
+        assertEquals(IntervaloIa(hoje, hoje), intervaloDo(PeriodoIa.SEMPRE, hoje, emptyList()))
+
+        val de = LocalDate.of(2026, 10, 10)
+        val ate = LocalDate.of(2026, 10, 13)
+        assertEquals(IntervaloIa(de, ate), intervaloDo(PeriodoIa.PERSONALIZADO, hoje, uso.dias, de, ate))
+        assertEquals(IntervaloIa(de, ate), intervaloDo(PeriodoIa.PERSONALIZADO, hoje, uso.dias, ate, de)) // invertido
+        assertEquals(IntervaloIa(de, de), intervaloDo(PeriodoIa.PERSONALIZADO, hoje, uso.dias, de, null)) // um dia só
+        assertEquals(IntervaloIa(hoje, hoje), intervaloDo(PeriodoIa.PERSONALIZADO, hoje))
+        assertEquals("10/10/2026", dataCurta(de))
+    }
+
+    @Test
+    fun desdeSempreSeparaDe30DiasPelaLinhaDeAgosto() {
+        fun custo(periodo: PeriodoIa): Double {
+            val i = intervaloDo(periodo, hoje, uso.dias)
+            return resumoDoPeriodo(diasNoPeriodo(uso.dias, i.de, i.ate)).custoUsd
+        }
+        assertEquals(1.25 + 3.5 + 2.0 + 7.75 + 0.8 + 0.05, custo(PeriodoIa.TRINTA_DIAS), 1e-9)
+        assertEquals(custo(PeriodoIa.TRINTA_DIAS) + 0.1, custo(PeriodoIa.SEMPRE), 1e-9)
+    }
+
+    @Test
+    fun detalheDaSessaoComEmSemAgentesDetalhe() {
+        val nova = detalheDaSessao(uso.sessoes.first { it.id == "s-nova" })
+        assertEquals(listOf("opus-5-5", "sonnet-5"), nova.modelos.map { it.nome })
+        assertEquals(LinhaDetalhe("opus-5-5", 1_210_580, 7.75), nova.modelos.first())
+        assertEquals(listOf("principal", "android-dev"), nova.agentes.map { it.nome }) // por custo
+        assertEquals(0.8, nova.agentes.last().custoUsd!!, 0.0)
+        assertEquals(8.55, nova.agentes.sumOf { it.custoUsd!! }, 1e-9)
+
+        val antiga = detalheDaSessao(uso.sessoes.first { it.id == "s-antiga" })
+        assertEquals(listOf("sonnet-5"), antiga.modelos.map { it.nome })
+        assertTrue(antiga.agentes.isEmpty())
+
+        // Só tokens: sem custo_usd o agente fica depois dos que têm custo.
+        val soTokens = lerUso(
+            """{"sessoes": [{"id": "x", "agentes_detalhe": {
+                "a": {"total": 500}, "b": {"total": 10, "custo_usd": 0.5}}}]}""",
+        ).sessoes.single()
+        val agentes = detalheDaSessao(soTokens).agentes
+        assertEquals(listOf("b", "a"), agentes.map { it.nome })
+        assertNull(agentes.last().custoUsd)
+    }
+
+    @Test
     fun serieDosUltimos30DiasPorModelo() {
         val serie = serieDeTokens(uso.dias, hoje)
 

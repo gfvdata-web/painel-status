@@ -252,6 +252,42 @@
     "principal": 1200000,
     "android-dev": 150000
    },
+   "agentes_detalhe": {
+    "principal": {
+     "modelos": {
+      "claude-opus-5-5": {
+       "entrada": 80,
+       "saida": 1500,
+       "cache_leitura": 1200000,
+       "escrita_5m": 0,
+       "escrita_1h": 9000,
+       "respostas": 9,
+       "cache_escrita": 9000,
+       "total": 1210580,
+       "custo_usd": 7.75
+      }
+     },
+     "total": 1210580,
+     "custo_usd": 7.75
+    },
+    "android-dev": {
+     "modelos": {
+      "claude-sonnet-5": {
+       "entrada": 60,
+       "saida": 900,
+       "cache_leitura": 150000,
+       "escrita_5m": 0,
+       "escrita_1h": 2000,
+       "respostas": 4,
+       "cache_escrita": 2000,
+       "total": 152960,
+       "custo_usd": 0.8
+      }
+     },
+     "total": 152960,
+     "custo_usd": 0.8
+    }
+   },
    "total": 1363540,
    "custo_usd": 8.55
   },

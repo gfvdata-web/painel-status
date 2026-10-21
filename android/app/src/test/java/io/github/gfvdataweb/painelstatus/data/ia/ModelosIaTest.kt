@@ -34,6 +34,20 @@ class ModelosIaTest {
     }
 
     @Test
+    fun sessaoLeAgentesDetalheEAntigaSemOCampoContinuaLida() {
+        val nova = uso.sessoes.first { it.id == "s-nova" }
+        assertEquals(setOf("principal", "android-dev"), nova.agentesDetalhe.keys)
+        val dev = nova.agentesDetalhe.getValue("android-dev")
+        assertEquals(0.8, dev.custoUsd!!, 0.0)
+        assertEquals(152_960L, dev.total)
+        assertEquals(setOf("claude-sonnet-5"), dev.modelos.keys)
+        assertTrue(uso.sessoes.first { it.id == "s-antiga" }.agentesDetalhe.isEmpty())
+
+        val semCusto = lerUso("""{"sessoes": [{"id": "x", "agentes_detalhe": {"a": {"total": 7}}}]}""")
+        assertNull(semCusto.sessoes.single().agentesDetalhe.getValue("a").custoUsd)
+    }
+
+    @Test
     fun limitesAceitamZeraEmNuloEPontosSemJanela() {
         val atual = limites.atual!!
         assertNull(atual.cincoHoras!!.zeraEm)
