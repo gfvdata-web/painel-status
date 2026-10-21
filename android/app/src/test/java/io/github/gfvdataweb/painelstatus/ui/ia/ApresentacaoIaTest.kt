@@ -75,10 +75,11 @@ class ApresentacaoIaTest {
     }
 
     @Test
-    fun leituraAntigaPassaDe30Minutos() {
+    fun leituraAntigaPassaDe24Horas() {
         val atual = limites.atual!!
         assertFalse(leituraAntiga(atual, agoraS)) // lida há 10 min
-        assertTrue(leituraAntiga(atual, agoraS + 25 * 60)) // 35 min
+        assertFalse(leituraAntiga(atual, agoraS + 23 * 3600)) // 23 h 10 min
+        assertTrue(leituraAntiga(atual, agoraS + 24 * 3600)) // 24 h 10 min
         assertFalse(leituraAntiga(LimitesAtuais(), agoraS))
     }
 

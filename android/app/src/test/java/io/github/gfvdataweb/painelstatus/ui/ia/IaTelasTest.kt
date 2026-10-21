@@ -133,11 +133,17 @@ class IaTelasTest {
     }
 
     @Test
-    fun leituraComMaisDe30MinutosAvisa() {
-        // A leitura é de 10 min antes de AGORA_MS: 25 min depois já são 35.
-        mostrar(EstadoIa.Pronto(dados, desatualizado = false), agoraMs = IaFixtures.AGORA_MS + 25 * 60_000)
+    fun leituraComMaisDeUmDiaAvisa() {
+        // A leitura é de 10 min antes de AGORA_MS: 24 h depois já são 24 h 10 min.
+        mostrar(EstadoIa.Pronto(dados, desatualizado = false), agoraMs = IaFixtures.AGORA_MS + 24 * 3_600_000L)
         existe("Leitura antiga", trecho = true)
-        existe("lido há 35 min", trecho = true)
+        existe("lido há 24 h 10 min", trecho = true)
+    }
+
+    @Test
+    fun leituraDeHorasAtrasNaoAvisa() {
+        mostrar(EstadoIa.Pronto(dados, desatualizado = false), agoraMs = IaFixtures.AGORA_MS + 2 * 3_600_000L)
+        assertTrue(compose.onAllNodesWithText("Leitura antiga", substring = true).fetchSemanticsNodes().isEmpty())
     }
 
     @Test

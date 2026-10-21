@@ -182,7 +182,7 @@
     <string name="ia_ja_zerou">já zerou desde a leitura</string>
     <string name="ia_zera_em">zera em %1$s</string>
     <string name="ia_lido_ha">lido há %1$s</string>
-    <string name="ia_leitura_antiga">Leitura antiga: os números só atualizam quando uma sessão do Claude Code responde.</string>
+    <string name="ia_leitura_antiga">Leitura antiga (mais de 1 dia): os limites não estão sendo lidos. Confira se o PC está ligado e o login do Claude Code.</string>
     <string name="ia_historico_titulo">Limites nos últimos 7 dias</string>
     <string name="ia_legenda_5h">5 h</string>
     <string name="ia_legenda_semana">7 dias</string>

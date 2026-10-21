@@ -27,8 +27,8 @@ private val PT_BR: Locale = Locale.forLanguageTag("pt-BR")
 const val LIMITE_ATENCAO = 80.0
 const val LIMITE_CRITICO = 95.0
 
-/** Leitura dos limites mais velha que isto (30 min) ganha o aviso "leitura antiga". */
-const val LEITURA_ANTIGA_S = 30 * 60
+/** Leitura dos limites mais velha que isto (24 h) ganha o aviso "leitura antiga". */
+const val LEITURA_ANTIGA_S = 24 * 60 * 60
 
 /** Janela do gráfico por modelo e do resumo "últimos 7 dias". */
 const val DIAS_GRAFICO = 30
