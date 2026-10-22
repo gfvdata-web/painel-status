@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-10-21T21:09:57.514847+00:00",
+    "gerado_em": "2026-10-22T00:01:05.672167+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -1176,13 +1176,13 @@
         "url": "https://github.com/gfvdata-web/simulador-investimentos/commit/e649c7a1654b8a909f34c56ce3e8edb4ac3d3a76"
       },
       "ultima_execucao_pipeline": {
-        "id": 39515509332,
+        "id": 39695555483,
         "evento": "schedule",
         "status": "completed",
-        "conclusao": "success",
-        "criado_em": "2026-10-20T23:30:53Z",
-        "atualizado_em": "2026-10-20T23:43:54Z",
-        "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/39515509332"
+        "conclusao": "failure",
+        "criado_em": "2026-10-21T23:46:23Z",
+        "atualizado_em": "2026-10-21T23:54:47Z",
+        "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/39695555483"
       },
       "site_no_ar": {
         "ok": true,
@@ -1199,6 +1199,16 @@
             }
           ],
           "historico": [
+            {
+              "id": 39695555483,
+              "evento": "schedule",
+              "status": "completed",
+              "conclusao": "failure",
+              "criado_em": "2026-10-21T23:46:23Z",
+              "atualizado_em": "2026-10-21T23:54:47Z",
+              "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/39695555483",
+              "duracao_s": 504
+            },
             {
               "id": 39515509332,
               "evento": "schedule",
@@ -1338,16 +1348,6 @@
               "atualizado_em": "2026-10-02T00:29:05Z",
               "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/36945211668",
               "duracao_s": 718
-            },
-            {
-              "id": 36910582472,
-              "evento": "workflow_dispatch",
-              "status": "completed",
-              "conclusao": "success",
-              "criado_em": "2026-10-01T18:56:26Z",
-              "atualizado_em": "2026-10-01T19:08:25Z",
-              "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/36910582472",
-              "duracao_s": 719
             }
           ],
           "ultimo_sucesso": {
@@ -1360,17 +1360,17 @@
             "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/39515509332"
           },
           "ultima_falha": {
-            "id": 38654595476,
+            "id": 39695555483,
             "evento": "schedule",
             "status": "completed",
             "conclusao": "failure",
-            "criado_em": "2026-10-14T23:31:24Z",
-            "atualizado_em": "2026-10-14T23:39:00Z",
-            "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/38654595476",
+            "criado_em": "2026-10-21T23:46:23Z",
+            "atualizado_em": "2026-10-21T23:54:47Z",
+            "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/39695555483",
             "motivo": {
               "job": "coletar",
               "passo": "Coletar",
-              "mensagem": "zlib.error: Error -3 while decompressing data: invalid stored block lengths"
+              "mensagem": "zipfile.BadZipFile: Bad CRC-32 for file 'COTAHIST_A2026.TXT'"
             }
           },
           "passos_ultima": [
@@ -1388,19 +1388,19 @@
             },
             {
               "nome": "Coletar",
-              "conclusao": "success"
+              "conclusao": "failure"
             },
             {
               "nome": "Validar o que foi coletado",
-              "conclusao": "success"
+              "conclusao": "skipped"
             },
             {
               "nome": "Commitar se algo mudou",
-              "conclusao": "success"
+              "conclusao": "skipped"
             },
             {
               "nome": "Post Run actions/setup-python@v7",
-              "conclusao": "success"
+              "conclusao": "skipped"
             },
             {
               "nome": "Post Run actions/checkout@v7",
@@ -1446,7 +1446,12 @@
         ],
         "deploy_pages": null
       },
-      "alertas": [],
+      "alertas": [
+        {
+          "nivel": "aviso",
+          "texto": "A última coleta falhou."
+        }
+      ],
       "historico_arquivo": "dados/historico/simulador_investimentos.json",
       "acesso": {
         "visitantes_unicos": 2,
@@ -2005,19 +2010,19 @@
       "form_url": "https://forms.gle/y3uXaukJXmP9GMED7",
       "form_rotulo": "Enviar fotos",
       "ultimo_commit_dados": {
-        "data": "2026-10-21T14:46:55Z",
-        "mensagem": "dados: leituras do esp32-01 até 2026-10-21T14:43",
-        "sha": "3624712",
-        "url": "https://github.com/gfvdata-web/PlantsCare/commit/3624712b1198d5759528491023e46097fb11ac4b"
+        "data": "2026-10-21T22:55:45Z",
+        "mensagem": "dados: leituras do esp32-01 até 2026-10-21T22:44",
+        "sha": "344c7b3",
+        "url": "https://github.com/gfvdata-web/PlantsCare/commit/344c7b3247ca40ee95ef745e4e15af7e21166b61"
       },
       "ultima_execucao_pipeline": {
-        "id": 39658189957,
+        "id": 39689942131,
         "evento": "schedule",
         "status": "completed",
-        "conclusao": "failure",
-        "criado_em": "2026-10-21T19:02:59Z",
-        "atualizado_em": "2026-10-21T19:04:09Z",
-        "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/39658189957"
+        "conclusao": "success",
+        "criado_em": "2026-10-21T22:55:30Z",
+        "atualizado_em": "2026-10-21T22:56:19Z",
+        "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/39689942131"
       },
       "site_no_ar": {
         "ok": true,
@@ -2034,6 +2039,16 @@
             }
           ],
           "historico": [
+            {
+              "id": 39689942131,
+              "evento": "schedule",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-10-21T22:55:30Z",
+              "atualizado_em": "2026-10-21T22:56:19Z",
+              "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/39689942131",
+              "duracao_s": 49
+            },
             {
               "id": 39658189957,
               "evento": "schedule",
@@ -2173,26 +2188,16 @@
               "atualizado_em": "2026-10-18T22:07:37Z",
               "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/39170801003",
               "duracao_s": 51
-            },
-            {
-              "id": 39160874495,
-              "evento": "schedule",
-              "status": "completed",
-              "conclusao": "success",
-              "criado_em": "2026-10-18T19:54:23Z",
-              "atualizado_em": "2026-10-18T19:55:13Z",
-              "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/39160874495",
-              "duracao_s": 50
             }
           ],
           "ultimo_sucesso": {
-            "id": 39619827569,
+            "id": 39689942131,
             "evento": "schedule",
             "status": "completed",
             "conclusao": "success",
-            "criado_em": "2026-10-21T14:46:39Z",
-            "atualizado_em": "2026-10-21T14:47:28Z",
-            "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/39619827569"
+            "criado_em": "2026-10-21T22:55:30Z",
+            "atualizado_em": "2026-10-21T22:56:19Z",
+            "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/39689942131"
           },
           "ultima_falha": {
             "id": 39658189957,
@@ -2231,19 +2236,19 @@
             },
             {
               "nome": "Baixar planilha → data/esp32/",
-              "conclusao": "failure"
+              "conclusao": "success"
             },
             {
               "nome": "Commitar dados novos",
-              "conclusao": "skipped"
+              "conclusao": "success"
             },
             {
               "nome": "Republicar site público (Cloudflare)",
-              "conclusao": "skipped"
+              "conclusao": "success"
             },
             {
               "nome": "Post Run actions/setup-python@v7",
-              "conclusao": "skipped"
+              "conclusao": "success"
             },
             {
               "nome": "Post Run actions/checkout@v7",
@@ -2256,6 +2261,12 @@
           ]
         },
         "commits_dados": [
+          {
+            "data": "2026-10-21T22:55:45Z",
+            "mensagem": "dados: leituras do esp32-01 até 2026-10-21T22:44",
+            "sha": "344c7b3",
+            "url": "https://github.com/gfvdata-web/PlantsCare/commit/344c7b3247ca40ee95ef745e4e15af7e21166b61"
+          },
           {
             "data": "2026-10-21T14:46:55Z",
             "mensagem": "dados: leituras do esp32-01 até 2026-10-21T14:43",
@@ -2279,22 +2290,11 @@
             "mensagem": "dados: leituras do esp32-01 até 2026-10-20T21:57",
             "sha": "0326ef7",
             "url": "https://github.com/gfvdata-web/PlantsCare/commit/0326ef7a4879a8c2f233f7eb3d4aa689863e58c3"
-          },
-          {
-            "data": "2026-10-20T18:51:03Z",
-            "mensagem": "dados: leituras do esp32-01 até 2026-10-20T18:42",
-            "sha": "4cc6879",
-            "url": "https://github.com/gfvdata-web/PlantsCare/commit/4cc6879bb885474eba1a1c11f499cf89c7b5e7d2"
           }
         ],
         "deploy_pages": null
       },
-      "alertas": [
-        {
-          "nivel": "aviso",
-          "texto": "A última coleta falhou."
-        }
-      ],
+      "alertas": [],
       "pipeline_forms": {
         "workflow": "pipeline.yml",
         "execucao": {
