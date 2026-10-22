@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-10-22T16:31:06.619517+00:00",
+    "gerado_em": "2026-10-22T18:01:01.206696+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -893,7 +893,13 @@
             "url": "https://github.com/gfvdata-web/fonte-credito-modalidade/commit/7d130479bdc4f70f8365d0655afcbdb479ed8a39"
           }
         ],
-        "deploy_pages": null
+        "deploy_pages": {
+          "status": "completed",
+          "conclusao": "success",
+          "criado_em": "2026-10-14T12:13:06Z",
+          "atualizado_em": "2026-10-14T12:14:09Z",
+          "url": "https://github.com/gfvdata-web/fonte-credito-modalidade/actions/runs/38562162063"
+        }
       },
       "alertas": [],
       "acesso": {
@@ -1854,7 +1860,13 @@
             "url": "https://github.com/gfvdata-web/chess-tracking/commit/0aaac28990eff01f90b02dbc8a12b9e57e47062a"
           }
         ],
-        "deploy_pages": null
+        "deploy_pages": {
+          "status": "completed",
+          "conclusao": "success",
+          "criado_em": "2026-10-22T14:31:38Z",
+          "atualizado_em": "2026-10-22T14:47:03Z",
+          "url": "https://github.com/gfvdata-web/chess-tracking/actions/runs/39796400672"
+        }
       },
       "alertas": [],
       "historico_arquivo": "dados/historico/chess_tracking.json",
