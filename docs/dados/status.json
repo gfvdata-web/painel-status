@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-10-22T15:01:01.237073+00:00",
+    "gerado_em": "2026-10-22T16:31:06.619517+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -581,7 +581,13 @@
             "url": "https://github.com/gfvdata-web/fonte-arrecadacao-federal/commit/e8015e7ae82fda3b5748d0a69018cc03dce103f1"
           }
         ],
-        "deploy_pages": null
+        "deploy_pages": {
+          "status": "completed",
+          "conclusao": "success",
+          "criado_em": "2026-10-14T12:19:55Z",
+          "atualizado_em": "2026-10-14T12:21:03Z",
+          "url": "https://github.com/gfvdata-web/fonte-arrecadacao-federal/actions/runs/38562987715"
+        }
       },
       "alertas": [],
       "acesso": {
@@ -887,13 +893,7 @@
             "url": "https://github.com/gfvdata-web/fonte-credito-modalidade/commit/7d130479bdc4f70f8365d0655afcbdb479ed8a39"
           }
         ],
-        "deploy_pages": {
-          "status": "completed",
-          "conclusao": "success",
-          "criado_em": "2026-10-14T12:13:06Z",
-          "atualizado_em": "2026-10-14T12:14:09Z",
-          "url": "https://github.com/gfvdata-web/fonte-credito-modalidade/actions/runs/38562162063"
-        }
+        "deploy_pages": null
       },
       "alertas": [],
       "acesso": {
@@ -1854,13 +1854,7 @@
             "url": "https://github.com/gfvdata-web/chess-tracking/commit/0aaac28990eff01f90b02dbc8a12b9e57e47062a"
           }
         ],
-        "deploy_pages": {
-          "status": "completed",
-          "conclusao": "success",
-          "criado_em": "2026-10-22T14:31:38Z",
-          "atualizado_em": "2026-10-22T14:47:03Z",
-          "url": "https://github.com/gfvdata-web/chess-tracking/actions/runs/39796400672"
-        }
+        "deploy_pages": null
       },
       "alertas": [],
       "historico_arquivo": "dados/historico/chess_tracking.json",
@@ -2394,7 +2388,7 @@
       },
       "alertas": [],
       "acesso": {
-        "visitantes_unicos": 1,
+        "visitantes_unicos": 2,
         "serie_diaria": [
           {
             "data": "2026-09-22",
@@ -2518,7 +2512,7 @@
           },
           {
             "data": "2026-10-22",
-            "visitantes": 0
+            "visitantes": 1
           }
         ]
       }
@@ -2716,7 +2710,13 @@
             "url": "https://github.com/gfvdata-web/dashboard-municipios/commit/65a4ef1ceb16bf492c84d1897c0e6d11c0c35c48"
           }
         ],
-        "deploy_pages": null
+        "deploy_pages": {
+          "status": "completed",
+          "conclusao": "success",
+          "criado_em": "2026-10-10T18:32:22Z",
+          "atualizado_em": "2026-10-10T18:33:01Z",
+          "url": "https://github.com/gfvdata-web/dashboard-municipios/actions/runs/38076184937"
+        }
       },
       "alertas": []
     },
