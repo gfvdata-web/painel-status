@@ -3,8 +3,22 @@
  "nome": "Plants Care",
  "workflow": "sensor-sync.yml",
  "url_workflow": "https://github.com/gfvdata-web/PlantsCare/actions/workflows/sensor-sync.yml",
- "atualizado_em": "2026-10-23T15:01:22.166720+00:00",
+ "atualizado_em": "2026-10-23T20:55:09.791113+00:00",
  "execucoes": [
+  {
+   "id": 40006332479,
+   "criado_em": "2026-10-23T18:48:30Z",
+   "evento": "schedule",
+   "conclusao": "failure",
+   "duracao_s": 89,
+   "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/40006332479",
+   "avisos": null,
+   "motivo": {
+    "job": "sincronizar",
+    "passo": "Republicar site público (Cloudflare)",
+    "mensagem": "subprocess.CalledProcessError: Command '['/usr/local/bin/npx', '--yes', 'wrangler@4.150.0', 'deploy', '-c', '/home/runner/work/PlantsCare/PlantsCare/publico/wrangler.jsonc', '--message', 'PlantsCare@7e1bf9a']' returned non-zero exit status 1."
+   }
+  },
   {
    "id": 39970654701,
    "criado_em": "2026-10-23T14:33:32Z",

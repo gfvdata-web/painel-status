@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-10-23T18:00:57.865312+00:00",
+    "gerado_em": "2026-10-23T20:54:51.776427+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -2005,19 +2005,19 @@
       "form_url": "https://forms.gle/y3uXaukJXmP9GMED7",
       "form_rotulo": "Enviar fotos",
       "ultimo_commit_dados": {
-        "data": "2026-10-23T14:33:46Z",
-        "mensagem": "dados: leituras do esp32-01 até 2026-10-23T14:31",
-        "sha": "c02be89",
-        "url": "https://github.com/gfvdata-web/PlantsCare/commit/c02be8970983eb3cc8c28eeeb368feaf4cdf8607"
+        "data": "2026-10-23T18:48:43Z",
+        "mensagem": "dados: leituras do esp32-01 até 2026-10-23T18:46",
+        "sha": "7e1bf9a",
+        "url": "https://github.com/gfvdata-web/PlantsCare/commit/7e1bf9a2263136c2badcbee305561146338e023e"
       },
       "ultima_execucao_pipeline": {
-        "id": 39970654701,
+        "id": 40006332479,
         "evento": "schedule",
         "status": "completed",
-        "conclusao": "success",
-        "criado_em": "2026-10-23T14:33:32Z",
-        "atualizado_em": "2026-10-23T14:34:22Z",
-        "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/39970654701"
+        "conclusao": "failure",
+        "criado_em": "2026-10-23T18:48:30Z",
+        "atualizado_em": "2026-10-23T18:49:59Z",
+        "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/40006332479"
       },
       "site_no_ar": {
         "ok": true,
@@ -2034,6 +2034,16 @@
             }
           ],
           "historico": [
+            {
+              "id": 40006332479,
+              "evento": "schedule",
+              "status": "completed",
+              "conclusao": "failure",
+              "criado_em": "2026-10-23T18:48:30Z",
+              "atualizado_em": "2026-10-23T18:49:59Z",
+              "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/40006332479",
+              "duracao_s": 89
+            },
             {
               "id": 39970654701,
               "evento": "schedule",
@@ -2173,16 +2183,6 @@
               "atualizado_em": "2026-10-20T22:00:36Z",
               "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/39504749683",
               "duracao_s": 53
-            },
-            {
-              "id": 39478289220,
-              "evento": "schedule",
-              "status": "completed",
-              "conclusao": "success",
-              "criado_em": "2026-10-20T18:50:44Z",
-              "atualizado_em": "2026-10-20T18:51:38Z",
-              "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/39478289220",
-              "duracao_s": 54
             }
           ],
           "ultimo_sucesso": {
@@ -2195,17 +2195,17 @@
             "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/39970654701"
           },
           "ultima_falha": {
-            "id": 39658189957,
+            "id": 40006332479,
             "evento": "schedule",
             "status": "completed",
             "conclusao": "failure",
-            "criado_em": "2026-10-21T19:02:59Z",
-            "atualizado_em": "2026-10-21T19:04:09Z",
-            "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/39658189957",
+            "criado_em": "2026-10-23T18:48:30Z",
+            "atualizado_em": "2026-10-23T18:49:59Z",
+            "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/40006332479",
             "motivo": {
               "job": "sincronizar",
-              "passo": "Baixar planilha → data/esp32/",
-              "mensagem": "urllib.error.HTTPError: HTTP Error 404: Not Found"
+              "passo": "Republicar site público (Cloudflare)",
+              "mensagem": "subprocess.CalledProcessError: Command '['/usr/local/bin/npx', '--yes', 'wrangler@4.150.0', 'deploy', '-c', '/home/runner/work/PlantsCare/PlantsCare/publico/wrangler.jsonc', '--message', 'PlantsCare@7e1bf9a']' returned non-zero exit status 1."
             }
           },
           "passos_ultima": [
@@ -2239,11 +2239,11 @@
             },
             {
               "nome": "Republicar site público (Cloudflare)",
-              "conclusao": "success"
+              "conclusao": "failure"
             },
             {
               "nome": "Post Run actions/setup-python@v7",
-              "conclusao": "success"
+              "conclusao": "skipped"
             },
             {
               "nome": "Post Run actions/checkout@v7",
@@ -2256,6 +2256,12 @@
           ]
         },
         "commits_dados": [
+          {
+            "data": "2026-10-23T18:48:43Z",
+            "mensagem": "dados: leituras do esp32-01 até 2026-10-23T18:46",
+            "sha": "7e1bf9a",
+            "url": "https://github.com/gfvdata-web/PlantsCare/commit/7e1bf9a2263136c2badcbee305561146338e023e"
+          },
           {
             "data": "2026-10-23T14:33:46Z",
             "mensagem": "dados: leituras do esp32-01 até 2026-10-23T14:31",
@@ -2279,17 +2285,16 @@
             "mensagem": "dados: leituras do esp32-01 até 2026-10-22T22:00",
             "sha": "2a3c11b",
             "url": "https://github.com/gfvdata-web/PlantsCare/commit/2a3c11b476ab4878f457f00a0a4dafed6deea43a"
-          },
-          {
-            "data": "2026-10-22T18:59:02Z",
-            "mensagem": "dados: leituras do esp32-01 até 2026-10-22T18:45",
-            "sha": "3b05f23",
-            "url": "https://github.com/gfvdata-web/PlantsCare/commit/3b05f232e9a4854aed1a73e9593bda781b501ced"
           }
         ],
         "deploy_pages": null
       },
-      "alertas": [],
+      "alertas": [
+        {
+          "nivel": "aviso",
+          "texto": "A última coleta falhou."
+        }
+      ],
       "pipeline_forms": {
         "workflow": "pipeline.yml",
         "execucao": {
