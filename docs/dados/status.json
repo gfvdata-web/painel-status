@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-10-23T21:00:54.744027+00:00",
+    "gerado_em": "2026-10-23T23:43:56.451859+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -1176,13 +1176,13 @@
         "url": "https://github.com/gfvdata-web/simulador-investimentos/commit/36e5104c851ae02854fc54b618ac8764ccc34081"
       },
       "ultima_execucao_pipeline": {
-        "id": 39873769108,
+        "id": 40040695447,
         "evento": "schedule",
-        "status": "completed",
-        "conclusao": "success",
-        "criado_em": "2026-10-22T23:44:33Z",
-        "atualizado_em": "2026-10-22T23:54:27Z",
-        "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/39873769108"
+        "status": "in_progress",
+        "conclusao": null,
+        "criado_em": "2026-10-23T23:37:18Z",
+        "atualizado_em": "2026-10-23T23:37:22Z",
+        "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/40040695447"
       },
       "site_no_ar": {
         "ok": true,
@@ -1199,6 +1199,16 @@
             }
           ],
           "historico": [
+            {
+              "id": 40040695447,
+              "evento": "schedule",
+              "status": "in_progress",
+              "conclusao": null,
+              "criado_em": "2026-10-23T23:37:18Z",
+              "atualizado_em": "2026-10-23T23:37:22Z",
+              "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/40040695447",
+              "duracao_s": null
+            },
             {
               "id": 39873769108,
               "evento": "schedule",
@@ -1338,16 +1348,6 @@
               "atualizado_em": "2026-10-06T01:51:52Z",
               "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/37399889208",
               "duracao_s": 1019
-            },
-            {
-              "id": 37080347181,
-              "evento": "schedule",
-              "status": "completed",
-              "conclusao": "success",
-              "criado_em": "2026-10-03T00:02:44Z",
-              "atualizado_em": "2026-10-03T00:12:43Z",
-              "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/37080347181",
-              "duracao_s": 599
             }
           ],
           "ultimo_sucesso": {
@@ -1388,27 +1388,23 @@
             },
             {
               "nome": "Coletar",
-              "conclusao": "success"
+              "conclusao": "in_progress"
             },
             {
               "nome": "Validar o que foi coletado",
-              "conclusao": "success"
+              "conclusao": "pending"
             },
             {
               "nome": "Commitar se algo mudou",
-              "conclusao": "success"
+              "conclusao": "pending"
             },
             {
               "nome": "Post Run actions/setup-python@v7",
-              "conclusao": "success"
+              "conclusao": "pending"
             },
             {
               "nome": "Post Run actions/checkout@v7",
-              "conclusao": "success"
-            },
-            {
-              "nome": "Complete job",
-              "conclusao": "success"
+              "conclusao": "pending"
             }
           ]
         },
@@ -2005,19 +2001,19 @@
       "form_url": "https://forms.gle/y3uXaukJXmP9GMED7",
       "form_rotulo": "Enviar fotos",
       "ultimo_commit_dados": {
-        "data": "2026-10-23T18:48:43Z",
-        "mensagem": "dados: leituras do esp32-01 até 2026-10-23T18:46",
-        "sha": "7e1bf9a",
-        "url": "https://github.com/gfvdata-web/PlantsCare/commit/7e1bf9a2263136c2badcbee305561146338e023e"
+        "data": "2026-10-23T21:46:35Z",
+        "mensagem": "dados: leituras do esp32-01 até 2026-10-23T21:31",
+        "sha": "be153b5",
+        "url": "https://github.com/gfvdata-web/PlantsCare/commit/be153b5cdfc3b46470cb6b946fa44b77be2ab7b6"
       },
       "ultima_execucao_pipeline": {
-        "id": 40006332479,
+        "id": 40029163292,
         "evento": "schedule",
         "status": "completed",
-        "conclusao": "failure",
-        "criado_em": "2026-10-23T18:48:30Z",
-        "atualizado_em": "2026-10-23T18:49:59Z",
-        "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/40006332479"
+        "conclusao": "success",
+        "criado_em": "2026-10-23T21:46:20Z",
+        "atualizado_em": "2026-10-23T21:47:15Z",
+        "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/40029163292"
       },
       "site_no_ar": {
         "ok": true,
@@ -2034,6 +2030,16 @@
             }
           ],
           "historico": [
+            {
+              "id": 40029163292,
+              "evento": "schedule",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-10-23T21:46:20Z",
+              "atualizado_em": "2026-10-23T21:47:15Z",
+              "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/40029163292",
+              "duracao_s": 55
+            },
             {
               "id": 40006332479,
               "evento": "schedule",
@@ -2173,26 +2179,16 @@
               "atualizado_em": "2026-10-21T00:28:38Z",
               "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/39521468805",
               "duracao_s": 47
-            },
-            {
-              "id": 39504749683,
-              "evento": "schedule",
-              "status": "completed",
-              "conclusao": "success",
-              "criado_em": "2026-10-20T21:59:43Z",
-              "atualizado_em": "2026-10-20T22:00:36Z",
-              "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/39504749683",
-              "duracao_s": 53
             }
           ],
           "ultimo_sucesso": {
-            "id": 39970654701,
+            "id": 40029163292,
             "evento": "schedule",
             "status": "completed",
             "conclusao": "success",
-            "criado_em": "2026-10-23T14:33:32Z",
-            "atualizado_em": "2026-10-23T14:34:22Z",
-            "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/39970654701"
+            "criado_em": "2026-10-23T21:46:20Z",
+            "atualizado_em": "2026-10-23T21:47:15Z",
+            "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/40029163292"
           },
           "ultima_falha": {
             "id": 40006332479,
@@ -2239,11 +2235,11 @@
             },
             {
               "nome": "Republicar site público (Cloudflare)",
-              "conclusao": "failure"
+              "conclusao": "success"
             },
             {
               "nome": "Post Run actions/setup-python@v7",
-              "conclusao": "skipped"
+              "conclusao": "success"
             },
             {
               "nome": "Post Run actions/checkout@v7",
@@ -2256,6 +2252,12 @@
           ]
         },
         "commits_dados": [
+          {
+            "data": "2026-10-23T21:46:35Z",
+            "mensagem": "dados: leituras do esp32-01 até 2026-10-23T21:31",
+            "sha": "be153b5",
+            "url": "https://github.com/gfvdata-web/PlantsCare/commit/be153b5cdfc3b46470cb6b946fa44b77be2ab7b6"
+          },
           {
             "data": "2026-10-23T18:48:43Z",
             "mensagem": "dados: leituras do esp32-01 até 2026-10-23T18:46",
@@ -2279,22 +2281,11 @@
             "mensagem": "dados: leituras do esp32-01 até 2026-10-23T01:00",
             "sha": "5ac1b55",
             "url": "https://github.com/gfvdata-web/PlantsCare/commit/5ac1b551bd94b6ea858e46b4cd76723959ab2125"
-          },
-          {
-            "data": "2026-10-22T22:10:45Z",
-            "mensagem": "dados: leituras do esp32-01 até 2026-10-22T22:00",
-            "sha": "2a3c11b",
-            "url": "https://github.com/gfvdata-web/PlantsCare/commit/2a3c11b476ab4878f457f00a0a4dafed6deea43a"
           }
         ],
         "deploy_pages": null
       },
-      "alertas": [
-        {
-          "nivel": "aviso",
-          "texto": "A última coleta falhou."
-        }
-      ],
+      "alertas": [],
       "pipeline_forms": {
         "workflow": "pipeline.yml",
         "execucao": {
