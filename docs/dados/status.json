@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-10-24T22:02:59.095851+00:00",
+    "gerado_em": "2026-10-24T22:04:06.815646+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -22,14 +22,14 @@
       "ultima_execucao_pipeline": {
         "id": 40136858090,
         "evento": "repository_dispatch",
-        "status": "in_progress",
-        "conclusao": null,
+        "status": "completed",
+        "conclusao": "failure",
         "criado_em": "2026-10-24T22:02:48Z",
-        "atualizado_em": "2026-10-24T22:02:51Z",
+        "atualizado_em": "2026-10-24T22:02:57Z",
         "url": "https://github.com/gfvdata-web/page-bolao-formula1/actions/runs/40136858090"
       },
       "rodada_mais_recente": 17,
-      "em_vigilia": true,
+      "em_vigilia": false,
       "etapas_pipeline": [
         {
           "chave": "forms",
