@@ -3,8 +3,22 @@
  "nome": "Bolão F1",
  "workflow": "pipeline.yml",
  "url_workflow": "https://github.com/gfvdata-web/page-bolao-formula1/actions/workflows/pipeline.yml",
- "atualizado_em": "2026-10-24T22:04:06.815119+00:00",
+ "atualizado_em": "2026-10-25T21:00:56.191156+00:00",
  "execucoes": [
+  {
+   "id": 40222980303,
+   "criado_em": "2026-10-25T18:48:16Z",
+   "evento": "repository_dispatch",
+   "conclusao": "success",
+   "duracao_s": 13,
+   "url": "https://github.com/gfvdata-web/page-bolao-formula1/actions/runs/40222980303",
+   "avisos": [
+    {
+     "nivel": "notice",
+     "mensagem": "\"The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748\""
+    }
+   ]
+  },
   {
    "id": 40136858090,
    "criado_em": "2026-10-24T22:02:48Z",

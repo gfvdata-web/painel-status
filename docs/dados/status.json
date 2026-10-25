@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-10-25T18:03:33.296081+00:00",
+    "gerado_em": "2026-10-25T21:00:52.757829+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -14,21 +14,21 @@
       "form_url": "https://forms.gle/7yZAx1WThPf51bv67",
       "form_rotulo": "Enviar palpites (Google Forms)",
       "ultimo_commit_dados": {
-        "data": "2026-10-11T18:48:26Z",
-        "mensagem": "Etapa 5: atualiza dados via Actions (rodada 17)",
-        "sha": "033717d",
-        "url": "https://github.com/gfvdata-web/page-bolao-formula1/commit/033717d52c9233e008f6d12188140fabaf44eb7d"
+        "data": "2026-10-25T18:48:24Z",
+        "mensagem": "Etapa 5: atualiza dados via Actions (rodada 18)",
+        "sha": "5adc781",
+        "url": "https://github.com/gfvdata-web/page-bolao-formula1/commit/5adc78128de75af4bf99094791bc3ddf6030fbab"
       },
       "ultima_execucao_pipeline": {
-        "id": 40136858090,
+        "id": 40222980303,
         "evento": "repository_dispatch",
         "status": "completed",
-        "conclusao": "failure",
-        "criado_em": "2026-10-24T22:02:48Z",
-        "atualizado_em": "2026-10-24T22:02:57Z",
-        "url": "https://github.com/gfvdata-web/page-bolao-formula1/actions/runs/40136858090"
+        "conclusao": "success",
+        "criado_em": "2026-10-25T18:48:16Z",
+        "atualizado_em": "2026-10-25T18:48:29Z",
+        "url": "https://github.com/gfvdata-web/page-bolao-formula1/actions/runs/40222980303"
       },
-      "rodada_mais_recente": 17,
+      "rodada_mais_recente": 18,
       "em_vigilia": false,
       "etapas_pipeline": [
         {
@@ -36,35 +36,35 @@
           "titulo": "Palpites enviados (Google Forms)",
           "estado": "ok",
           "detalhe": "Forms recebido e Apps Script disparou o pipeline no GitHub Actions.",
-          "quando": "2026-10-24T22:02:48Z"
+          "quando": "2026-10-25T18:48:16Z"
         },
         {
           "chave": "leitura",
           "titulo": "Palpites lidos e rodada identificada",
-          "estado": "erro",
-          "detalhe": "Falha ao ler o texto ou identificar a corrida — ver o log da execução.",
-          "quando": "2026-10-24T22:02:55Z"
+          "estado": "ok",
+          "detalhe": "Palpites gravados no repositório.",
+          "quando": "2026-10-25T18:48:24Z"
         },
         {
           "chave": "resultado",
           "titulo": "Resultado oficial do quali (Jolpica)",
-          "estado": "pendente",
-          "detalhe": "",
-          "quando": null
+          "estado": "ok",
+          "detalhe": "Já estava publicado no momento do envio.",
+          "quando": "2026-10-25T18:48:24Z"
         },
         {
           "chave": "pontuacao",
           "titulo": "Pontuação calculada",
-          "estado": "pendente",
+          "estado": "ok",
           "detalhe": "",
-          "quando": null
+          "quando": "2026-10-25T18:48:24Z"
         },
         {
           "chave": "pagina",
           "titulo": "Página atualizada (GitHub Pages)",
-          "estado": "pendente",
-          "detalhe": "",
-          "quando": null
+          "estado": "ok",
+          "detalhe": "Placar novo no ar.",
+          "quando": "2026-10-25T18:49:18Z"
         }
       ],
       "site_no_ar": {
@@ -2342,10 +2342,10 @@
       "destaque": false,
       "categoria": null,
       "ultimo_commit_dados": {
-        "data": "2026-10-25T15:46:44Z",
-        "mensagem": "2º turno: páginas Nacional e Estados, domínio eleicoes2026.gfvdata.com",
-        "sha": "d0608a9",
-        "url": "https://github.com/gfvdata-web/eleicoes-2026/commit/d0608a94c02c135897578c7eef1791122adf2145"
+        "data": "2026-10-25T19:54:06Z",
+        "mensagem": "Apuração: atualização 16:54",
+        "sha": "86724fb",
+        "url": "https://github.com/gfvdata-web/eleicoes-2026/commit/86724fbe70ea6f619364328df9fe43596baedb39"
       },
       "site_no_ar": {
         "ok": true,
@@ -2355,34 +2355,34 @@
         "coleta": null,
         "commits_dados": [
           {
-            "data": "2026-10-25T15:46:44Z",
-            "mensagem": "2º turno: páginas Nacional e Estados, domínio eleicoes2026.gfvdata.com",
-            "sha": "d0608a9",
-            "url": "https://github.com/gfvdata-web/eleicoes-2026/commit/d0608a94c02c135897578c7eef1791122adf2145"
+            "data": "2026-10-25T19:54:06Z",
+            "mensagem": "Apuração: atualização 16:54",
+            "sha": "86724fb",
+            "url": "https://github.com/gfvdata-web/eleicoes-2026/commit/86724fbe70ea6f619364328df9fe43596baedb39"
           },
           {
-            "data": "2026-10-06T14:09:24Z",
-            "mensagem": "Voto cruzado: subaba Tabela de estados e botões por região no comparativo",
-            "sha": "0b39352",
-            "url": "https://github.com/gfvdata-web/eleicoes-2026/commit/0b39352ef82981bdfffedd066eb4dcca29ba1eb3"
+            "data": "2026-10-25T19:51:59Z",
+            "mensagem": "Apuração estados: atualização 16:51",
+            "sha": "8e2e809",
+            "url": "https://github.com/gfvdata-web/eleicoes-2026/commit/8e2e809133b5a7870ec63783714c500d493fa2a1"
           },
           {
-            "data": "2026-10-06T13:51:11Z",
-            "mensagem": "Voto cruzado: escolher qualquer urna do ES e conclusões em cada estado do comparativo",
-            "sha": "7a40bbd",
-            "url": "https://github.com/gfvdata-web/eleicoes-2026/commit/7a40bbd7911f9f452428f29a2ab2a24b41e41b53"
+            "data": "2026-10-25T19:51:05Z",
+            "mensagem": "Apuração: atualização 16:51",
+            "sha": "2db5ed7",
+            "url": "https://github.com/gfvdata-web/eleicoes-2026/commit/2db5ed748b6040509f7309c2239fa5729f8a550a"
           },
           {
-            "data": "2026-10-06T13:37:29Z",
-            "mensagem": "Voto cruzado: régua aliança presidencial (opção A) e subaba Classificação",
-            "sha": "ef9cd07",
-            "url": "https://github.com/gfvdata-web/eleicoes-2026/commit/ef9cd071bd52ffa8385539eed22476db7024b44a"
+            "data": "2026-10-25T19:49:47Z",
+            "mensagem": "Apuração estados: atualização 16:49",
+            "sha": "8eccdc4",
+            "url": "https://github.com/gfvdata-web/eleicoes-2026/commit/8eccdc40dd5326118b1b210ead3788eadad73951"
           },
           {
-            "data": "2026-10-06T12:47:36Z",
-            "mensagem": "Voto cruzado: 27 estados, unidade Estados e subaba Comparativo estados",
-            "sha": "0647447",
-            "url": "https://github.com/gfvdata-web/eleicoes-2026/commit/0647447b647d248435eee3dc14a7b8a71a92f614"
+            "data": "2026-10-25T19:48:10Z",
+            "mensagem": "Apuração: atualização 16:48",
+            "sha": "116358f",
+            "url": "https://github.com/gfvdata-web/eleicoes-2026/commit/116358f9a273c0e4baddd011622649ef31df6193"
           }
         ],
         "deploy_pages": {
