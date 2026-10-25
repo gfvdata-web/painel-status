@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-10-24T22:50:23.571674+00:00",
+    "gerado_em": "2026-10-25T00:00:53.868239+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -75,10 +75,6 @@
       "acesso": {
         "visitantes_unicos": 44,
         "serie_diaria": [
-          {
-            "data": "2026-09-24",
-            "visitantes": 1
-          },
           {
             "data": "2026-09-25",
             "visitantes": 3
@@ -269,10 +265,6 @@
       "acesso": {
         "visitantes_unicos": 12,
         "serie_diaria": [
-          {
-            "data": "2026-09-24",
-            "visitantes": 0
-          },
           {
             "data": "2026-09-25",
             "visitantes": 0
@@ -594,10 +586,6 @@
         "visitantes_unicos": 12,
         "serie_diaria": [
           {
-            "data": "2026-09-24",
-            "visitantes": 0
-          },
-          {
             "data": "2026-09-25",
             "visitantes": 0
           },
@@ -905,10 +893,6 @@
       "acesso": {
         "visitantes_unicos": 4,
         "serie_diaria": [
-          {
-            "data": "2026-09-24",
-            "visitantes": 0
-          },
           {
             "data": "2026-09-25",
             "visitantes": 0
@@ -1452,10 +1436,6 @@
         "visitantes_unicos": 2,
         "serie_diaria": [
           {
-            "data": "2026-09-24",
-            "visitantes": 0
-          },
-          {
             "data": "2026-09-25",
             "visitantes": 0
           },
@@ -1868,10 +1848,6 @@
       "acesso": {
         "visitantes_unicos": 13,
         "serie_diaria": [
-          {
-            "data": "2026-09-24",
-            "visitantes": 0
-          },
           {
             "data": "2026-09-25",
             "visitantes": 0
@@ -2398,10 +2374,6 @@
         "visitantes_unicos": 3,
         "serie_diaria": [
           {
-            "data": "2026-09-24",
-            "visitantes": 0
-          },
-          {
             "data": "2026-09-25",
             "visitantes": 0
           },
@@ -2563,10 +2535,6 @@
       "acesso": {
         "visitantes_unicos": 1,
         "serie_diaria": [
-          {
-            "data": "2026-09-24",
-            "visitantes": 0
-          },
           {
             "data": "2026-09-25",
             "visitantes": 0
@@ -2761,10 +2729,6 @@
         "visitantes_unicos": 5,
         "serie_diaria": [
           {
-            "data": "2026-09-24",
-            "visitantes": 0
-          },
-          {
             "data": "2026-09-25",
             "visitantes": 0
           },
@@ -2944,10 +2908,6 @@
       "acesso": {
         "visitantes_unicos": 14,
         "serie_diaria": [
-          {
-            "data": "2026-09-24",
-            "visitantes": 0
-          },
           {
             "data": "2026-09-25",
             "visitantes": 0
