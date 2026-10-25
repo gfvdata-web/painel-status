@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-10-25T21:00:52.757829+00:00",
+    "gerado_em": "2026-10-25T22:59:39.167929+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -2005,19 +2005,19 @@
       "form_url": "https://forms.gle/y3uXaukJXmP9GMED7",
       "form_rotulo": "Enviar fotos",
       "ultimo_commit_dados": {
-        "data": "2026-10-25T18:00:44Z",
-        "mensagem": "dados: leituras do esp32-01 até 2026-10-25T17:49",
-        "sha": "f0512bf",
-        "url": "https://github.com/gfvdata-web/PlantsCare/commit/f0512bf0207100e728a488bc8c304caca0d75c5b"
+        "data": "2026-10-25T21:19:37Z",
+        "mensagem": "dados: leituras do esp32-01 até 2026-10-25T21:13",
+        "sha": "7d45116",
+        "url": "https://github.com/gfvdata-web/PlantsCare/commit/7d4511663882f2d3498905d5f37c0d52c0c13b2b"
       },
       "ultima_execucao_pipeline": {
-        "id": 40219171827,
+        "id": 40234942452,
         "evento": "schedule",
         "status": "completed",
         "conclusao": "success",
-        "criado_em": "2026-10-25T18:00:28Z",
-        "atualizado_em": "2026-10-25T18:01:17Z",
-        "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/40219171827"
+        "criado_em": "2026-10-25T21:19:23Z",
+        "atualizado_em": "2026-10-25T21:20:19Z",
+        "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/40234942452"
       },
       "site_no_ar": {
         "ok": true,
@@ -2034,6 +2034,16 @@
             }
           ],
           "historico": [
+            {
+              "id": 40234942452,
+              "evento": "schedule",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-10-25T21:19:23Z",
+              "atualizado_em": "2026-10-25T21:20:19Z",
+              "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/40234942452",
+              "duracao_s": 56
+            },
             {
               "id": 40219171827,
               "evento": "schedule",
@@ -2173,26 +2183,16 @@
               "atualizado_em": "2026-10-23T06:48:12Z",
               "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/39913637695",
               "duracao_s": 57
-            },
-            {
-              "id": 39882139577,
-              "evento": "schedule",
-              "status": "completed",
-              "conclusao": "success",
-              "criado_em": "2026-10-23T01:06:57Z",
-              "atualizado_em": "2026-10-23T01:07:47Z",
-              "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/39882139577",
-              "duracao_s": 50
             }
           ],
           "ultimo_sucesso": {
-            "id": 40219171827,
+            "id": 40234942452,
             "evento": "schedule",
             "status": "completed",
             "conclusao": "success",
-            "criado_em": "2026-10-25T18:00:28Z",
-            "atualizado_em": "2026-10-25T18:01:17Z",
-            "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/40219171827"
+            "criado_em": "2026-10-25T21:19:23Z",
+            "atualizado_em": "2026-10-25T21:20:19Z",
+            "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/40234942452"
           },
           "ultima_falha": {
             "id": 40006332479,
@@ -2257,6 +2257,12 @@
         },
         "commits_dados": [
           {
+            "data": "2026-10-25T21:19:37Z",
+            "mensagem": "dados: leituras do esp32-01 até 2026-10-25T21:13",
+            "sha": "7d45116",
+            "url": "https://github.com/gfvdata-web/PlantsCare/commit/7d4511663882f2d3498905d5f37c0d52c0c13b2b"
+          },
+          {
             "data": "2026-10-25T18:00:44Z",
             "mensagem": "dados: leituras do esp32-01 até 2026-10-25T17:49",
             "sha": "f0512bf",
@@ -2279,12 +2285,6 @@
             "mensagem": "dados: leituras do esp32-01 até 2026-10-25T00:33",
             "sha": "15ba7b1",
             "url": "https://github.com/gfvdata-web/PlantsCare/commit/15ba7b130bbbfd39ca2e5345637e11074142926f"
-          },
-          {
-            "data": "2026-10-24T22:48:29Z",
-            "mensagem": "dados: leituras do esp32-01 até 2026-10-24T22:33",
-            "sha": "a6e9521",
-            "url": "https://github.com/gfvdata-web/PlantsCare/commit/a6e9521c8f862027953eba7b69f8ec15a7620f1b"
           }
         ],
         "deploy_pages": null
@@ -2342,10 +2342,10 @@
       "destaque": false,
       "categoria": null,
       "ultimo_commit_dados": {
-        "data": "2026-10-25T19:54:06Z",
-        "mensagem": "Apuração: atualização 16:54",
-        "sha": "86724fb",
-        "url": "https://github.com/gfvdata-web/eleicoes-2026/commit/86724fbe70ea6f619364328df9fe43596baedb39"
+        "data": "2026-10-25T22:43:39Z",
+        "mensagem": "Apuração: atualização 19:43",
+        "sha": "4b23a34",
+        "url": "https://github.com/gfvdata-web/eleicoes-2026/commit/4b23a34b386d5e2145b004cacfb0d9ba33394510"
       },
       "site_no_ar": {
         "ok": true,
@@ -2355,34 +2355,34 @@
         "coleta": null,
         "commits_dados": [
           {
-            "data": "2026-10-25T19:54:06Z",
-            "mensagem": "Apuração: atualização 16:54",
-            "sha": "86724fb",
-            "url": "https://github.com/gfvdata-web/eleicoes-2026/commit/86724fbe70ea6f619364328df9fe43596baedb39"
+            "data": "2026-10-25T22:43:39Z",
+            "mensagem": "Apuração: atualização 19:43",
+            "sha": "4b23a34",
+            "url": "https://github.com/gfvdata-web/eleicoes-2026/commit/4b23a34b386d5e2145b004cacfb0d9ba33394510"
           },
           {
-            "data": "2026-10-25T19:51:59Z",
-            "mensagem": "Apuração estados: atualização 16:51",
-            "sha": "8e2e809",
-            "url": "https://github.com/gfvdata-web/eleicoes-2026/commit/8e2e809133b5a7870ec63783714c500d493fa2a1"
+            "data": "2026-10-25T22:43:26Z",
+            "mensagem": "Apuração estados: atualização 19:43",
+            "sha": "3b115c0",
+            "url": "https://github.com/gfvdata-web/eleicoes-2026/commit/3b115c0637014d314b9c41f2fde72ac188d80bf7"
           },
           {
-            "data": "2026-10-25T19:51:05Z",
-            "mensagem": "Apuração: atualização 16:51",
-            "sha": "2db5ed7",
-            "url": "https://github.com/gfvdata-web/eleicoes-2026/commit/2db5ed748b6040509f7309c2239fa5729f8a550a"
+            "data": "2026-10-25T22:43:08Z",
+            "mensagem": "Apuração: atualização 19:43",
+            "sha": "b0b74c9",
+            "url": "https://github.com/gfvdata-web/eleicoes-2026/commit/b0b74c9c898224d8c534e3dbb76e01838ef15830"
           },
           {
-            "data": "2026-10-25T19:49:47Z",
-            "mensagem": "Apuração estados: atualização 16:49",
-            "sha": "8eccdc4",
-            "url": "https://github.com/gfvdata-web/eleicoes-2026/commit/8eccdc40dd5326118b1b210ead3788eadad73951"
+            "data": "2026-10-25T22:42:54Z",
+            "mensagem": "Apuração estados: atualização 19:42",
+            "sha": "70586d2",
+            "url": "https://github.com/gfvdata-web/eleicoes-2026/commit/70586d29dbda57c3389205ab9bd9f886298bf8c1"
           },
           {
-            "data": "2026-10-25T19:48:10Z",
-            "mensagem": "Apuração: atualização 16:48",
-            "sha": "116358f",
-            "url": "https://github.com/gfvdata-web/eleicoes-2026/commit/116358f9a273c0e4baddd011622649ef31df6193"
+            "data": "2026-10-25T22:42:38Z",
+            "mensagem": "Apuração: atualização 19:42",
+            "sha": "ac16a1b",
+            "url": "https://github.com/gfvdata-web/eleicoes-2026/commit/ac16a1b2109b9fdaea1f8d6e8d110ad480f220b5"
           }
         ],
         "deploy_pages": {
