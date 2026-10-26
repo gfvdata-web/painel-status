@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-10-26T09:00:54.154340+00:00",
+    "gerado_em": "2026-10-26T12:00:59.427626+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -3121,10 +3121,10 @@
       "destaque": false,
       "categoria": null,
       "ultimo_commit_dados": {
-        "data": "2026-10-26T00:25:33Z",
-        "mensagem": "Botão de tema claro/escuro (escolha guardada no navegador)",
-        "sha": "d3f055f",
-        "url": "https://github.com/gfvdata-web/bilbao/commit/d3f055fb57c21026fd3122b18f3e23554b549518"
+        "data": "2026-10-26T11:30:32Z",
+        "mensagem": "Merge remote-tracking branch 'origin/main' into claude/abstract-page-templates-0f7bf4",
+        "sha": "d4b8e31",
+        "url": "https://github.com/gfvdata-web/bilbao/commit/d4b8e318b09a65e2fcb78adb5a203fecdfc053c7"
       },
       "site_no_ar": {
         "ok": true,
@@ -3133,6 +3133,18 @@
       "detalhes": {
         "coleta": null,
         "commits_dados": [
+          {
+            "data": "2026-10-26T11:30:32Z",
+            "mensagem": "Merge remote-tracking branch 'origin/main' into claude/abstract-page-templates-0f7bf4",
+            "sha": "d4b8e31",
+            "url": "https://github.com/gfvdata-web/bilbao/commit/d4b8e318b09a65e2fcb78adb5a203fecdfc053c7"
+          },
+          {
+            "data": "2026-10-26T11:29:56Z",
+            "mensagem": "Página sem cartões (V1 aberta) e dias legíveis no eixo dos gráficos",
+            "sha": "3706d1e",
+            "url": "https://github.com/gfvdata-web/bilbao/commit/3706d1ebfd04d39dcb686a9387f9b58b5b7d1db8"
+          },
           {
             "data": "2026-10-26T00:25:33Z",
             "mensagem": "Botão de tema claro/escuro (escolha guardada no navegador)",
