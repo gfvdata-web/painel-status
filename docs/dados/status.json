@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-10-26T00:00:52.128828+00:00",
+    "gerado_em": "2026-10-26T00:33:58.454921+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -2314,14 +2314,14 @@
       "slug": "eleicoes_2026",
       "nome": "Eleições 2026",
       "repo": "eleicoes-2026",
-      "pages_url": "https://gfvdata-web.github.io/eleicoes-2026/",
+      "pages_url": "https://eleicoes2026.gfvdata.com/",
       "destaque": false,
       "categoria": null,
       "ultimo_commit_dados": {
-        "data": "2026-10-25T23:39:43Z",
-        "mensagem": "Apuração: atualização 20:39",
-        "sha": "d4a5032",
-        "url": "https://github.com/gfvdata-web/eleicoes-2026/commit/d4a5032172f4921c2d2ff6a4ad9bb2d75f707887"
+        "data": "2026-10-26T00:03:22Z",
+        "mensagem": "Apuração: atualização 21:03",
+        "sha": "759ce1e",
+        "url": "https://github.com/gfvdata-web/eleicoes-2026/commit/759ce1ea3053376bc5209ddc547dd90934f645d1"
       },
       "site_no_ar": {
         "ok": true,
@@ -2331,34 +2331,34 @@
         "coleta": null,
         "commits_dados": [
           {
-            "data": "2026-10-25T23:39:43Z",
-            "mensagem": "Apuração: atualização 20:39",
-            "sha": "d4a5032",
-            "url": "https://github.com/gfvdata-web/eleicoes-2026/commit/d4a5032172f4921c2d2ff6a4ad9bb2d75f707887"
+            "data": "2026-10-26T00:03:22Z",
+            "mensagem": "Apuração: atualização 21:03",
+            "sha": "759ce1e",
+            "url": "https://github.com/gfvdata-web/eleicoes-2026/commit/759ce1ea3053376bc5209ddc547dd90934f645d1"
           },
           {
-            "data": "2026-10-25T23:39:29Z",
-            "mensagem": "Apuração estados: atualização 20:39",
-            "sha": "f6d8ef2",
-            "url": "https://github.com/gfvdata-web/eleicoes-2026/commit/f6d8ef2953571f5fccbca709a8d871c427a0dd8f"
+            "data": "2026-10-26T00:03:10Z",
+            "mensagem": "Apuração estados: atualização 21:03",
+            "sha": "7cbfc7a",
+            "url": "https://github.com/gfvdata-web/eleicoes-2026/commit/7cbfc7a43b584e7fb638dd9f148867cf4caaa6c1"
           },
           {
-            "data": "2026-10-25T23:39:12Z",
-            "mensagem": "Apuração: atualização 20:39",
-            "sha": "4dc4c99",
-            "url": "https://github.com/gfvdata-web/eleicoes-2026/commit/4dc4c99855dbd4fc08038acb4ee014e60c09339f"
+            "data": "2026-10-26T00:02:51Z",
+            "mensagem": "Apuração: atualização 21:02",
+            "sha": "c8af72d",
+            "url": "https://github.com/gfvdata-web/eleicoes-2026/commit/c8af72dde1b89008141e5568a1dbc4ac1bcedded"
           },
           {
-            "data": "2026-10-25T23:39:00Z",
-            "mensagem": "Apuração estados: atualização 20:39",
-            "sha": "33f4baf",
-            "url": "https://github.com/gfvdata-web/eleicoes-2026/commit/33f4bafe9dfe947e7178ba7499e90426aab60504"
+            "data": "2026-10-26T00:02:40Z",
+            "mensagem": "Apuração estados: atualização 21:02",
+            "sha": "6c82908",
+            "url": "https://github.com/gfvdata-web/eleicoes-2026/commit/6c82908f8427751bb5811f1e53d0c60c48892029"
           },
           {
-            "data": "2026-10-25T23:38:41Z",
-            "mensagem": "Apuração: atualização 20:38",
-            "sha": "181f137",
-            "url": "https://github.com/gfvdata-web/eleicoes-2026/commit/181f137cca65cd6f31f036faabf059ebc411ae74"
+            "data": "2026-10-26T00:02:20Z",
+            "mensagem": "Apuração: atualização 21:02",
+            "sha": "411597d",
+            "url": "https://github.com/gfvdata-web/eleicoes-2026/commit/411597d74b05c7007950f85226e8bc766881f1c3"
           }
         ],
         "deploy_pages": {
@@ -3030,6 +3030,258 @@
           }
         ]
       }
+    },
+    {
+      "slug": "genai",
+      "nome": "GenAI Engineer",
+      "repo": "CertificateIAGEng",
+      "pages_url": "https://genai.gfvdata.com/",
+      "destaque": false,
+      "categoria": null,
+      "ultimo_commit_dados": {
+        "data": "2026-10-23T02:31:59Z",
+        "mensagem": "Histórico real dos testes (Academy + sample questions) no banco e semeado no D1",
+        "sha": "435d856",
+        "url": "https://github.com/gfvdata-web/CertificateIAGEng/commit/435d856dc4a2545a6627cc00191aa9436545f458"
+      },
+      "site_no_ar": {
+        "ok": true,
+        "status_http": 200
+      },
+      "detalhes": {
+        "coleta": null,
+        "commits_dados": [
+          {
+            "data": "2026-10-23T02:31:59Z",
+            "mensagem": "Histórico real dos testes (Academy + sample questions) no banco e semeado no D1",
+            "sha": "435d856",
+            "url": "https://github.com/gfvdata-web/CertificateIAGEng/commit/435d856dc4a2545a6627cc00191aa9436545f458"
+          },
+          {
+            "data": "2026-10-22T22:17:00Z",
+            "mensagem": "Banco: lote gen-fix revisado (225 questões; D6.1 e D6.2 cobertos)",
+            "sha": "bf0d6a7",
+            "url": "https://github.com/gfvdata-web/CertificateIAGEng/commit/bf0d6a7b0670f2a85c0ae73971d33758e46aeefa"
+          },
+          {
+            "data": "2026-10-22T22:10:36Z",
+            "mensagem": "Banco: gen-d2 e gen-d5d4 revisados (212 questões)",
+            "sha": "8224e0b",
+            "url": "https://github.com/gfvdata-web/CertificateIAGEng/commit/8224e0bb0f5affc86d17cba4afa16beb2836f5f9"
+          },
+          {
+            "data": "2026-10-22T22:09:52Z",
+            "mensagem": "Banco: gen-d3a e gen-d1 revisados (177 questões)",
+            "sha": "f508fda",
+            "url": "https://github.com/gfvdata-web/CertificateIAGEng/commit/f508fdaee38dbb96c403213491062def25d5fef1"
+          },
+          {
+            "data": "2026-10-22T22:09:28Z",
+            "mensagem": "Front-end das 7 páginas (dashboard, practice, mock, review, cards, renames, mistakes) e lote gen-d3b",
+            "sha": "6b25c08",
+            "url": "https://github.com/gfvdata-web/CertificateIAGEng/commit/6b25c087eb1572ccf3e7fdfd55c569c876b95055"
+          }
+        ],
+        "deploy_pages": null
+      },
+      "alertas": []
+    },
+    {
+      "slug": "bilbao",
+      "nome": "Como está Bilbao",
+      "repo": "bilbao",
+      "pages_url": "https://comoestabilbao.gfvdata.com/",
+      "destaque": false,
+      "categoria": null,
+      "ultimo_commit_dados": {
+        "data": "2026-10-26T00:11:46Z",
+        "mensagem": "API sem cache no navegador: leitura velha aparecia como sensor parado",
+        "sha": "4afd906",
+        "url": "https://github.com/gfvdata-web/bilbao/commit/4afd9065eb50c931c1e4c28ecc1d286ec4c34552"
+      },
+      "site_no_ar": {
+        "ok": true,
+        "status_http": 200
+      },
+      "detalhes": {
+        "coleta": null,
+        "commits_dados": [
+          {
+            "data": "2026-10-26T00:11:46Z",
+            "mensagem": "API sem cache no navegador: leitura velha aparecia como sensor parado",
+            "sha": "4afd906",
+            "url": "https://github.com/gfvdata-web/bilbao/commit/4afd9065eb50c931c1e4c28ecc1d286ec4c34552"
+          },
+          {
+            "data": "2026-10-25T22:00:20Z",
+            "mensagem": "Como está Bilbao: temperatura e umidade da varanda (lywsd03-01)",
+            "sha": "014c3c3",
+            "url": "https://github.com/gfvdata-web/bilbao/commit/014c3c3bc285d80c645b682ffb9b8a4ec9b13457"
+          }
+        ],
+        "deploy_pages": null
+      },
+      "alertas": []
+    },
+    {
+      "slug": "radar_precos",
+      "nome": "Radar de Preços",
+      "repo": "ProductTracking",
+      "pages_url": "https://precos.gfvdata.com/",
+      "destaque": false,
+      "categoria": null,
+      "ultimo_commit_dados": {
+        "data": "2026-10-21T22:58:13Z",
+        "mensagem": "Radar de Preços: família QCY H3 (casamento, cor, comparativo)",
+        "sha": "dc2644f",
+        "url": "https://github.com/gfvdata-web/ProductTracking/commit/dc2644fdb217fc2d338935cb5afbf742a3f5fbfd"
+      },
+      "site_no_ar": {
+        "ok": true,
+        "status_http": 200
+      },
+      "detalhes": {
+        "coleta": null,
+        "commits_dados": [
+          {
+            "data": "2026-10-21T22:58:13Z",
+            "mensagem": "Radar de Preços: família QCY H3 (casamento, cor, comparativo)",
+            "sha": "dc2644f",
+            "url": "https://github.com/gfvdata-web/ProductTracking/commit/dc2644fdb217fc2d338935cb5afbf742a3f5fbfd"
+          },
+          {
+            "data": "2026-10-21T22:41:10Z",
+            "mensagem": "Radar de Preços: rastreador de poucos produtos exatos (1º: Canon SELPHY QX20)",
+            "sha": "4b7b86c",
+            "url": "https://github.com/gfvdata-web/ProductTracking/commit/4b7b86c3432fa2a795d60ae93397a90d2f52be27"
+          }
+        ],
+        "deploy_pages": null
+      },
+      "alertas": []
+    },
+    {
+      "slug": "melhor_preco",
+      "nome": "Melhor Preço",
+      "repo": "AppMelhorPreco",
+      "pages_url": "https://melhorpreco.gfvdata.com/",
+      "destaque": false,
+      "categoria": null,
+      "ultimo_commit_dados": {
+        "data": "2026-10-14T19:55:00Z",
+        "mensagem": "Foto: QR procurado no rodapé do cupom e IA repetida em falha passageira",
+        "sha": "18a3ce3",
+        "url": "https://github.com/gfvdata-web/AppMelhorPreco/commit/18a3ce3f31848297a5706a66822d3397b4dc78da"
+      },
+      "site_no_ar": {
+        "ok": true,
+        "status_http": 200
+      },
+      "detalhes": {
+        "coleta": null,
+        "commits_dados": [
+          {
+            "data": "2026-10-14T19:55:00Z",
+            "mensagem": "Foto: QR procurado no rodapé do cupom e IA repetida em falha passageira",
+            "sha": "18a3ce3",
+            "url": "https://github.com/gfvdata-web/AppMelhorPreco/commit/18a3ce3f31848297a5706a66822d3397b4dc78da"
+          },
+          {
+            "data": "2026-10-14T17:33:10Z",
+            "mensagem": "Melhor Preço: core do app (Worker, site e Android)",
+            "sha": "af6c01b",
+            "url": "https://github.com/gfvdata-web/AppMelhorPreco/commit/af6c01bec3784a02d3669efa57750c8250da9b48"
+          }
+        ],
+        "deploy_pages": null
+      },
+      "alertas": []
+    },
+    {
+      "slug": "painel_ia",
+      "nome": "Painel de IA",
+      "repo": "painel-ia",
+      "pages_url": "https://ia.gfvdata.com/",
+      "destaque": false,
+      "categoria": null,
+      "ultimo_commit_dados": {
+        "data": "2026-10-21T19:18:20Z",
+        "mensagem": "Página: espaço entre as abas e o conteúdo",
+        "sha": "65b9f32",
+        "url": "https://github.com/gfvdata-web/painel-ia/commit/65b9f32c2ada97180be442b460569b7e81cc2956"
+      },
+      "site_no_ar": {
+        "ok": true,
+        "status_http": 401
+      },
+      "detalhes": {
+        "coleta": null,
+        "commits_dados": [
+          {
+            "data": "2026-10-21T19:18:20Z",
+            "mensagem": "Página: espaço entre as abas e o conteúdo",
+            "sha": "65b9f32",
+            "url": "https://github.com/gfvdata-web/painel-ia/commit/65b9f32c2ada97180be442b460569b7e81cc2956"
+          },
+          {
+            "data": "2026-10-21T13:33:00Z",
+            "mensagem": "Aviso de leitura antiga só depois de 24 h e login vencido explicado no log",
+            "sha": "189ca36",
+            "url": "https://github.com/gfvdata-web/painel-ia/commit/189ca368a08140cd7cb91c2e2eeda69a480cc84a"
+          },
+          {
+            "data": "2026-10-21T12:44:37Z",
+            "mensagem": "Página: abas sem barra de rolagem e filtros de período afastados dos medidores",
+            "sha": "dc54636",
+            "url": "https://github.com/gfvdata-web/painel-ia/commit/dc54636168098aa51ecbe6a8aa8299a99933fc8a"
+          },
+          {
+            "data": "2026-10-21T11:59:44Z",
+            "mensagem": "painel-ia: filtro de período no Agora e custo por agente em cada sessão",
+            "sha": "99ab1b0",
+            "url": "https://github.com/gfvdata-web/painel-ia/commit/99ab1b0decebae9ffeeca6a1b113da1ae24a3107"
+          },
+          {
+            "data": "2026-10-13T21:15:28Z",
+            "mensagem": "painel-ia: painel privado de uso do Claude Code (coletor, Worker, página) e planos Gemini/OpenCode",
+            "sha": "e2cb69b",
+            "url": "https://github.com/gfvdata-web/painel-ia/commit/e2cb69beb19b2cbe1c64c3d7fb12f8851fba6064"
+          }
+        ],
+        "deploy_pages": null
+      },
+      "alertas": []
+    },
+    {
+      "slug": "site_raiz",
+      "nome": "gfvdata.com",
+      "repo": "site-raiz",
+      "pages_url": "https://www.gfvdata.com/",
+      "destaque": false,
+      "categoria": null,
+      "ultimo_commit_dados": {
+        "data": "2026-10-16T01:27:45Z",
+        "mensagem": "Página institucional da raiz gfvdata.com",
+        "sha": "83927b7",
+        "url": "https://github.com/gfvdata-web/site-raiz/commit/83927b7b87c9f037b3f29f4fe07e0fd36f25aff1"
+      },
+      "site_no_ar": {
+        "ok": true,
+        "status_http": 200
+      },
+      "detalhes": {
+        "coleta": null,
+        "commits_dados": [
+          {
+            "data": "2026-10-16T01:27:45Z",
+            "mensagem": "Página institucional da raiz gfvdata.com",
+            "sha": "83927b7",
+            "url": "https://github.com/gfvdata-web/site-raiz/commit/83927b7b87c9f037b3f29f4fe07e0fd36f25aff1"
+          }
+        ],
+        "deploy_pages": null
+      },
+      "alertas": []
     }
   ],
   "forms_avulsos": [
