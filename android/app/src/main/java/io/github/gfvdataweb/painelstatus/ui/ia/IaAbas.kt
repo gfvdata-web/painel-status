@@ -564,7 +564,10 @@ internal fun AbaCatalogo(dados: DadosIa) {
             if (catalogo.skills.isEmpty()) ItemVazio()
             catalogo.skills.forEach { skill ->
                 Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
-                    Text(skill.nome, style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.SemiBold)
+                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        Text(skill.nome, style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.SemiBold)
+                        if (skill.origem.isNotEmpty()) Selo(skill.origem, Tom.NEUTRO)
+                    }
                     Text(skill.descricao, style = MaterialTheme.typography.bodySmall)
                 }
             }
