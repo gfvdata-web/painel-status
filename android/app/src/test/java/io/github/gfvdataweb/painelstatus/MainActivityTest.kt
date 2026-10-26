@@ -9,6 +9,7 @@ import androidx.compose.ui.test.performTextInput
 import io.github.gfvdataweb.painelstatus.apoio.PainelAppDeTeste
 import io.github.gfvdataweb.painelstatus.apoio.PainelPublicado
 import io.github.gfvdataweb.painelstatus.ui.painel.outrosSites
+import io.github.gfvdataweb.painelstatus.ui.painel.sitesDaLista
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -37,7 +38,7 @@ class MainActivityTest {
 
     @Test
     fun abreNoStatusComOsSites() {
-        status.sites.forEach { esperarTexto(it.nome) }
+        sitesDaLista(status.sites).forEach { esperarTexto(it.nome) }
     }
 
     @Test

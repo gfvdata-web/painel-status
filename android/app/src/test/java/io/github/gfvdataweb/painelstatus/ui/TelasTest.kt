@@ -17,6 +17,7 @@ import io.github.gfvdataweb.painelstatus.ui.historico.HistoricoTela
 import io.github.gfvdataweb.painelstatus.ui.painel.destaqueDe
 import io.github.gfvdataweb.painelstatus.ui.painel.outrosSites
 import io.github.gfvdataweb.painelstatus.ui.painel.resumoDosSites
+import io.github.gfvdataweb.painelstatus.ui.painel.sitesDaLista
 import io.github.gfvdataweb.painelstatus.ui.sites.SiteTela
 import io.github.gfvdataweb.painelstatus.ui.status.StatusTela
 import io.github.gfvdataweb.painelstatus.ui.theme.PainelStatusTheme
@@ -53,7 +54,7 @@ class TelasTest {
             if (resumo.foraDoAr == 0) "${resumo.total} sites · todos no ar"
             else "${resumo.total} sites · ${resumo.foraDoAr} com problema de acesso",
         )
-        status.sites.forEach { existe(it.nome) }
+        sitesDaLista(status.sites).forEach { existe(it.nome) }
         status.formsAvulsos.forEach { existe("${it.nome} ↗") }
     }
 

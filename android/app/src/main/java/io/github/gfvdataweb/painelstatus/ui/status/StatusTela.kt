@@ -113,7 +113,7 @@ fun StatusTela(
         item {
             Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
                 if (edicao != null) AvisoDeEdicao(edicao.erroAoSalvar)
-                Cabecalho(sites)
+                Cabecalho(status.sites) // resumo conta todos, inclusive os fora da lista (como na página)
             }
         }
         items(sites, key = { it.slug }) { site ->
