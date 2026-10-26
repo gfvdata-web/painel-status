@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-10-26T12:00:59.427626+00:00",
+    "gerado_em": "2026-10-26T14:11:06.380409+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -11,6 +11,7 @@
       "pages_url": "https://bolaof1.gfvdata.com/",
       "destaque": true,
       "categoria": null,
+      "na_lista": true,
       "form_url": "https://forms.gle/7yZAx1WThPf51bv67",
       "form_rotulo": "Enviar palpites (Google Forms)",
       "ultimo_commit_dados": {
@@ -209,6 +210,7 @@
       "pages_url": "https://meiospagamento.gfvdata.com/",
       "destaque": false,
       "categoria": null,
+      "na_lista": true,
       "ultimo_commit_dados": {
         "data": "2026-10-25T13:44:17Z",
         "mensagem": "dados: atualização mensal (série até 2026-09)",
@@ -533,6 +535,7 @@
       "pages_url": "https://arrecadacaofederal.gfvdata.com/",
       "destaque": false,
       "categoria": null,
+      "na_lista": true,
       "ultimo_commit_dados": {
         "data": "2026-10-14T12:07:41Z",
         "mensagem": "Eventos: fonte da recessao 2014-2016 aponta para o Codace/IBRE",
@@ -857,6 +860,7 @@
       "pages_url": "https://creditomodalidade.gfvdata.com/",
       "destaque": false,
       "categoria": null,
+      "na_lista": true,
       "ultimo_commit_dados": {
         "data": "2026-10-14T11:34:38Z",
         "mensagem": "Painel narrativo com eventos, skill do Claude e preparação para Cloudflare Pages",
@@ -1169,6 +1173,7 @@
       "pages_url": "https://gfvdata-web.github.io/simulador-investimentos/",
       "destaque": false,
       "categoria": null,
+      "na_lista": true,
       "ultimo_commit_dados": {
         "data": "2026-10-23T23:51:25Z",
         "mensagem": "Dados de mercado em 2026-10-23",
@@ -1585,6 +1590,7 @@
       "pages_url": "https://gfvdata-web.github.io/chess-tracking/",
       "destaque": false,
       "categoria": null,
+      "na_lista": true,
       "ultimo_commit_dados": {
         "data": "2026-10-25T13:44:01Z",
         "mensagem": "Atualiza partidas em 2026-10-25T13:44Z",
@@ -2002,13 +2008,14 @@
       "pages_url": "https://plantscare.gfvdata.com/",
       "destaque": false,
       "categoria": null,
+      "na_lista": true,
       "form_url": "https://forms.gle/y3uXaukJXmP9GMED7",
       "form_rotulo": "Enviar fotos",
       "ultimo_commit_dados": {
-        "data": "2026-10-26T08:19:39Z",
-        "mensagem": "dados: leituras do esp32-01 até 2026-10-26T08:11",
-        "sha": "f38fd62",
-        "url": "https://github.com/gfvdata-web/PlantsCare/commit/f38fd626c6baa8e99316276680ddd4491810d869"
+        "data": "2026-10-26T11:46:57Z",
+        "mensagem": "Painel: adubação marcada no gráfico hora a hora; pipeline grava manejo em eventos.csv",
+        "sha": "7eacaba",
+        "url": "https://github.com/gfvdata-web/PlantsCare/commit/7eacaba9f58612de784ff33424279553499886aa"
       },
       "ultima_execucao_pipeline": {
         "id": 40291452863,
@@ -2244,6 +2251,12 @@
         },
         "commits_dados": [
           {
+            "data": "2026-10-26T11:46:57Z",
+            "mensagem": "Painel: adubação marcada no gráfico hora a hora; pipeline grava manejo em eventos.csv",
+            "sha": "7eacaba",
+            "url": "https://github.com/gfvdata-web/PlantsCare/commit/7eacaba9f58612de784ff33424279553499886aa"
+          },
+          {
             "data": "2026-10-26T08:19:39Z",
             "mensagem": "dados: leituras do esp32-01 até 2026-10-26T08:11",
             "sha": "f38fd62",
@@ -2266,12 +2279,6 @@
             "mensagem": "dados: leituras do esp32-01 até 2026-10-25T21:13",
             "sha": "7d45116",
             "url": "https://github.com/gfvdata-web/PlantsCare/commit/7d4511663882f2d3498905d5f37c0d52c0c13b2b"
-          },
-          {
-            "data": "2026-10-25T18:00:44Z",
-            "mensagem": "dados: leituras do esp32-01 até 2026-10-25T17:49",
-            "sha": "f0512bf",
-            "url": "https://github.com/gfvdata-web/PlantsCare/commit/f0512bf0207100e728a488bc8c304caca0d75c5b"
           }
         ],
         "deploy_pages": null
@@ -2280,42 +2287,42 @@
       "pipeline_forms": {
         "workflow": "pipeline.yml",
         "execucao": {
-          "id": 38488020153,
-          "evento": "push",
+          "id": 40332900170,
+          "evento": "workflow_dispatch",
           "status": "completed",
           "conclusao": "success",
-          "criado_em": "2026-10-14T00:04:21Z",
-          "atualizado_em": "2026-10-14T00:05:10Z",
-          "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/38488020153"
+          "criado_em": "2026-10-26T13:42:10Z",
+          "atualizado_em": "2026-10-26T13:43:14Z",
+          "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/40332900170"
         },
         "etapas": [
           {
             "chave": "forms",
             "titulo": "Fotos enviadas (Google Forms)",
-            "estado": "ok",
-            "detalhe": "Apps Script gravou o envio em inbox/ no GitHub e disparou o pipeline.",
-            "quando": "2026-10-14T00:04:21Z"
+            "estado": "pulado",
+            "detalhe": "Execução manual no GitHub — não houve envio novo pelo Forms.",
+            "quando": "2026-10-26T13:42:10Z"
           },
           {
             "chave": "ficha",
             "titulo": "Ficha da planta atualizada",
-            "estado": "ok",
-            "detalhe": "Fotos copiadas e entrada nova escrita na ficha.",
-            "quando": "2026-10-14T00:04:55Z"
+            "estado": "pulado",
+            "detalhe": "Execução manual só para refazer o relatório.",
+            "quando": null
           },
           {
             "chave": "relatorio",
             "titulo": "Relatório da IA (Gemini) → PDF → e-mail",
             "estado": "ok",
             "detalhe": "Síntese do Gemini, PDF e e-mail enviados.",
-            "quando": "2026-10-14T00:05:03Z"
+            "quando": "2026-10-26T13:43:08Z"
           },
           {
             "chave": "commit",
             "titulo": "Salvo no repositório",
             "estado": "ok",
             "detalhe": "Ficha, fotos e PDF commitados; envio retirado de inbox/.",
-            "quando": "2026-10-14T00:05:06Z"
+            "quando": "2026-10-26T13:43:10Z"
           }
         ]
       },
@@ -2328,6 +2335,7 @@
       "pages_url": "https://eleicoes2026.gfvdata.com/",
       "destaque": false,
       "categoria": null,
+      "na_lista": true,
       "ultimo_commit_dados": {
         "data": "2026-10-26T00:03:22Z",
         "mensagem": "Apuração: atualização 21:03",
@@ -2518,6 +2526,7 @@
       "pages_url": "https://gfvdata-web.github.io/painel-esportivo/",
       "destaque": false,
       "categoria": null,
+      "na_lista": true,
       "ultimo_commit_dados": {
         "data": "2026-09-28T20:07:49Z",
         "mensagem": "Publicação do painel (dados cifrados)",
@@ -2684,6 +2693,7 @@
       "pages_url": "https://gfvdata-web.github.io/dashboard-municipios/",
       "destaque": false,
       "categoria": null,
+      "na_lista": true,
       "ultimo_commit_dados": {
         "data": "2026-09-15T00:56:09Z",
         "mensagem": "Painel de indicadores municipais brasileiros",
@@ -2721,6 +2731,7 @@
       "pages_url": "https://gfvdata-web.github.io/var-vendo/",
       "destaque": false,
       "categoria": null,
+      "na_lista": true,
       "ultimo_commit_dados": {
         "data": "2026-10-12T16:18:29Z",
         "mensagem": "Primeira versão: arbitragem na Série A e na Copa do Brasil 2026",
@@ -2881,6 +2892,7 @@
       "pages_url": "https://gfvdata-web.github.io/evolucao-fotografia/",
       "destaque": false,
       "categoria": null,
+      "na_lista": true,
       "ultimo_commit_dados": {
         "data": "2026-10-19T17:47:28Z",
         "mensagem": "feat: v2.1 — Painel de padrões",
@@ -3065,6 +3077,7 @@
       "pages_url": "https://genai.gfvdata.com/",
       "destaque": false,
       "categoria": null,
+      "na_lista": true,
       "ultimo_commit_dados": {
         "data": "2026-10-23T02:31:59Z",
         "mensagem": "Histórico real dos testes (Academy + sample questions) no banco e semeado no D1",
@@ -3120,6 +3133,7 @@
       "pages_url": "https://comoestabilbao.gfvdata.com/",
       "destaque": false,
       "categoria": null,
+      "na_lista": true,
       "ultimo_commit_dados": {
         "data": "2026-10-26T11:30:32Z",
         "mensagem": "Merge remote-tracking branch 'origin/main' into claude/abstract-page-templates-0f7bf4",
@@ -3175,6 +3189,7 @@
       "pages_url": "https://precos.gfvdata.com/",
       "destaque": false,
       "categoria": null,
+      "na_lista": true,
       "ultimo_commit_dados": {
         "data": "2026-10-21T22:58:13Z",
         "mensagem": "Radar de Preços: família QCY H3 (casamento, cor, comparativo)",
@@ -3212,6 +3227,7 @@
       "pages_url": "https://melhorpreco.gfvdata.com/",
       "destaque": false,
       "categoria": null,
+      "na_lista": true,
       "ultimo_commit_dados": {
         "data": "2026-10-14T19:55:00Z",
         "mensagem": "Foto: QR procurado no rodapé do cupom e IA repetida em falha passageira",
@@ -3249,11 +3265,12 @@
       "pages_url": "https://ia.gfvdata.com/",
       "destaque": false,
       "categoria": null,
+      "na_lista": false,
       "ultimo_commit_dados": {
-        "data": "2026-10-21T19:18:20Z",
-        "mensagem": "Página: espaço entre as abas e o conteúdo",
-        "sha": "65b9f32",
-        "url": "https://github.com/gfvdata-web/painel-ia/commit/65b9f32c2ada97180be442b460569b7e81cc2956"
+        "data": "2026-10-26T14:08:11Z",
+        "mensagem": "Uso de skills e MCPs: coletor conta chamadas; aba Agentes vira Uso; Catálogo com MCPs",
+        "sha": "80e61b2",
+        "url": "https://github.com/gfvdata-web/painel-ia/commit/80e61b2c9f071884e79d9f723d4879788775caec"
       },
       "site_no_ar": {
         "ok": true,
@@ -3262,6 +3279,18 @@
       "detalhes": {
         "coleta": null,
         "commits_dados": [
+          {
+            "data": "2026-10-26T14:08:11Z",
+            "mensagem": "Uso de skills e MCPs: coletor conta chamadas; aba Agentes vira Uso; Catálogo com MCPs",
+            "sha": "80e61b2",
+            "url": "https://github.com/gfvdata-web/painel-ia/commit/80e61b2c9f071884e79d9f723d4879788775caec"
+          },
+          {
+            "data": "2026-10-26T13:59:13Z",
+            "mensagem": "Página: contagem de acessos (GoatCounter) com prefixo /painel-ia",
+            "sha": "db6141a",
+            "url": "https://github.com/gfvdata-web/painel-ia/commit/db6141a7e454eb7d55a698eb04bac6e3233e4512"
+          },
           {
             "data": "2026-10-21T19:18:20Z",
             "mensagem": "Página: espaço entre as abas e o conteúdo",
@@ -3279,18 +3308,6 @@
             "mensagem": "Página: abas sem barra de rolagem e filtros de período afastados dos medidores",
             "sha": "dc54636",
             "url": "https://github.com/gfvdata-web/painel-ia/commit/dc54636168098aa51ecbe6a8aa8299a99933fc8a"
-          },
-          {
-            "data": "2026-10-21T11:59:44Z",
-            "mensagem": "painel-ia: filtro de período no Agora e custo por agente em cada sessão",
-            "sha": "99ab1b0",
-            "url": "https://github.com/gfvdata-web/painel-ia/commit/99ab1b0decebae9ffeeca6a1b113da1ae24a3107"
-          },
-          {
-            "data": "2026-10-13T21:15:28Z",
-            "mensagem": "painel-ia: painel privado de uso do Claude Code (coletor, Worker, página) e planos Gemini/OpenCode",
-            "sha": "e2cb69b",
-            "url": "https://github.com/gfvdata-web/painel-ia/commit/e2cb69beb19b2cbe1c64c3d7fb12f8851fba6064"
           }
         ],
         "deploy_pages": null
@@ -3304,6 +3321,7 @@
       "pages_url": "https://www.gfvdata.com/",
       "destaque": false,
       "categoria": null,
+      "na_lista": true,
       "ultimo_commit_dados": {
         "data": "2026-10-16T01:27:45Z",
         "mensagem": "Página institucional da raiz gfvdata.com",
