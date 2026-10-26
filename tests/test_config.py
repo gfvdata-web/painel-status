@@ -37,6 +37,11 @@ class CadastroReal(unittest.TestCase):
             self.assertRegex(form["url"], r"^https://forms\.gle/\S+$")
             self.assertTrue(form["nome"].strip())
 
+    def test_cada_site_e_cada_repo_aparecem_uma_vez(self):
+        for campo in ("pages_url", "repo"):
+            valores = [s[campo] for s in config.SITES]
+            self.assertEqual(len(valores), len(set(valores)), f"{campo} repetido em SITES")
+
     def test_repo_e_workflow_bem_formados(self):
         for site in config.SITES:
             self.assertRegex(site["repo"], r"^[A-Za-z0-9._-]+$")

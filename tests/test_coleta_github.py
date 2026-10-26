@@ -148,6 +148,10 @@ class SiteNoArEPeriodo(unittest.TestCase):
         with RedeFalsa(sites_fora={"https://s.test/": 503}):
             self.assertEqual(gh.site_no_ar("https://s.test/"), {"ok": False, "status_http": 503})
 
+    def test_login_401_conta_como_no_ar(self):
+        with RedeFalsa(sites_fora={"https://s.test/": 401}):
+            self.assertEqual(gh.site_no_ar("https://s.test/"), {"ok": True, "status_http": 401})
+
     def test_fora_do_ar_por_dns_ou_timeout(self):
         for exc in (urllib.error.URLError("dns"), TimeoutError("lento")):
             with mock.patch.object(gh, "get_status", mock.Mock(side_effect=exc)):

@@ -1127,7 +1127,7 @@
       "slug": "eleicoes_2026",
       "nome": "Eleições 2026",
       "repo": "eleicoes-2026",
-      "pages_url": "https://gfvdata-web.github.io/eleicoes-2026/",
+      "pages_url": "https://eleicoes2026.gfvdata.com/",
       "destaque": false,
       "categoria": null,
       "ultimo_commit_dados": {
@@ -1317,6 +1317,264 @@
       "nome": "Evolução Fotografia",
       "repo": "evolucao-fotografia",
       "pages_url": "https://gfvdata-web.github.io/evolucao-fotografia/",
+      "destaque": false,
+      "categoria": null,
+      "ultimo_commit_dados": {
+        "data": "2026-10-13T08:00:12Z",
+        "mensagem": "Atualiza dados da rodada 21",
+        "sha": "a1b2c3d",
+        "url": "https://github.com/gfvdata-web/exemplo/commit/a1b2c3d4e5f60718293a4b5c6d7e8f9012345678"
+      },
+      "site_no_ar": {
+        "ok": true,
+        "status_http": 200
+      },
+      "detalhes": {
+        "coleta": null,
+        "commits_dados": [
+          {
+            "data": "2026-10-13T08:00:12Z",
+            "mensagem": "Atualiza dados da rodada 21",
+            "sha": "a1b2c3d",
+            "url": "https://github.com/gfvdata-web/exemplo/commit/a1b2c3d4e5f60718293a4b5c6d7e8f9012345678"
+          },
+          {
+            "data": "2026-10-12T08:00:05Z",
+            "mensagem": "Atualiza dados da rodada 20",
+            "sha": "ffeeddc",
+            "url": "https://github.com/gfvdata-web/exemplo/commit/ffeeddccbbaa00998877665544332211ffeeddcc"
+          }
+        ],
+        "deploy_pages": {
+          "status": "completed",
+          "conclusao": "success",
+          "criado_em": "2026-10-13T10:05:00Z",
+          "atualizado_em": "2026-10-13T10:06:00Z",
+          "url": "https://github.com/gfvdata-web/exemplo/actions/runs/7"
+        }
+      },
+      "alertas": []
+    },
+    {
+      "slug": "genai",
+      "nome": "GenAI Engineer",
+      "repo": "CertificateIAGEng",
+      "pages_url": "https://genai.gfvdata.com/",
+      "destaque": false,
+      "categoria": null,
+      "ultimo_commit_dados": {
+        "data": "2026-10-13T08:00:12Z",
+        "mensagem": "Atualiza dados da rodada 21",
+        "sha": "a1b2c3d",
+        "url": "https://github.com/gfvdata-web/exemplo/commit/a1b2c3d4e5f60718293a4b5c6d7e8f9012345678"
+      },
+      "site_no_ar": {
+        "ok": true,
+        "status_http": 200
+      },
+      "detalhes": {
+        "coleta": null,
+        "commits_dados": [
+          {
+            "data": "2026-10-13T08:00:12Z",
+            "mensagem": "Atualiza dados da rodada 21",
+            "sha": "a1b2c3d",
+            "url": "https://github.com/gfvdata-web/exemplo/commit/a1b2c3d4e5f60718293a4b5c6d7e8f9012345678"
+          },
+          {
+            "data": "2026-10-12T08:00:05Z",
+            "mensagem": "Atualiza dados da rodada 20",
+            "sha": "ffeeddc",
+            "url": "https://github.com/gfvdata-web/exemplo/commit/ffeeddccbbaa00998877665544332211ffeeddcc"
+          }
+        ],
+        "deploy_pages": {
+          "status": "completed",
+          "conclusao": "success",
+          "criado_em": "2026-10-13T10:05:00Z",
+          "atualizado_em": "2026-10-13T10:06:00Z",
+          "url": "https://github.com/gfvdata-web/exemplo/actions/runs/7"
+        }
+      },
+      "alertas": []
+    },
+    {
+      "slug": "bilbao",
+      "nome": "Como está Bilbao",
+      "repo": "bilbao",
+      "pages_url": "https://comoestabilbao.gfvdata.com/",
+      "destaque": false,
+      "categoria": null,
+      "ultimo_commit_dados": {
+        "data": "2026-10-13T08:00:12Z",
+        "mensagem": "Atualiza dados da rodada 21",
+        "sha": "a1b2c3d",
+        "url": "https://github.com/gfvdata-web/exemplo/commit/a1b2c3d4e5f60718293a4b5c6d7e8f9012345678"
+      },
+      "site_no_ar": {
+        "ok": true,
+        "status_http": 200
+      },
+      "detalhes": {
+        "coleta": null,
+        "commits_dados": [
+          {
+            "data": "2026-10-13T08:00:12Z",
+            "mensagem": "Atualiza dados da rodada 21",
+            "sha": "a1b2c3d",
+            "url": "https://github.com/gfvdata-web/exemplo/commit/a1b2c3d4e5f60718293a4b5c6d7e8f9012345678"
+          },
+          {
+            "data": "2026-10-12T08:00:05Z",
+            "mensagem": "Atualiza dados da rodada 20",
+            "sha": "ffeeddc",
+            "url": "https://github.com/gfvdata-web/exemplo/commit/ffeeddccbbaa00998877665544332211ffeeddcc"
+          }
+        ],
+        "deploy_pages": {
+          "status": "completed",
+          "conclusao": "success",
+          "criado_em": "2026-10-13T10:05:00Z",
+          "atualizado_em": "2026-10-13T10:06:00Z",
+          "url": "https://github.com/gfvdata-web/exemplo/actions/runs/7"
+        }
+      },
+      "alertas": []
+    },
+    {
+      "slug": "radar_precos",
+      "nome": "Radar de Preços",
+      "repo": "ProductTracking",
+      "pages_url": "https://precos.gfvdata.com/",
+      "destaque": false,
+      "categoria": null,
+      "ultimo_commit_dados": {
+        "data": "2026-10-13T08:00:12Z",
+        "mensagem": "Atualiza dados da rodada 21",
+        "sha": "a1b2c3d",
+        "url": "https://github.com/gfvdata-web/exemplo/commit/a1b2c3d4e5f60718293a4b5c6d7e8f9012345678"
+      },
+      "site_no_ar": {
+        "ok": true,
+        "status_http": 200
+      },
+      "detalhes": {
+        "coleta": null,
+        "commits_dados": [
+          {
+            "data": "2026-10-13T08:00:12Z",
+            "mensagem": "Atualiza dados da rodada 21",
+            "sha": "a1b2c3d",
+            "url": "https://github.com/gfvdata-web/exemplo/commit/a1b2c3d4e5f60718293a4b5c6d7e8f9012345678"
+          },
+          {
+            "data": "2026-10-12T08:00:05Z",
+            "mensagem": "Atualiza dados da rodada 20",
+            "sha": "ffeeddc",
+            "url": "https://github.com/gfvdata-web/exemplo/commit/ffeeddccbbaa00998877665544332211ffeeddcc"
+          }
+        ],
+        "deploy_pages": {
+          "status": "completed",
+          "conclusao": "success",
+          "criado_em": "2026-10-13T10:05:00Z",
+          "atualizado_em": "2026-10-13T10:06:00Z",
+          "url": "https://github.com/gfvdata-web/exemplo/actions/runs/7"
+        }
+      },
+      "alertas": []
+    },
+    {
+      "slug": "melhor_preco",
+      "nome": "Melhor Preço",
+      "repo": "AppMelhorPreco",
+      "pages_url": "https://melhorpreco.gfvdata.com/",
+      "destaque": false,
+      "categoria": null,
+      "ultimo_commit_dados": {
+        "data": "2026-10-13T08:00:12Z",
+        "mensagem": "Atualiza dados da rodada 21",
+        "sha": "a1b2c3d",
+        "url": "https://github.com/gfvdata-web/exemplo/commit/a1b2c3d4e5f60718293a4b5c6d7e8f9012345678"
+      },
+      "site_no_ar": {
+        "ok": true,
+        "status_http": 200
+      },
+      "detalhes": {
+        "coleta": null,
+        "commits_dados": [
+          {
+            "data": "2026-10-13T08:00:12Z",
+            "mensagem": "Atualiza dados da rodada 21",
+            "sha": "a1b2c3d",
+            "url": "https://github.com/gfvdata-web/exemplo/commit/a1b2c3d4e5f60718293a4b5c6d7e8f9012345678"
+          },
+          {
+            "data": "2026-10-12T08:00:05Z",
+            "mensagem": "Atualiza dados da rodada 20",
+            "sha": "ffeeddc",
+            "url": "https://github.com/gfvdata-web/exemplo/commit/ffeeddccbbaa00998877665544332211ffeeddcc"
+          }
+        ],
+        "deploy_pages": {
+          "status": "completed",
+          "conclusao": "success",
+          "criado_em": "2026-10-13T10:05:00Z",
+          "atualizado_em": "2026-10-13T10:06:00Z",
+          "url": "https://github.com/gfvdata-web/exemplo/actions/runs/7"
+        }
+      },
+      "alertas": []
+    },
+    {
+      "slug": "painel_ia",
+      "nome": "Painel de IA",
+      "repo": "painel-ia",
+      "pages_url": "https://ia.gfvdata.com/",
+      "destaque": false,
+      "categoria": null,
+      "ultimo_commit_dados": {
+        "data": "2026-10-13T08:00:12Z",
+        "mensagem": "Atualiza dados da rodada 21",
+        "sha": "a1b2c3d",
+        "url": "https://github.com/gfvdata-web/exemplo/commit/a1b2c3d4e5f60718293a4b5c6d7e8f9012345678"
+      },
+      "site_no_ar": {
+        "ok": true,
+        "status_http": 200
+      },
+      "detalhes": {
+        "coleta": null,
+        "commits_dados": [
+          {
+            "data": "2026-10-13T08:00:12Z",
+            "mensagem": "Atualiza dados da rodada 21",
+            "sha": "a1b2c3d",
+            "url": "https://github.com/gfvdata-web/exemplo/commit/a1b2c3d4e5f60718293a4b5c6d7e8f9012345678"
+          },
+          {
+            "data": "2026-10-12T08:00:05Z",
+            "mensagem": "Atualiza dados da rodada 20",
+            "sha": "ffeeddc",
+            "url": "https://github.com/gfvdata-web/exemplo/commit/ffeeddccbbaa00998877665544332211ffeeddcc"
+          }
+        ],
+        "deploy_pages": {
+          "status": "completed",
+          "conclusao": "success",
+          "criado_em": "2026-10-13T10:05:00Z",
+          "atualizado_em": "2026-10-13T10:06:00Z",
+          "url": "https://github.com/gfvdata-web/exemplo/actions/runs/7"
+        }
+      },
+      "alertas": []
+    },
+    {
+      "slug": "site_raiz",
+      "nome": "gfvdata.com",
+      "repo": "site-raiz",
+      "pages_url": "https://www.gfvdata.com/",
       "destaque": false,
       "categoria": null,
       "ultimo_commit_dados": {

@@ -358,7 +358,7 @@ em vez de apagar os números. Site sem `contagem_url` fica sem o bloco.
 ## Sites monitorados
 
 A lista que o painel usa é `src/config.py` (`SITES`; os campos de cada entrada estão
-descritos na docstring do arquivo). Hoje são doze:
+descritos na docstring do arquivo). Hoje são dezoito:
 
 | Site | Repositório | Página | O que é |
 |------|-------------|--------|---------|
@@ -369,11 +369,21 @@ descritos na docstring do arquivo). Hoje são doze:
 | Simulador de investimentos | [`simulador-investimentos`](https://github.com/gfvdata-web/simulador-investimentos) | [simulador](https://gfvdata-web.github.io/simulador-investimentos/) | Comparação de rendimento de investimentos (bruto, líquido e real); coleta de dados oficiais em dias úteis via Actions |
 | Chess Tracking | [`chess-tracking`](https://github.com/gfvdata-web/chess-tracking) | [página](https://gfvdata-web.github.io/chess-tracking/) | Histórico de partidas no Chess.com (conta `giggsmate`) com estatísticas de rating, aberturas, ritmo, horário e gestão de tempo; coleta diária via Actions |
 | Plants Care | [`PlantsCare`](https://github.com/gfvdata-web/PlantsCare) (privado) | [painel](https://plantscare.gfvdata.com/) · [enviar fotos](https://forms.gle/y3uXaukJXmP9GMED7) | Acompanhamento das plantas (fichas, sensores, equipamentos). Site na Cloudflare, republicado pelo `sensor-sync.yml` (planilha do ESP32 → `data/`, de hora em hora) — é o workflow do card. Fotos pelo Google Forms → `inbox/` → `pipeline.yml` (ficha → Gemini → PDF → e-mail), com o passo a passo no card (`pipeline_forms`, ver "O que ele mostra") |
-| Eleições 2026 | [`eleicoes-2026`](https://github.com/gfvdata-web/eleicoes-2026) | [mapa](https://gfvdata-web.github.io/eleicoes-2026/) | Mapa das pesquisas para governador e Senado por estado, mais a apuração. Publicado a cada push via `pages.yml` (sem agenda, por isso sem workflow cadastrado) |
+| Eleições 2026 | [`eleicoes-2026`](https://github.com/gfvdata-web/eleicoes-2026) | [mapa](https://eleicoes2026.gfvdata.com/) | Mapa das pesquisas para governador e Senado por estado, mais a apuração. Worker de estáticos na Cloudflare (o GitHub Pages antigo segue de reserva). Publicado a cada push via `pages.yml` (sem agenda, por isso sem workflow cadastrado) |
 | Painel esportivo | [`painel-esportivo`](https://github.com/gfvdata-web/painel-esportivo) | [painel](https://gfvdata-web.github.io/painel-esportivo/) | Histórico esportivo (Strava + Samsung Health) com dados cifrados. Os dados só existem no branch `gh-pages` (publicados à mão por `scripts/publicar.mjs`), daí `branch_dados: "gh-pages"` |
 | Dashboard dos municípios | [`dashboard-municipios`](https://github.com/gfvdata-web/dashboard-municipios) | [painel](https://gfvdata-web.github.io/dashboard-municipios/) | 18 indicadores públicos dos 5.571 municípios (segurança, saneamento, saúde, educação, finanças, transparência); dados em `site/dados`, coletados localmente |
 | VarVendo | [`var-vendo`](https://github.com/gfvdata-web/var-vendo) | [página](https://gfvdata-web.github.io/var-vendo/) | Arbitragem no Brasileirão Série A e na Copa do Brasil 2026 (API da CBF + ogol): quem apita, clubes, resultados e cartões. Dados em `docs/data`; publicado a cada push via `pages.yml` (sem agenda, por isso sem workflow cadastrado) |
 | Evolução Fotografia | [`evolucao-fotografia`](https://github.com/gfvdata-web/evolucao-fotografia) | [app](https://gfvdata-web.github.io/evolucao-fotografia/) | Análise da qualidade de captura das fotos da Canon EOS RP, no navegador. O repo não guarda fotos: `caminho_dados` é `site/`, então "Dados atualizados" = última versão publicada. Testes + deploy a cada push via `ci-pages.yml` (sem agenda, sem workflow cadastrado) |
+| GenAI Engineer | [`CertificateIAGEng`](https://github.com/gfvdata-web/CertificateIAGEng) (privado) | [estudo](https://genai.gfvdata.com/) | Estudo para certificações de IA generativa com banco de questões revisado às cegas. Worker + D1; `caminho_dados` é `site/data` (questões geradas a partir de `content/`) |
+| Como está Bilbao | [`bilbao`](https://github.com/gfvdata-web/bilbao) (privado) | [varanda](https://comoestabilbao.gfvdata.com/) | Temperatura e umidade da varanda, lidas da planilha do ESP32 do PlantsCare. Worker de estáticos + `/api/leituras`; `caminho_dados` é `publico/` (assets) |
+| Radar de Preços | [`ProductTracking`](https://github.com/gfvdata-web/ProductTracking) (privado) | [radar](https://precos.gfvdata.com/) | Preço de poucos produtos exatos em várias lojas. Worker + D1 + Cron do wrangler; `caminho_dados` é `docs/` (assets) |
+| Melhor Preço | [`AppMelhorPreco`](https://github.com/gfvdata-web/AppMelhorPreco) (privado) | [site](https://melhorpreco.gfvdata.com/) | Comparação de preços a partir das notas fiscais (NFC-e) lidas pelo app. Worker + D1 + Cron do wrangler; `caminho_dados` é `site/` (assets) |
+| Painel de IA | [`painel-ia`](https://github.com/gfvdata-web/painel-ia) (privado) | [painel](https://ia.gfvdata.com/) | Uso de tokens e limites do Claude. Todo o site exige login: a raiz responde 401 com a página de login, e `site_no_ar` conta 401 como no ar. Dados no D1, enviados pelo coletor local; `caminho_dados` é `docs/` (assets) |
+| gfvdata.com | [`site-raiz`](https://github.com/gfvdata-web/site-raiz) | [site](https://www.gfvdata.com/) | Página raiz do domínio. Worker de estáticos; `caminho_dados` é `docs/` |
+
+Nos Workers cujos dados vivem no D1/KV, `caminho_dados` aponta para a pasta de assets do
+`wrangler.jsonc`: "Dados atualizados" é a última versão publicada, e o Cron do wrangler não
+aparece como workflow.
 
 O Cruzeiro Indata saiu do painel.
 

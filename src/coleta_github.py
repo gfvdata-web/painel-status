@@ -191,11 +191,15 @@ def execucoes_pages(owner, repo, quantidade=30):
 
 
 def site_no_ar(pages_url):
-    """Checagem HTTP simples: o site publicado responde?"""
+    """Checagem HTTP simples: o site publicado responde?
+
+    401 conta como no ar: é a página de login de um site privado (ex.: o painel de IA),
+    ou seja, o servidor respondeu.
+    """
     try:
         status = get_status(pages_url)
     except urllib.error.HTTPError as exc:
-        return {"ok": False, "status_http": exc.code}
+        return {"ok": exc.code == 401, "status_http": exc.code}
     except ERROS_REDE as exc:  # DNS/timeout/etc.
         return {"ok": False, "erro": str(exc)}
     return {"ok": 200 <= status < 300, "status_http": status}
