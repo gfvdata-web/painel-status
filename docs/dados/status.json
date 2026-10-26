@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-10-26T15:00:58.639454+00:00",
+    "gerado_em": "2026-10-26T15:46:59.323859+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -2326,7 +2326,136 @@
           }
         ]
       },
-      "historico_arquivo": "dados/historico/plants_care.json"
+      "historico_arquivo": "dados/historico/plants_care.json",
+      "acesso": {
+        "visitantes_unicos": 1,
+        "serie_diaria": [
+          {
+            "data": "2026-09-26",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-27",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-28",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-29",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-30",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-01",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-02",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-03",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-04",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-05",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-06",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-07",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-08",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-09",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-10",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-11",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-12",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-13",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-14",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-15",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-16",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-17",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-18",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-19",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-20",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-21",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-22",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-23",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-24",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-25",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-26",
+            "visitantes": 1
+          }
+        ]
+      }
     },
     {
       "slug": "eleicoes_2026",
@@ -3312,7 +3441,136 @@
         ],
         "deploy_pages": null
       },
-      "alertas": []
+      "alertas": [],
+      "acesso": {
+        "visitantes_unicos": 1,
+        "serie_diaria": [
+          {
+            "data": "2026-09-26",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-27",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-28",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-29",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-09-30",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-01",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-02",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-03",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-04",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-05",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-06",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-07",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-08",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-09",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-10",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-11",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-12",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-13",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-14",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-15",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-16",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-17",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-18",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-19",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-20",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-21",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-22",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-23",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-24",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-25",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-26",
+            "visitantes": 1
+          }
+        ]
+      }
     },
     {
       "slug": "site_raiz",
