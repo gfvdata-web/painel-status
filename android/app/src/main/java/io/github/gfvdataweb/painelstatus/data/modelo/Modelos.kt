@@ -31,6 +31,8 @@ data class Site(
     @SerialName("pages_url") val pagesUrl: String = "",
     /** O site em destaque (Bolão F1) tem card e aba próprios. */
     val destaque: Boolean = false,
+    /** false = o site não ganha card na lista (o painel de IA tem aba própria no app); ausente = true. */
+    @SerialName("na_lista") val naLista: Boolean = true,
     /** Cor da faixa na página principal (dados_abertos, hobby, curiosidade); null = neutra. */
     val categoria: String? = null,
     @SerialName("form_url") val formUrl: String? = null,

@@ -92,6 +92,25 @@ function escapar(valor) {
     .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
 }
 
+// Sites com na_lista === false não viram cartão: entram na barra do topo como botão (nav#atalhos-topo).
+// JSON antigo, sem o campo, mostra tudo na lista. Só http(s); bolinha vermelha se o site estiver fora do ar.
+// Mesma função em app.js e lista.js (as páginas não compartilham script) — mudou uma, mudar a outra.
+function naLista(site) {
+  return site.na_lista !== false;
+}
+
+function renderizarAtalhos(sites) {
+  const nav = document.getElementById("atalhos-topo");
+  if (!nav) return;
+  const links = sites.filter((s) => !naLista(s) && /^https?:\/\//.test(s.pages_url || "")).map((s) => {
+    const foraDoAr = !(s.site_no_ar && s.site_no_ar.ok);
+    const ponto = foraDoAr ? `<span class="versao-switch__ponto" role="img" aria-label="fora do ar" title="fora do ar"></span>` : "";
+    return `<a class="versao-switch__link" href="${escapar(s.pages_url)}" title="${escapar(s.nome)}">🤖 ${escapar(s.nome.replace(/ de /g, " "))}${ponto}</a>`;
+  });
+  nav.innerHTML = links.join("");
+  nav.hidden = links.length === 0;
+}
+
 // Soma dos visitantes únicos dos últimos 7 dias da série; null = site sem rastreio.
 function visitasRecentes(site) {
   const serie = site.acesso && site.acesso.serie_diaria;
@@ -244,8 +263,9 @@ function cartao(site) {
 }
 
 function renderizar(status) {
-  const sites = ordenar(status.sites, ordemSalva);
+  const sites = ordenar(status.sites.filter(naLista), ordemSalva);
   document.getElementById("lista-sites").innerHTML = sites.map(cartao).join("");
+  renderizarAtalhos(status.sites);
 
   // Legenda das categorias: só aparece depois que alguma categoria estiver atribuída.
   const usadas = [...new Set(sites.map((s) => s.categoria).filter((c) => NOME_CATEGORIA[c]))];
@@ -254,9 +274,10 @@ function renderizar(status) {
   legenda.innerHTML = usadas.map((c) =>
     `<span class="legenda__item"><span class="legenda__cor legenda__cor--${c}" aria-hidden="true"></span>${escapar(NOME_CATEGORIA[c])}</span>`).join("");
 
-  const foraDoAr = sites.filter((s) => !(s.site_no_ar && s.site_no_ar.ok)).length;
+  // O resumo conta todos os sites monitorados, inclusive os que ficam só como botão no topo.
+  const foraDoAr = status.sites.filter((s) => !(s.site_no_ar && s.site_no_ar.ok)).length;
   document.getElementById("lista-resumo").textContent =
-    `${sites.length} sites · ${foraDoAr ? `${foraDoAr} com problema de acesso` : "todos no ar"}`;
+    `${status.sites.length} sites · ${foraDoAr ? `${foraDoAr} com problema de acesso` : "todos no ar"}`;
 
   const forms = status.forms_avulsos || [];
   document.getElementById("lista-outros").innerHTML = forms.length

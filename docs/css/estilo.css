@@ -186,7 +186,7 @@ main { padding: 28px 0 48px; }
    V2 = index.html, são só links) e switch de tema. Mesmo visual de pílula. */
 .controles-topo {
   position: fixed; top: 14px; right: 14px; z-index: 50;
-  display: flex; gap: 8px;
+  display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; max-width: calc(100% - 28px);
 }
 .tema-switch, .versao-switch {
   display: flex; border: 1px solid var(--borda); border-radius: 999px;
@@ -203,12 +203,22 @@ main { padding: 28px 0 48px; }
 .tema-switch__btn--ativo, .versao-switch__link--ativo { background: var(--acento); color: #fff; }
 .versao-switch__link:not(.versao-switch__link--ativo):hover { color: var(--acento); }
 
+/* Atalho para outro painel (ex.: Painel de IA, na_lista=false): bolinha vermelha = fora do ar. */
+.versao-switch__ponto {
+  width: 8px; height: 8px; border-radius: 50%; background: var(--negativo); flex: none;
+}
+
 /* O display do botão vence o atributo hidden; o grupo de login/edição (index.html) usa hidden. */
-.tema-switch[hidden], .tema-switch__btn[hidden] { display: none; }
+.tema-switch[hidden], .tema-switch__btn[hidden], .versao-switch[hidden] { display: none; }
 
 @media (max-width: 760px) {
   .tema-switch__label { display: none; }
   .tema-switch__btn, .versao-switch__link { padding: 8px 11px; }
+}
+
+/* Celular: a sobrelinha desce para não passar por baixo dos switches do canto */
+@media (max-width: 520px) {
+  .cabecalho { padding-top: 72px; }
 }
 
 /* Etapas do pipeline do Bolão F1 (trilha horizontal, com marcadores ligados por uma linha) */

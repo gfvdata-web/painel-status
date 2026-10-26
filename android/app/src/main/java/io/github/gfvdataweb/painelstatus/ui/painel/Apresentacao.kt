@@ -137,6 +137,9 @@ fun ordenar(sites: List<Site>, slugs: List<String>): List<Site> {
     return sites.sortedBy { posicao[it.slug] ?: Int.MAX_VALUE } // sortedBy é estável
 }
 
+/** Sites que ganham card na lista do app (`na_lista`); os demais seguem no status para alertas e avisos. */
+fun sitesDaLista(sites: List<Site>): List<Site> = sites.filter { it.naLista }
+
 /** Move o item de [de] para [para] (limites ignorados: devolve a lista como estava). */
 fun moverSlug(slugs: List<String>, de: Int, para: Int): List<String> {
     if (de !in slugs.indices || para !in slugs.indices || de == para) return slugs

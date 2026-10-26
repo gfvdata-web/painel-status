@@ -205,15 +205,43 @@ class IaTelasTest {
     }
 
     @Test
-    fun abaAgentesComparaComOCatalogo() {
+    fun abaUsoComparaAgentesComOCatalogo() {
         mostrar(EstadoIa.Pronto(dados, desatualizado = false))
-        compose.onNodeWithText("Agentes").performClick()
+        compose.onNodeWithText("Uso").performClick()
 
+        existe("Agentes (4)")
         existe("android-dev")
         existe("configurado: sonnet")
         existe("configurado: haiku")
         existe("agente-fantasma")
         existe("sem cadastro no catálogo")
+    }
+
+    @Test
+    fun abaUsoMostraSkillsEMcpsPorChamadas() {
+        mostrar(EstadoIa.Pronto(dados, desatualizado = false))
+        compose.onNodeWithText("Uso").performClick()
+
+        existe("Skills e MCPs não gastam tokens à parte", trecho = true)
+        existe("Skills (2)")
+        existe("skill-de-teste")
+        existe("7 chamadas · 3 sessões")
+        existe("MCPs (2)")
+        existe("Servidor X")
+        existe("conector")
+        existe("ler (5), gravar (2), apagar (1)") // top 3; empate em 1 desempata pelo nome
+        existe("último uso: ", trecho = true)
+    }
+
+    @Test
+    fun abaUsoSemSkillsNemMcpsMostraNenhumItem() {
+        val semUso = dados.copy(uso = dados.uso!!.copy(skills = emptyMap(), mcps = emptyMap()))
+        mostrar(EstadoIa.Pronto(semUso, desatualizado = false))
+        compose.onNodeWithText("Uso").performClick()
+
+        existe("Skills (0)")
+        existe("MCPs (0)")
+        assertEquals(2, compose.onAllNodesWithText("Nenhum item.").fetchSemanticsNodes().size)
     }
 
     @Test
@@ -224,6 +252,9 @@ class IaTelasTest {
         existe("Agentes (3)")
         existe("Skills (1)")
         existe("skill-de-teste")
+        existe("usuario")
+        existe("MCPs (1)")
+        existe("ler, gravar, listar")
         existe("Candidatos (1)")
         existe("Automatizar o passo repetido")
         existe("2x · 2026-10-13")

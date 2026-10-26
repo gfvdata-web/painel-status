@@ -36,6 +36,9 @@ Campos de cada site (todos presentes em toda entrada, para servir de molde):
                    "hobby", "curiosidade", ou None (cor neutra enquanto não
                    atribuída). Os nomes e a atribuição ainda não estão definidos
                    (ver CATEGORIAS)
+  na_lista         False = o site não vira cartão nas listas: continua monitorado (entra
+                   no status.json e na contagem "fora do ar") e as páginas o mostram
+                   como botão na barra do topo (hoje só o Painel de IA)
   contagem_url     JSON público de downloads do site (<site>/contagem.json, sem token),
                    ou None; com valor, o status.json ganha o bloco "downloads"
                    (coleta_downloads.py). Hoje só os 3 sites de dados abertos
@@ -73,6 +76,7 @@ SITES = [
         "pipeline_bolao": True,
         "pipeline_forms": None,
         "categoria": None,
+        "na_lista": True,
         "contagem_url": None,
     },
     {
@@ -92,6 +96,7 @@ SITES = [
         "pipeline_bolao": False,
         "pipeline_forms": None,
         "categoria": None,
+        "na_lista": True,
         "contagem_url": "https://meiospagamento.gfvdata.com/contagem.json",
     },
     {
@@ -109,6 +114,7 @@ SITES = [
         "pipeline_bolao": False,
         "pipeline_forms": None,
         "categoria": None,
+        "na_lista": True,
         "contagem_url": "https://arrecadacaofederal.gfvdata.com/contagem.json",
     },
     {
@@ -126,6 +132,7 @@ SITES = [
         "pipeline_bolao": False,
         "pipeline_forms": None,
         "categoria": None,
+        "na_lista": True,
         "contagem_url": "https://creditomodalidade.gfvdata.com/contagem.json",
     },
     {
@@ -143,6 +150,7 @@ SITES = [
         "pipeline_bolao": False,
         "pipeline_forms": None,
         "categoria": None,
+        "na_lista": True,
         "contagem_url": None,
     },
     {
@@ -160,6 +168,7 @@ SITES = [
         "pipeline_bolao": False,
         "pipeline_forms": None,
         "categoria": None,
+        "na_lista": True,
         "contagem_url": None,
     },
     {
@@ -182,6 +191,7 @@ SITES = [
         "pipeline_bolao": False,
         "pipeline_forms": "pipeline.yml",
         "categoria": None,
+        "na_lista": True,
         "contagem_url": None,
     },
     {
@@ -202,6 +212,7 @@ SITES = [
         "pipeline_bolao": False,
         "pipeline_forms": None,
         "categoria": None,
+        "na_lista": True,
         "contagem_url": None,
     },
     {
@@ -221,6 +232,7 @@ SITES = [
         "pipeline_bolao": False,
         "pipeline_forms": None,
         "categoria": None,
+        "na_lista": True,
         "contagem_url": None,
     },
     {
@@ -238,6 +250,7 @@ SITES = [
         "pipeline_bolao": False,
         "pipeline_forms": None,
         "categoria": None,
+        "na_lista": True,
         "contagem_url": None,
     },
     {
@@ -256,6 +269,7 @@ SITES = [
         "pipeline_bolao": False,
         "pipeline_forms": None,
         "categoria": None,
+        "na_lista": True,
         "contagem_url": None,
     },
     {
@@ -276,6 +290,7 @@ SITES = [
         "pipeline_bolao": False,
         "pipeline_forms": None,
         "categoria": None,
+        "na_lista": True,
         "contagem_url": None,
     },
     # Daqui para baixo, Workers da Cloudflare cujos dados vivem no D1/KV (invisíveis à API do
@@ -298,6 +313,7 @@ SITES = [
         "pipeline_bolao": False,
         "pipeline_forms": None,
         "categoria": None,
+        "na_lista": True,
         "contagem_url": None,
     },
     {
@@ -315,6 +331,7 @@ SITES = [
         "pipeline_bolao": False,
         "pipeline_forms": None,
         "categoria": None,
+        "na_lista": True,
         "contagem_url": None,
     },
     {
@@ -332,6 +349,7 @@ SITES = [
         "pipeline_bolao": False,
         "pipeline_forms": None,
         "categoria": None,
+        "na_lista": True,
         "contagem_url": None,
     },
     {
@@ -349,6 +367,7 @@ SITES = [
         "pipeline_bolao": False,
         "pipeline_forms": None,
         "categoria": None,
+        "na_lista": True,
         "contagem_url": None,
     },
     {
@@ -368,6 +387,7 @@ SITES = [
         "pipeline_bolao": False,
         "pipeline_forms": None,
         "categoria": None,
+        "na_lista": False,
         "contagem_url": None,
     },
     {
@@ -385,6 +405,7 @@ SITES = [
         "pipeline_bolao": False,
         "pipeline_forms": None,
         "categoria": None,
+        "na_lista": True,
         "contagem_url": None,
     },
 ]
@@ -398,7 +419,7 @@ FORMS_AVULSOS = [
 CAMPOS_SITE = {
     "slug", "nome", "repo", "pages_url", "caminho_dados", "branch_dados", "workflow_arquivo",
     "json_meta_url", "form_url", "form_rotulo", "destaque", "pipeline_bolao", "pipeline_forms",
-    "categoria", "contagem_url",
+    "categoria", "contagem_url", "na_lista",
 }
 
 # Valores aceitos em `categoria` (None = sem categoria, cor neutra).

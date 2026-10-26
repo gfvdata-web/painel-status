@@ -3,6 +3,7 @@ package io.github.gfvdataweb.painelstatus.ui
 import io.github.gfvdataweb.painelstatus.data.modelo.Site
 import io.github.gfvdataweb.painelstatus.ui.painel.moverSlug
 import io.github.gfvdataweb.painelstatus.ui.painel.ordenar
+import io.github.gfvdataweb.painelstatus.ui.painel.sitesDaLista
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
@@ -34,6 +35,13 @@ class OrdenarTest {
     @Test
     fun slugQueNaoExisteMaisEIgnoradoERepetidoValeOPrimeiro() {
         assertEquals(listOf("b", "a"), slugs(ordenar(listOf(a, b), listOf("b", "fantasma", "a", "b"))))
+    }
+
+    @Test
+    fun siteComNaListaFalsoNaoGanhaCardEAusenteContaComoVerdadeiro() {
+        val ia = Site(slug = "painel_ia", nome = "Painel IA", naLista = false)
+        assertEquals(listOf("a", "b"), slugs(sitesDaLista(listOf(a, ia, b))))
+        assertEquals(true, a.naLista)
     }
 
     @Test

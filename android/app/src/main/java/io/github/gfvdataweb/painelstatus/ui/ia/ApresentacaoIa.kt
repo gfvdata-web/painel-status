@@ -273,6 +273,42 @@ data class LinhaDeAgente(
     val usados: List<Pair<String, Long>>,
 )
 
+/** Uma skill usada: só contagem de chamadas (skill não gasta tokens à parte). */
+data class LinhaDeSkill(val nome: String, val chamadas: Long, val sessoes: Long, val ultimoUso: String)
+
+/** Skills do `uso.json`, da mais chamada para a menos (empate: pelo nome). */
+fun linhasDeSkills(uso: UsoIa): List<LinhaDeSkill> =
+    uso.skills.map { (nome, skill) -> LinhaDeSkill(nome, skill.chamadas, skill.sessoes, skill.ultimoUso) }
+        .sortedWith(compareByDescending<LinhaDeSkill> { it.chamadas }.thenBy { it.nome })
+
+/** Um servidor MCP usado, com as [ferramentas] mais chamadas (até [TOP_FERRAMENTAS]) como "nome (n)". */
+data class LinhaDeMcp(
+    val rotulo: String,
+    val tipo: String,
+    val chamadas: Long,
+    val sessoes: Long,
+    val ferramentas: List<Pair<String, Long>>,
+    val ultimoUso: String,
+)
+
+const val TOP_FERRAMENTAS = 3
+
+/** MCPs do `uso.json`, do mais chamado para o menos; sem `rotulo` usa o nome do servidor. */
+fun linhasDeMcps(uso: UsoIa): List<LinhaDeMcp> =
+    uso.mcps.map { (nome, mcp) ->
+        LinhaDeMcp(
+            rotulo = mcp.rotulo.ifEmpty { nome },
+            tipo = mcp.tipo,
+            chamadas = mcp.chamadas,
+            sessoes = mcp.sessoes,
+            ferramentas = mcp.ferramentas.entries
+                .sortedWith(compareByDescending<Map.Entry<String, Long>> { it.value }.thenBy { it.key })
+                .take(TOP_FERRAMENTAS)
+                .map { it.key to it.value },
+            ultimoUso = mcp.ultimoUso,
+        )
+    }.sortedWith(compareByDescending<LinhaDeMcp> { it.chamadas }.thenBy { it.rotulo })
+
 /** Uso por agente, do mais caro ao mais barato, comparado ao modelo configurado no catálogo. */
 fun linhasDeAgentes(uso: UsoIa, catalogo: CatalogoIa?): List<LinhaDeAgente> {
     val configurados = catalogo?.agentes.orEmpty().associate { it.nome.lowercase() to it.modelo }

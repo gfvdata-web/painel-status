@@ -169,7 +169,7 @@
     <string name="ia_aba_agora">Agora</string>
     <string name="ia_aba_modelos">Modelos</string>
     <string name="ia_aba_sessoes">Sessões</string>
-    <string name="ia_aba_agentes">Agentes</string>
+    <string name="ia_aba_agentes">Uso</string>
     <string name="ia_aba_catalogo">Catálogo</string>
     <string name="ia_sem_dados_uso">Ainda sem dados de uso.</string>
     <string name="ia_sem_dados_limites">Ainda sem leitura dos limites.</string>
@@ -224,6 +224,11 @@
     <string name="ia_agente_modelo_usado">%1$s (%2$s)</string>
     <string name="ia_agentes_titulo">Agentes (%1$d)</string>
     <string name="ia_skills_titulo">Skills (%1$d)</string>
+    <string name="ia_mcps_titulo">MCPs (%1$d)</string>
+    <string name="ia_uso_skills_nota">Skills e MCPs não gastam tokens à parte: aqui é a contagem de chamadas nos transcripts.</string>
+    <string name="ia_chamadas_resumo">%1$d chamadas · %2$d sessões</string>
+    <string name="ia_ultimo_uso">último uso: %1$s</string>
+    <string name="ia_mcp_ferramenta">%1$s (%2$d)</string>
     <string name="ia_candidatos_titulo">Candidatos (%1$d)</string>
     <string name="ia_nenhum_item">Nenhum item.</string>
     <string name="ia_candidato_vezes">%1$sx · %2$s</string>

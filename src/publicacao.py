@@ -11,7 +11,8 @@ Uso: python -m src.publicacao              rodada completa (todos os sites)
 Formato de saída (o único arquivo que docs/js/app.js lê — e o app Android em android/,
 que espelha estes campos em data/modelo/Modelos.kt; mudanças só aditivas):
   meta           {gerado_em, descricao}
-  sites[]        slug, nome, repo, pages_url, destaque, ultimo_commit_dados,
+  sites[]        slug, nome, repo, pages_url, destaque, na_lista (False = botão no
+                 topo das páginas em vez de cartão), ultimo_commit_dados,
                  site_no_ar e, conforme o cadastro em config.py: form_url,
                  form_rotulo,
                  periodo_publicado, ultima_execucao_pipeline, acesso e — só no
@@ -58,6 +59,7 @@ def coletar_site(site, acesso_por_repo, acesso_anterior, falha_total, downloads_
         "pages_url": site["pages_url"],
         "destaque": site["destaque"],
         "categoria": site["categoria"],
+        "na_lista": site["na_lista"],
     }
     if site["form_url"]:
         bloco["form_url"] = site["form_url"]

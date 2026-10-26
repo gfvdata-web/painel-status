@@ -94,11 +94,36 @@ data class SessaoUso(
     @SerialName("custo_usd") val custoUsd: Double = 0.0,
 )
 
+/** Uso de uma skill, contado nos transcripts (não gasta tokens à parte). */
+@Serializable
+data class SkillUso(
+    val chamadas: Long = 0,
+    val sessoes: Long = 0,
+    val projetos: List<String> = emptyList(),
+    @SerialName("ultimo_uso") val ultimoUso: String = "",
+    /** Chamadas por agente que invocou a skill. */
+    val agentes: Map<String, Long> = emptyMap(),
+)
+
+/** Uso de um servidor MCP, contado nos transcripts. */
+@Serializable
+data class McpUso(
+    val rotulo: String = "",
+    val tipo: String = "",
+    val chamadas: Long = 0,
+    val sessoes: Long = 0,
+    @SerialName("ultimo_uso") val ultimoUso: String = "",
+    /** Chamadas por ferramenta do servidor. */
+    val ferramentas: Map<String, Long> = emptyMap(),
+)
+
 @Serializable
 data class UsoIa(
     val meta: MetaIa = MetaIa(),
     val dias: List<DiaUso> = emptyList(),
     val agentes: Map<String, AgenteUso> = emptyMap(),
+    val skills: Map<String, SkillUso> = emptyMap(),
+    val mcps: Map<String, McpUso> = emptyMap(),
     val sessoes: List<SessaoUso> = emptyList(),
 )
 
@@ -143,6 +168,16 @@ data class AgenteCatalogo(
 data class SkillCatalogo(
     val nome: String = "",
     val descricao: String = "",
+    val origem: String = "",
+)
+
+/** Servidor MCP do catálogo; `origem` diz de onde vem (conector, local, plugin…). */
+@Serializable
+data class McpCatalogo(
+    val nome: String = "",
+    val rotulo: String = "",
+    val origem: String = "",
+    val ferramentas: List<String> = emptyList(),
 )
 
 /** Ideia de agente/skill ainda não criada (`~/.claude/catalogo/candidatos.md`); `vezes` vem como texto ou número. */
@@ -160,6 +195,7 @@ data class CatalogoIa(
     val meta: MetaIa = MetaIa(),
     val agentes: List<AgenteCatalogo> = emptyList(),
     val skills: List<SkillCatalogo> = emptyList(),
+    val mcps: List<McpCatalogo> = emptyList(),
     val candidatos: List<CandidatoCatalogo> = emptyList(),
 )
 

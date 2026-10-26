@@ -104,6 +104,7 @@ const abrirV1 = async (status, opcoes) => {
 const semLixo = (texto, onde) => {
   for (const ruim of ["undefined", "NaN", "[object", "null"]) assert.ok(!texto.includes(ruim), `${onde}: aparece "${ruim}"`);
 };
+const naLista = (status) => status.sites.filter((s) => s.na_lista !== false);
 const site = (status, slug) => status.sites.find((s) => s.slug === slug);
 
 // ---------------------------------------------------------------- lista.js (página principal)
@@ -111,8 +112,8 @@ const site = (status, slug) => status.sites.find((s) => s.slug === slug);
 test("lista: um cartão por site, destaque primeiro, resumo e outros forms", async () => {
   const p = await abrirLista(exemplo);
   const html = p.el("lista-sites").innerHTML;
-  assert.equal((html.match(/<article/g) || []).length, exemplo.sites.length);
-  for (const s of exemplo.sites) assert.ok(html.includes(s.nome), s.nome);
+  assert.equal((html.match(/<article/g) || []).length, naLista(exemplo).length);
+  for (const s of naLista(exemplo)) assert.ok(html.includes(s.nome), s.nome);
   assert.ok(html.indexOf("Bolão F1") < html.indexOf("Meios de pagamento"), "destaque deve vir primeiro");
   assert.equal(p.el("lista-resumo").textContent, `${exemplo.sites.length} sites · todos no ar`);
   assert.match(p.el("lista-outros").innerHTML, /Notas fiscais ↗/);
@@ -122,6 +123,44 @@ test("lista: um cartão por site, destaque primeiro, resumo e outros forms", asy
   assert.deepEqual(p.erros, []);
 });
 
+// na_lista=false (hoje o Painel de IA): sem cartão, mas monitorado e com botão no topo (nav#atalhos-topo).
+const atalhoIa = site(exemplo, "painel_ia");
+
+test("lista: site com na_lista=false não tem cartão e vira atalho no topo, ainda contado no resumo", async () => {
+  assert.equal(atalhoIa.na_lista, false);
+  const p = await abrirLista(exemplo);
+  assert.ok(!p.el("lista-sites").innerHTML.includes(atalhoIa.nome), "cartão do Painel de IA não deve existir");
+  const nav = p.el("atalhos-topo");
+  assert.equal(nav.hidden, false);
+  assert.ok(nav.innerHTML.includes(`href="${atalhoIa.pages_url}"`));
+  assert.match(nav.innerHTML, /🤖 Painel IA/);
+  assert.doesNotMatch(nav.innerHTML, /versao-switch__ponto/);
+  assert.equal(p.el("lista-resumo").textContent, `${exemplo.sites.length} sites · todos no ar`);
+  semLixo(nav.innerHTML, "atalhos-topo");
+});
+
+test("lista: atalho com site fora do ar ganha bolinha vermelha e conta no resumo", async () => {
+  const status = copia(exemplo);
+  site(status, "painel_ia").site_no_ar = { ok: false, status_http: 503 };
+  const p = await abrirLista(status);
+  assert.match(p.el("atalhos-topo").innerHTML, /versao-switch__ponto[^>]*title="fora do ar"/);
+  assert.equal(p.el("lista-resumo").textContent, `${status.sites.length} sites · 1 com problema de acesso`);
+});
+
+test("lista: atalho só aceita http(s); sem na_lista=false o nav fica oculto; JSON antigo mostra tudo", async () => {
+  const status = copia(exemplo);
+  site(status, "painel_ia").pages_url = "javascript:alert(1)";
+  const p = await abrirLista(status);
+  assert.equal(p.el("atalhos-topo").hidden, true);
+  assert.equal(p.el("atalhos-topo").innerHTML, "");
+
+  const antigo = copia(exemplo);
+  for (const s of antigo.sites) delete s.na_lista;
+  const q = await abrirLista(antigo);
+  assert.equal((q.el("lista-sites").innerHTML.match(/<article/g) || []).length, antigo.sites.length);
+  assert.equal(q.el("atalhos-topo").hidden, true);
+});
+
 test("lista: recarrega a cada minuto", async () => {
   const p = await abrirLista(exemplo);
   assert.deepEqual(p.intervalos, [60000]);
@@ -129,7 +168,7 @@ test("lista: recarrega a cada minuto", async () => {
 
 test("lista: o status publicado de verdade também desenha", async () => {
   const p = await abrirLista(publicado);
-  assert.equal((p.el("lista-sites").innerHTML.match(/<article/g) || []).length, publicado.sites.length);
+  assert.equal((p.el("lista-sites").innerHTML.match(/<article/g) || []).length, naLista(publicado).length);
   semLixo(p.el("lista-sites").innerHTML, "status publicado");
 });
 
@@ -260,7 +299,7 @@ test("lista: status.json indisponível mostra a mensagem de erro", async () => {
 const slugsDaLista = (p) => [...p.el("lista-sites").innerHTML.matchAll(/<article[^>]*data-slug="([^"]+)"/g)].map((m) => m[1]);
 
 test("lista: ordem salva é aplicada e site novo vai para o fim", async () => {
-  const cadastro = exemplo.sites.map((s) => s.slug);
+  const cadastro = naLista(exemplo).map((s) => s.slug);
   const salva = ["var_vendo", "chess_tracking", "slug_que_saiu"]; // o último não existe mais
   const p = await abrirLista(exemplo, { ordem: salva });
   const resto = cadastro.filter((s) => !salva.includes(s));
@@ -274,7 +313,7 @@ test("lista: ordem salva é aplicada e site novo vai para o fim", async () => {
 });
 
 test("lista: sem ordem salva (ou API fora) mantém destaque primeiro e ordem do cadastro", async () => {
-  const esperado = ["bolao_f1", ...exemplo.sites.map((s) => s.slug).filter((s) => s !== "bolao_f1")];
+  const esperado = ["bolao_f1", ...naLista(exemplo).map((s) => s.slug).filter((s) => s !== "bolao_f1")];
   assert.deepEqual(slugsDaLista(await abrirLista(exemplo)), esperado);
   assert.deepEqual(slugsDaLista(await abrirLista(exemplo, { ordem: [] })), esperado);
 });
@@ -396,10 +435,25 @@ test("v1: Bolão em vigília e sem rastreio de acesso", async () => {
   assert.match(html, /Rastreio de acesso ainda não configurado/);
 });
 
+test("v1: Painel de IA sem card, atalho no topo com o href certo e bolinha só quando fora do ar", async () => {
+  const p = await abrirV1(exemplo);
+  assert.ok(!p.el("grade-sites").innerHTML.includes(atalhoIa.nome));
+  assert.ok(!p.el("secao-destaque").innerHTML.includes(atalhoIa.nome));
+  assert.equal(p.el("atalhos-topo").hidden, false);
+  assert.ok(p.el("atalhos-topo").innerHTML.includes(`href="${atalhoIa.pages_url}"`));
+  assert.match(p.el("atalhos-topo").innerHTML, /🤖 Painel IA/);
+  assert.doesNotMatch(p.el("atalhos-topo").innerHTML, /versao-switch__ponto/);
+
+  const status = copia(exemplo);
+  site(status, "painel_ia").site_no_ar = { ok: false, status_http: 503 };
+  const fora = await abrirV1(status);
+  assert.match(fora.el("atalhos-topo").innerHTML, /versao-switch__ponto[^>]*title="fora do ar"/);
+});
+
 test("v1: grade com os demais sites, passo a passo do Forms e card de outros forms", async () => {
   const p = await abrirV1(exemplo);
   const html = p.el("grade-sites").innerHTML;
-  const outros = exemplo.sites.filter((s) => !s.destaque);
+  const outros = naLista(exemplo).filter((s) => !s.destaque);
   assert.equal((html.match(/class="site-card[ "]/g) || []).length, outros.length + 1); // + "Outros forms"
   for (const s of outros) assert.ok(html.includes(s.nome), s.nome);
   assert.match(html, /Último envio do Forms/);

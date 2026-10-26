@@ -192,6 +192,40 @@
    "sessoes": 1
   }
  },
+ "skills": {
+  "skill-rara": {
+   "chamadas": 2,
+   "sessoes": 1,
+   "projetos": ["ProjetoA"],
+   "ultimo_uso": "2026-10-10T08:00:00.000Z",
+   "agentes": {"principal": 2}
+  },
+  "skill-de-teste": {
+   "chamadas": 7,
+   "sessoes": 3,
+   "projetos": ["ProjetoA", "ProjetoB"],
+   "ultimo_uso": "2026-10-14T12:30:00.000Z",
+   "agentes": {"principal": 5, "android-dev": 2}
+  }
+ },
+ "mcps": {
+  "servidor-x": {
+   "rotulo": "Servidor X",
+   "tipo": "conector",
+   "chamadas": 9,
+   "sessoes": 2,
+   "ultimo_uso": "2026-10-14T13:00:00.000Z",
+   "ferramentas": {"ler": 5, "gravar": 2, "listar": 1, "apagar": 1}
+  },
+  "local-y": {
+   "rotulo": "Local Y",
+   "tipo": "local",
+   "chamadas": 3,
+   "sessoes": 1,
+   "ultimo_uso": "2026-10-11T09:00:00.000Z",
+   "ferramentas": {"buscar": 3}
+  }
+ },
  "sessoes": [
   {
    "id": "s-antiga",

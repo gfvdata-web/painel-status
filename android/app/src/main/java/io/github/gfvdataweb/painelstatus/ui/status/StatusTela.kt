@@ -75,6 +75,7 @@ import io.github.gfvdataweb.painelstatus.ui.painel.linkSeguro
 import io.github.gfvdataweb.painelstatus.ui.painel.resumoDosSites
 import io.github.gfvdataweb.painelstatus.ui.painel.rotuloDaCategoria
 import io.github.gfvdataweb.painelstatus.ui.painel.ordenar
+import io.github.gfvdataweb.painelstatus.ui.painel.sitesDaLista
 import io.github.gfvdataweb.painelstatus.ui.painel.situacaoDoSite
 import io.github.gfvdataweb.painelstatus.ui.painel.downloadsRecentes
 import io.github.gfvdataweb.painelstatus.ui.painel.visitasRecentes
@@ -95,7 +96,7 @@ fun StatusTela(
     /** Não nulo = modo de edição da ordem: [ordem] é o rascunho e cada card ganha os controles de mover. */
     edicao: EdicaoDaOrdem? = null,
 ) {
-    val sites = ordenar(status.sites, ordem)
+    val sites = ordenar(sitesDaLista(status.sites), ordem)
     // Slugs com o pipeline aberto; fica aqui para a recarga do status não fechá-los.
     val abertos = remember { mutableStateListOf<String>() }
     val lista = rememberLazyListState()

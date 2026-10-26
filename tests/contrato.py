@@ -19,7 +19,7 @@ RE_HISTORICO_ARQUIVO = re.compile(r"^dados/historico/([A-Za-z0-9_-]+)\.json$")
 # toda propriedade snake_case usada nos JS esteja aqui (renomeou no JS sem renomear aqui = falha).
 CAMPOS_CONHECIDOS = {
     "meta", "gerado_em", "descricao", "sites", "forms_avulsos", "nome", "url",
-    "slug", "repo", "pages_url", "destaque", "categoria", "form_url", "form_rotulo", "ultimo_commit_dados",
+    "slug", "repo", "pages_url", "destaque", "categoria", "na_lista", "form_url", "form_rotulo", "ultimo_commit_dados",
     "site_no_ar", "periodo_publicado", "ultima_execucao_pipeline", "acesso", "downloads", "rodada_mais_recente",
     "em_vigilia", "etapas_pipeline", "detalhes", "alertas", "pipeline_forms", "historico_arquivo",
     # site_no_ar / erro de coleta
@@ -180,6 +180,8 @@ def problemas_status(status, cadastro=None):
         # categoria é sempre enviada (null = sem categoria): a página escolhe a cor a partir dela.
         if "categoria" in site and site["categoria"] is not None and site["categoria"] not in CATEGORIAS_VALIDAS:
             problemas.append(f"{onde}: categoria desconhecida {site['categoria']!r}")
+        # na_lista (False = botão no topo, sem cartão): opcional para o JSON antigo, mas bool quando vem.
+        _tipo(problemas, onde, site, "na_lista", bool, opcional=True)
         if site.get("periodo_publicado") is not None and "periodo_publicado" in site:
             for campo in ("inicio", "fim"):
                 _tipo(problemas, f"{onde}.periodo_publicado", site["periodo_publicado"], campo, str)

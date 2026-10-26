@@ -69,6 +69,30 @@ class ModelosIaTest {
     }
 
     @Test
+    fun usoLeSkillsEMcpsECatalogoLeOrigemEMcps() {
+        val skill = uso.skills.getValue("skill-de-teste")
+        assertEquals(7L, skill.chamadas)
+        assertEquals(listOf("ProjetoA", "ProjetoB"), skill.projetos)
+        assertEquals(2L, skill.agentes["android-dev"])
+        val mcp = uso.mcps.getValue("servidor-x")
+        assertEquals("Servidor X", mcp.rotulo)
+        assertEquals(5L, mcp.ferramentas["ler"])
+        assertEquals("usuario", catalogo.skills.single().origem)
+        val mcpCatalogo = catalogo.mcps.single()
+        assertEquals("servidor-x", mcpCatalogo.nome)
+        assertEquals(listOf("ler", "gravar", "listar"), mcpCatalogo.ferramentas)
+    }
+
+    @Test
+    fun jsonAntigoSemSkillsNemMcpsContinuaLido() {
+        val antigo = lerUso("""{"dias": []}""")
+        assertTrue(antigo.skills.isEmpty() && antigo.mcps.isEmpty())
+        val catalogoAntigo = lerCatalogo("""{"skills": [{"nome": "x"}]}""")
+        assertEquals("", catalogoAntigo.skills.single().origem)
+        assertTrue(catalogoAntigo.mcps.isEmpty())
+    }
+
+    @Test
     fun camposAusentesEExtrasNaoQuebram() {
         val vazio = lerUso("""{"coisa_nova": 1}""")
         assertTrue(vazio.dias.isEmpty() && vazio.agentes.isEmpty() && vazio.sessoes.isEmpty())

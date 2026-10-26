@@ -128,7 +128,7 @@ android/                  # app Android nativo (lê o mesmo status.json; ver "Ap
     │   ├── avisos/       # o que mudou desde o último status visto (Novidades.kt) e nos limites do Claude (NovidadesIa.kt, VigiaDeLimites.kt), preferências
     │   └── ia/           # painel de IA: modelos dos 3 JSONs, login (SessaoIa), cofre cifrado do cookie, download e cache (FonteIa)
     ├── avisos/           # verificação em segundo plano (WorkManager) e notificações
-    └── ui/               # telas Compose: Status (a lista da página principal), IA (login, abas Agora/Modelos/Sessões/Agentes/Catálogo), detalhes do site e histórico, Avisos, Sobre
+    └── ui/               # telas Compose: Status (a lista da página principal), IA (login, abas Agora/Modelos/Sessões/Uso/Catálogo), detalhes do site e histórico, Avisos, Sobre
 .github/workflows/
 ├── atualizar-status.yml  # coleta (3 em 3 h), vigia do Bolão e vigia do envio do Forms
 ├── android.yml           # testes → lint → APK; tag app-vX.Y.Z publica o APK assinado
@@ -254,8 +254,9 @@ lugar e nada é cadastrado no app. Se o endereço novo não responder, o app ten
   de 5 h e semanal, quando zera, "lido há…", gráfico dos limites e totais do período
   escolhido nos chips Hoje / 7 dias / 30 dias / Desde sempre / Personalizado, este com seletor de
   datas), **Modelos** (barras empilhadas de 30 dias e totais), **Sessões** (toque no cartão abre
-  o custo por modelo e, se o `uso.json` trouxer `agentes_detalhe`, por subagente), **Agentes** (modelo
-  configurado × modelos que rodaram) e **Catálogo**, com os mesmos cálculos de `painel.js` do
+  o custo por modelo e, se o `uso.json` trouxer `agentes_detalhe`, por subagente), **Uso** (agentes: modelo
+  configurado × modelos que rodaram; skills e MCPs: contagem de chamadas, sem tokens) e **Catálogo**
+  (agentes, skills, MCPs e candidatos), com os mesmos cálculos de `painel.js` do
   painel-ia, e "Sair do painel de IA" no rodapé (apaga o cookie e os dados guardados). Cookie
   vencido ou recusado (401) volta para a tela de senha; sem internet mostra os últimos dados
   guardados, com aviso. Recarrega no mesmo intervalo do painel enquanto a aba está visível; sem
@@ -403,6 +404,12 @@ descritos na docstring do arquivo). Hoje são dezoito:
 | Melhor Preço | [`AppMelhorPreco`](https://github.com/gfvdata-web/AppMelhorPreco) (privado) | [site](https://melhorpreco.gfvdata.com/) | Comparação de preços a partir das notas fiscais (NFC-e) lidas pelo app. Worker + D1 + Cron do wrangler; `caminho_dados` é `site/` (assets) |
 | Painel de IA | [`painel-ia`](https://github.com/gfvdata-web/painel-ia) (privado) | [painel](https://ia.gfvdata.com/) | Uso de tokens e limites do Claude. Todo o site exige login: a raiz responde 401 com a página de login, e `site_no_ar` conta 401 como no ar. Dados no D1, enviados pelo coletor local; `caminho_dados` é `docs/` (assets) |
 | gfvdata.com | [`site-raiz`](https://github.com/gfvdata-web/site-raiz) | [site](https://www.gfvdata.com/) | Página raiz do domínio. Worker de estáticos; `caminho_dados` é `docs/` |
+
+O campo `na_lista` (`src/config.py`) tira um site dos cartões das listas sem deixar de monitorá-lo:
+o Painel de IA é o único com `na_lista: False` e aparece como botão "🤖 Painel IA" na barra do
+topo (ao lado do V1/V2 e do Claro/Escuro) da página principal e do `/v1`, com uma bolinha vermelha
+quando está fora do ar. As páginas preenchem o botão (`nav#atalhos-topo`) só com o que vem do
+`status.json`; o resumo "N sites" continua contando todos.
 
 Nos Workers cujos dados vivem no D1/KV, `caminho_dados` aponta para a pasta de assets do
 `wrangler.jsonc`: "Dados atualizados" é a última versão publicada, e o Cron do wrangler não

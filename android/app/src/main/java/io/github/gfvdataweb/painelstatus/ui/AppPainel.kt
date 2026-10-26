@@ -70,6 +70,7 @@ import io.github.gfvdataweb.painelstatus.ui.ia.IaViewModel
 import io.github.gfvdataweb.painelstatus.ui.painel.OrdemViewModel
 import io.github.gfvdataweb.painelstatus.ui.painel.PainelViewModel
 import io.github.gfvdataweb.painelstatus.ui.painel.ordenar
+import io.github.gfvdataweb.painelstatus.ui.painel.sitesDaLista
 import io.github.gfvdataweb.painelstatus.ui.sites.SiteTela
 import io.github.gfvdataweb.painelstatus.ui.status.AcoesDaOrdem
 import io.github.gfvdataweb.painelstatus.ui.status.DialogoDeLogin
@@ -189,7 +190,7 @@ fun AppPainel(container: AppContainer, versao: String, build: Int, abaInicial: S
                             AcoesDaOrdem(
                                 estadoDaOrdem,
                                 aoEntrar = ordem::abrirLogin,
-                                aoEditar = { ordem.editar(ordenar(estado.dados?.sites.orEmpty(), estadoDaOrdem.slugs).map { it.slug }) },
+                                aoEditar = { ordem.editar(ordenar(sitesDaLista(estado.dados?.sites.orEmpty()), estadoDaOrdem.slugs).map { it.slug }) },
                                 aoSair = ordem::sair,
                                 aoSalvar = ordem::salvar,
                                 aoCancelar = ordem::cancelar,

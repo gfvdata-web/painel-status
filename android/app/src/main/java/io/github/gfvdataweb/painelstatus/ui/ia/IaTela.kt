@@ -182,7 +182,7 @@ private fun IaLogada(
                 AbaIa.AGORA -> AbaAgora(dados, agoraMs, fuso)
                 AbaIa.MODELOS -> AbaModelos(dados, agoraMs, fuso)
                 AbaIa.SESSOES -> AbaSessoes(dados, fuso)
-                AbaIa.AGENTES -> AbaAgentes(dados)
+                AbaIa.AGENTES -> AbaAgentes(dados, fuso)
                 AbaIa.CATALOGO -> AbaCatalogo(dados)
             }
         }

@@ -433,21 +433,78 @@ private fun BlocoDeLinhas(titulo: String, linhas: List<LinhaDetalhe>) {
 // ---------- Agentes ----------
 
 @Composable
-internal fun AbaAgentes(dados: DadosIa) {
+internal fun AbaAgentes(dados: DadosIa, fuso: ZoneId) {
     val uso = dados.uso
     if (uso == null) {
         Vazio(stringResource(R.string.ia_sem_dados_uso))
         return
     }
     val linhas = remember(uso, dados.catalogo) { linhasDeAgentes(uso, dados.catalogo) }
+    val skills = remember(uso) { linhasDeSkills(uso) }
+    val mcps = remember(uso) { linhasDeMcps(uso) }
     Rolavel {
+        Text(
+            stringResource(R.string.ia_agentes_titulo, linhas.size),
+            style = MaterialTheme.typography.titleMedium,
+            fontWeight = FontWeight.SemiBold,
+        )
         Text(
             stringResource(R.string.ia_agentes_nota),
             style = MaterialTheme.typography.bodySmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
         linhas.forEach { CartaoDeAgente(it) }
+        Text(
+            stringResource(R.string.ia_uso_skills_nota),
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
+        Secao(stringResource(R.string.ia_skills_titulo, skills.size)) {
+            if (skills.isEmpty()) ItemVazio()
+            skills.forEach { skill ->
+                Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
+                    Text(skill.nome, style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.SemiBold)
+                    Text(
+                        stringResource(R.string.ia_chamadas_resumo, skill.chamadas, skill.sessoes),
+                        style = MaterialTheme.typography.bodySmall,
+                    )
+                    UltimoUso(skill.ultimoUso, fuso)
+                }
+            }
+        }
+        Secao(stringResource(R.string.ia_mcps_titulo, mcps.size)) {
+            if (mcps.isEmpty()) ItemVazio()
+            mcps.forEach { mcp ->
+                Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
+                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        Text(mcp.rotulo, style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.SemiBold)
+                        if (mcp.tipo.isNotEmpty()) Selo(mcp.tipo, Tom.NEUTRO)
+                    }
+                    Text(
+                        stringResource(R.string.ia_chamadas_resumo, mcp.chamadas, mcp.sessoes),
+                        style = MaterialTheme.typography.bodySmall,
+                    )
+                    // map é inline (joinToString não é): só assim dá para chamar stringResource.
+                    val ferramentas = mcp.ferramentas.map { (nome, chamadas) ->
+                        stringResource(R.string.ia_mcp_ferramenta, nome, chamadas)
+                    }.joinToString(", ")
+                    if (ferramentas.isNotEmpty()) Text(ferramentas, style = MaterialTheme.typography.bodySmall)
+                    UltimoUso(mcp.ultimoUso, fuso)
+                }
+            }
+        }
     }
+}
+
+/** "último uso: dd/mm hh:mm" no fuso do celular; some quando a data não pode ser lida. */
+@Composable
+private fun UltimoUso(iso: String, fuso: ZoneId) {
+    val texto = dataHora(iso, fuso) ?: return
+    Text(
+        stringResource(R.string.ia_ultimo_uso, texto),
+        style = MaterialTheme.typography.labelMedium,
+        color = MaterialTheme.colorScheme.onSurfaceVariant,
+    )
 }
 
 @Composable
@@ -509,6 +566,20 @@ internal fun AbaCatalogo(dados: DadosIa) {
                 Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
                     Text(skill.nome, style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.SemiBold)
                     Text(skill.descricao, style = MaterialTheme.typography.bodySmall)
+                }
+            }
+        }
+        Secao(stringResource(R.string.ia_mcps_titulo, catalogo.mcps.size)) {
+            if (catalogo.mcps.isEmpty()) ItemVazio()
+            catalogo.mcps.forEach { mcp ->
+                Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
+                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        Text(mcp.rotulo.ifEmpty { mcp.nome }, style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.SemiBold)
+                        if (mcp.origem.isNotEmpty()) Selo(mcp.origem, Tom.NEUTRO)
+                    }
+                    if (mcp.ferramentas.isNotEmpty()) {
+                        Text(mcp.ferramentas.joinToString(", "), style = MaterialTheme.typography.bodySmall)
+                    }
                 }
             }
         }

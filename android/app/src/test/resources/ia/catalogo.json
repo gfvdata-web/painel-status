@@ -23,7 +23,16 @@
  "skills": [
   {
    "nome": "skill-de-teste",
-   "descricao": "Faz uma coisa de teste."
+   "descricao": "Faz uma coisa de teste.",
+   "origem": "usuario"
+  }
+ ],
+ "mcps": [
+  {
+   "nome": "servidor-x",
+   "rotulo": "Servidor X",
+   "origem": "conector",
+   "ferramentas": ["ler", "gravar", "listar"]
   }
  ],
  "candidatos": [

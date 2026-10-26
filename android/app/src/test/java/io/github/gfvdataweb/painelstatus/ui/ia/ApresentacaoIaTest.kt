@@ -3,6 +3,7 @@ package io.github.gfvdataweb.painelstatus.ui.ia
 import io.github.gfvdataweb.painelstatus.apoio.IaFixtures
 import io.github.gfvdataweb.painelstatus.data.ia.FaixaLimite
 import io.github.gfvdataweb.painelstatus.data.ia.LimitesAtuais
+import io.github.gfvdataweb.painelstatus.data.ia.McpUso
 import io.github.gfvdataweb.painelstatus.data.ia.PontoLimite
 import io.github.gfvdataweb.painelstatus.data.ia.lerCatalogo
 import io.github.gfvdataweb.painelstatus.data.ia.lerLimites
@@ -220,5 +221,34 @@ class ApresentacaoIaTest {
         assertNull(linhas.getValue("principal").configurado)
         assertFalse(linhas.getValue("principal").diverge)
         assertTrue(linhasDeAgentes(uso, null).none { it.configurado != null })
+    }
+
+    @Test
+    fun skillsOrdenadasPorChamadas() {
+        val linhas = linhasDeSkills(uso)
+        assertEquals(listOf("skill-de-teste", "skill-rara"), linhas.map { it.nome })
+        assertEquals(7L, linhas[0].chamadas)
+        assertEquals(3L, linhas[0].sessoes)
+        assertEquals("2026-10-14T12:30:00.000Z", linhas[0].ultimoUso)
+        assertTrue(linhasDeSkills(uso.copy(skills = emptyMap())).isEmpty())
+    }
+
+    @Test
+    fun mcpsComRotuloTipoETresFerramentasMaisChamadas() {
+        val linhas = linhasDeMcps(uso)
+        assertEquals(listOf("Servidor X", "Local Y"), linhas.map { it.rotulo })
+        val x = linhas[0]
+        assertEquals("conector", x.tipo)
+        assertEquals(9L, x.chamadas)
+        assertEquals(2L, x.sessoes)
+        // 4 ferramentas: ficam as 3 mais chamadas; o empate em 1 desempata pelo nome.
+        assertEquals(listOf("ler" to 5L, "gravar" to 2L, "apagar" to 1L), x.ferramentas)
+        assertEquals("2026-10-14T13:00:00.000Z", x.ultimoUso)
+    }
+
+    @Test
+    fun mcpSemRotuloUsaONomeDoServidor() {
+        val sem = uso.copy(mcps = mapOf("so-nome" to McpUso(chamadas = 1)))
+        assertEquals("so-nome", linhasDeMcps(sem).single().rotulo)
     }
 }

@@ -28,8 +28,10 @@ function renderizarTudo(status) {
   graficos.forEach((grafico) => grafico.destroy());
   graficos = [];
 
-  const destaque = status.sites.find((s) => s.destaque);
-  const outros = status.sites.filter((s) => !s.destaque);
+  renderizarAtalhos(status.sites);
+  const visiveis = status.sites.filter(naLista);
+  const destaque = visiveis.find((s) => s.destaque);
+  const outros = visiveis.filter((s) => !s.destaque);
 
   if (destaque) renderizarDestaque(destaque);
   renderizarGrade(outros, status.forms_avulsos || []);
@@ -42,6 +44,25 @@ function escapar(valor) {
   return String(valor ?? "")
     .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+}
+
+// Sites com na_lista === false não viram cartão: entram na barra do topo como botão (nav#atalhos-topo).
+// JSON antigo, sem o campo, mostra tudo na lista. Só http(s); bolinha vermelha se o site estiver fora do ar.
+// Mesma função em app.js e lista.js (as páginas não compartilham script) — mudou uma, mudar a outra.
+function naLista(site) {
+  return site.na_lista !== false;
+}
+
+function renderizarAtalhos(sites) {
+  const nav = document.getElementById("atalhos-topo");
+  if (!nav) return;
+  const links = sites.filter((s) => !naLista(s) && /^https?:\/\//.test(s.pages_url || "")).map((s) => {
+    const foraDoAr = !(s.site_no_ar && s.site_no_ar.ok);
+    const ponto = foraDoAr ? `<span class="versao-switch__ponto" role="img" aria-label="fora do ar" title="fora do ar"></span>` : "";
+    return `<a class="versao-switch__link" href="${escapar(s.pages_url)}" title="${escapar(s.nome)}">🤖 ${escapar(s.nome.replace(/ de /g, " "))}${ponto}</a>`;
+  });
+  nav.innerHTML = links.join("");
+  nav.hidden = links.length === 0;
 }
 
 function linkExterno(url, conteudoHtml, classe = "") {
