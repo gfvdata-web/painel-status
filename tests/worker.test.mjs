@@ -397,7 +397,7 @@ test("sessão: adulterada, expirada ou de outra senha é recusada", async () => 
   const [expira, assinatura] = token.split(".");
   const logado = async (t, e = env) => (await json(await chamar(e, "/api/sessao", { token: t }))).logado;
   assert.equal(await logado(`${Number(expira) + 1}.${assinatura}`), false);
-  assert.equal(await logado(`${expira}.${assinatura.slice(0, -1)}0`), false);
+  assert.equal(await logado(`${expira}.${assinatura.slice(0, -1)}${assinatura.endsWith("0") ? "1" : "0"}`), false);
   assert.equal(await logado("lixo"), false);
   assert.equal(await logado(token, criarEnv({ senha: "nova" }).env), false);
   const velha = Date.now() - 1000;

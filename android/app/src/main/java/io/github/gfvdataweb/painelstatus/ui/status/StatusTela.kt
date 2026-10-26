@@ -211,8 +211,8 @@ private fun CartaoDoSite(
     aoAlternarPipeline: () -> Unit,
     aoAbrir: () -> Unit,
     intervaloMin: Long,
-    controles: ControlesDaOrdem? = null,
     modifier: Modifier = Modifier,
+    controles: ControlesDaOrdem? = null,
 ) {
     val abrir = lembrarAbridorDeLinks()
     val situacao = situacaoDoSite(site)
