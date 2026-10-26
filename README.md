@@ -357,8 +357,10 @@ snippet do próprio site, prefixando o caminho com o nome do repositório:
 <script>window.goatcounter = { path: (p) => "/<repo>" + p };</script>
 ```
 (antes do snippet padrão). Os 3 sites de dados abertos (Meios de pagamento, Arrecadação
-federal e Crédito por modalidade) já têm o prefixo desde 2026-10-18. O Bolão F1 ainda está
-sem isso.
+federal e Crédito por modalidade) têm o prefixo desde 2026-10-18; Bolão F1, Plants Care,
+Eleições 2026 e os Workers GenAI Engineer, Como está Bilbao, Radar de Preços, Melhor Preço,
+Painel de IA e gfvdata.com, desde 2026-10-26. Onde o Worker tem Content-Security-Policy, ele
+precisa liberar `gc.zgo.at` e `gfvdata.goatcounter.com`.
 
 ## Contagem de downloads
 

@@ -44,8 +44,8 @@ Rastreio de acesso: um único site GoatCounter (`gfvdata`, ver coleta_goatcounte
 recebe o snippet padrão em todos os sites monitorados — a separação entre eles é
 feita pelo prefixo do caminho (o nome do repositório), já que todos viviam sob
 gfvdata-web.github.io/<repo>/. Site em domínio próprio precisa prefixar o caminho no
-snippet (ver README); os 3 sites de dados abertos já prefixam desde 2026-10-18, o Bolão
-F1 ainda não. Não há campo por-site aqui para isso.
+snippet (ver README); todos os sites em *.gfvdata.com prefixam desde 2026-10-26 (os 3 de
+dados abertos desde 2026-10-18). Não há campo por-site aqui para isso.
 
 Contagem de downloads: independente do GoatCounter. Os sites de dados abertos publicam
 <site>/contagem.json (contador próprio na Cloudflare, sem IP); `contagem_url` aponta para ele.
