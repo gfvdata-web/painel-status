@@ -125,6 +125,26 @@ fun destaqueDe(status: Status): Site? = status.sites.firstOrNull { it.destaque }
 
 fun outrosSites(status: Status): List<Site> = status.sites.filterNot { it.destaque }
 
+/**
+ * Ordem dos cards do app: os [slugs] salvos primeiro, na ordem salva; os sites que
+ * não estão na lista vão para o fim, na ordem do cadastro. Slug salvo que não existe
+ * mais é ignorado. [slugs] vazio = comportamento de antes (destaque primeiro).
+ */
+fun ordenar(sites: List<Site>, slugs: List<String>): List<Site> {
+    if (slugs.isEmpty()) return sites.sortedByDescending { it.destaque }
+    val posicao = HashMap<String, Int>()
+    slugs.forEachIndexed { indice, slug -> posicao.putIfAbsent(slug, indice) }
+    return sites.sortedBy { posicao[it.slug] ?: Int.MAX_VALUE } // sortedBy é estável
+}
+
+/** Move o item de [de] para [para] (limites ignorados: devolve a lista como estava). */
+fun moverSlug(slugs: List<String>, de: Int, para: Int): List<String> {
+    if (de !in slugs.indices || para !in slugs.indices || de == para) return slugs
+    val nova = slugs.toMutableList()
+    nova.add(para, nova.removeAt(de))
+    return nova
+}
+
 /** Só endereços web abrem no navegador (o que vem no JSON não é executado). */
 fun linkSeguro(url: String?): String? =
     url?.takeIf { it.startsWith("https://") || it.startsWith("http://") }

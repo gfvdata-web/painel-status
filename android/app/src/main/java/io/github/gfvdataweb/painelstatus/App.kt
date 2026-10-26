@@ -18,6 +18,7 @@ import io.github.gfvdataweb.painelstatus.data.ia.CofreKeystore
 import io.github.gfvdataweb.painelstatus.data.ia.FonteIa
 import io.github.gfvdataweb.painelstatus.data.ia.SessaoIa
 import io.github.gfvdataweb.painelstatus.data.modelo.Status
+import io.github.gfvdataweb.painelstatus.data.ordem.FonteDeOrdem
 import io.github.gfvdataweb.painelstatus.ui.painel.destaqueDe
 import io.github.gfvdataweb.painelstatus.ui.painel.fluxoEmAndamento
 import okhttp3.HttpUrl
@@ -68,6 +69,8 @@ class AppContainer(
     urlDaIa: HttpUrl = Enderecos.IA.toHttpUrl(),
     /** Onde fica o cookie do painel de IA; os testes passam um cofre em memória (sem Keystore). */
     cofreDaIa: CofreDeSegredo = CofreKeystore(File(contexto.filesDir, "ia/sessao.bin")),
+    /** Onde fica o token de edição da ordem dos cards; os testes passam um cofre em memória. */
+    cofreDaOrdem: CofreDeSegredo = CofreKeystore(File(contexto.filesDir, "ordem/token.bin")),
 ) {
     val clienteHttp: OkHttpClient = OkHttpClient.Builder()
         .connectTimeout(15, TimeUnit.SECONDS)
@@ -88,6 +91,9 @@ class AppContainer(
         sessao = SessaoIa(clienteHttp, urlDaIa, cofreDaIa),
         cache = CacheDeArquivos(File(contexto.filesDir, "ia/dados")),
     )
+
+    // Ordem dos cards só do app: lê no Worker do painel; o login (token cifrado) só serve para salvar.
+    val fonteDeOrdem = FonteDeOrdem(clienteHttp, urlDoPainel, cofreDaOrdem)
 
     // Avisos com o app fechado: preferências, último status visto e notificações.
     private val pastaDosAvisos = CacheDeArquivos(File(contexto.filesDir, "avisos"))

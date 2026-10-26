@@ -18,19 +18,36 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListItemInfo
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.gestures.detectDragGesturesAfterLongPress
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.KeyboardArrowDown
+import androidx.compose.material.icons.filled.KeyboardArrowUp
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberUpdatedState
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.zIndex
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -57,8 +74,8 @@ import io.github.gfvdataweb.painelstatus.ui.painel.corDaCategoria
 import io.github.gfvdataweb.painelstatus.ui.painel.linkSeguro
 import io.github.gfvdataweb.painelstatus.ui.painel.resumoDosSites
 import io.github.gfvdataweb.painelstatus.ui.painel.rotuloDaCategoria
+import io.github.gfvdataweb.painelstatus.ui.painel.ordenar
 import io.github.gfvdataweb.painelstatus.ui.painel.situacaoDoSite
-import io.github.gfvdataweb.painelstatus.ui.painel.sitesNaOrdemDaLista
 import io.github.gfvdataweb.painelstatus.ui.painel.downloadsRecentes
 import io.github.gfvdataweb.painelstatus.ui.painel.visitasRecentes
 import io.github.gfvdataweb.painelstatus.ui.theme.LocalCoresDoPainel
@@ -68,24 +85,80 @@ import io.github.gfvdataweb.painelstatus.ui.theme.LocalCoresDoPainel
  * Bolão F1 (destaque) no topo; toque no card abre os detalhes do site.
  */
 @Composable
-fun StatusTela(status: Status, aoAbrirSite: (String) -> Unit, modifier: Modifier = Modifier, intervaloMin: Long = 1) {
-    val sites = sitesNaOrdemDaLista(status)
+fun StatusTela(
+    status: Status,
+    aoAbrirSite: (String) -> Unit,
+    modifier: Modifier = Modifier,
+    intervaloMin: Long = 1,
+    /** Ordem dos cards no app (slugs); vazia = destaque primeiro e o resto no cadastro. */
+    ordem: List<String> = emptyList(),
+    /** Não nulo = modo de edição da ordem: [ordem] é o rascunho e cada card ganha os controles de mover. */
+    edicao: EdicaoDaOrdem? = null,
+) {
+    val sites = ordenar(status.sites, ordem)
     // Slugs com o pipeline aberto; fica aqui para a recarga do status não fechá-los.
     val abertos = remember { mutableStateListOf<String>() }
+    val lista = rememberLazyListState()
+    var arrastando by remember { mutableStateOf<String?>(null) }
+    var deslocamento by remember { mutableFloatStateOf(0f) }
+    // O que o gesto vê é sempre a lista atual (o pointerInput não reinicia a cada troca).
+    val sitesAgora by rememberUpdatedState(sites)
     LazyColumn(
         modifier.fillMaxSize(),
+        state = lista,
         contentPadding = PaddingValues(16.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
-        item { Cabecalho(sites) }
+        item {
+            Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                if (edicao != null) AvisoDeEdicao(edicao.erroAoSalvar)
+                Cabecalho(sites)
+            }
+        }
         items(sites, key = { it.slug }) { site ->
             val aberto = site.slug in abertos
+            val controles = edicao?.let { e ->
+                val posicao = sites.indexOfFirst { it.slug == site.slug }
+                ControlesDaOrdem(
+                    nome = site.nome,
+                    podeSubir = posicao > 0,
+                    podeDescer = posicao < sites.lastIndex,
+                    aoSubir = { e.aoMover(posicao, posicao - 1) },
+                    aoDescer = { e.aoMover(posicao, posicao + 1) },
+                    aoComecarArrasto = {
+                        arrastando = site.slug
+                        deslocamento = 0f
+                    },
+                    aoArrastar = { dy ->
+                        deslocamento += dy
+                        val troca = trocaDoArrasto(lista.layoutInfo.visibleItemsInfo, site.slug, deslocamento)
+                        if (troca != null) {
+                            val de = sitesAgora.indexOfFirst { it.slug == site.slug }
+                            val para = sitesAgora.indexOfFirst { it.slug == troca.chave }
+                            if (de >= 0 && para >= 0) {
+                                e.aoMover(de, para)
+                                deslocamento -= troca.ajuste
+                            }
+                        }
+                    },
+                    aoSoltar = {
+                        arrastando = null
+                        deslocamento = 0f
+                    },
+                )
+            }
+            val estaArrastando = arrastando == site.slug
+            val animar = if (estaArrastando) Modifier else Modifier.animateItem()
             CartaoDoSite(
                 site,
                 pipelineAberto = aberto,
                 aoAlternarPipeline = { if (aberto) abertos.remove(site.slug) else abertos.add(site.slug) },
-                aoAbrir = { aoAbrirSite(site.slug) },
+                aoAbrir = { if (edicao == null) aoAbrirSite(site.slug) },
                 intervaloMin = intervaloMin,
+                controles = controles,
+                modifier = animar.then(
+                    if (estaArrastando) Modifier.zIndex(1f).graphicsLayer { translationY = deslocamento } else Modifier,
+                ),
             )
         }
         if (status.formsAvulsos.isNotEmpty()) {
@@ -138,11 +211,13 @@ private fun CartaoDoSite(
     aoAlternarPipeline: () -> Unit,
     aoAbrir: () -> Unit,
     intervaloMin: Long,
+    controles: ControlesDaOrdem? = null,
+    modifier: Modifier = Modifier,
 ) {
     val abrir = lembrarAbridorDeLinks()
     val situacao = situacaoDoSite(site)
     val categoria = categoriaDe(site.categoria)
-    Card(onClick = aoAbrir, modifier = Modifier.fillMaxWidth()) {
+    Card(onClick = aoAbrir, modifier = modifier.fillMaxWidth()) {
         Row(Modifier.height(IntrinsicSize.Min)) {
             Box(Modifier.width(5.dp).fillMaxHeight().background(corDe(categoria)))
             Column(Modifier.weight(1f).padding(horizontal = 12.dp, vertical = 8.dp)) {
@@ -192,6 +267,91 @@ private fun CartaoDoSite(
                     Pipeline(pipeline)
                 }
             }
+            if (controles != null) AlcaEBotoesDeOrdem(controles)
+        }
+    }
+}
+
+/** Modo de edição da ordem: [aoMover] troca de posição na lista que está na tela. */
+class EdicaoDaOrdem(val aoMover: (de: Int, para: Int) -> Unit, val erroAoSalvar: Boolean = false)
+
+/** O que um card em edição faz: setas (alternativa acessível) e o arrasto pela alça. */
+class ControlesDaOrdem(
+    val nome: String,
+    val podeSubir: Boolean,
+    val podeDescer: Boolean,
+    val aoSubir: () -> Unit,
+    val aoDescer: () -> Unit,
+    val aoComecarArrasto: () -> Unit,
+    val aoArrastar: (Float) -> Unit,
+    val aoSoltar: () -> Unit,
+)
+
+/** Troca que o arrasto pede: com qual card, e quanto a posição do card arrastado mudou (para compensar o deslocamento). */
+internal class TrocaDeArrasto(val chave: String, val ajuste: Float)
+
+/**
+ * O card arrastado ([chave], deslocado [deslocamento] px) passou do meio de outro card?
+ * Só olha itens com chave de texto (os slugs); cabeçalho e "Outros forms" têm chave numérica.
+ */
+internal fun trocaDoArrasto(itens: List<LazyListItemInfo>, chave: String, deslocamento: Float): TrocaDeArrasto? {
+    val arrastado = itens.firstOrNull { it.key == chave } ?: return null
+    val centro = arrastado.offset + deslocamento + arrastado.size / 2f
+    val alvo = itens.firstOrNull { item ->
+        item.key is String && item.key != chave && centro >= item.offset && centro <= item.offset + item.size
+    } ?: return null
+    val novoInicio = if (alvo.offset > arrastado.offset) alvo.offset + alvo.size - arrastado.size else alvo.offset
+    return TrocaDeArrasto(alvo.key as String, (novoInicio - arrastado.offset).toFloat())
+}
+
+@Composable
+private fun AvisoDeEdicao(erroAoSalvar: Boolean) {
+    Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+        Text(
+            stringResource(R.string.ordem_editando),
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
+        if (erroAoSalvar) {
+            Text(
+                stringResource(R.string.ordem_salvar_falhou),
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.error,
+            )
+        }
+    }
+}
+
+/** Seta para cima, alça de arrastar (segurar e arrastar) e seta para baixo, na ponta do card. */
+@Composable
+private fun AlcaEBotoesDeOrdem(controles: ControlesDaOrdem) {
+    val aoComecar by rememberUpdatedState(controles.aoComecarArrasto)
+    val aoArrastar by rememberUpdatedState(controles.aoArrastar)
+    val aoSoltar by rememberUpdatedState(controles.aoSoltar)
+    Column(Modifier.padding(end = 4.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+        IconButton(onClick = controles.aoSubir, enabled = controles.podeSubir) {
+            Icon(Icons.Filled.KeyboardArrowUp, contentDescription = stringResource(R.string.ordem_subir, controles.nome))
+        }
+        Box(
+            Modifier
+                .size(48.dp)
+                .pointerInput(Unit) {
+                    detectDragGesturesAfterLongPress(
+                        onDragStart = { aoComecar() },
+                        onDrag = { mudanca, arrasto ->
+                            mudanca.consume()
+                            aoArrastar(arrasto.y)
+                        },
+                        onDragEnd = { aoSoltar() },
+                        onDragCancel = { aoSoltar() },
+                    )
+                },
+            contentAlignment = Alignment.Center,
+        ) {
+            Icon(Icons.Filled.Menu, contentDescription = stringResource(R.string.ordem_alca, controles.nome))
+        }
+        IconButton(onClick = controles.aoDescer, enabled = controles.podeDescer) {
+            Icon(Icons.Filled.KeyboardArrowDown, contentDescription = stringResource(R.string.ordem_descer, controles.nome))
         }
     }
 }

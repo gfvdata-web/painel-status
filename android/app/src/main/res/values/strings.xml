@@ -297,4 +297,22 @@
     <string name="versao_baixar">Baixar a versão %1$s</string>
     <string name="versao_em_dia">Esta é a versão oficial mais recente.</string>
     <string name="versao_sem_info">Não foi possível consultar a versão mais recente.</string>
+
+    <!-- Ordem dos cards no app -->
+    <string name="ordem_menu">Ordem dos cards</string>
+    <string name="ordem_entrar">Entrar</string>
+    <string name="ordem_editar">Editar ordem</string>
+    <string name="ordem_sair">Sair</string>
+    <string name="ordem_salvar">Salvar</string>
+    <string name="ordem_cancelar">Cancelar</string>
+    <string name="ordem_login_titulo">Entrar para editar a ordem</string>
+    <string name="ordem_usuario">Usuário</string>
+    <string name="ordem_senha">Senha</string>
+    <string name="ordem_login_incorreto">usuário ou senha incorretos</string>
+    <string name="ordem_login_falhou">Não foi possível entrar agora. Confira a conexão e tente de novo.</string>
+    <string name="ordem_salvar_falhou">Não foi possível salvar a ordem. Tente de novo.</string>
+    <string name="ordem_editando">Editando a ordem: segure e arraste a alça, ou use as setas.</string>
+    <string name="ordem_alca">Arrastar %1$s</string>
+    <string name="ordem_subir">Subir %1$s</string>
+    <string name="ordem_descer">Descer %1$s</string>
 </resources>

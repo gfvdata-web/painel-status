@@ -179,5 +179,6 @@ class PainelAppDeTeste : PainelApp() {
         urlDeReserva = null,
         urlDaIa = IaDeTeste.ia.url,
         cofreDaIa = CofreEmMemoria(), // o Keystore do Android não existe no Robolectric
+        cofreDaOrdem = CofreEmMemoria(),
     )
 }

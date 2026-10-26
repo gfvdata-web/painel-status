@@ -61,5 +61,7 @@ Mesmo molde do app do Bolão F1 (`page-bolao-formula1/android` e a regra
   `publicar` só aceita APK assinado pela chave oficial (a mesma do Bolão F1;
   SHA-256 em `android.yml`). Nunca trocar a chave nem o nome do APK
   (`painel-status-vX.Y.Z-buildN.apk` é lido pelo aviso de versão do app).
-- **Segredos fora do app e do Git:** o app não tem token nenhum; keystore e
-  senhas só nos secrets do repositório.
+- **Segredos fora do app e do Git:** o app não embute token nenhum; keystore e
+  senhas só nos secrets do repositório. Único token em runtime: o do login da
+  ordem dos cards (`data/ordem/`, `POST /api/login`), cifrado no Keystore; a
+  senha nunca é gravada.

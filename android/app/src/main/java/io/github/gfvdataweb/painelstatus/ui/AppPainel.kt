@@ -67,8 +67,13 @@ import io.github.gfvdataweb.painelstatus.ui.historico.HistoricoTela
 import io.github.gfvdataweb.painelstatus.ui.historico.HistoricoViewModel
 import io.github.gfvdataweb.painelstatus.ui.ia.IaTela
 import io.github.gfvdataweb.painelstatus.ui.ia.IaViewModel
+import io.github.gfvdataweb.painelstatus.ui.painel.OrdemViewModel
 import io.github.gfvdataweb.painelstatus.ui.painel.PainelViewModel
+import io.github.gfvdataweb.painelstatus.ui.painel.ordenar
 import io.github.gfvdataweb.painelstatus.ui.sites.SiteTela
+import io.github.gfvdataweb.painelstatus.ui.status.AcoesDaOrdem
+import io.github.gfvdataweb.painelstatus.ui.status.DialogoDeLogin
+import io.github.gfvdataweb.painelstatus.ui.status.EdicaoDaOrdem
 import io.github.gfvdataweb.painelstatus.ui.status.StatusTela
 import io.github.gfvdataweb.painelstatus.ui.sobre.SobreTela
 import io.github.gfvdataweb.painelstatus.ui.versao.AvisoDeNovaVersao
@@ -121,6 +126,9 @@ fun AppPainel(container: AppContainer, versao: String, build: Int, abaInicial: S
     val estado by painel.estado.collectAsStateWithLifecycle()
     val versaoViewModel: VersaoViewModel = viewModel(factory = VersaoViewModel.fabrica(container.verificadorDeAtualizacao, build))
     val estadoDaVersao by versaoViewModel.estado.collectAsStateWithLifecycle()
+    // Ordem dos cards só do app (independente da do site) e o login para editá-la.
+    val ordem: OrdemViewModel = viewModel(factory = OrdemViewModel.fabrica(container.fonteDeOrdem))
+    val estadoDaOrdem by ordem.estado.collectAsStateWithLifecycle()
     val entradaAtual by navegacao.currentBackStackEntryAsState()
     val naAba = ABAS.firstOrNull { aba -> entradaAtual?.destination?.hasRoute(aba.rota::class) == true }
     val navegador = LocalUriHandler.current
@@ -177,11 +185,23 @@ fun AppPainel(container: AppContainer, versao: String, build: Int, abaInicial: S
                 },
                 actions = {
                     if (naAba != null) {
-                        IconButton(onClick = { navegacao.navigate(RotaAvisos) { launchSingleTop = true } }) {
-                            Icon(Icons.Filled.Notifications, contentDescription = stringResource(R.string.avisos_titulo))
+                        if (naAba.rota == RotaStatus) {
+                            AcoesDaOrdem(
+                                estadoDaOrdem,
+                                aoEntrar = ordem::abrirLogin,
+                                aoEditar = { ordem.editar(ordenar(estado.dados?.sites.orEmpty(), estadoDaOrdem.slugs).map { it.slug }) },
+                                aoSair = ordem::sair,
+                                aoSalvar = ordem::salvar,
+                                aoCancelar = ordem::cancelar,
+                            )
                         }
-                        IconButton(onClick = { navegacao.navigate(RotaSobre) { launchSingleTop = true } }) {
-                            Icon(Icons.Filled.Info, contentDescription = stringResource(R.string.sobre_titulo))
+                        if (!estadoDaOrdem.editando) {
+                            IconButton(onClick = { navegacao.navigate(RotaAvisos) { launchSingleTop = true } }) {
+                                Icon(Icons.Filled.Notifications, contentDescription = stringResource(R.string.avisos_titulo))
+                            }
+                            IconButton(onClick = { navegacao.navigate(RotaSobre) { launchSingleTop = true } }) {
+                                Icon(Icons.Filled.Info, contentDescription = stringResource(R.string.sobre_titulo))
+                            }
                         }
                     }
                 },
@@ -202,6 +222,14 @@ fun AppPainel(container: AppContainer, versao: String, build: Int, abaInicial: S
             }
         },
     ) { espaco ->
+        if (estadoDaOrdem.pedindoLogin) {
+            DialogoDeLogin(
+                erro = estadoDaOrdem.erroDeLogin,
+                entrando = estadoDaOrdem.entrando,
+                aoEntrar = ordem::entrar,
+                aoFechar = ordem::fecharLogin,
+            )
+        }
         Column(Modifier.padding(espaco)) {
             val publicada = estadoDaVersao.publicada
             if (estadoDaVersao.mostrarAviso && publicada != null) {
@@ -215,7 +243,17 @@ fun AppPainel(container: AppContainer, versao: String, build: Int, abaInicial: S
             NavHost(navegacao, startDestination = rotaInicial(abaInicial), modifier = Modifier.weight(1f)) {
                 composable<RotaStatus> {
                     ConteudoComDados(estado, painel::atualizar, complemento = complemento) { status ->
-                        StatusTela(status, aoAbrirSite = { slug -> navegacao.navigate(RotaSite(slug)) }, intervaloMin = intervaloMin)
+                        StatusTela(
+                            status,
+                            aoAbrirSite = { slug -> navegacao.navigate(RotaSite(slug)) },
+                            intervaloMin = intervaloMin,
+                            ordem = if (estadoDaOrdem.editando) estadoDaOrdem.rascunho else estadoDaOrdem.slugs,
+                            edicao = if (estadoDaOrdem.editando) {
+                                EdicaoDaOrdem(aoMover = ordem::mover, erroAoSalvar = estadoDaOrdem.erroAoSalvar)
+                            } else {
+                                null
+                            },
+                        )
                     }
                 }
                 composable<RotaIa> {
