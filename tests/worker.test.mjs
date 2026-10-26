@@ -1,7 +1,7 @@
 // Worker da Cloudflare (worker/src/index.ts) rodando no Node, sem Cloudflare: o Node 24 lê o .ts
 // direto (só apaga os tipos) e o ambiente do Worker é de mentira — D1, KV e ASSETS em memória.
 // Cobre rotas, validação do envio (problemaNoStatus/problemaNoHistorico), versao.json do app,
-// guarda dos APKs e a agenda do Cron. O tsc (scripts/check) cobre os tipos.
+// guarda dos APKs, a agenda do Cron e o login/ordem dos cards. O tsc (scripts/check) cobre os tipos.
 import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
@@ -22,7 +22,7 @@ const worker = await import(pathToFileURL(path.join(raiz, "worker", "src", "inde
 const TOKEN = "segredo-de-teste";
 
 /** D1 + KV + ASSETS em memória; só entende as consultas que o Worker faz (outra = falha o teste). */
-function criarEnv({ token = TOKEN } = {}) {
+function criarEnv({ token = TOKEN, usuario = "gfvdata", senha = "admin" } = {}) {
   const arquivos = new Map(); // chave -> {conteudo, etag, gerado_em}
   const retratos = new Map();
   const kv = new Map();
@@ -69,7 +69,7 @@ function criarEnv({ token = TOKEN } = {}) {
     async list() { return { keys: [...kv.keys()].map((name) => ({ name })) }; },
   };
   const ASSETS = { fetch: async (req) => new Response(`asset:${new URL(req.url).pathname}`, { status: 200 }) };
-  return { env: { BANCO, APKS, ASSETS, TOKEN_ENVIO: token }, arquivos, retratos, kv, consultas };
+  return { env: { BANCO, APKS, ASSETS, TOKEN_ENVIO: token, PAINEL_USUARIO: usuario, PAINEL_SENHA: senha }, arquivos, retratos, kv, consultas };
 }
 
 const chamar = (env, caminho, { metodo = "GET", corpo, token, cabecalhos = {} } = {}) => {
@@ -358,4 +358,77 @@ test("agenda: o disparo padrão chama o workflow certo do GitHub", async () => {
   assert.equal(opcoes.method, "POST");
   assert.equal(opcoes.headers.authorization, "Bearer gh-token");
   assert.deepEqual(JSON.parse(opcoes.body), { ref: "main" });
+});
+
+// ------------------------------------------------------------------------ login e ordem
+
+const entrar = (env, usuario = "gfvdata", senha = "admin") =>
+  chamar(env, "/api/login", { metodo: "POST", corpo: JSON.stringify({ usuario, senha }) });
+const sessaoDe = (resposta) => /sessao=([^;]+)/.exec(resposta.headers.get("set-cookie"))[1];
+
+test("login: credencial certa dá cookie + token; errada ou sem secrets não", async () => {
+  const { env } = criarEnv();
+  const ok = await entrar(env);
+  assert.equal(ok.status, 200);
+  const cookie = ok.headers.get("set-cookie");
+  assert.match(cookie, /HttpOnly/);
+  assert.match(cookie, /SameSite=Strict/);
+  assert.equal((await json(ok)).token, sessaoDe(ok));
+  assert.equal((await entrar(env, "gfvdata", "errada")).status, 401);
+  assert.equal((await entrar(env, "outro", "admin")).status, 401);
+  assert.equal((await chamar(env, "/api/login", { metodo: "POST", corpo: "{quebrado" })).status, 401);
+  assert.equal((await chamar(env, "/api/login")).status, 405);
+  assert.equal((await entrar(criarEnv({ usuario: "", senha: "" }).env)).status, 503);
+});
+
+test("sessão: /api/sessao diz se está logado; logout apaga o cookie", async () => {
+  const { env } = criarEnv();
+  assert.deepEqual(await json(await chamar(env, "/api/sessao")), { logado: false });
+  const token = sessaoDe(await entrar(env));
+  assert.deepEqual(await json(await chamar(env, "/api/sessao", { cabecalhos: { cookie: `x=1; sessao=${token}` } })), { logado: true });
+  assert.deepEqual(await json(await chamar(env, "/api/sessao", { token })), { logado: true });
+  const saiu = await chamar(env, "/api/logout", { metodo: "POST" });
+  assert.match(saiu.headers.get("set-cookie"), /Max-Age=0/);
+});
+
+test("sessão: adulterada, expirada ou de outra senha é recusada", async () => {
+  const { env } = criarEnv();
+  const token = sessaoDe(await entrar(env));
+  const [expira, assinatura] = token.split(".");
+  const logado = async (t, e = env) => (await json(await chamar(e, "/api/sessao", { token: t }))).logado;
+  assert.equal(await logado(`${Number(expira) + 1}.${assinatura}`), false);
+  assert.equal(await logado(`${expira}.${assinatura.slice(0, -1)}0`), false);
+  assert.equal(await logado("lixo"), false);
+  assert.equal(await logado(token, criarEnv({ senha: "nova" }).env), false);
+  const velha = Date.now() - 1000;
+  const chave = await crypto.subtle.importKey("raw", new TextEncoder().encode("admin"), { name: "HMAC", hash: "SHA-256" }, false, ["sign"]);
+  const ass = Buffer.from(await crypto.subtle.sign("HMAC", chave, new TextEncoder().encode(String(velha)))).toString("hex");
+  assert.equal(await logado(`${velha}.${ass}`), false);
+});
+
+test("ordem: GET público (vazio no começo), PUT exige sessão; site e app separados", async () => {
+  const ctx = criarEnv();
+  const { env } = ctx;
+  assert.deepEqual(await json(await chamar(env, "/api/ordem?alvo=site")), { slugs: [], atualizado_em: null });
+  const corpo = JSON.stringify({ slugs: ["b", "a"] });
+  assert.equal((await chamar(env, "/api/ordem?alvo=site", { metodo: "PUT", corpo })).status, 401);
+  assert.equal((await chamar(env, "/api/ordem?alvo=site", { metodo: "PUT", corpo, token: TOKEN })).status, 401);
+  const token = sessaoDe(await entrar(env));
+  const r = await chamar(env, "/api/ordem?alvo=site", { metodo: "PUT", corpo, cabecalhos: { cookie: `sessao=${token}` } });
+  assert.equal(r.status, 200);
+  assert.ok(ctx.arquivos.has("controle/ordem-site.json"));
+  assert.equal((await chamar(env, "/api/ordem?alvo=app", { metodo: "PUT", corpo: JSON.stringify({ slugs: ["c"] }), token })).status, 200);
+  assert.deepEqual((await json(await chamar(env, "/api/ordem?alvo=site"))).slugs, ["b", "a"]);
+  assert.deepEqual((await json(await chamar(env, "/api/ordem?alvo=app"))).slugs, ["c"]);
+  assert.equal((await chamar(env, "/api/ordem?alvo=outro")).status, 400);
+  assert.equal((await chamar(env, "/api/ordem?alvo=site", { metodo: "POST", token })).status, 405);
+});
+
+test("ordem: corpo inválido = 400", async () => {
+  const { env } = criarEnv();
+  const token = sessaoDe(await entrar(env));
+  for (const corpo of ["{quebrado", "{}", '{"slugs":"a"}', '{"slugs":["a","a"]}', '{"slugs":["a b"]}', '{"slugs":[1]}',
+    JSON.stringify({ slugs: Array.from({ length: 101 }, (_, i) => `s${i}`) })]) {
+    assert.equal((await chamar(env, "/api/ordem?alvo=site", { metodo: "PUT", corpo, token })).status, 400, corpo);
+  }
 });

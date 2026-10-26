@@ -31,6 +31,19 @@
 //   GET /app/painel-status-vX.Y.Z-buildN.apk KV APKS[<nome>] (ficam só os APKS_GUARDADOS mais novos)
 //   PUT /api/app/<nome do apk>               grava o APK
 //   PUT /api/app/versao.json                 só aceita se o APK citado já estiver no KV
+//
+// Ordem dos cards (a página é pública; só a edição pede login). O site (/) e o app têm ordens
+// independentes, em arquivos["controle/ordem-site.json"] e arquivos["controle/ordem-app.json"]:
+//
+//   POST /api/login          {usuario, senha} = secrets PAINEL_USUARIO/PAINEL_SENHA → cookie
+//                            "sessao" + {token} (o app manda o token como Bearer)
+//   POST /api/logout         apaga o cookie
+//   GET  /api/sessao         {logado}
+//   GET  /api/ordem?alvo=site|app   {slugs, atualizado_em} (público; sem ordem salva, slugs = [])
+//   PUT  /api/ordem?alvo=site|app   {slugs} — exige sessão
+//
+// A sessão é "<expira em ms>.<HMAC-SHA256>" com PAINEL_SENHA como chave: trocar a senha
+// (wrangler secret put PAINEL_SENHA) desloga todos os aparelhos.
 
 const RE_HISTORICO = /^historico\/([A-Za-z0-9_-]+)\.json$/;
 const PREFIXO_DADOS = "/dados/";
@@ -59,6 +72,20 @@ const CHAVE_AGENDA = "controle/agenda.json";
 const INTERVALO_RETRATO_MS = 25 * MINUTO;
 const RETENCAO_RETRATOS_MS = 30 * DIA;
 
+const VALIDADE_SESSAO_MS = 90 * DIA;
+const ESPERA_LOGIN_ERRADO_MS = 400;
+const ALVOS_ORDEM = ["site", "app"];
+const RE_SLUG = /^[A-Za-z0-9_-]{1,80}$/;
+const MAX_SLUGS = 100;
+
+// Secrets do login (fora do worker-configuration.d.ts, que vem do .dev.vars de cada máquina).
+declare global {
+  interface Env {
+    PAINEL_USUARIO?: string;
+    PAINEL_SENHA?: string;
+  }
+}
+
 export default {
   async scheduled(controller, env): Promise<void> {
     const agora = new Date(controller.scheduledTime);
@@ -73,6 +100,28 @@ export default {
     if (pathname === "/api/agenda") {
       const agenda = await lerArquivo(env, CHAVE_AGENDA);
       return new Response(agenda?.conteudo ?? "{}", { headers: cabecalhosJson() });
+    }
+    if (pathname === "/api/login") {
+      return request.method === "POST" ? entrar(request, env) : erro(405, "use POST");
+    }
+    if (pathname === "/api/logout") {
+      return request.method === "POST" ? sair() : erro(405, "use POST");
+    }
+    if (pathname === "/api/sessao") {
+      return Response.json({ logado: await temSessao(request, env) }, { headers: { "cache-control": "no-store" } });
+    }
+    if (pathname === "/api/ordem") {
+      const alvo = new URL(request.url).searchParams.get("alvo") ?? "";
+      if (!ALVOS_ORDEM.includes(alvo)) return erro(400, "alvo deve ser site ou app");
+      if (request.method === "GET") {
+        const ordem = await lerArquivo(env, chaveDaOrdem(alvo));
+        return new Response(ordem?.conteudo ?? JSON.stringify({ slugs: [], atualizado_em: null }), {
+          headers: { "content-type": "application/json; charset=utf-8", "cache-control": "no-store" },
+        });
+      }
+      if (request.method !== "PUT") return erro(405, "use GET ou PUT");
+      if (!(await temSessao(request, env))) return erro(401, "faça login");
+      return gravarOrdem(request, env, alvo);
     }
     if (pathname.startsWith(PREFIXO_DADOS)) {
       const chave = chaveDoArquivo(pathname.slice(PREFIXO_DADOS.length));
@@ -187,10 +236,92 @@ async function servirApk(request: Request, env: Env, nome: string): Promise<Resp
 async function autorizado(request: Request, env: Env): Promise<boolean> {
   const recebido = request.headers.get("authorization") ?? "";
   if (!env.TOKEN_ENVIO) return false;
-  // Compara os hashes em tempo constante (os dois têm o mesmo tamanho).
+  return iguais(recebido, `Bearer ${env.TOKEN_ENVIO}`);
+}
+
+/** Compara os hashes em tempo constante (os dois têm o mesmo tamanho). */
+async function iguais(x: string, y: string): Promise<boolean> {
   const codificar = (texto: string) => crypto.subtle.digest("SHA-256", new TextEncoder().encode(texto));
-  const [a, b] = await Promise.all([codificar(recebido), codificar(`Bearer ${env.TOKEN_ENVIO}`)]);
+  const [a, b] = await Promise.all([codificar(x), codificar(y)]);
   return crypto.subtle.timingSafeEqual(a, b);
+}
+
+// --- Login e ordem dos cards ------------------------------------------------------------
+
+async function assinar(texto: string, chave: string): Promise<string> {
+  const k = await crypto.subtle.importKey(
+    "raw", new TextEncoder().encode(chave), { name: "HMAC", hash: "SHA-256" }, false, ["sign"]);
+  const assinatura = await crypto.subtle.sign("HMAC", k, new TextEncoder().encode(texto));
+  return [...new Uint8Array(assinatura)].map((b) => b.toString(16).padStart(2, "0")).join("");
+}
+
+async function entrar(request: Request, env: Env): Promise<Response> {
+  if (!env.PAINEL_USUARIO || !env.PAINEL_SENHA) return erro(503, "login não configurado");
+  const texto = await request.text();
+  let dados: { usuario?: unknown; senha?: unknown } = {};
+  try {
+    if (texto.length <= 4096) dados = JSON.parse(texto) ?? {};
+  } catch {
+    // corpo inválido = credencial errada
+  }
+  const [okUsuario, okSenha] = await Promise.all([
+    iguais(String(dados.usuario ?? ""), env.PAINEL_USUARIO),
+    iguais(String(dados.senha ?? ""), env.PAINEL_SENHA),
+  ]);
+  if (!(okUsuario && okSenha)) {
+    await new Promise((r) => setTimeout(r, ESPERA_LOGIN_ERRADO_MS));
+    return erro(401, "usuário ou senha incorretos");
+  }
+  const expira = Date.now() + VALIDADE_SESSAO_MS;
+  const token = `${expira}.${await assinar(String(expira), env.PAINEL_SENHA)}`;
+  const cookie = `sessao=${token}; HttpOnly; Secure; SameSite=Strict; Path=/api; Max-Age=${VALIDADE_SESSAO_MS / 1000}`;
+  return Response.json(
+    { ok: true, token, expira: new Date(expira).toISOString() },
+    { headers: { "set-cookie": cookie, "cache-control": "no-store" } },
+  );
+}
+
+function sair(): Response {
+  return Response.json(
+    { ok: true },
+    { headers: { "set-cookie": "sessao=; HttpOnly; Secure; SameSite=Strict; Path=/api; Max-Age=0" } },
+  );
+}
+
+/** Sessão no cookie "sessao" (página) ou em "Authorization: Bearer" (app). */
+async function temSessao(request: Request, env: Env): Promise<boolean> {
+  if (!env.PAINEL_SENHA) return false;
+  const cookie = /(?:^|;\s*)sessao=([^;]+)/.exec(request.headers.get("cookie") ?? "")?.[1];
+  const bearer = /^Bearer (.+)$/.exec(request.headers.get("authorization") ?? "")?.[1];
+  const token = cookie ?? bearer ?? "";
+  const [expira, assinatura] = token.split(".");
+  if (!expira || !assinatura || !(Number(expira) > Date.now())) return false;
+  return iguais(assinatura, await assinar(expira, env.PAINEL_SENHA));
+}
+
+function chaveDaOrdem(alvo: string): string {
+  return `controle/ordem-${alvo}.json`;
+}
+
+async function gravarOrdem(request: Request, env: Env, alvo: string): Promise<Response> {
+  const texto = await request.text();
+  if (texto.length > 16 * 1024) return erro(413, "ordem grande demais");
+  let dados: { slugs?: unknown };
+  try {
+    dados = JSON.parse(texto);
+  } catch {
+    return erro(400, "JSON inválido");
+  }
+  const slugs = dados?.slugs;
+  if (
+    !Array.isArray(slugs) || slugs.length > MAX_SLUGS ||
+    !slugs.every((s) => typeof s === "string" && RE_SLUG.test(s)) || new Set(slugs).size !== slugs.length
+  ) {
+    return erro(400, "slugs deve ser uma lista de slugs sem repetição");
+  }
+  const ordem = { slugs, atualizado_em: new Date().toISOString() };
+  await gravarArquivo(env, chaveDaOrdem(alvo), JSON.stringify(ordem));
+  return Response.json({ ok: true, alvo, ...ordem });
 }
 
 async function receber(request: Request, env: Env, chave: string): Promise<Response> {

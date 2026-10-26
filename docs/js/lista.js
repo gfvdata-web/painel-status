@@ -35,13 +35,54 @@ const ICONE_ESTADO_ETAPA = {
   pulado: "–",
 };
 
+// Ordem salva dos cartões (slugs, vinda de api/ordem) e estado do login/edição.
+// sessao: null = API de sessão indisponível (ex.: cópia antiga no GitHub Pages) -> nenhum botão aparece.
+let ordemSalva = [];
+let sessao = null;
+let editando = false;
+let arrastando = null;
+let temporizadorAviso = null;
+const URL_ORDEM = "api/ordem?alvo=site";
+
+// Ordem salva é opcional: qualquer falha vale como "sem ordem salva".
+async function carregarOrdem() {
+  try {
+    const resp = await fetch(URL_ORDEM, { cache: "no-store", credentials: "same-origin" });
+    if (!resp.ok) return [];
+    const dados = await resp.json();
+    return Array.isArray(dados.slugs) ? dados.slugs : [];
+  } catch (erro) {
+    return [];
+  }
+}
+
 async function carregar() {
-  const resp = await fetch("dados/status.json", { cache: "no-store" });
+  // Durante a edição a lista não é redesenhada (o arrasto se perderia).
+  if (editando) return;
+  const [resp, slugs] = await Promise.all([fetch("dados/status.json", { cache: "no-store" }), carregarOrdem()]);
   if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
   const novo = await resp.json();
-  if (statusAtual && novo.meta.gerado_em === statusAtual.meta.gerado_em) return;
+  if (editando) return;
+  const mudouOrdem = JSON.stringify(slugs) !== JSON.stringify(ordemSalva);
+  if (statusAtual && !mudouOrdem && novo.meta.gerado_em === statusAtual.meta.gerado_em) return;
   statusAtual = novo;
+  ordemSalva = slugs;
   renderizar(statusAtual);
+}
+
+// Ordem dos cartões: slugs salvos primeiro, na ordem salva; sites fora da lista (novos) vão para o
+// fim, na ordem do cadastro. Sem ordem salva, o destaque (Bolão F1) primeiro e o resto no cadastro.
+function ordenar(sites, slugs) {
+  if (!slugs || !slugs.length) {
+    return [...sites].sort((a, b) => Number(Boolean(b.destaque)) - Number(Boolean(a.destaque)));
+  }
+  const porSlug = new Map(sites.map((s) => [s.slug, s]));
+  const vistos = new Set();
+  const salvos = [];
+  for (const slug of slugs) {
+    if (porSlug.has(slug) && !vistos.has(slug)) { vistos.add(slug); salvos.push(porSlug.get(slug)); }
+  }
+  return [...salvos, ...sites.filter((s) => !vistos.has(s.slug))];
 }
 
 // Todo texto vindo do status.json passa por escapar() antes de ir para o innerHTML.
@@ -181,8 +222,9 @@ function cartao(site) {
   const bolinhaNivel = nivel === "aviso" || nivel === "erro" ? nivel : "ok";
   const rotuloCategoria = NOME_CATEGORIA[site.categoria] || "sem categoria";
   return `
-    <article class="cartao cartao--cat-${categoria}">
+    <article class="cartao cartao--cat-${categoria}" data-slug="${escapar(site.slug)}">
       <div class="cartao__linha">
+        <button type="button" class="cartao__arrastar" aria-label="Arrastar para mudar a ordem" title="Arrastar para mudar a ordem">⠿</button>
         <div class="cartao__principal">
           <div class="cartao__titulo">
             <a class="cartao__nome" href="${escapar(site.pages_url)}" target="_blank" rel="noopener">${escapar(site.nome)}</a>
@@ -202,8 +244,7 @@ function cartao(site) {
 }
 
 function renderizar(status) {
-  // Destaque (Bolão F1) primeiro; o resto na ordem do cadastro.
-  const sites = [...status.sites].sort((a, b) => Number(Boolean(b.destaque)) - Number(Boolean(a.destaque)));
+  const sites = ordenar(status.sites, ordemSalva);
   document.getElementById("lista-sites").innerHTML = sites.map(cartao).join("");
 
   // Legenda das categorias: só aparece depois que alguma categoria estiver atribuída.
@@ -241,6 +282,191 @@ function configurarPipeline() {
   });
 }
 
+// ---------- Login e edição da ordem dos cartões ----------
+function mostrarAviso(texto, erro) {
+  const aviso = document.getElementById("aviso-ordem");
+  aviso.textContent = texto;
+  aviso.hidden = false;
+  aviso.classList.toggle("aviso-ordem--erro", Boolean(erro));
+  clearTimeout(temporizadorAviso);
+  temporizadorAviso = setTimeout(() => { aviso.hidden = true; }, erro ? 5000 : 2500);
+}
+
+// Quais botões da barra do topo aparecem, conforme sessão (null/false/true) e modo de edição.
+function atualizarBotoes() {
+  document.getElementById("sessao-controles").hidden = sessao === null;
+  document.getElementById("btn-entrar").hidden = sessao !== false;
+  document.getElementById("btn-editar").hidden = !(sessao === true && !editando);
+  document.getElementById("btn-sair").hidden = !(sessao === true && !editando);
+  document.getElementById("btn-salvar").hidden = !editando;
+  document.getElementById("btn-cancelar").hidden = !editando;
+}
+
+async function carregarSessao() {
+  try {
+    const resp = await fetch("api/sessao", { cache: "no-store", credentials: "same-origin" });
+    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+    const dados = await resp.json();
+    sessao = Boolean(dados.logado);
+  } catch (erro) {
+    sessao = null; // sem API (cópia antiga): a página segue só de leitura
+  }
+  atualizarBotoes();
+}
+
+function abrirLogin() {
+  document.getElementById("login-erro").textContent = "";
+  document.getElementById("login-senha").value = "";
+  document.getElementById("dialogo-login").showModal();
+  document.getElementById("login-usuario").focus();
+}
+
+async function enviarLogin(evento) {
+  evento.preventDefault();
+  const erro = document.getElementById("login-erro");
+  erro.textContent = "";
+  try {
+    const resp = await fetch("api/login", {
+      method: "POST",
+      credentials: "same-origin",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        usuario: document.getElementById("login-usuario").value,
+        senha: document.getElementById("login-senha").value,
+      }),
+    });
+    if (resp.status === 401) { erro.textContent = "usuário ou senha incorretos"; return; }
+    if (!resp.ok) { erro.textContent = "não foi possível entrar"; return; }
+  } catch (falha) {
+    erro.textContent = "não foi possível entrar";
+    return;
+  }
+  document.getElementById("login-senha").value = "";
+  document.getElementById("dialogo-login").close();
+  sessao = true;
+  atualizarBotoes();
+}
+
+async function sair() {
+  try {
+    await fetch("api/logout", { method: "POST", credentials: "same-origin" });
+  } catch (erro) { /* sem rede: sai só na tela */ }
+  sessao = false;
+  atualizarBotoes();
+}
+
+function slugsNoDom() {
+  return [...document.getElementById("lista-sites").querySelectorAll(".cartao")].map((c) => c.dataset.slug);
+}
+
+function entrarNaEdicao() {
+  editando = true;
+  document.getElementById("lista-sites").classList.add("lista--editando");
+  atualizarBotoes();
+}
+
+// Sai da edição e redesenha a lista (ordem salva ou, ao cancelar, a de antes).
+function sairDaEdicao() {
+  editando = false;
+  arrastando = null;
+  document.getElementById("lista-sites").classList.remove("lista--editando");
+  atualizarBotoes();
+  if (statusAtual) renderizar(statusAtual);
+}
+
+async function salvarOrdem() {
+  const slugs = slugsNoDom();
+  let resp;
+  try {
+    resp = await fetch(URL_ORDEM, {
+      method: "PUT",
+      credentials: "same-origin",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ slugs }),
+    });
+  } catch (erro) {
+    mostrarAviso("não foi possível salvar", true);
+    return;
+  }
+  if (resp.status === 401) {
+    sessao = false;
+    atualizarBotoes();
+    abrirLogin();
+    return;
+  }
+  if (!resp.ok) { mostrarAviso("não foi possível salvar", true); return; }
+  ordemSalva = slugs;
+  sairDaEdicao();
+  mostrarAviso("Ordem salva", false);
+}
+
+// Arrasto com Pointer Events (mouse e toque) pela alça; setas movem o cartão com a alça em foco.
+// O cartão arrastado sobe/desce no DOM conforme o ponteiro cruza o meio dos vizinhos.
+function moverCartaoPara(y) {
+  const lista = document.getElementById("lista-sites");
+  const cartaoMovido = arrastando.cartao;
+  const proximo = [...lista.children].find((outro) => {
+    if (outro === cartaoMovido) return false;
+    const caixa = outro.getBoundingClientRect();
+    return y < caixa.top + caixa.height / 2;
+  });
+  if (proximo) { if (proximo !== cartaoMovido.nextElementSibling) lista.insertBefore(cartaoMovido, proximo); }
+  else if (lista.lastElementChild !== cartaoMovido) lista.appendChild(cartaoMovido);
+}
+
+function configurarEdicao() {
+  const lista = document.getElementById("lista-sites");
+  lista.addEventListener("pointerdown", (evento) => {
+    const alca = editando && evento.target.closest(".cartao__arrastar");
+    if (!alca) return;
+    evento.preventDefault();
+    const cartaoDaAlca = alca.closest(".cartao");
+    alca.setPointerCapture(evento.pointerId);
+    cartaoDaAlca.classList.add("cartao--arrastando");
+    arrastando = { cartao: cartaoDaAlca, alca, id: evento.pointerId };
+  });
+  lista.addEventListener("pointermove", (evento) => {
+    if (!arrastando || evento.pointerId !== arrastando.id) return;
+    evento.preventDefault();
+    moverCartaoPara(evento.clientY);
+    // Perto da borda da tela, rola a página para alcançar o resto da lista.
+    if (evento.clientY < 60) window.scrollBy(0, -12);
+    else if (evento.clientY > window.innerHeight - 60) window.scrollBy(0, 12);
+  });
+  const soltar = (evento) => {
+    if (!arrastando || evento.pointerId !== arrastando.id) return;
+    arrastando.cartao.classList.remove("cartao--arrastando");
+    try { arrastando.alca.releasePointerCapture(arrastando.id); } catch (erro) { /* já liberado */ }
+    arrastando = null;
+  };
+  lista.addEventListener("pointerup", soltar);
+  lista.addEventListener("pointercancel", soltar);
+  lista.addEventListener("keydown", (evento) => {
+    const alca = editando && evento.target.closest(".cartao__arrastar");
+    if (!alca || (evento.key !== "ArrowUp" && evento.key !== "ArrowDown")) return;
+    evento.preventDefault();
+    const cartaoDaAlca = alca.closest(".cartao");
+    if (evento.key === "ArrowUp") {
+      const anterior = cartaoDaAlca.previousElementSibling;
+      if (anterior) lista.insertBefore(cartaoDaAlca, anterior);
+    } else {
+      const seguinte = cartaoDaAlca.nextElementSibling;
+      if (seguinte) lista.insertBefore(cartaoDaAlca, seguinte.nextElementSibling);
+    }
+    alca.focus();
+  });
+
+  document.getElementById("btn-entrar").addEventListener("click", abrirLogin);
+  document.getElementById("btn-sair").addEventListener("click", sair);
+  document.getElementById("btn-editar").addEventListener("click", entrarNaEdicao);
+  document.getElementById("btn-cancelar").addEventListener("click", sairDaEdicao);
+  document.getElementById("btn-salvar").addEventListener("click", salvarOrdem);
+  document.getElementById("form-login").addEventListener("submit", enviarLogin);
+  document.getElementById("login-cancelar").addEventListener("click", () => document.getElementById("dialogo-login").close());
+  atualizarBotoes();
+  carregarSessao();
+}
+
 // ---------- Tema claro/escuro (mesma lógica e mesma chave "tema" do app.js) ----------
 function temaEfetivo() {
   const attr = document.documentElement.getAttribute("data-theme");
@@ -272,6 +498,7 @@ function configurarTema() {
 
 configurarTema();
 configurarPipeline();
+configurarEdicao();
 carregar().catch((erro) => {
   console.error("Falha ao carregar status.json", erro);
   document.getElementById("lista-resumo").textContent = "Erro ao carregar status.json";

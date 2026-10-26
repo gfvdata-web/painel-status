@@ -16,6 +16,9 @@ O switch **V1 / V2** no canto superior das duas páginas alterna entre elas (V1 
 
 ## O que ele mostra
 
+A ordem dos cards da página principal é editável (botão Entrar → Editar, arrastar, Salvar;
+ver "Login e ordem dos cards" em [Cloudflare](#cloudflare-worker--d1--kv)).
+
 Por site: se está no ar, quando os dados foram atualizados pela última vez (e o que mudou),
 se a última execução do workflow de coleta passou (quando o site tem um cadastrado), o
 período coberto pelos dados (quando o site publica `meta.periodo`) e — quando o GoatCounter
@@ -203,6 +206,15 @@ ficar privado e o GitHub Pages dele, desligado: nada aqui depende de `github.io`
   vai para o KV (até 25 MiB); um APK novo pode levar até 1 min para aparecer em todo lugar.
 - **Banco:** a estrutura fica em `worker/migrations/`. Mudou? Nova migração e
   `npx --prefix worker wrangler d1 migrations apply painel-status --remote --config worker/wrangler.jsonc`.
+- **Login e ordem dos cards:** a página é pública; o botão **Entrar** (em `/`) pede usuário e
+  senha (`POST /api/login`, comparados com os secrets `PAINEL_USUARIO`/`PAINEL_SENHA` do
+  Worker) e libera **Editar**: arrastar os cards pela alça ⠿ e **Salvar** grava a ordem em
+  `arquivos["controle/ordem-site.json"]` (`PUT /api/ordem?alvo=site`), que vale para todos os
+  aparelhos; `GET /api/ordem?alvo=site` é público. O app tem a ordem dele, independente
+  (`alvo=app`, `controle/ordem-app.json`). Sessão de 90 dias, assinada com a senha: trocar a
+  senha (`npx --prefix worker wrangler secret put PAINEL_SENHA --config worker/wrangler.jsonc`)
+  desloga todos os aparelhos. Sem os secrets, o login responde 503 e o resto segue igual.
+  Localmente: `PAINEL_USUARIO`/`PAINEL_SENHA` no `worker/.dev.vars`.
 - **Rodar localmente:** `npm install --prefix worker`, depois
   `npx --prefix worker wrangler dev --config worker/wrangler.jsonc` (D1 e KV simulados — antes, `wrangler d1 migrations apply painel-status --local`; token em
   `worker/.dev.vars`: `TOKEN_ENVIO=teste-local`) e
@@ -222,8 +234,8 @@ ficar privado e o GitHub Pages dele, desligado: nada aqui depende de `github.io`
 ## App Android
 
 App nativo (Kotlin + Jetpack Compose) em `android/`, no mesmo molde do app do Bolão F1
-(`page-bolao-formula1/android`): instalado por APK, fora da Play Store. Não tem servidor nem
-token: **lê o mesmo `dados/status.json`** que a página, em `painel.gfvdata.com` (e
+(`page-bolao-formula1/android`): instalado por APK, fora da Play Store. Não tem servidor próprio
+(o único token é o da sessão de login, usado só para salvar a ordem dos cards): **lê o mesmo `dados/status.json`** que a página, em `painel.gfvdata.com` (e
 `dados/historico/<slug>.json` sob demanda), então tudo que a página mostra vem do mesmo
 lugar e nada é cadastrado no app. Se o endereço novo não responder, o app tenta a reserva
 (`painel-status.pages.dev`, `Enderecos.PAINEL_RESERVA` em `App.kt`, mesmos caminhos).
@@ -248,6 +260,15 @@ lugar e nada é cadastrado no app. Se o endereço novo não responder, o app ten
   vencido ou recusado (401) volta para a tela de senha; sem internet mostra os últimos dados
   guardados, com aviso. Recarrega no mesmo intervalo do painel enquanto a aba está visível; sem
   sessão, não faz pedido nenhum. Sem Firebase e sem reserva de domínio.
+- **Ordem dos cards no app:** a aba Status tem uma ordem própria, independente da do site. Ela
+  fica no Worker (`GET /api/ordem?alvo=app`, público; sem ordem salva vale o padrão, o Bolão F1
+  no topo e o resto no cadastro) e vem aplicada por `ordenar()` em `ui/painel/Apresentacao.kt`;
+  sites novos entram no fim. Para editar, menu ⋮ da aba Status → **Entrar** (usuário e senha,
+  `POST /api/login`) → **Editar ordem**: arrastar pela alça (segurar e arrastar) ou usar as setas
+  de cada card, e **Salvar** (`PUT /api/ordem?alvo=app`) ou **Cancelar**. O app guarda só o token
+  devolvido (válido por 90 dias), cifrado no Keystore (`CofreKeystore`), nunca a senha; token
+  recusado (401) é descartado e o login reabre. Sem rede, ler a ordem não dá erro (usa o padrão).
+  O `status.json` não muda.
 - **Mesmo ritmo da página:** com o app aberto, o `status.json` é conferido a cada **1 min**
   (`INTERVALO_DE_RECARGA_MS` em `App.kt`, igual a `INTERVALO_RECARGA_MS` do `app.js`), então
   as etapas do Bolão andam no app junto com o job `vigiar-bolao`. Em segundo plano, para; ao

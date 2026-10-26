@@ -20,12 +20,13 @@ const publicado = lerJson(docs, "dados", "status.json");
 const copia = (valor) => JSON.parse(JSON.stringify(valor));
 
 /** Carrega a página `html` com o script `js` num contexto isolado. */
-async function abrir(html, js, status, { historicos = {} } = {}) {
+async function abrir(html, js, status, { historicos = {}, sessao, ordem, statusPut = 200 } = {}) {
   const ids = new Set([...lerTexto(docs, html).matchAll(/\bid="([^"]+)"/g)].map((m) => m[1]));
   const elementos = new Map();
   const intervalos = [];
   const erros = [];
   const pedidos = [];
+  const requisicoes = []; // {url, method, body} de cada fetch (sessão/ordem usam método e corpo)
 
   const criar = (id) => {
     const ouvintes = {};
@@ -35,7 +36,7 @@ async function abrir(html, js, status, { historicos = {} } = {}) {
       setAttribute() {}, getAttribute: () => null,
       addEventListener(tipo, f) { (ouvintes[tipo] ??= []).push(f); },
       querySelectorAll: () => [], querySelector: () => null, closest: () => null, matches: () => false,
-      showModal() { this.open = true; }, close() { this.open = false; },
+      showModal() { this.open = true; }, close() { this.open = false; }, focus() {}, value: "",
     };
   };
   const el = (id) => {
@@ -57,8 +58,17 @@ async function abrir(html, js, status, { historicos = {} } = {}) {
     localStorage: { getItem: () => null, setItem() {} },
     getComputedStyle: () => ({ getPropertyValue: () => "#336699" }),
     setInterval: (f, ms) => { intervalos.push(ms); return intervalos.length; },
-    fetch: async (url) => {
+    setTimeout: () => 0,
+    clearTimeout() {},
+    // `sessao`/`ordem` indefinidos = API ausente (404), como na cópia antiga do GitHub Pages.
+    fetch: async (url, opcoes = {}) => {
       pedidos.push(url);
+      requisicoes.push({ url, method: opcoes.method || "GET", body: opcoes.body ? JSON.parse(opcoes.body) : null });
+      if (url === "api/sessao") return sessao === undefined ? resposta({}, false, 404) : resposta({ logado: sessao });
+      if (url === "api/ordem?alvo=site") {
+        if ((opcoes.method || "GET") === "PUT") return resposta({ ok: statusPut === 200 }, statusPut === 200, statusPut);
+        return ordem === undefined ? resposta({}, false, 404) : resposta({ slugs: ordem, atualizado_em: "2026-10-26T00:00:00Z" });
+      }
       if (url === "dados/status.json") return status === null ? resposta({}, false, 404) : resposta(status);
       if (url in historicos) return historicos[url] === null ? resposta({}, false, 404) : resposta(historicos[url]);
       return resposta({}, false, 404);
@@ -70,7 +80,7 @@ async function abrir(html, js, status, { historicos = {} } = {}) {
   vm.runInContext(lerTexto(docs, "js", js), sandbox, { filename: js });
 
   const pagina = {
-    el, erros, intervalos, pedidos,
+    el, erros, intervalos, pedidos, requisicoes,
     ctx: (expressao) => vm.runInContext(expressao, sandbox),
     texto: (id) => el(id).innerHTML + el(id).textContent,
     async esperar(condicao) {
@@ -81,8 +91,8 @@ async function abrir(html, js, status, { historicos = {} } = {}) {
   return pagina;
 }
 
-const abrirLista = async (status) => {
-  const p = await abrir("index.html", "lista.js", status);
+const abrirLista = async (status, opcoes) => {
+  const p = await abrir("index.html", "lista.js", status, opcoes);
   await p.esperar(() => p.el("lista-resumo").textContent !== "");
   return p;
 };
@@ -162,7 +172,7 @@ test("lista: pipeline (Bolão F1 e PlantsCare) começa recolhido, ícone ao lado
   // Ícone na mesma linha do nome (dentro de cartao__titulo), sem texto: o cartão recolhido não cresce.
   assert.match(html, /<div class="cartao__titulo">\s*<a class="cartao__nome"[^>]*>Bolão F1<\/a>\s*<button type="button" class="cartao__alternar" data-slug="bolao_f1" aria-expanded="false" aria-label="Mostrar pipeline" title="Mostrar pipeline">▸<\/button>/);
   assert.match(html, /<div class="cartao__pipeline" hidden>/);
-  assert.match(html, /data-slug="plants_care"/, "PlantsCare mostra o envio do Forms (pipeline_forms)");
+  assert.match(html, /cartao__alternar" data-slug="plants_care"/, "PlantsCare mostra o envio do Forms (pipeline_forms)");
   assert.match(html, /Último envio do Forms/);
   assert.equal((html.match(/class="cartao__alternar"/g) || []).length, 2, "só Bolão e PlantsCare têm pipeline");
 
@@ -186,7 +196,7 @@ test("lista: pipeline_forms com erro na execução não mostra ícone de pipelin
   const status = copia(exemplo);
   site(status, "plants_care").pipeline_forms = { workflow: "pipeline.yml", execucao: { erro: "HTTP 404" }, etapas: null };
   const p = await abrirLista(status);
-  assert.doesNotMatch(p.el("lista-sites").innerHTML, /data-slug="plants_care"/);
+  assert.doesNotMatch(p.el("lista-sites").innerHTML, /cartao__alternar" data-slug="plants_care"/);
 });
 
 test("lista: visitas = soma dos últimos 7 dias da série; sem rastreio = traço", async () => {
@@ -242,6 +252,118 @@ test("lista: status.json indisponível mostra a mensagem de erro", async () => {
   const p = await abrir("index.html", "lista.js", null);
   await p.esperar(() => p.el("lista-resumo").textContent !== "");
   assert.equal(p.el("lista-resumo").textContent, "Erro ao carregar status.json");
+});
+
+
+// ---------------------------------------------------------------- lista.js: login e ordem dos cartões
+
+const slugsDaLista = (p) => [...p.el("lista-sites").innerHTML.matchAll(/<article[^>]*data-slug="([^"]+)"/g)].map((m) => m[1]);
+
+test("lista: ordem salva é aplicada e site novo vai para o fim", async () => {
+  const cadastro = exemplo.sites.map((s) => s.slug);
+  const salva = ["var_vendo", "chess_tracking", "slug_que_saiu"]; // o último não existe mais
+  const p = await abrirLista(exemplo, { ordem: salva });
+  const resto = cadastro.filter((s) => !salva.includes(s));
+  assert.deepEqual(slugsDaLista(p), ["var_vendo", "chess_tracking", ...resto]);
+  assert.ok(p.pedidos.includes("api/ordem?alvo=site"));
+  // site novo no cadastro (fora da ordem salva) aparece depois dos salvos, na ordem do cadastro
+  const status = copia(exemplo);
+  status.sites.push({ ...copia(status.sites[0]), slug: "site_novo", nome: "Site novo", destaque: false });
+  const q = await abrirLista(status, { ordem: cadastro });
+  assert.equal(slugsDaLista(q).at(-1), "site_novo");
+});
+
+test("lista: sem ordem salva (ou API fora) mantém destaque primeiro e ordem do cadastro", async () => {
+  const esperado = ["bolao_f1", ...exemplo.sites.map((s) => s.slug).filter((s) => s !== "bolao_f1")];
+  assert.deepEqual(slugsDaLista(await abrirLista(exemplo)), esperado);
+  assert.deepEqual(slugsDaLista(await abrirLista(exemplo, { ordem: [] })), esperado);
+});
+
+test("lista: ordenar() — salvos primeiro, novos no fim, duplicados e desconhecidos ignorados", async () => {
+  const p = await abrirLista(exemplo);
+  const ordenar = (sites, slugs) => Array.from(p.ctx("ordenar")(sites, slugs), (s) => s.slug);
+  const sites = [{ slug: "a" }, { slug: "b", destaque: true }, { slug: "c" }, { slug: "d" }];
+  assert.deepEqual(ordenar(sites, []), ["b", "a", "c", "d"]);
+  assert.deepEqual(ordenar(sites, undefined), ["b", "a", "c", "d"]);
+  assert.deepEqual(ordenar(sites, ["d", "a"]), ["d", "a", "b", "c"]);
+  assert.deepEqual(ordenar(sites, ["c", "x", "c", "b"]), ["c", "b", "a", "d"]);
+  assert.deepEqual(sites.map((s) => s.slug), ["a", "b", "c", "d"], "não altera a lista original");
+});
+
+test("lista: Entrar some se api/sessao falha e aparece com logado:false", async () => {
+  const sem = await abrirLista(exemplo); // api/sessao -> 404
+  await sem.esperar(() => sem.pedidos.includes("api/sessao"));
+  await new Promise((r) => setTimeout(r, 20));
+  for (const id of ["sessao-controles", "btn-entrar", "btn-editar", "btn-sair", "btn-salvar", "btn-cancelar"]) {
+    assert.equal(sem.el(id).hidden, true, `${id} deve ficar oculto sem API de sessão`);
+  }
+  const fora = await abrirLista(exemplo, { sessao: false });
+  await fora.esperar(() => fora.el("btn-entrar").hidden === false);
+  assert.equal(fora.el("sessao-controles").hidden, false);
+  assert.equal(fora.el("btn-editar").hidden, true);
+  assert.equal(fora.el("btn-sair").hidden, true);
+  const dentro = await abrirLista(exemplo, { sessao: true });
+  await dentro.esperar(() => dentro.el("btn-editar").hidden === false);
+  assert.equal(dentro.el("btn-entrar").hidden, true);
+  assert.equal(dentro.el("btn-sair").hidden, false);
+});
+
+test("lista: login abre o pop-up e erro de envio aparece dentro dele", async () => {
+  const p = await abrirLista(exemplo, { sessao: false });
+  await p.esperar(() => p.el("btn-entrar").hidden === false);
+  p.el("btn-entrar").ouvintes.click[0]();
+  assert.equal(p.el("dialogo-login").open, true);
+  // O fetch falso não conhece api/login (404): erro genérico, pop-up continua aberto.
+  await p.el("form-login").ouvintes.submit[0]({ preventDefault() {} });
+  assert.equal(p.el("login-erro").textContent, "não foi possível entrar");
+  assert.equal(p.el("dialogo-login").open, true);
+});
+
+test("lista: Editar liga o modo de edição; Salvar envia PUT com os slugs na ordem do DOM", async () => {
+  const p = await abrirLista(exemplo, { sessao: true });
+  await p.esperar(() => p.el("btn-editar").hidden === false);
+  p.el("btn-editar").ouvintes.click[0]();
+  assert.equal(p.el("btn-editar").hidden, true);
+  assert.equal(p.el("btn-salvar").hidden, false);
+  assert.equal(p.el("btn-cancelar").hidden, false);
+  // DOM de mentira: a ordem atual dos cartões depois do arrasto
+  const nova = ["var_vendo", "bolao_f1", "chess_tracking"];
+  p.el("lista-sites").querySelectorAll = () => nova.map((slug) => ({ dataset: { slug } }));
+  await p.el("btn-salvar").ouvintes.click[0]();
+  const put = p.requisicoes.find((r) => r.method === "PUT");
+  assert.equal(put.url, "api/ordem?alvo=site");
+  assert.deepEqual(put.body, { slugs: nova });
+  assert.equal(p.el("aviso-ordem").textContent, "Ordem salva");
+  assert.equal(p.el("btn-editar").hidden, false, "saiu do modo de edição");
+  assert.equal(p.el("btn-salvar").hidden, true);
+  assert.deepEqual(p.erros, []);
+});
+
+test("lista: Salvar com 401 abre o login; com outro erro avisa que não salvou", async () => {
+  const sem = await abrirLista(exemplo, { sessao: true, statusPut: 401 });
+  await sem.esperar(() => sem.el("btn-editar").hidden === false);
+  sem.el("btn-editar").ouvintes.click[0]();
+  await sem.el("btn-salvar").ouvintes.click[0]();
+  assert.equal(sem.el("dialogo-login").open, true);
+  assert.equal(sem.el("btn-salvar").hidden, false, "continua editando");
+
+  const falha = await abrirLista(exemplo, { sessao: true, statusPut: 500 });
+  await falha.esperar(() => falha.el("btn-editar").hidden === false);
+  falha.el("btn-editar").ouvintes.click[0]();
+  await falha.el("btn-salvar").ouvintes.click[0]();
+  assert.equal(falha.el("aviso-ordem").textContent, "não foi possível salvar");
+  assert.equal(falha.el("btn-salvar").hidden, false);
+});
+
+test("lista: a recarga automática não redesenha a lista durante a edição", async () => {
+  const p = await abrirLista(exemplo, { sessao: true });
+  await p.esperar(() => p.el("btn-editar").hidden === false);
+  p.el("btn-editar").ouvintes.click[0]();
+  p.el("lista-sites").innerHTML = "arrastando";
+  await p.ctx("carregar()");
+  assert.equal(p.el("lista-sites").innerHTML, "arrastando");
+  p.el("btn-cancelar").ouvintes.click[0](); // Cancelar restaura a ordem anterior
+  assert.match(p.el("lista-sites").innerHTML, /<article/);
 });
 
 // ---------------------------------------------------------------- app.js (V1, /v1)

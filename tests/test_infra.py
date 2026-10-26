@@ -115,7 +115,7 @@ class WorkerConfig(unittest.TestCase):
         usados = set(re.findall(r"env\.([A-Z_]+)\b", INDEX_TS))
         declarados = {d["binding"] for d in self.wrangler["d1_databases"]} | {k["binding"] for k in self.wrangler["kv_namespaces"]}
         declarados.add(self.wrangler["assets"]["binding"])
-        segredos = {"TOKEN_ENVIO", "GITHUB_TOKEN_DISPARO"}  # wrangler secret put (citados no wrangler.jsonc)
+        segredos = {"TOKEN_ENVIO", "GITHUB_TOKEN_DISPARO", "PAINEL_USUARIO", "PAINEL_SENHA"}  # wrangler secret put (citados no wrangler.jsonc)
         self.assertEqual(usados - declarados - segredos, set())
         for segredo in segredos:
             self.assertIn(segredo, (RAIZ / "worker" / "wrangler.jsonc").read_text(encoding="utf-8"))

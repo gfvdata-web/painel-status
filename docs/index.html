@@ -16,6 +16,24 @@
       <a class="versao-switch__link" href="v1" title="Painel completo">V1</a>
       <a class="versao-switch__link versao-switch__link--ativo" aria-current="page" href="./" title="Layout em lista">V2</a>
     </nav>
+    <!-- Login e edição da ordem: só aparecem se a API de sessão responder (lista.js). -->
+    <div class="tema-switch" id="sessao-controles" role="group" aria-label="Edição da ordem" hidden>
+      <button type="button" class="tema-switch__btn" id="btn-entrar" hidden>
+        <span aria-hidden="true">👤</span><span class="tema-switch__label">Entrar</span>
+      </button>
+      <button type="button" class="tema-switch__btn" id="btn-editar" hidden>
+        <span aria-hidden="true">✏️</span><span class="tema-switch__label">Editar</span>
+      </button>
+      <button type="button" class="tema-switch__btn" id="btn-sair" hidden>
+        <span aria-hidden="true">🚪</span><span class="tema-switch__label">Sair</span>
+      </button>
+      <button type="button" class="tema-switch__btn tema-switch__btn--ativo" id="btn-salvar" hidden>
+        <span aria-hidden="true">💾</span><span class="tema-switch__label">Salvar</span>
+      </button>
+      <button type="button" class="tema-switch__btn" id="btn-cancelar" hidden>
+        <span aria-hidden="true">✕</span><span class="tema-switch__label">Cancelar</span>
+      </button>
+    </div>
     <div class="tema-switch" id="tema-switch" role="group" aria-label="Tema da página">
       <button type="button" class="tema-switch__btn" data-tema="light" aria-pressed="false">
         <span aria-hidden="true">☀️</span><span class="tema-switch__label">Claro</span>
@@ -40,6 +58,23 @@
     <p class="lista-nota">Visitas = soma dos visitantes únicos por dia nos últimos 7 dias.
       <a href="v1">Painel completo →</a></p>
   </main>
+
+  <p class="aviso-ordem" id="aviso-ordem" role="status" hidden></p>
+
+  <dialog class="dialogo dialogo-login" id="dialogo-login" aria-labelledby="login-titulo">
+    <form id="form-login" class="login">
+      <h2 id="login-titulo">Entrar</h2>
+      <label for="login-usuario">Usuário</label>
+      <input type="text" id="login-usuario" name="usuario" autocomplete="username" autocapitalize="none" required />
+      <label for="login-senha">Senha</label>
+      <input type="password" id="login-senha" name="senha" autocomplete="current-password" required />
+      <p class="login__erro" id="login-erro" role="alert"></p>
+      <div class="login__acoes">
+        <button type="submit" class="login__btn login__btn--primario">Entrar</button>
+        <button type="button" class="login__btn" id="login-cancelar">Cancelar</button>
+      </div>
+    </form>
+  </dialog>
 
   <script src="js/lista.js"></script>
 </body>

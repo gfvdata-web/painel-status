@@ -203,6 +203,9 @@ main { padding: 28px 0 48px; }
 .tema-switch__btn--ativo, .versao-switch__link--ativo { background: var(--acento); color: #fff; }
 .versao-switch__link:not(.versao-switch__link--ativo):hover { color: var(--acento); }
 
+/* O display do botão vence o atributo hidden; o grupo de login/edição (index.html) usa hidden. */
+.tema-switch[hidden], .tema-switch__btn[hidden] { display: none; }
+
 @media (max-width: 760px) {
   .tema-switch__label { display: none; }
   .tema-switch__btn, .versao-switch__link { padding: 8px 11px; }

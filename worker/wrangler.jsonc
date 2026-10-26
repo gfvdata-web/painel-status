@@ -30,4 +30,6 @@
   // Segredos (wrangler secret put):
   //   TOKEN_ENVIO           o mesmo do secret PAINEL_TOKEN_ENVIO no GitHub
   //   GITHUB_TOKEN_DISPARO  token fine-grained, só gfvdata-web/painel-status, Actions: write
+  //   PAINEL_USUARIO        login que libera editar a ordem dos cards (POST /api/login)
+  //   PAINEL_SENHA          senha desse login; trocar desloga todos os aparelhos
 }

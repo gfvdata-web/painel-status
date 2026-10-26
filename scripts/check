@@ -20,10 +20,10 @@
 #   Envio e download de docs/dados no Worker                             src/envio.py           tests/test_envio.py
 #   Workflow atualizar-status.yml (módulos, flags, saídas, disparos)     .github/workflows/atualizar-status.yml   tests/test_infra.py
 #   Contrato status.json/histórico publicados em docs/dados              tests/contrato.py      tests/test_dados_publicados.py
-#   Página principal (lista): cartões, alertas, visitas, outros forms    docs/index.html, docs/js/lista.js, docs/css/lista.css   tests/test_paginas.py, tests/paginas.test.mjs
+#   Página principal (lista): cartões, alertas, visitas, outros forms, login e ordem    docs/index.html, docs/js/lista.js, docs/css/lista.css   tests/test_paginas.py, tests/paginas.test.mjs
 #   Painel completo V1 (/v1): destaque, grade, pop-up, histórico         docs/v1.html, docs/js/app.js, docs/css/estilo.css       tests/test_paginas.py, tests/paginas.test.mjs
 #   Redirecionamentos antigos (/lista -> /)                              docs/_redirects        tests/test_paginas.py
-#   Worker: rotas /dados /app /api, validação do envio, APK, agenda      worker/src/index.ts    tests/worker.test.mjs, tsc, tests/test_infra.py
+#   Worker: rotas /dados /app /api, validação do envio, APK, agenda, login e ordem dos cards   worker/src/index.ts    tests/worker.test.mjs, tsc, tests/test_infra.py
 #   README/CLAUDE.md em dia com o cadastro e os arquivos                 README.md, CLAUDE.md   tests/test_infra.py
 #   (sem teste: gráficos Chart.js, troca de tema e layout no navegador real — exigem navegador)
 #   (sem teste: Worker no Cloudflare de verdade (D1/KV/Cron reais) e a API real do GitHub — exigem rede e tokens)
