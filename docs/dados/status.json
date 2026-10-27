@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-10-27T09:00:57.887847+00:00",
+    "gerado_em": "2026-10-27T11:30:42.344480+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -3443,7 +3443,7 @@
       },
       "alertas": [],
       "acesso": {
-        "visitantes_unicos": 3,
+        "visitantes_unicos": 4,
         "serie_diaria": [
           {
             "data": "2026-09-27",
@@ -3567,7 +3567,7 @@
           },
           {
             "data": "2026-10-27",
-            "visitantes": 0
+            "visitantes": 1
           }
         ]
       }
