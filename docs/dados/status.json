@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-10-27T17:20:49.891219+00:00",
+    "gerado_em": "2026-10-27T18:00:57.200807+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -1872,7 +1872,7 @@
       "alertas": [],
       "historico_arquivo": "dados/historico/chess_tracking.json",
       "acesso": {
-        "visitantes_unicos": 13,
+        "visitantes_unicos": 14,
         "serie_diaria": [
           {
             "data": "2026-09-27",
@@ -1996,7 +1996,7 @@
           },
           {
             "data": "2026-10-27",
-            "visitantes": 0
+            "visitantes": 1
           }
         ]
       }
