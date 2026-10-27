@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-10-27T00:00:55.441720+00:00",
+    "gerado_em": "2026-10-27T03:00:51.698597+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -398,10 +398,6 @@
         "desde": "2026-10-18",
         "serie_diaria": [
           {
-            "data": "2026-09-27",
-            "downloads": 0
-          },
-          {
             "data": "2026-09-28",
             "downloads": 0
           },
@@ -515,6 +511,10 @@
           },
           {
             "data": "2026-10-26",
+            "downloads": 0
+          },
+          {
+            "data": "2026-10-27",
             "downloads": 0
           }
         ]
@@ -719,10 +719,6 @@
         "desde": "2026-10-18",
         "serie_diaria": [
           {
-            "data": "2026-09-27",
-            "downloads": 0
-          },
-          {
             "data": "2026-09-28",
             "downloads": 0
           },
@@ -836,6 +832,10 @@
           },
           {
             "data": "2026-10-26",
+            "downloads": 0
+          },
+          {
+            "data": "2026-10-27",
             "downloads": 0
           }
         ]
@@ -1028,10 +1028,6 @@
         "desde": "2026-10-18",
         "serie_diaria": [
           {
-            "data": "2026-09-27",
-            "downloads": 0
-          },
-          {
             "data": "2026-09-28",
             "downloads": 0
           },
@@ -1146,6 +1142,10 @@
           {
             "data": "2026-10-26",
             "downloads": 0
+          },
+          {
+            "data": "2026-10-27",
+            "downloads": 0
           }
         ]
       }
@@ -1159,19 +1159,19 @@
       "categoria": null,
       "na_lista": true,
       "ultimo_commit_dados": {
-        "data": "2026-10-23T23:51:25Z",
-        "mensagem": "Dados de mercado em 2026-10-23",
-        "sha": "8266adc",
-        "url": "https://github.com/gfvdata-web/simulador-investimentos/commit/8266adc28876ae55ca46850aba1f953499739415"
+        "data": "2026-10-27T00:19:43Z",
+        "mensagem": "Dados de mercado em 2026-10-27",
+        "sha": "e080857",
+        "url": "https://github.com/gfvdata-web/simulador-investimentos/commit/e08085778aac0a054e37b1e2fc66c83979784b69"
       },
       "ultima_execucao_pipeline": {
-        "id": 40040695447,
+        "id": 40424338135,
         "evento": "schedule",
         "status": "completed",
         "conclusao": "success",
-        "criado_em": "2026-10-23T23:37:18Z",
-        "atualizado_em": "2026-10-23T23:51:29Z",
-        "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/40040695447"
+        "criado_em": "2026-10-27T00:07:26Z",
+        "atualizado_em": "2026-10-27T00:19:48Z",
+        "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/40424338135"
       },
       "site_no_ar": {
         "ok": true,
@@ -1188,6 +1188,16 @@
             }
           ],
           "historico": [
+            {
+              "id": 40424338135,
+              "evento": "schedule",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-10-27T00:07:26Z",
+              "atualizado_em": "2026-10-27T00:19:48Z",
+              "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/40424338135",
+              "duracao_s": 742
+            },
             {
               "id": 40040695447,
               "evento": "schedule",
@@ -1327,26 +1337,16 @@
               "atualizado_em": "2026-10-07T00:23:13Z",
               "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/37550784133",
               "duracao_s": 612
-            },
-            {
-              "id": 37399889208,
-              "evento": "schedule",
-              "status": "completed",
-              "conclusao": "success",
-              "criado_em": "2026-10-06T01:34:53Z",
-              "atualizado_em": "2026-10-06T01:51:52Z",
-              "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/37399889208",
-              "duracao_s": 1019
             }
           ],
           "ultimo_sucesso": {
-            "id": 40040695447,
+            "id": 40424338135,
             "evento": "schedule",
             "status": "completed",
             "conclusao": "success",
-            "criado_em": "2026-10-23T23:37:18Z",
-            "atualizado_em": "2026-10-23T23:51:29Z",
-            "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/40040695447"
+            "criado_em": "2026-10-27T00:07:26Z",
+            "atualizado_em": "2026-10-27T00:19:48Z",
+            "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/40424338135"
           },
           "ultima_falha": {
             "id": 39695555483,
@@ -1403,6 +1403,12 @@
         },
         "commits_dados": [
           {
+            "data": "2026-10-27T00:19:43Z",
+            "mensagem": "Dados de mercado em 2026-10-27",
+            "sha": "e080857",
+            "url": "https://github.com/gfvdata-web/simulador-investimentos/commit/e08085778aac0a054e37b1e2fc66c83979784b69"
+          },
+          {
             "data": "2026-10-23T23:51:25Z",
             "mensagem": "Dados de mercado em 2026-10-23",
             "sha": "8266adc",
@@ -1425,12 +1431,6 @@
             "mensagem": "Dados de mercado em 2026-10-20",
             "sha": "75151d5",
             "url": "https://github.com/gfvdata-web/simulador-investimentos/commit/75151d510ab9738dc0bab1fa67d1305a4e7351f5"
-          },
-          {
-            "data": "2026-10-16T23:17:28Z",
-            "mensagem": "Dados de mercado em 2026-10-16",
-            "sha": "e08a839",
-            "url": "https://github.com/gfvdata-web/simulador-investimentos/commit/e08a839e9c1d5ca9d5d55be5289fef7934750056"
           }
         ],
         "deploy_pages": null
@@ -1988,19 +1988,19 @@
       "form_url": "https://forms.gle/y3uXaukJXmP9GMED7",
       "form_rotulo": "Enviar fotos",
       "ultimo_commit_dados": {
-        "data": "2026-10-26T21:16:48Z",
-        "mensagem": "dados: leituras do esp32-01 até 2026-10-26T21:16",
-        "sha": "3a0120b",
-        "url": "https://github.com/gfvdata-web/PlantsCare/commit/3a0120b528ace3f2c32e1f2ff374cb9065441076"
+        "data": "2026-10-27T01:01:37Z",
+        "mensagem": "dados: leituras do esp32-01 até 2026-10-27T00:46",
+        "sha": "4146887",
+        "url": "https://github.com/gfvdata-web/PlantsCare/commit/414688711dd0ef48b04fff6ba0bfe5d4b5c94130"
       },
       "ultima_execucao_pipeline": {
-        "id": 40402957017,
+        "id": 40430036763,
         "evento": "schedule",
         "status": "completed",
         "conclusao": "success",
-        "criado_em": "2026-10-26T21:16:27Z",
-        "atualizado_em": "2026-10-26T21:17:27Z",
-        "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/40402957017"
+        "criado_em": "2026-10-27T01:01:13Z",
+        "atualizado_em": "2026-10-27T01:02:20Z",
+        "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/40430036763"
       },
       "site_no_ar": {
         "ok": true,
@@ -2017,6 +2017,16 @@
             }
           ],
           "historico": [
+            {
+              "id": 40430036763,
+              "evento": "schedule",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-10-27T01:01:13Z",
+              "atualizado_em": "2026-10-27T01:02:20Z",
+              "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/40430036763",
+              "duracao_s": 67
+            },
             {
               "id": 40402957017,
               "evento": "schedule",
@@ -2156,26 +2166,16 @@
               "atualizado_em": "2026-10-24T13:46:27Z",
               "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/40099497888",
               "duracao_s": 71
-            },
-            {
-              "id": 40065531039,
-              "evento": "schedule",
-              "status": "completed",
-              "conclusao": "success",
-              "criado_em": "2026-10-24T05:15:19Z",
-              "atualizado_em": "2026-10-24T05:16:08Z",
-              "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/40065531039",
-              "duracao_s": 49
             }
           ],
           "ultimo_sucesso": {
-            "id": 40402957017,
+            "id": 40430036763,
             "evento": "schedule",
             "status": "completed",
             "conclusao": "success",
-            "criado_em": "2026-10-26T21:16:27Z",
-            "atualizado_em": "2026-10-26T21:17:27Z",
-            "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/40402957017"
+            "criado_em": "2026-10-27T01:01:13Z",
+            "atualizado_em": "2026-10-27T01:02:20Z",
+            "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/40430036763"
           },
           "ultima_falha": null,
           "passos_ultima": [
@@ -2227,6 +2227,12 @@
         },
         "commits_dados": [
           {
+            "data": "2026-10-27T01:01:37Z",
+            "mensagem": "dados: leituras do esp32-01 até 2026-10-27T00:46",
+            "sha": "4146887",
+            "url": "https://github.com/gfvdata-web/PlantsCare/commit/414688711dd0ef48b04fff6ba0bfe5d4b5c94130"
+          },
+          {
             "data": "2026-10-26T21:16:48Z",
             "mensagem": "dados: leituras do esp32-01 até 2026-10-26T21:16",
             "sha": "3a0120b",
@@ -2249,12 +2255,6 @@
             "mensagem": "dados: leituras do esp32-01 até 2026-10-26T08:11",
             "sha": "f38fd62",
             "url": "https://github.com/gfvdata-web/PlantsCare/commit/f38fd626c6baa8e99316276680ddd4491810d869"
-          },
-          {
-            "data": "2026-10-26T02:30:41Z",
-            "mensagem": "dados: leituras do esp32-01 até 2026-10-26T02:26",
-            "sha": "f0fd671",
-            "url": "https://github.com/gfvdata-web/PlantsCare/commit/f0fd6718a6dfb83c7ae1011440b16a95901c7fe3"
           }
         ],
         "deploy_pages": null
