@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-10-30T00:01:00.552615+00:00",
+    "gerado_em": "2026-10-30T03:00:55.397947+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -195,6 +195,10 @@
           {
             "data": "2026-10-29",
             "visitantes": 0
+          },
+          {
+            "data": "2026-10-30",
+            "visitantes": 0
           }
         ]
       }
@@ -386,6 +390,10 @@
           {
             "data": "2026-10-29",
             "visitantes": 0
+          },
+          {
+            "data": "2026-10-30",
+            "visitantes": 0
           }
         ]
       },
@@ -397,10 +405,6 @@
         "por_script": 1,
         "desde": "2026-10-18",
         "serie_diaria": [
-          {
-            "data": "2026-09-30",
-            "downloads": 0
-          },
           {
             "data": "2026-10-01",
             "downloads": 0
@@ -515,6 +519,10 @@
           },
           {
             "data": "2026-10-29",
+            "downloads": 0
+          },
+          {
+            "data": "2026-10-30",
             "downloads": 0
           }
         ]
@@ -707,6 +715,10 @@
           {
             "data": "2026-10-29",
             "visitantes": 0
+          },
+          {
+            "data": "2026-10-30",
+            "visitantes": 0
           }
         ]
       },
@@ -718,10 +730,6 @@
         "por_script": 0,
         "desde": "2026-10-18",
         "serie_diaria": [
-          {
-            "data": "2026-09-30",
-            "downloads": 0
-          },
           {
             "data": "2026-10-01",
             "downloads": 0
@@ -836,6 +844,10 @@
           },
           {
             "data": "2026-10-29",
+            "downloads": 0
+          },
+          {
+            "data": "2026-10-30",
             "downloads": 0
           }
         ]
@@ -1016,6 +1028,10 @@
           {
             "data": "2026-10-29",
             "visitantes": 0
+          },
+          {
+            "data": "2026-10-30",
+            "visitantes": 0
           }
         ]
       },
@@ -1027,10 +1043,6 @@
         "por_script": 0,
         "desde": "2026-10-18",
         "serie_diaria": [
-          {
-            "data": "2026-09-30",
-            "downloads": 0
-          },
           {
             "data": "2026-10-01",
             "downloads": 0
@@ -1146,6 +1158,10 @@
           {
             "data": "2026-10-29",
             "downloads": 0
+          },
+          {
+            "data": "2026-10-30",
+            "downloads": 0
           }
         ]
       }
@@ -1159,19 +1175,19 @@
       "categoria": null,
       "na_lista": true,
       "ultimo_commit_dados": {
-        "data": "2026-10-29T00:40:25Z",
-        "mensagem": "Dados de mercado em 2026-10-29",
-        "sha": "1196aa6",
-        "url": "https://github.com/gfvdata-web/simulador-investimentos/commit/1196aa674b5dfcfcdece904bc0bbbb5109e29cda"
+        "data": "2026-10-30T00:39:07Z",
+        "mensagem": "Dados de mercado em 2026-10-30",
+        "sha": "5b1f061",
+        "url": "https://github.com/gfvdata-web/simulador-investimentos/commit/5b1f061f4db8610d98c7c1a0997726bb3c76c593"
       },
       "ultima_execucao_pipeline": {
-        "id": 40794386237,
+        "id": 40979947373,
         "evento": "schedule",
         "status": "completed",
         "conclusao": "success",
-        "criado_em": "2026-10-29T00:29:26Z",
-        "atualizado_em": "2026-10-29T00:40:30Z",
-        "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/40794386237"
+        "criado_em": "2026-10-30T00:28:55Z",
+        "atualizado_em": "2026-10-30T00:39:11Z",
+        "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/40979947373"
       },
       "site_no_ar": {
         "ok": true,
@@ -1188,6 +1204,16 @@
             }
           ],
           "historico": [
+            {
+              "id": 40979947373,
+              "evento": "schedule",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-10-30T00:28:55Z",
+              "atualizado_em": "2026-10-30T00:39:11Z",
+              "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/40979947373",
+              "duracao_s": 616
+            },
             {
               "id": 40794386237,
               "evento": "schedule",
@@ -1327,26 +1353,16 @@
               "atualizado_em": "2026-10-10T00:33:01Z",
               "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/38008752064",
               "duracao_s": 646
-            },
-            {
-              "id": 37866407268,
-              "evento": "schedule",
-              "status": "completed",
-              "conclusao": "success",
-              "criado_em": "2026-10-09T00:45:42Z",
-              "atualizado_em": "2026-10-09T00:58:13Z",
-              "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/37866407268",
-              "duracao_s": 751
             }
           ],
           "ultimo_sucesso": {
-            "id": 40794386237,
+            "id": 40979947373,
             "evento": "schedule",
             "status": "completed",
             "conclusao": "success",
-            "criado_em": "2026-10-29T00:29:26Z",
-            "atualizado_em": "2026-10-29T00:40:30Z",
-            "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/40794386237"
+            "criado_em": "2026-10-30T00:28:55Z",
+            "atualizado_em": "2026-10-30T00:39:11Z",
+            "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/40979947373"
           },
           "ultima_falha": {
             "id": 39695555483,
@@ -1403,6 +1419,12 @@
         },
         "commits_dados": [
           {
+            "data": "2026-10-30T00:39:07Z",
+            "mensagem": "Dados de mercado em 2026-10-30",
+            "sha": "5b1f061",
+            "url": "https://github.com/gfvdata-web/simulador-investimentos/commit/5b1f061f4db8610d98c7c1a0997726bb3c76c593"
+          },
+          {
             "data": "2026-10-29T00:40:25Z",
             "mensagem": "Dados de mercado em 2026-10-29",
             "sha": "1196aa6",
@@ -1425,12 +1447,6 @@
             "mensagem": "Dados de mercado em 2026-10-23",
             "sha": "8266adc",
             "url": "https://github.com/gfvdata-web/simulador-investimentos/commit/8266adc28876ae55ca46850aba1f953499739415"
-          },
-          {
-            "data": "2026-10-22T23:54:23Z",
-            "mensagem": "Dados de mercado em 2026-10-22",
-            "sha": "36e5104",
-            "url": "https://github.com/gfvdata-web/simulador-investimentos/commit/36e5104c851ae02854fc54b618ac8764ccc34081"
           }
         ],
         "deploy_pages": null
@@ -1558,6 +1574,10 @@
           },
           {
             "data": "2026-10-29",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-30",
             "visitantes": 0
           }
         ]
@@ -1973,6 +1993,10 @@
           {
             "data": "2026-10-29",
             "visitantes": 0
+          },
+          {
+            "data": "2026-10-30",
+            "visitantes": 0
           }
         ]
       }
@@ -1988,19 +2012,19 @@
       "form_url": "https://forms.gle/y3uXaukJXmP9GMED7",
       "form_rotulo": "Enviar fotos",
       "ultimo_commit_dados": {
-        "data": "2026-10-29T21:29:52Z",
-        "mensagem": "dados: leituras do esp32-01 até 2026-10-29T21:18",
-        "sha": "99f17b6",
-        "url": "https://github.com/gfvdata-web/PlantsCare/commit/99f17b6133bdb84ad583fe4a008ab4c44761e803"
+        "data": "2026-10-30T01:28:35Z",
+        "mensagem": "dados: leituras do esp32-01 até 2026-10-30T01:17",
+        "sha": "5489f80",
+        "url": "https://github.com/gfvdata-web/PlantsCare/commit/5489f8015afcff5db684639dca5516f08ea26852"
       },
       "ultima_execucao_pipeline": {
-        "id": 40958227009,
+        "id": 40986038366,
         "evento": "schedule",
         "status": "completed",
         "conclusao": "success",
-        "criado_em": "2026-10-29T21:29:30Z",
-        "atualizado_em": "2026-10-29T21:30:30Z",
-        "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/40958227009"
+        "criado_em": "2026-10-30T01:28:15Z",
+        "atualizado_em": "2026-10-30T01:29:12Z",
+        "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/40986038366"
       },
       "site_no_ar": {
         "ok": true,
@@ -2017,6 +2041,16 @@
             }
           ],
           "historico": [
+            {
+              "id": 40986038366,
+              "evento": "schedule",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-10-30T01:28:15Z",
+              "atualizado_em": "2026-10-30T01:29:12Z",
+              "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/40986038366",
+              "duracao_s": 57
+            },
             {
               "id": 40958227009,
               "evento": "schedule",
@@ -2156,26 +2190,16 @@
               "atualizado_em": "2026-10-26T16:24:15Z",
               "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/40358616361",
               "duracao_s": 60
-            },
-            {
-              "id": 40291452863,
-              "evento": "schedule",
-              "status": "completed",
-              "conclusao": "success",
-              "criado_em": "2026-10-26T08:19:25Z",
-              "atualizado_em": "2026-10-26T08:20:24Z",
-              "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/40291452863",
-              "duracao_s": 59
             }
           ],
           "ultimo_sucesso": {
-            "id": 40958227009,
+            "id": 40986038366,
             "evento": "schedule",
             "status": "completed",
             "conclusao": "success",
-            "criado_em": "2026-10-29T21:29:30Z",
-            "atualizado_em": "2026-10-29T21:30:30Z",
-            "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/40958227009"
+            "criado_em": "2026-10-30T01:28:15Z",
+            "atualizado_em": "2026-10-30T01:29:12Z",
+            "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/40986038366"
           },
           "ultima_falha": null,
           "passos_ultima": [
@@ -2227,6 +2251,12 @@
         },
         "commits_dados": [
           {
+            "data": "2026-10-30T01:28:35Z",
+            "mensagem": "dados: leituras do esp32-01 até 2026-10-30T01:17",
+            "sha": "5489f80",
+            "url": "https://github.com/gfvdata-web/PlantsCare/commit/5489f8015afcff5db684639dca5516f08ea26852"
+          },
+          {
             "data": "2026-10-29T21:29:52Z",
             "mensagem": "dados: leituras do esp32-01 até 2026-10-29T21:18",
             "sha": "99f17b6",
@@ -2249,12 +2279,6 @@
             "mensagem": "dados: leituras do esp32-01 até 2026-10-29T01:12",
             "sha": "ba14771",
             "url": "https://github.com/gfvdata-web/PlantsCare/commit/ba147713dab35e51b6a823422a4152f760d3b9ee"
-          },
-          {
-            "data": "2026-10-28T21:28:03Z",
-            "mensagem": "dados: leituras do esp32-01 até 2026-10-28T21:27",
-            "sha": "9710879",
-            "url": "https://github.com/gfvdata-web/PlantsCare/commit/9710879850c1cd6c5c4f4b941a5324b42dea9272"
           }
         ],
         "deploy_pages": null
@@ -2425,6 +2449,10 @@
           {
             "data": "2026-10-29",
             "visitantes": 0
+          },
+          {
+            "data": "2026-10-30",
+            "visitantes": 0
           }
         ]
       }
@@ -2489,132 +2517,7 @@
           "url": "https://github.com/gfvdata-web/eleicoes-2026/actions/runs/37222831530"
         }
       },
-      "alertas": [],
-      "acesso": {
-        "visitantes_unicos": 6,
-        "serie_diaria": [
-          {
-            "data": "2026-09-30",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-01",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-02",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-03",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-04",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-05",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-06",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-07",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-08",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-09",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-10",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-11",
-            "visitantes": 1
-          },
-          {
-            "data": "2026-10-12",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-13",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-14",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-15",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-16",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-17",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-18",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-19",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-20",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-21",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-22",
-            "visitantes": 1
-          },
-          {
-            "data": "2026-10-23",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-24",
-            "visitantes": 1
-          },
-          {
-            "data": "2026-10-25",
-            "visitantes": 2
-          },
-          {
-            "data": "2026-10-26",
-            "visitantes": 1
-          },
-          {
-            "data": "2026-10-27",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-28",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-29",
-            "visitantes": 0
-          }
-        ]
-      }
+      "alertas": []
     },
     {
       "slug": "painel_esportivo",
@@ -2774,6 +2677,10 @@
           },
           {
             "data": "2026-10-29",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-30",
             "visitantes": 0
           }
         ]
@@ -2970,6 +2877,10 @@
           {
             "data": "2026-10-29",
             "visitantes": 0
+          },
+          {
+            "data": "2026-10-30",
+            "visitantes": 0
           }
         ]
       }
@@ -3150,6 +3061,10 @@
           },
           {
             "data": "2026-10-29",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-30",
             "visitantes": 0
           }
         ]
@@ -3519,6 +3434,10 @@
           },
           {
             "data": "2026-10-29",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-30",
             "visitantes": 0
           }
         ]
