@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-10-31T03:00:56.183608+00:00",
+    "gerado_em": "2026-10-31T06:01:06.020710+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -2306,9 +2306,23 @@
           {
             "chave": "ficha",
             "titulo": "Ficha da planta atualizada",
-            "estado": "pendente",
-            "detalhe": "Não foi possível ler os passos da execução na API do GitHub.",
+            "estado": "pulado",
+            "detalhe": "Execução manual só para refazer o relatório.",
             "quando": null
+          },
+          {
+            "chave": "relatorio",
+            "titulo": "Relatório da IA (Gemini) → PDF → e-mail",
+            "estado": "ok",
+            "detalhe": "Síntese do Gemini, PDF e e-mail enviados.",
+            "quando": "2026-10-26T13:43:08Z"
+          },
+          {
+            "chave": "commit",
+            "titulo": "Salvo no repositório",
+            "estado": "ok",
+            "detalhe": "Ficha, fotos e PDF commitados; envio retirado de inbox/.",
+            "quando": "2026-10-26T13:43:10Z"
           }
         ]
       },
@@ -2503,7 +2517,136 @@
           "url": "https://github.com/gfvdata-web/eleicoes-2026/actions/runs/37222831530"
         }
       },
-      "alertas": []
+      "alertas": [],
+      "acesso": {
+        "visitantes_unicos": 6,
+        "serie_diaria": [
+          {
+            "data": "2026-10-01",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-02",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-03",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-04",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-05",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-06",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-07",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-08",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-09",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-10",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-11",
+            "visitantes": 1
+          },
+          {
+            "data": "2026-10-12",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-13",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-14",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-15",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-16",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-17",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-18",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-19",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-20",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-21",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-22",
+            "visitantes": 1
+          },
+          {
+            "data": "2026-10-23",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-24",
+            "visitantes": 1
+          },
+          {
+            "data": "2026-10-25",
+            "visitantes": 2
+          },
+          {
+            "data": "2026-10-26",
+            "visitantes": 1
+          },
+          {
+            "data": "2026-10-27",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-28",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-29",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-30",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-31",
+            "visitantes": 0
+          }
+        ]
+      }
     },
     {
       "slug": "painel_esportivo",
