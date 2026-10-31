@@ -3,8 +3,27 @@
  "nome": "Bolão F1",
  "workflow": "pipeline.yml",
  "url_workflow": "https://github.com/gfvdata-web/page-bolao-formula1/actions/workflows/pipeline.yml",
- "atualizado_em": "2026-10-25T21:00:56.191156+00:00",
+ "atualizado_em": "2026-10-31T22:14:22.108508+00:00",
  "execucoes": [
+  {
+   "id": 41247176446,
+   "criado_em": "2026-10-31T22:13:07Z",
+   "evento": "repository_dispatch",
+   "conclusao": "failure",
+   "duracao_s": 9,
+   "url": "https://github.com/gfvdata-web/page-bolao-formula1/actions/runs/41247176446",
+   "avisos": [
+    {
+     "nivel": "notice",
+     "mensagem": "\"The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748\""
+    }
+   ],
+   "motivo": {
+    "job": "pipeline",
+    "passo": "Roda pipeline (novo palpite)",
+    "mensagem": "[erro] Bloco de jogador com 7 linhas (esperado 8): ['Ferrari', 'Lec', 'Ant', 'Ver', 'Ham', 'Rus', 'P6']"
+   }
+  },
   {
    "id": 40222980303,
    "criado_em": "2026-10-25T18:48:16Z",
