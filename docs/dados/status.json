@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-10-31T21:00:58.787572+00:00",
+    "gerado_em": "2026-10-31T22:13:17.096968+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -21,51 +21,51 @@
         "url": "https://github.com/gfvdata-web/page-bolao-formula1/commit/5adc78128de75af4bf99094791bc3ddf6030fbab"
       },
       "ultima_execucao_pipeline": {
-        "id": 40222980303,
+        "id": 41247176446,
         "evento": "repository_dispatch",
-        "status": "completed",
-        "conclusao": "success",
-        "criado_em": "2026-10-25T18:48:16Z",
-        "atualizado_em": "2026-10-25T18:48:29Z",
-        "url": "https://github.com/gfvdata-web/page-bolao-formula1/actions/runs/40222980303"
+        "status": "in_progress",
+        "conclusao": null,
+        "criado_em": "2026-10-31T22:13:07Z",
+        "atualizado_em": "2026-10-31T22:13:11Z",
+        "url": "https://github.com/gfvdata-web/page-bolao-formula1/actions/runs/41247176446"
       },
       "rodada_mais_recente": 18,
-      "em_vigilia": false,
+      "em_vigilia": true,
       "etapas_pipeline": [
         {
           "chave": "forms",
           "titulo": "Palpites enviados (Google Forms)",
           "estado": "ok",
           "detalhe": "Forms recebido e Apps Script disparou o pipeline no GitHub Actions.",
-          "quando": "2026-10-25T18:48:16Z"
+          "quando": "2026-10-31T22:13:07Z"
         },
         {
           "chave": "leitura",
           "titulo": "Palpites lidos e rodada identificada",
-          "estado": "ok",
-          "detalhe": "Palpites gravados no repositório.",
-          "quando": "2026-10-25T18:48:24Z"
+          "estado": "erro",
+          "detalhe": "Falha ao ler o texto ou identificar a corrida — ver o log da execução.",
+          "quando": "2026-10-31T22:13:13Z"
         },
         {
           "chave": "resultado",
           "titulo": "Resultado oficial do quali (Jolpica)",
-          "estado": "ok",
-          "detalhe": "Já estava publicado no momento do envio.",
-          "quando": "2026-10-25T18:48:24Z"
+          "estado": "pendente",
+          "detalhe": "",
+          "quando": null
         },
         {
           "chave": "pontuacao",
           "titulo": "Pontuação calculada",
-          "estado": "ok",
+          "estado": "pendente",
           "detalhe": "",
-          "quando": "2026-10-25T18:48:24Z"
+          "quando": null
         },
         {
           "chave": "pagina",
           "titulo": "Página atualizada (GitHub Pages)",
-          "estado": "ok",
-          "detalhe": "Placar novo no ar.",
-          "quando": "2026-10-25T18:49:18Z"
+          "estado": "pendente",
+          "detalhe": "",
+          "quando": null
         }
       ],
       "site_no_ar": {
