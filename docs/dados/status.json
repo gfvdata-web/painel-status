@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-10-31T09:13:36.186936+00:00",
+    "gerado_em": "2026-10-31T12:00:54.945630+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -2328,7 +2328,7 @@
       },
       "historico_arquivo": "dados/historico/plants_care.json",
       "acesso": {
-        "visitantes_unicos": 2,
+        "visitantes_unicos": 3,
         "serie_diaria": [
           {
             "data": "2026-10-01",
@@ -2452,7 +2452,7 @@
           },
           {
             "data": "2026-10-31",
-            "visitantes": 0
+            "visitantes": 1
           }
         ]
       }
