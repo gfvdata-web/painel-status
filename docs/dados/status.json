@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-11-02T00:11:12.254242+00:00",
+    "gerado_em": "2026-11-02T03:01:04.809939+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -398,10 +398,6 @@
         "desde": "2026-10-18",
         "serie_diaria": [
           {
-            "data": "2026-10-03",
-            "downloads": 0
-          },
-          {
             "data": "2026-10-04",
             "downloads": 0
           },
@@ -515,6 +511,10 @@
           },
           {
             "data": "2026-11-01",
+            "downloads": 0
+          },
+          {
+            "data": "2026-11-02",
             "downloads": 0
           }
         ]
@@ -719,10 +719,6 @@
         "desde": "2026-10-18",
         "serie_diaria": [
           {
-            "data": "2026-10-03",
-            "downloads": 0
-          },
-          {
             "data": "2026-10-04",
             "downloads": 0
           },
@@ -836,6 +832,10 @@
           },
           {
             "data": "2026-11-01",
+            "downloads": 0
+          },
+          {
+            "data": "2026-11-02",
             "downloads": 0
           }
         ]
@@ -1028,10 +1028,6 @@
         "desde": "2026-10-18",
         "serie_diaria": [
           {
-            "data": "2026-10-03",
-            "downloads": 0
-          },
-          {
             "data": "2026-10-04",
             "downloads": 0
           },
@@ -1145,6 +1141,10 @@
           },
           {
             "data": "2026-11-01",
+            "downloads": 0
+          },
+          {
+            "data": "2026-11-02",
             "downloads": 0
           }
         ]
