@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-11-02T15:01:04.487039+00:00",
+    "gerado_em": "2026-11-02T18:01:07.868138+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -906,135 +906,6 @@
         }
       },
       "alertas": [],
-      "acesso": {
-        "visitantes_unicos": 5,
-        "serie_diaria": [
-          {
-            "data": "2026-10-03",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-04",
-            "visitantes": 1
-          },
-          {
-            "data": "2026-10-05",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-06",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-07",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-08",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-09",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-10",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-11",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-12",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-13",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-14",
-            "visitantes": 1
-          },
-          {
-            "data": "2026-10-15",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-16",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-17",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-18",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-19",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-20",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-21",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-22",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-23",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-24",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-25",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-26",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-27",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-28",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-29",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-30",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-31",
-            "visitantes": 1
-          },
-          {
-            "data": "2026-11-01",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-11-02",
-            "visitantes": 0
-          }
-        ]
-      },
       "downloads": {
         "total": 0,
         "skill": 0,
@@ -1190,8 +1061,8 @@
         "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/41148947404"
       },
       "site_no_ar": {
-        "ok": false,
-        "status_http": 503
+        "ok": true,
+        "status_http": 200
       },
       "detalhes": {
         "coleta": {
@@ -1451,12 +1322,7 @@
         ],
         "deploy_pages": null
       },
-      "alertas": [
-        {
-          "nivel": "erro",
-          "texto": "O site não respondeu na última checagem."
-        }
-      ],
+      "alertas": [],
       "historico_arquivo": "dados/historico/simulador_investimentos.json",
       "acesso": {
         "visitantes_unicos": 3,
