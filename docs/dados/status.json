@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-11-02T12:00:56.562923+00:00",
+    "gerado_em": "2026-11-02T15:01:04.487039+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -723,10 +723,10 @@
         ]
       },
       "downloads": {
-        "total": 0,
-        "skill": 0,
-        "csv": 0,
-        "por_navegador": 0,
+        "total": 2,
+        "skill": 1,
+        "csv": 1,
+        "por_navegador": 2,
         "por_script": 0,
         "desde": "2026-10-18",
         "serie_diaria": [
@@ -848,7 +848,7 @@
           },
           {
             "data": "2026-11-02",
-            "downloads": 0
+            "downloads": 2
           }
         ]
       }
@@ -1190,8 +1190,8 @@
         "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/41148947404"
       },
       "site_no_ar": {
-        "ok": true,
-        "status_http": 200
+        "ok": false,
+        "status_http": 503
       },
       "detalhes": {
         "coleta": {
@@ -1451,7 +1451,12 @@
         ],
         "deploy_pages": null
       },
-      "alertas": [],
+      "alertas": [
+        {
+          "nivel": "erro",
+          "texto": "O site não respondeu na última checagem."
+        }
+      ],
       "historico_arquivo": "dados/historico/simulador_investimentos.json",
       "acesso": {
         "visitantes_unicos": 3,
@@ -2328,7 +2333,7 @@
       },
       "historico_arquivo": "dados/historico/plants_care.json",
       "acesso": {
-        "visitantes_unicos": 3,
+        "visitantes_unicos": 4,
         "serie_diaria": [
           {
             "data": "2026-10-03",
@@ -2452,7 +2457,7 @@
           },
           {
             "data": "2026-11-02",
-            "visitantes": 0
+            "visitantes": 1
           }
         ]
       }
