@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-11-03T12:00:55.971564+00:00",
+    "gerado_em": "2026-11-03T13:30:52.353872+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -1197,12 +1197,7 @@
         "coleta": {
           "workflow": "atualizar-dados.yml",
           "url_workflow": "https://github.com/gfvdata-web/simulador-investimentos/actions/workflows/atualizar-dados.yml",
-          "agenda": [
-            {
-              "cron": "0 21 * * 1-5",
-              "descricao": "de segunda a sexta às 18:00 (Brasília)"
-            }
-          ],
+          "agenda": [],
           "historico": [
             {
               "id": 41567703776,
