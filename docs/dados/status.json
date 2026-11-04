@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-11-04T15:01:16.714110+00:00",
+    "gerado_em": "2026-11-04T18:00:57.748717+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -398,10 +398,10 @@
         ]
       },
       "downloads": {
-        "total": 7,
-        "skill": 2,
-        "csv": 5,
-        "por_navegador": 6,
+        "total": 9,
+        "skill": 3,
+        "csv": 6,
+        "por_navegador": 8,
         "por_script": 1,
         "desde": "2026-10-18",
         "serie_diaria": [
@@ -523,7 +523,7 @@
           },
           {
             "data": "2026-11-04",
-            "downloads": 0
+            "downloads": 2
           }
         ]
       }
@@ -1592,19 +1592,19 @@
       "categoria": null,
       "na_lista": true,
       "ultimo_commit_dados": {
-        "data": "2026-11-03T17:02:44Z",
-        "mensagem": "Atualiza partidas em 2026-11-03T17:02Z",
-        "sha": "2ce302a",
-        "url": "https://github.com/gfvdata-web/chess-tracking/commit/2ce302aecd9fb81d0b7d640a86eda6cb9ba3216a"
+        "data": "2026-11-04T17:14:51Z",
+        "mensagem": "Atualiza partidas em 2026-11-04T17:14Z",
+        "sha": "cb0ccee",
+        "url": "https://github.com/gfvdata-web/chess-tracking/commit/cb0cceef690164026a08d81f8350a5d42da6cecb"
       },
       "ultima_execucao_pipeline": {
-        "id": 41680117570,
+        "id": 41875502975,
         "evento": "schedule",
         "status": "completed",
         "conclusao": "success",
-        "criado_em": "2026-11-03T17:01:36Z",
-        "atualizado_em": "2026-11-03T17:02:50Z",
-        "url": "https://github.com/gfvdata-web/chess-tracking/actions/runs/41680117570"
+        "criado_em": "2026-11-04T17:13:42Z",
+        "atualizado_em": "2026-11-04T17:14:56Z",
+        "url": "https://github.com/gfvdata-web/chess-tracking/actions/runs/41875502975"
       },
       "site_no_ar": {
         "ok": true,
@@ -1621,6 +1621,16 @@
             }
           ],
           "historico": [
+            {
+              "id": 41875502975,
+              "evento": "schedule",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-11-04T17:13:42Z",
+              "atualizado_em": "2026-11-04T17:14:56Z",
+              "url": "https://github.com/gfvdata-web/chess-tracking/actions/runs/41875502975",
+              "duracao_s": 74
+            },
             {
               "id": 41680117570,
               "evento": "schedule",
@@ -1760,26 +1770,16 @@
               "atualizado_em": "2026-10-21T14:32:57Z",
               "url": "https://github.com/gfvdata-web/chess-tracking/actions/runs/39617129434",
               "duracao_s": 254
-            },
-            {
-              "id": 39437918925,
-              "evento": "schedule",
-              "status": "completed",
-              "conclusao": "success",
-              "criado_em": "2026-10-20T14:17:46Z",
-              "atualizado_em": "2026-10-20T14:19:00Z",
-              "url": "https://github.com/gfvdata-web/chess-tracking/actions/runs/39437918925",
-              "duracao_s": 74
             }
           ],
           "ultimo_sucesso": {
-            "id": 41680117570,
+            "id": 41875502975,
             "evento": "schedule",
             "status": "completed",
             "conclusao": "success",
-            "criado_em": "2026-11-03T17:01:36Z",
-            "atualizado_em": "2026-11-03T17:02:50Z",
-            "url": "https://github.com/gfvdata-web/chess-tracking/actions/runs/41680117570"
+            "criado_em": "2026-11-04T17:13:42Z",
+            "atualizado_em": "2026-11-04T17:14:56Z",
+            "url": "https://github.com/gfvdata-web/chess-tracking/actions/runs/41875502975"
           },
           "ultima_falha": null,
           "passos_ultima": [
@@ -1831,6 +1831,12 @@
         },
         "commits_dados": [
           {
+            "data": "2026-11-04T17:14:51Z",
+            "mensagem": "Atualiza partidas em 2026-11-04T17:14Z",
+            "sha": "cb0ccee",
+            "url": "https://github.com/gfvdata-web/chess-tracking/commit/cb0cceef690164026a08d81f8350a5d42da6cecb"
+          },
+          {
             "data": "2026-11-03T17:02:44Z",
             "mensagem": "Atualiza partidas em 2026-11-03T17:02Z",
             "sha": "2ce302a",
@@ -1853,20 +1859,14 @@
             "mensagem": "Atualiza partidas em 2026-10-31T15:20Z",
             "sha": "a586000",
             "url": "https://github.com/gfvdata-web/chess-tracking/commit/a5860007b970818530ba107e0fb7fa7971ed9a6e"
-          },
-          {
-            "data": "2026-10-30T15:57:02Z",
-            "mensagem": "Atualiza partidas em 2026-10-30T15:57Z",
-            "sha": "202f369",
-            "url": "https://github.com/gfvdata-web/chess-tracking/commit/202f369f8bf35a22194c2774d666c6f9fb66cdda"
           }
         ],
         "deploy_pages": {
           "status": "completed",
           "conclusao": "success",
-          "criado_em": "2026-11-03T17:02:47Z",
-          "atualizado_em": "2026-11-03T17:03:44Z",
-          "url": "https://github.com/gfvdata-web/chess-tracking/actions/runs/41680314507"
+          "criado_em": "2026-11-04T17:14:54Z",
+          "atualizado_em": "2026-11-04T17:16:12Z",
+          "url": "https://github.com/gfvdata-web/chess-tracking/actions/runs/41875705730"
         }
       },
       "alertas": [],
