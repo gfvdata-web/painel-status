@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-11-04T00:01:00.591285+00:00",
+    "gerado_em": "2026-11-04T01:00:34.348973+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -1165,13 +1165,13 @@
         "url": "https://github.com/gfvdata-web/simulador-investimentos/commit/a1782ffa0b54acef8edf21dcd082af3626d52727"
       },
       "ultima_execucao_pipeline": {
-        "id": 41567703776,
+        "id": 41750619001,
         "evento": "schedule",
-        "status": "completed",
-        "conclusao": "success",
-        "criado_em": "2026-11-03T02:41:52Z",
-        "atualizado_em": "2026-11-03T02:53:01Z",
-        "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/41567703776"
+        "status": "in_progress",
+        "conclusao": null,
+        "criado_em": "2026-11-04T00:57:22Z",
+        "atualizado_em": "2026-11-04T00:57:26Z",
+        "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/41750619001"
       },
       "site_no_ar": {
         "ok": true,
@@ -1188,6 +1188,16 @@
             }
           ],
           "historico": [
+            {
+              "id": 41750619001,
+              "evento": "schedule",
+              "status": "in_progress",
+              "conclusao": null,
+              "criado_em": "2026-11-04T00:57:22Z",
+              "atualizado_em": "2026-11-04T00:57:26Z",
+              "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/41750619001",
+              "duracao_s": null
+            },
             {
               "id": 41567703776,
               "evento": "schedule",
@@ -1327,16 +1337,6 @@
               "atualizado_em": "2026-10-14T23:39:00Z",
               "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/38654595476",
               "duracao_s": 456
-            },
-            {
-              "id": 38487595477,
-              "evento": "schedule",
-              "status": "completed",
-              "conclusao": "success",
-              "criado_em": "2026-10-14T00:00:08Z",
-              "atualizado_em": "2026-10-14T00:12:28Z",
-              "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/38487595477",
-              "duracao_s": 740
             }
           ],
           "ultimo_sucesso": {
@@ -1377,27 +1377,23 @@
             },
             {
               "nome": "Coletar",
-              "conclusao": "success"
+              "conclusao": "in_progress"
             },
             {
               "nome": "Validar o que foi coletado",
-              "conclusao": "success"
+              "conclusao": "pending"
             },
             {
               "nome": "Commitar se algo mudou",
-              "conclusao": "success"
+              "conclusao": "pending"
             },
             {
               "nome": "Post Run actions/setup-python@v7",
-              "conclusao": "success"
+              "conclusao": "pending"
             },
             {
               "nome": "Post Run actions/checkout@v7",
-              "conclusao": "success"
-            },
-            {
-              "nome": "Complete job",
-              "conclusao": "success"
+              "conclusao": "pending"
             }
           ]
         },
