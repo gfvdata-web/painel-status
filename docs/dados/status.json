@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-11-07T20:54:17.194386+00:00",
+    "gerado_em": "2026-11-07T21:01:00.342490+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -15,10 +15,10 @@
       "form_url": "https://forms.gle/7yZAx1WThPf51bv67",
       "form_rotulo": "Enviar palpites (Google Forms)",
       "ultimo_commit_dados": {
-        "data": "2026-10-31T23:07:24Z",
-        "mensagem": "Etapa 5: pontua rodada 19 (resultado saiu depois do envio)",
-        "sha": "5fd565f",
-        "url": "https://github.com/gfvdata-web/page-bolao-formula1/commit/5fd565f6e4d29ea8320c400ff9c70ecae209250d"
+        "data": "2026-11-07T20:59:09Z",
+        "mensagem": "Etapa 5: recupera o vigia (vigia/) e gera docs/data/pendentes.json",
+        "sha": "55429cc",
+        "url": "https://github.com/gfvdata-web/page-bolao-formula1/commit/55429cc4ca5b5eb0461f7f37ebfefe373ef5751e"
       },
       "ultima_execucao_pipeline": {
         "id": 42413176248,
@@ -29,7 +29,7 @@
         "atualizado_em": "2026-11-07T20:53:14Z",
         "url": "https://github.com/gfvdata-web/page-bolao-formula1/actions/runs/42413176248"
       },
-      "rodada_mais_recente": 19,
+      "rodada_mais_recente": null,
       "em_vigilia": false,
       "etapas_pipeline": [
         {
@@ -2018,19 +2018,19 @@
       "form_url": "https://forms.gle/y3uXaukJXmP9GMED7",
       "form_rotulo": "Enviar fotos",
       "ultimo_commit_dados": {
-        "data": "2026-11-07T15:59:54Z",
-        "mensagem": "dados: leituras do esp32-01 até 2026-11-07T15:53",
-        "sha": "b99a754",
-        "url": "https://github.com/gfvdata-web/PlantsCare/commit/b99a754bded24cd4600719f06a5f646a4e847b4f"
+        "data": "2026-11-07T20:00:53Z",
+        "mensagem": "dados: leituras do esp32-01 até 2026-11-07T19:53",
+        "sha": "a6a94ef",
+        "url": "https://github.com/gfvdata-web/PlantsCare/commit/a6a94ef8b784b27bfa42999ee9f9284e29f373a8"
       },
       "ultima_execucao_pipeline": {
-        "id": 42389014178,
+        "id": 42408926758,
         "evento": "schedule",
         "status": "completed",
         "conclusao": "success",
-        "criado_em": "2026-11-07T15:59:32Z",
-        "atualizado_em": "2026-11-07T16:00:29Z",
-        "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/42389014178"
+        "criado_em": "2026-11-07T20:00:35Z",
+        "atualizado_em": "2026-11-07T20:01:20Z",
+        "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/42408926758"
       },
       "site_no_ar": {
         "ok": true,
@@ -2047,6 +2047,16 @@
             }
           ],
           "historico": [
+            {
+              "id": 42408926758,
+              "evento": "schedule",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-11-07T20:00:35Z",
+              "atualizado_em": "2026-11-07T20:01:20Z",
+              "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/42408926758",
+              "duracao_s": 45
+            },
             {
               "id": 42389014178,
               "evento": "schedule",
@@ -2186,26 +2196,16 @@
               "atualizado_em": "2026-11-03T22:45:54Z",
               "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/41733404273",
               "duracao_s": 88
-            },
-            {
-              "id": 41684318046,
-              "evento": "schedule",
-              "status": "completed",
-              "conclusao": "success",
-              "criado_em": "2026-11-03T17:26:49Z",
-              "atualizado_em": "2026-11-03T17:31:57Z",
-              "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/41684318046",
-              "duracao_s": 308
             }
           ],
           "ultimo_sucesso": {
-            "id": 42389014178,
+            "id": 42408926758,
             "evento": "schedule",
             "status": "completed",
             "conclusao": "success",
-            "criado_em": "2026-11-07T15:59:32Z",
-            "atualizado_em": "2026-11-07T16:00:29Z",
-            "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/42389014178"
+            "criado_em": "2026-11-07T20:00:35Z",
+            "atualizado_em": "2026-11-07T20:01:20Z",
+            "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/42408926758"
           },
           "ultima_falha": null,
           "passos_ultima": [
@@ -2257,6 +2257,12 @@
         },
         "commits_dados": [
           {
+            "data": "2026-11-07T20:00:53Z",
+            "mensagem": "dados: leituras do esp32-01 até 2026-11-07T19:53",
+            "sha": "a6a94ef",
+            "url": "https://github.com/gfvdata-web/PlantsCare/commit/a6a94ef8b784b27bfa42999ee9f9284e29f373a8"
+          },
+          {
             "data": "2026-11-07T15:59:54Z",
             "mensagem": "dados: leituras do esp32-01 até 2026-11-07T15:53",
             "sha": "b99a754",
@@ -2279,12 +2285,6 @@
             "mensagem": "dados: leituras do esp32-01 até 2026-11-06T22:33",
             "sha": "303b8fb",
             "url": "https://github.com/gfvdata-web/PlantsCare/commit/303b8fb7dd5a7551bf2c32613da73f2d5c3c7549"
-          },
-          {
-            "data": "2026-11-06T17:03:49Z",
-            "mensagem": "dados: leituras do esp32-01 até 2026-11-06T17:03",
-            "sha": "fd017b5",
-            "url": "https://github.com/gfvdata-web/PlantsCare/commit/fd017b5e0f2348c7352449047f816b0bf920da7a"
           }
         ],
         "deploy_pages": null
