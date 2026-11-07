@@ -3,8 +3,27 @@
  "nome": "Bolão F1",
  "workflow": "pipeline.yml",
  "url_workflow": "https://github.com/gfvdata-web/page-bolao-formula1/actions/workflows/pipeline.yml",
- "atualizado_em": "2026-10-31T23:55:25.360271+00:00",
+ "atualizado_em": "2026-11-07T20:54:17.193808+00:00",
  "execucoes": [
+  {
+   "id": 42413176248,
+   "criado_em": "2026-11-07T20:53:03Z",
+   "evento": "repository_dispatch",
+   "conclusao": "failure",
+   "duracao_s": 11,
+   "url": "https://github.com/gfvdata-web/page-bolao-formula1/actions/runs/42413176248",
+   "avisos": [
+    {
+     "nivel": "notice",
+     "mensagem": "\"The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748\""
+    }
+   ],
+   "motivo": {
+    "job": "pipeline",
+    "passo": "Roda pipeline (novo palpite)",
+    "mensagem": "[erro] Palpite de 'NOR' com 2 pilotos (esperado 6): faltam 4 pilotos. Bloco de jogador com 4 linhas (esperado 8): ['NOR', 'HAM', 'LEC', 'P10']"
+   }
+  },
   {
    "id": 41249720982,
    "criado_em": "2026-10-31T22:47:12Z",
