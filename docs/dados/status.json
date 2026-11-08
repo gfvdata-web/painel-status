@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-11-08T19:18:16.935788+00:00",
+    "gerado_em": "2026-11-08T21:00:58.790609+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -2018,19 +2018,19 @@
       "form_url": "https://forms.gle/y3uXaukJXmP9GMED7",
       "form_rotulo": "Enviar fotos",
       "ultimo_commit_dados": {
-        "data": "2026-11-08T16:27:55Z",
-        "mensagem": "dados: leituras do esp32-01 até 2026-11-08T16:18",
-        "sha": "37b9a5a",
-        "url": "https://github.com/gfvdata-web/PlantsCare/commit/37b9a5ab667147cd9ee2d9a0ca86444d85dd958c"
+        "data": "2026-11-08T20:55:20Z",
+        "mensagem": "dados: leituras do esp32-01 até 2026-11-08T20:48",
+        "sha": "72a69c1",
+        "url": "https://github.com/gfvdata-web/PlantsCare/commit/72a69c13cc184c79c9077d509cbd2dafd04de1ad"
       },
       "ultima_execucao_pipeline": {
-        "id": 42499984530,
+        "id": 42522515056,
         "evento": "schedule",
         "status": "completed",
         "conclusao": "success",
-        "criado_em": "2026-11-08T16:27:33Z",
-        "atualizado_em": "2026-11-08T16:28:31Z",
-        "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/42499984530"
+        "criado_em": "2026-11-08T20:54:55Z",
+        "atualizado_em": "2026-11-08T20:55:50Z",
+        "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/42522515056"
       },
       "site_no_ar": {
         "ok": true,
@@ -2047,6 +2047,16 @@
             }
           ],
           "historico": [
+            {
+              "id": 42522515056,
+              "evento": "schedule",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-11-08T20:54:55Z",
+              "atualizado_em": "2026-11-08T20:55:50Z",
+              "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/42522515056",
+              "duracao_s": 55
+            },
             {
               "id": 42499984530,
               "evento": "schedule",
@@ -2186,26 +2196,16 @@
               "atualizado_em": "2026-11-05T00:04:24Z",
               "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/41938436036",
               "duracao_s": 61
-            },
-            {
-              "id": 41886245251,
-              "evento": "schedule",
-              "status": "completed",
-              "conclusao": "success",
-              "criado_em": "2026-11-04T18:20:53Z",
-              "atualizado_em": "2026-11-04T18:21:58Z",
-              "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/41886245251",
-              "duracao_s": 65
             }
           ],
           "ultimo_sucesso": {
-            "id": 42499984530,
+            "id": 42522515056,
             "evento": "schedule",
             "status": "completed",
             "conclusao": "success",
-            "criado_em": "2026-11-08T16:27:33Z",
-            "atualizado_em": "2026-11-08T16:28:31Z",
-            "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/42499984530"
+            "criado_em": "2026-11-08T20:54:55Z",
+            "atualizado_em": "2026-11-08T20:55:50Z",
+            "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/42522515056"
           },
           "ultima_falha": null,
           "passos_ultima": [
@@ -2257,6 +2257,12 @@
         },
         "commits_dados": [
           {
+            "data": "2026-11-08T20:55:20Z",
+            "mensagem": "dados: leituras do esp32-01 até 2026-11-08T20:48",
+            "sha": "72a69c1",
+            "url": "https://github.com/gfvdata-web/PlantsCare/commit/72a69c13cc184c79c9077d509cbd2dafd04de1ad"
+          },
+          {
             "data": "2026-11-08T16:27:55Z",
             "mensagem": "dados: leituras do esp32-01 até 2026-11-08T16:18",
             "sha": "37b9a5a",
@@ -2279,12 +2285,6 @@
             "mensagem": "dados: leituras do esp32-01 até 2026-11-07T19:53",
             "sha": "a6a94ef",
             "url": "https://github.com/gfvdata-web/PlantsCare/commit/a6a94ef8b784b27bfa42999ee9f9284e29f373a8"
-          },
-          {
-            "data": "2026-11-07T15:59:54Z",
-            "mensagem": "dados: leituras do esp32-01 até 2026-11-07T15:53",
-            "sha": "b99a754",
-            "url": "https://github.com/gfvdata-web/PlantsCare/commit/b99a754bded24cd4600719f06a5f646a4e847b4f"
           }
         ],
         "deploy_pages": null
