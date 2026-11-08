@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-11-07T21:22:18.342087+00:00",
+    "gerado_em": "2026-11-08T00:00:54.714373+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -15,22 +15,22 @@
       "form_url": "https://forms.gle/7yZAx1WThPf51bv67",
       "form_rotulo": "Enviar palpites (Google Forms)",
       "ultimo_commit_dados": {
-        "data": "2026-11-07T21:10:09Z",
-        "mensagem": "Etapa 5: atualiza dados via Actions (rodada 20)",
-        "sha": "470944a",
-        "url": "https://github.com/gfvdata-web/page-bolao-formula1/commit/470944a0f97d2a3cdcea696b0ed94aaeacc27975"
+        "data": "2026-11-08T00:00:28Z",
+        "mensagem": "Etapa 5: pontua rodada 20 (resultado saiu depois do envio)",
+        "sha": "fec0856",
+        "url": "https://github.com/gfvdata-web/page-bolao-formula1/commit/fec08568f9df1bf5ac6b06e35840737372d3c6e8"
       },
       "ultima_execucao_pipeline": {
         "id": 42414541772,
         "evento": "repository_dispatch",
-        "status": "in_progress",
-        "conclusao": null,
+        "status": "completed",
+        "conclusao": "success",
         "criado_em": "2026-11-07T21:10:02Z",
-        "atualizado_em": "2026-11-07T21:10:05Z",
+        "atualizado_em": "2026-11-08T00:00:32Z",
         "url": "https://github.com/gfvdata-web/page-bolao-formula1/actions/runs/42414541772"
       },
       "rodada_mais_recente": 20,
-      "em_vigilia": true,
+      "em_vigilia": false,
       "etapas_pipeline": [
         {
           "chave": "forms",
@@ -49,23 +49,23 @@
         {
           "chave": "resultado",
           "titulo": "Resultado oficial do quali (Jolpica)",
-          "estado": "aguardando",
-          "detalhe": "Em vigília: consultando a Jolpica a cada 5 min (até 5 h) até o resultado sair — 3 consultas sem resultado até agora (horário = a mais recente).",
-          "quando": "2026-11-07T21:20:10Z"
+          "estado": "ok",
+          "detalhe": "Saiu depois do envio — obtido pela vigília.",
+          "quando": "2026-11-08T00:00:29Z"
         },
         {
           "chave": "pontuacao",
           "titulo": "Pontuação calculada",
-          "estado": "pendente",
-          "detalhe": "Assim que o resultado sair.",
-          "quando": null
+          "estado": "ok",
+          "detalhe": "",
+          "quando": "2026-11-08T00:00:29Z"
         },
         {
           "chave": "pagina",
           "titulo": "Página atualizada (GitHub Pages)",
-          "estado": "pendente",
-          "detalhe": "",
-          "quando": null
+          "estado": "andamento",
+          "detalhe": "Deploy em andamento.",
+          "quando": "2026-11-08T00:00:30Z"
         }
       ],
       "site_no_ar": {
@@ -76,10 +76,6 @@
       "acesso": {
         "visitantes_unicos": 45,
         "serie_diaria": [
-          {
-            "data": "2026-10-08",
-            "visitantes": 1
-          },
           {
             "data": "2026-10-09",
             "visitantes": 3
@@ -271,10 +267,6 @@
       "acesso": {
         "visitantes_unicos": 20,
         "serie_diaria": [
-          {
-            "data": "2026-10-08",
-            "visitantes": 0
-          },
           {
             "data": "2026-10-09",
             "visitantes": 0
@@ -597,10 +589,6 @@
         "visitantes_unicos": 12,
         "serie_diaria": [
           {
-            "data": "2026-10-08",
-            "visitantes": 0
-          },
-          {
             "data": "2026-10-09",
             "visitantes": 0
           },
@@ -915,10 +903,6 @@
       "acesso": {
         "visitantes_unicos": 6,
         "serie_diaria": [
-          {
-            "data": "2026-10-08",
-            "visitantes": 0
-          },
           {
             "data": "2026-10-09",
             "visitantes": 0
@@ -1463,10 +1447,6 @@
         "visitantes_unicos": 3,
         "serie_diaria": [
           {
-            "data": "2026-10-08",
-            "visitantes": 0
-          },
-          {
             "data": "2026-10-09",
             "visitantes": 0
           },
@@ -1880,10 +1860,6 @@
       "acesso": {
         "visitantes_unicos": 15,
         "serie_diaria": [
-          {
-            "data": "2026-10-08",
-            "visitantes": 0
-          },
           {
             "data": "2026-10-09",
             "visitantes": 0
@@ -2337,10 +2313,6 @@
         "visitantes_unicos": 5,
         "serie_diaria": [
           {
-            "data": "2026-10-08",
-            "visitantes": 0
-          },
-          {
             "data": "2026-10-09",
             "visitantes": 0
           },
@@ -2528,10 +2500,6 @@
         "visitantes_unicos": 6,
         "serie_diaria": [
           {
-            "data": "2026-10-08",
-            "visitantes": 0
-          },
-          {
             "data": "2026-10-09",
             "visitantes": 0
           },
@@ -2694,10 +2662,6 @@
       "acesso": {
         "visitantes_unicos": 1,
         "serie_diaria": [
-          {
-            "data": "2026-10-08",
-            "visitantes": 0
-          },
           {
             "data": "2026-10-09",
             "visitantes": 0
@@ -2894,10 +2858,6 @@
         "visitantes_unicos": 5,
         "serie_diaria": [
           {
-            "data": "2026-10-08",
-            "visitantes": 0
-          },
-          {
             "data": "2026-10-09",
             "visitantes": 0
           },
@@ -3078,10 +3038,6 @@
       "acesso": {
         "visitantes_unicos": 15,
         "serie_diaria": [
-          {
-            "data": "2026-10-08",
-            "visitantes": 0
-          },
           {
             "data": "2026-10-09",
             "visitantes": 0
@@ -3451,10 +3407,6 @@
       "acesso": {
         "visitantes_unicos": 8,
         "serie_diaria": [
-          {
-            "data": "2026-10-08",
-            "visitantes": 0
-          },
           {
             "data": "2026-10-09",
             "visitantes": 0
