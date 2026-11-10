@@ -3,8 +3,22 @@
  "nome": "Chess Tracking",
  "workflow": "atualizar-partidas.yml",
  "url_workflow": "https://github.com/gfvdata-web/chess-tracking/actions/workflows/atualizar-partidas.yml",
- "atualizado_em": "2026-11-09T21:01:19.941883+00:00",
+ "atualizado_em": "2026-11-10T18:01:19.847365+00:00",
  "execucoes": [
+  {
+   "id": 42860655233,
+   "criado_em": "2026-11-10T17:01:46Z",
+   "evento": "schedule",
+   "conclusao": "success",
+   "duracao_s": 75,
+   "url": "https://github.com/gfvdata-web/chess-tracking/actions/runs/42860655233",
+   "avisos": [
+    {
+     "nivel": "notice",
+     "mensagem": "\"The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748\""
+    }
+   ]
+  },
   {
    "id": 42686757131,
    "criado_em": "2026-11-09T19:47:45Z",
