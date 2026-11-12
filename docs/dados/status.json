@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-11-12T21:00:58.808909+00:00",
+    "gerado_em": "2026-11-12T21:42:05.237674+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -1042,10 +1042,10 @@
         ]
       },
       "downloads": {
-        "total": 2,
+        "total": 3,
         "skill": 0,
-        "csv": 2,
-        "por_navegador": 2,
+        "csv": 3,
+        "por_navegador": 3,
         "por_script": 0,
         "desde": "2026-10-18",
         "serie_diaria": [
@@ -1167,7 +1167,7 @@
           },
           {
             "data": "2026-11-12",
-            "downloads": 0
+            "downloads": 1
           }
         ]
       }
