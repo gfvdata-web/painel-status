@@ -231,6 +231,20 @@ fun serieDeTokens(dias: List<DiaUso>, hoje: LocalDate, quantos: Int = DIAS_GRAFI
     return SerieModelos(datas, modelos, tokens)
 }
 
+/** Tokens e custo (todos os modelos somados) de cada dia de um intervalo, para o gráfico da aba Agora. */
+data class SeriePeriodo(val dias: List<LocalDate>, val tokens: List<Long>, val custoUsd: List<Double>)
+
+/** Um ponto por dia de [de] até [ate] (inclusive); dia sem uso vale 0. */
+fun serieDoPeriodo(dias: List<DiaUso>, de: LocalDate, ate: LocalDate): SeriePeriodo {
+    val datas = generateSequence(de) { it.plusDays(1) }.takeWhile { it <= ate }.toList()
+    val porDia = dias.groupBy { it.dia }
+    return SeriePeriodo(
+        dias = datas,
+        tokens = datas.map { data -> porDia[data.toString()].orEmpty().sumOf { it.total } },
+        custoUsd = datas.map { data -> porDia[data.toString()].orEmpty().sumOf { it.custoUsd } },
+    )
+}
+
 // ---------- Sessões e agentes ----------
 
 /** Mais recentes primeiro (pelo fim). */

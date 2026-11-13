@@ -112,6 +112,8 @@ class IaTelasTest {
         existe("lido há 10 min", trecho = true)
         existe("Limites nos últimos 7 dias")
         existe("Hoje: ", trecho = true)
+        existe("Tokens e custo por dia")
+        existe("Custo (US$)")
         existe("Gerado em", trecho = true)
         existe("Sair do painel de IA")
     }

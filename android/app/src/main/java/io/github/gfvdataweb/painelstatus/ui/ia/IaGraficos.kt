@@ -65,6 +65,46 @@ fun GraficoLimites(
     }
 }
 
+/**
+ * Duas linhas por dia do período: tokens e custo. Escalas diferentes, então cada linha vai de 0 ao
+ * próprio máximo. Com um dia só, desenha um ponto por série.
+ */
+@Composable
+fun GraficoPeriodo(
+    serie: SeriePeriodo,
+    corTokens: Color,
+    corCusto: Color,
+    corGrade: Color,
+    modifier: Modifier = Modifier,
+) {
+    Canvas(modifier) {
+        val pontos = serie.dias.size
+        if (pontos == 0) return@Canvas
+        val margem = 3.dp.toPx()
+        val altura = size.height - 2 * margem
+        fun x(i: Int) = if (pontos == 1) size.width / 2 else i * size.width / (pontos - 1)
+        fun y(fracao: Double) = (margem + altura - fracao * altura).toFloat()
+
+        listOf(0.0, 0.5, 1.0).forEach { f ->
+            drawLine(corGrade, Offset(0f, y(f)), Offset(size.width, y(f)), strokeWidth = 1.dp.toPx())
+        }
+        fun linha(valores: List<Double>, cor: Color) {
+            val maximo = valores.max().takeIf { it > 0 } ?: 1.0
+            if (pontos == 1) {
+                drawCircle(cor, radius = 3.dp.toPx(), center = Offset(x(0), y(valores[0] / maximo)))
+                return
+            }
+            val caminho = Path()
+            valores.forEachIndexed { i, v ->
+                if (i == 0) caminho.moveTo(x(i), y(v / maximo)) else caminho.lineTo(x(i), y(v / maximo))
+            }
+            drawPath(caminho, cor, style = Stroke(width = 2.dp.toPx(), cap = StrokeCap.Round, join = StrokeJoin.Round))
+        }
+        linha(serie.custoUsd, corCusto)
+        linha(serie.tokens.map { it.toDouble() }, corTokens)
+    }
+}
+
 /** Barras empilhadas de tokens por dia, uma cor por modelo (a ordem é a de [SerieModelos.modelos]). */
 @Composable
 fun GraficoModelos(serie: SerieModelos, corGrade: Color, modifier: Modifier = Modifier) {

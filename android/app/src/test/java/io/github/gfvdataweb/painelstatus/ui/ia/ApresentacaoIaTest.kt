@@ -126,6 +126,27 @@ class ApresentacaoIaTest {
     }
 
     @Test
+    fun serieDoPeriodoTemUmPontoPorDiaEBateComOResumo() {
+        val de = hoje.minusDays(6)
+        val semana = serieDoPeriodo(uso.dias, de, hoje)
+        assertEquals(7, semana.dias.size)
+        assertEquals(de, semana.dias.first())
+        assertEquals(hoje, semana.dias.last())
+        val resumo = resumoDoPeriodo(diasNoPeriodo(uso.dias, de, hoje))
+        assertEquals(resumo.tokens, semana.tokens.sum())
+        assertEquals(resumo.custoUsd, semana.custoUsd.sum(), 1e-9)
+
+        val doDia = serieDoPeriodo(uso.dias, hoje, hoje)
+        assertEquals(listOf(152_960L + 50_820), doDia.tokens)
+        assertEquals(0.85, doDia.custoUsd.single(), 1e-9)
+
+        // Dia sem uso entra com zero.
+        val vazio = serieDoPeriodo(uso.dias, hoje.plusDays(1), hoje.plusDays(2))
+        assertEquals(listOf(0L, 0L), vazio.tokens)
+        assertEquals(listOf(0.0, 0.0), vazio.custoUsd)
+    }
+
+    @Test
     fun intervaloDeCadaPeriodo() {
         assertEquals(IntervaloIa(hoje, hoje), intervaloDo(PeriodoIa.HOJE, hoje))
         assertEquals(IntervaloIa(hoje.minusDays(6), hoje), intervaloDo(PeriodoIa.SETE_DIAS, hoje))

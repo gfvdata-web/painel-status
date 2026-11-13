@@ -253,7 +253,7 @@ lugar e nada é cadastrado no app. Se o endereço novo não responder, o app ten
   Android Keystore** (`CofreKeystore`), nunca a senha. Logado, mostra as abas **Agora** (barras
   de 5 h e semanal, quando zera, "lido há…", gráfico dos limites e totais do período
   escolhido nos chips Hoje / 7 dias / 30 dias / Desde sempre / Personalizado, este com seletor de
-  datas), **Modelos** (barras empilhadas de 30 dias e totais), **Sessões** (toque no cartão abre
+  datas, e abaixo dele o gráfico de linhas de tokens e custo por dia desse mesmo período), **Modelos** (barras empilhadas de 30 dias e totais), **Sessões** (toque no cartão abre
   o custo por modelo e, se o `uso.json` trouxer `agentes_detalhe`, por subagente), **Uso** (agentes: modelo
   configurado × modelos que rodaram; skills e MCPs: contagem de chamadas, sem tokens) e **Catálogo**
   (agentes, skills, MCPs e candidatos), com os mesmos cálculos de `painel.js` do

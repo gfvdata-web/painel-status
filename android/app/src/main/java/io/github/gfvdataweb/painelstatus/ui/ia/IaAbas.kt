@@ -213,7 +213,45 @@ private fun SeletorDePeriodo(dias: List<DiaUso>, hoje: LocalDate) {
         PeriodoIa.PERSONALIZADO ->
             stringResource(R.string.ia_intervalo, dataCurta(intervalo.de), dataCurta(intervalo.ate))
     }
-    Periodo(titulo, resumoDoPeriodo(diasNoPeriodo(dias, intervalo.de, intervalo.ate)))
+    val resumo = resumoDoPeriodo(diasNoPeriodo(dias, intervalo.de, intervalo.ate))
+    Periodo(titulo, resumo)
+    if (resumo.porModelo.isNotEmpty()) GraficoDoPeriodo(serieDoPeriodo(dias, intervalo.de, intervalo.ate))
+}
+
+/** Tokens e custo por dia do período escolhido (abaixo do resumo). */
+@Composable
+private fun GraficoDoPeriodo(serie: SeriePeriodo) {
+    val corTokens = MaterialTheme.colorScheme.primary
+    val corCusto = coresDoTom(Tom.AVISO).first
+    val descricao = stringResource(R.string.ia_periodo_grafico_descricao)
+    Secao(stringResource(R.string.ia_periodo_grafico_titulo)) {
+        Text(
+            stringResource(
+                R.string.ia_periodo_grafico_maximo,
+                tokensCompactos(serie.tokens.maxOrNull() ?: 0),
+                dolar(serie.custoUsd.maxOrNull() ?: 0.0),
+            ),
+            style = MaterialTheme.typography.labelMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
+        GraficoPeriodo(
+            serie,
+            corTokens = corTokens,
+            corCusto = corCusto,
+            corGrade = MaterialTheme.colorScheme.outlineVariant,
+            modifier = Modifier.fillMaxWidth().height(120.dp).semantics { contentDescription = descricao },
+        )
+        if (serie.dias.size > 1) {
+            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+                Text(dataCurta(serie.dias.first()), style = MaterialTheme.typography.labelSmall)
+                Text(dataCurta(serie.dias.last()), style = MaterialTheme.typography.labelSmall)
+            }
+        }
+        Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+            Legenda(corTokens, stringResource(R.string.ia_legenda_tokens))
+            Legenda(corCusto, stringResource(R.string.ia_legenda_custo))
+        }
+    }
 }
 
 /** O seletor devolve meia-noite UTC do dia tocado. */

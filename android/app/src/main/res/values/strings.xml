@@ -207,6 +207,11 @@
     <string name="ia_sem_uso_no_periodo">%1$s: sem uso no período.</string>
     <string name="ia_modelo_linha">%1$s · %2$s tokens · %3$s</string>
     <string name="ia_nota_custo">Custo = equivalente da API; no plano Pro não há cobrança por token.</string>
+    <string name="ia_periodo_grafico_titulo">Tokens e custo por dia</string>
+    <string name="ia_periodo_grafico_descricao">Linhas de tokens e de custo por dia do período escolhido, cada uma na própria escala</string>
+    <string name="ia_periodo_grafico_maximo">Máx. por dia: %1$s tokens · %2$s</string>
+    <string name="ia_legenda_tokens">Tokens</string>
+    <string name="ia_legenda_custo">Custo (US$)</string>
     <string name="ia_grafico_titulo">Tokens por dia, por modelo (últimos 30 dias)</string>
     <string name="ia_grafico_descricao">Barras empilhadas de tokens totais por dia e modelo</string>
     <string name="ia_grafico_maximo">Maior dia: %1$s tokens</string>
