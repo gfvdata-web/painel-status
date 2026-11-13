@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-11-13T18:01:05.226153+00:00",
+    "gerado_em": "2026-11-13T21:01:00.004330+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -398,10 +398,10 @@
         ]
       },
       "downloads": {
-        "total": 13,
-        "skill": 4,
-        "csv": 9,
-        "por_navegador": 12,
+        "total": 15,
+        "skill": 5,
+        "csv": 10,
+        "por_navegador": 14,
         "por_script": 1,
         "desde": "2026-10-18",
         "serie_diaria": [
@@ -523,7 +523,7 @@
           },
           {
             "data": "2026-11-13",
-            "downloads": 0
+            "downloads": 2
           }
         ]
       }
@@ -2510,7 +2510,136 @@
           "url": "https://github.com/gfvdata-web/eleicoes-2026/actions/runs/37222831530"
         }
       },
-      "alertas": []
+      "alertas": [],
+      "acesso": {
+        "visitantes_unicos": 6,
+        "serie_diaria": [
+          {
+            "data": "2026-10-14",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-15",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-16",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-17",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-18",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-19",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-20",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-21",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-22",
+            "visitantes": 1
+          },
+          {
+            "data": "2026-10-23",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-24",
+            "visitantes": 1
+          },
+          {
+            "data": "2026-10-25",
+            "visitantes": 2
+          },
+          {
+            "data": "2026-10-26",
+            "visitantes": 1
+          },
+          {
+            "data": "2026-10-27",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-28",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-29",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-30",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-31",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-01",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-02",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-03",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-04",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-05",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-06",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-07",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-08",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-09",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-10",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-11",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-12",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-13",
+            "visitantes": 0
+          }
+        ]
+      }
     },
     {
       "slug": "painel_esportivo",
@@ -3260,10 +3389,10 @@
       "categoria": null,
       "na_lista": false,
       "ultimo_commit_dados": {
-        "data": "2026-10-26T14:08:11Z",
-        "mensagem": "Uso de skills e MCPs: coletor conta chamadas; aba Agentes vira Uso; Catálogo com MCPs",
-        "sha": "80e61b2",
-        "url": "https://github.com/gfvdata-web/painel-ia/commit/80e61b2c9f071884e79d9f723d4879788775caec"
+        "data": "2026-11-13T19:32:35Z",
+        "mensagem": "Agora: gráfico de linhas de tokens e custo por dia, no período da tabela",
+        "sha": "0b02141",
+        "url": "https://github.com/gfvdata-web/painel-ia/commit/0b021410ace3737eb1a08316fe02df7a824d9566"
       },
       "site_no_ar": {
         "ok": true,
@@ -3272,6 +3401,12 @@
       "detalhes": {
         "coleta": null,
         "commits_dados": [
+          {
+            "data": "2026-11-13T19:32:35Z",
+            "mensagem": "Agora: gráfico de linhas de tokens e custo por dia, no período da tabela",
+            "sha": "0b02141",
+            "url": "https://github.com/gfvdata-web/painel-ia/commit/0b021410ace3737eb1a08316fe02df7a824d9566"
+          },
           {
             "data": "2026-10-26T14:08:11Z",
             "mensagem": "Uso de skills e MCPs: coletor conta chamadas; aba Agentes vira Uso; Catálogo com MCPs",
@@ -3295,19 +3430,13 @@
             "mensagem": "Aviso de leitura antiga só depois de 24 h e login vencido explicado no log",
             "sha": "189ca36",
             "url": "https://github.com/gfvdata-web/painel-ia/commit/189ca368a08140cd7cb91c2e2eeda69a480cc84a"
-          },
-          {
-            "data": "2026-10-21T12:44:37Z",
-            "mensagem": "Página: abas sem barra de rolagem e filtros de período afastados dos medidores",
-            "sha": "dc54636",
-            "url": "https://github.com/gfvdata-web/painel-ia/commit/dc54636168098aa51ecbe6a8aa8299a99933fc8a"
           }
         ],
         "deploy_pages": null
       },
       "alertas": [],
       "acesso": {
-        "visitantes_unicos": 12,
+        "visitantes_unicos": 13,
         "serie_diaria": [
           {
             "data": "2026-10-14",
@@ -3431,7 +3560,7 @@
           },
           {
             "data": "2026-11-13",
-            "visitantes": 2
+            "visitantes": 3
           }
         ]
       }
