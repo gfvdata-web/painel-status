@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-11-14T18:00:58.180158+00:00",
+    "gerado_em": "2026-11-14T19:40:32.837009+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -3313,10 +3313,10 @@
       "categoria": null,
       "na_lista": true,
       "ultimo_commit_dados": {
-        "data": "2026-10-21T22:58:13Z",
-        "mensagem": "Radar de Preços: família QCY H3 (casamento, cor, comparativo)",
-        "sha": "dc2644f",
-        "url": "https://github.com/gfvdata-web/ProductTracking/commit/dc2644fdb217fc2d338935cb5afbf742a3f5fbfd"
+        "data": "2026-11-14T18:52:27Z",
+        "mensagem": "Radar de Preços V2: cola o link e acompanha",
+        "sha": "2cc5619",
+        "url": "https://github.com/gfvdata-web/ProductTracking/commit/2cc5619fddb4956703d4568e7c8b77482f65668d"
       },
       "site_no_ar": {
         "ok": true,
@@ -3325,6 +3325,12 @@
       "detalhes": {
         "coleta": null,
         "commits_dados": [
+          {
+            "data": "2026-11-14T18:52:27Z",
+            "mensagem": "Radar de Preços V2: cola o link e acompanha",
+            "sha": "2cc5619",
+            "url": "https://github.com/gfvdata-web/ProductTracking/commit/2cc5619fddb4956703d4568e7c8b77482f65668d"
+          },
           {
             "data": "2026-10-21T22:58:13Z",
             "mensagem": "Radar de Preços: família QCY H3 (casamento, cor, comparativo)",
@@ -3340,7 +3346,136 @@
         ],
         "deploy_pages": null
       },
-      "alertas": []
+      "alertas": [],
+      "acesso": {
+        "visitantes_unicos": 1,
+        "serie_diaria": [
+          {
+            "data": "2026-10-15",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-16",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-17",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-18",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-19",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-20",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-21",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-22",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-23",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-24",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-25",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-26",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-27",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-28",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-29",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-30",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-31",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-01",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-02",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-03",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-04",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-05",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-06",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-07",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-08",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-09",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-10",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-11",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-12",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-13",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-14",
+            "visitantes": 1
+          }
+        ]
+      }
     },
     {
       "slug": "melhor_preco",
@@ -3389,10 +3524,10 @@
       "categoria": null,
       "na_lista": false,
       "ultimo_commit_dados": {
-        "data": "2026-11-13T19:32:35Z",
-        "mensagem": "Agora: gráfico de linhas de tokens e custo por dia, no período da tabela",
-        "sha": "0b02141",
-        "url": "https://github.com/gfvdata-web/painel-ia/commit/0b021410ace3737eb1a08316fe02df7a824d9566"
+        "data": "2026-11-14T18:21:15Z",
+        "mensagem": "Agora: gráfico de custo por milhão de tokens (só dias com 1 mi+ tokens)",
+        "sha": "23447e7",
+        "url": "https://github.com/gfvdata-web/painel-ia/commit/23447e7e46bd1855bdd39fd152d3e88da17809e5"
       },
       "site_no_ar": {
         "ok": true,
@@ -3401,6 +3536,12 @@
       "detalhes": {
         "coleta": null,
         "commits_dados": [
+          {
+            "data": "2026-11-14T18:21:15Z",
+            "mensagem": "Agora: gráfico de custo por milhão de tokens (só dias com 1 mi+ tokens)",
+            "sha": "23447e7",
+            "url": "https://github.com/gfvdata-web/painel-ia/commit/23447e7e46bd1855bdd39fd152d3e88da17809e5"
+          },
           {
             "data": "2026-11-13T19:32:35Z",
             "mensagem": "Agora: gráfico de linhas de tokens e custo por dia, no período da tabela",
@@ -3424,19 +3565,13 @@
             "mensagem": "Página: espaço entre as abas e o conteúdo",
             "sha": "65b9f32",
             "url": "https://github.com/gfvdata-web/painel-ia/commit/65b9f32c2ada97180be442b460569b7e81cc2956"
-          },
-          {
-            "data": "2026-10-21T13:33:00Z",
-            "mensagem": "Aviso de leitura antiga só depois de 24 h e login vencido explicado no log",
-            "sha": "189ca36",
-            "url": "https://github.com/gfvdata-web/painel-ia/commit/189ca368a08140cd7cb91c2e2eeda69a480cc84a"
           }
         ],
         "deploy_pages": null
       },
       "alertas": [],
       "acesso": {
-        "visitantes_unicos": 13,
+        "visitantes_unicos": 14,
         "serie_diaria": [
           {
             "data": "2026-10-15",
@@ -3560,7 +3695,7 @@
           },
           {
             "data": "2026-11-14",
-            "visitantes": 0
+            "visitantes": 1
           }
         ]
       }
