@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-11-14T04:41:49.747724+00:00",
+    "gerado_em": "2026-11-14T06:00:53.349169+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -2510,136 +2510,7 @@
           "url": "https://github.com/gfvdata-web/eleicoes-2026/actions/runs/37222831530"
         }
       },
-      "alertas": [],
-      "acesso": {
-        "visitantes_unicos": 6,
-        "serie_diaria": [
-          {
-            "data": "2026-10-15",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-16",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-17",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-18",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-19",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-20",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-21",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-22",
-            "visitantes": 1
-          },
-          {
-            "data": "2026-10-23",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-24",
-            "visitantes": 1
-          },
-          {
-            "data": "2026-10-25",
-            "visitantes": 2
-          },
-          {
-            "data": "2026-10-26",
-            "visitantes": 1
-          },
-          {
-            "data": "2026-10-27",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-28",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-29",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-30",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-31",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-11-01",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-11-02",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-11-03",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-11-04",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-11-05",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-11-06",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-11-07",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-11-08",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-11-09",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-11-10",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-11-11",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-11-12",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-11-13",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-11-14",
-            "visitantes": 0
-          }
-        ]
-      }
+      "alertas": []
     },
     {
       "slug": "painel_esportivo",
