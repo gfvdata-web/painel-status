@@ -382,7 +382,7 @@ em vez de apagar os números. Site sem `contagem_url` fica sem o bloco.
 ## Sites monitorados
 
 A lista que o painel usa é `src/config.py` (`SITES`; os campos de cada entrada estão
-descritos na docstring do arquivo). Hoje são dezoito:
+descritos na docstring do arquivo). Hoje são vinte e um:
 
 | Site | Repositório | Página | O que é |
 |------|-------------|--------|---------|
@@ -402,6 +402,9 @@ descritos na docstring do arquivo). Hoje são dezoito:
 | Como está Bilbao | [`bilbao`](https://github.com/gfvdata-web/bilbao) (privado) | [varanda](https://comoestabilbao.gfvdata.com/) | Temperatura e umidade da varanda, lidas da planilha do ESP32 do PlantsCare. Worker de estáticos + `/api/leituras`; `caminho_dados` é `publico/` (assets) |
 | Radar de Preços | [`ProductTracking`](https://github.com/gfvdata-web/ProductTracking) (privado) | [radar](https://precos.gfvdata.com/) | Preço de poucos produtos exatos em várias lojas. Worker + D1 + Cron do wrangler; `caminho_dados` é `docs/` (assets) |
 | Melhor Preço | [`AppMelhorPreco`](https://github.com/gfvdata-web/AppMelhorPreco) (privado) | [site](https://melhorpreco.gfvdata.com/) | Comparação de preços a partir das notas fiscais (NFC-e) lidas pelo app. Worker + D1 + Cron do wrangler; `caminho_dados` é `site/` (assets) |
+| Quebra-cabeças Grow | [`QuebraCabecasGrow`](https://github.com/gfvdata-web/QuebraCabecasGrow) (privado) | [monitor](https://quebracabecas.gfvdata.com/) | Vale comprar este quebra-cabeça Grow na Ri Happy? Preço nas outras lojas, veredito e histórico. Worker + D1 + Cron do wrangler; `caminho_dados` é `docs/` (assets) |
+| Dias de clima agradável | [`DiasAgradaveisMunicipio`](https://github.com/gfvdata-web/DiasAgradaveisMunicipio) | [mapa](https://climaagradavel.gfvdata.com/) | Dias de clima agradável por município com dados do INMET (2025 e 2026). Worker só de assets; `caminho_dados` é `docs/dados`, refeito todo mês pelo `atualizar-dados.yml` (sem workflow cadastrado: com coleta mensal, o alerta "sem coleta há N dias" ficaria aceso) |
+| Notas fiscais | `notas-monitor` (git só local, fora do GitHub) | [notas](https://notas.gfvdata.com/) | Tabela das notas fiscais enviadas pelo Form. Todo o site exige login (a raiz redireciona para `/entrar`, que responde 200). `github: False`: o painel não consulta a API do GitHub, o card mostra só "site no ar" e não tem link do repositório |
 | Painel de IA | [`painel-ia`](https://github.com/gfvdata-web/painel-ia) (privado) | [painel](https://ia.gfvdata.com/) | Uso de tokens e limites do Claude. Todo o site exige login: a raiz responde 401 com a página de login, e `site_no_ar` conta 401 como no ar. Dados no D1, enviados pelo coletor local; `caminho_dados` é `docs/` (assets) |
 | gfvdata.com | [`site-raiz`](https://github.com/gfvdata-web/site-raiz) | [site](https://www.gfvdata.com/) | Página raiz do domínio. Worker de estáticos; `caminho_dados` é `docs/` |
 

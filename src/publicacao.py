@@ -12,7 +12,9 @@ Formato de saída (o único arquivo que docs/js/app.js lê — e o app Android e
 que espelha estes campos em data/modelo/Modelos.kt; mudanças só aditivas):
   meta           {gerado_em, descricao}
   sites[]        slug, nome, repo, pages_url, destaque, na_lista (False = botão no
-                 topo das páginas em vez de cartão), ultimo_commit_dados,
+                 topo das páginas em vez de cartão), github (False = repo fora do
+                 GitHub: ultimo_commit_dados {erro}, sem link do repositório),
+                 ultimo_commit_dados,
                  site_no_ar e, conforme o cadastro em config.py: form_url,
                  form_rotulo,
                  periodo_publicado, ultima_execucao_pipeline, acesso e — só no
@@ -49,6 +51,7 @@ SAIDA = Path(__file__).resolve().parent.parent / "docs" / "dados" / "status.json
 RE_RODADA = re.compile(r"rodada\s+(\d+)", re.IGNORECASE)
 EXECUCOES_NO_POPUP = 15
 EXECUCOES_RECENTES = 100  # uma página da API; o histórico acumulado só acrescenta
+SEM_GITHUB = "repositório fora do GitHub (git só local)"
 
 
 def coletar_site(site, acesso_por_repo, acesso_anterior, falha_total, downloads_anterior=None):
@@ -60,15 +63,19 @@ def coletar_site(site, acesso_por_repo, acesso_anterior, falha_total, downloads_
         "destaque": site["destaque"],
         "categoria": site["categoria"],
         "na_lista": site["na_lista"],
+        "github": site["github"],
     }
     if site["form_url"]:
         bloco["form_url"] = site["form_url"]
         if site["form_rotulo"]:
             bloco["form_rotulo"] = site["form_rotulo"]
 
-    commits = gh.commits_no_caminho(
-        OWNER, site["repo"], site["caminho_dados"], branch=site["branch_dados"]
-    )
+    if site["github"]:
+        commits = gh.commits_no_caminho(
+            OWNER, site["repo"], site["caminho_dados"], branch=site["branch_dados"]
+        )
+    else:
+        commits = {"erro": SEM_GITHUB}
     bloco["ultimo_commit_dados"] = commits[0] if isinstance(commits, list) else commits
 
     if site["json_meta_url"]:

@@ -179,7 +179,7 @@ def montar_detalhes(owner, site, commits, execucoes, site_no_ar):
     """`commits` e `execucoes` já coletados por publicacao.py (listas ou {"erro"}); devolve
     (detalhes, alertas)."""
     coleta = _coleta(owner, site, execucoes) if site["workflow_arquivo"] else None
-    deploys = gh.execucoes_pages(owner, site["repo"], quantidade=5)
+    deploys = gh.execucoes_pages(owner, site["repo"], quantidade=5) if site.get("github", True) else None
     # Deploy cancelado = substituído por outro disparado junto; não conta como o último.
     validos = [d for d in deploys or [] if d["conclusao"] != "cancelled"]
     deploy_pages = (validos or deploys or [None])[0]

@@ -12,6 +12,7 @@
       "destaque": true,
       "categoria": null,
       "na_lista": true,
+      "github": true,
       "form_url": "https://forms.gle/7yZAx1WThPf51bv67",
       "form_rotulo": "Enviar palpites (Google Forms)",
       "ultimo_commit_dados": {
@@ -99,6 +100,7 @@
       "destaque": false,
       "categoria": null,
       "na_lista": true,
+      "github": true,
       "ultimo_commit_dados": {
         "data": "2026-10-13T08:00:12Z",
         "mensagem": "Atualiza dados da rodada 21",
@@ -277,6 +279,7 @@
       "destaque": false,
       "categoria": null,
       "na_lista": true,
+      "github": true,
       "ultimo_commit_dados": {
         "data": "2026-10-13T08:00:12Z",
         "mensagem": "Atualiza dados da rodada 21",
@@ -455,6 +458,7 @@
       "destaque": false,
       "categoria": null,
       "na_lista": true,
+      "github": true,
       "ultimo_commit_dados": {
         "data": "2026-10-13T08:00:12Z",
         "mensagem": "Atualiza dados da rodada 21",
@@ -633,6 +637,7 @@
       "destaque": false,
       "categoria": null,
       "na_lista": true,
+      "github": true,
       "ultimo_commit_dados": {
         "data": "2026-10-13T08:00:12Z",
         "mensagem": "Atualiza dados da rodada 21",
@@ -781,6 +786,7 @@
       "destaque": false,
       "categoria": null,
       "na_lista": true,
+      "github": true,
       "ultimo_commit_dados": {
         "data": "2026-10-13T08:00:12Z",
         "mensagem": "Atualiza dados da rodada 21",
@@ -946,6 +952,7 @@
       "destaque": false,
       "categoria": null,
       "na_lista": true,
+      "github": true,
       "form_url": "https://forms.gle/y3uXaukJXmP9GMED7",
       "form_rotulo": "Enviar fotos",
       "ultimo_commit_dados": {
@@ -1138,6 +1145,7 @@
       "destaque": false,
       "categoria": null,
       "na_lista": true,
+      "github": true,
       "ultimo_commit_dados": {
         "data": "2026-10-13T08:00:12Z",
         "mensagem": "Atualiza dados da rodada 21",
@@ -1182,6 +1190,7 @@
       "destaque": false,
       "categoria": null,
       "na_lista": true,
+      "github": true,
       "ultimo_commit_dados": {
         "data": "2026-10-13T08:00:12Z",
         "mensagem": "Atualiza dados da rodada 21",
@@ -1226,6 +1235,7 @@
       "destaque": false,
       "categoria": null,
       "na_lista": true,
+      "github": true,
       "ultimo_commit_dados": {
         "data": "2026-10-13T08:00:12Z",
         "mensagem": "Atualiza dados da rodada 21",
@@ -1270,6 +1280,7 @@
       "destaque": false,
       "categoria": null,
       "na_lista": true,
+      "github": true,
       "ultimo_commit_dados": {
         "data": "2026-10-13T08:00:12Z",
         "mensagem": "Atualiza dados da rodada 21",
@@ -1331,6 +1342,7 @@
       "destaque": false,
       "categoria": null,
       "na_lista": true,
+      "github": true,
       "ultimo_commit_dados": {
         "data": "2026-10-13T08:00:12Z",
         "mensagem": "Atualiza dados da rodada 21",
@@ -1375,6 +1387,7 @@
       "destaque": false,
       "categoria": null,
       "na_lista": true,
+      "github": true,
       "ultimo_commit_dados": {
         "data": "2026-10-13T08:00:12Z",
         "mensagem": "Atualiza dados da rodada 21",
@@ -1419,6 +1432,7 @@
       "destaque": false,
       "categoria": null,
       "na_lista": true,
+      "github": true,
       "ultimo_commit_dados": {
         "data": "2026-10-13T08:00:12Z",
         "mensagem": "Atualiza dados da rodada 21",
@@ -1463,6 +1477,7 @@
       "destaque": false,
       "categoria": null,
       "na_lista": true,
+      "github": true,
       "ultimo_commit_dados": {
         "data": "2026-10-13T08:00:12Z",
         "mensagem": "Atualiza dados da rodada 21",
@@ -1507,6 +1522,7 @@
       "destaque": false,
       "categoria": null,
       "na_lista": true,
+      "github": true,
       "ultimo_commit_dados": {
         "data": "2026-10-13T08:00:12Z",
         "mensagem": "Atualiza dados da rodada 21",
@@ -1544,6 +1560,119 @@
       "alertas": []
     },
     {
+      "slug": "quebra_cabecas",
+      "nome": "Quebra-cabeças Grow",
+      "repo": "QuebraCabecasGrow",
+      "pages_url": "https://quebracabecas.gfvdata.com/",
+      "destaque": false,
+      "categoria": null,
+      "na_lista": true,
+      "github": true,
+      "ultimo_commit_dados": {
+        "data": "2026-10-13T08:00:12Z",
+        "mensagem": "Atualiza dados da rodada 21",
+        "sha": "a1b2c3d",
+        "url": "https://github.com/gfvdata-web/exemplo/commit/a1b2c3d4e5f60718293a4b5c6d7e8f9012345678"
+      },
+      "site_no_ar": {
+        "ok": true,
+        "status_http": 200
+      },
+      "detalhes": {
+        "coleta": null,
+        "commits_dados": [
+          {
+            "data": "2026-10-13T08:00:12Z",
+            "mensagem": "Atualiza dados da rodada 21",
+            "sha": "a1b2c3d",
+            "url": "https://github.com/gfvdata-web/exemplo/commit/a1b2c3d4e5f60718293a4b5c6d7e8f9012345678"
+          },
+          {
+            "data": "2026-10-12T08:00:05Z",
+            "mensagem": "Atualiza dados da rodada 20",
+            "sha": "ffeeddc",
+            "url": "https://github.com/gfvdata-web/exemplo/commit/ffeeddccbbaa00998877665544332211ffeeddcc"
+          }
+        ],
+        "deploy_pages": {
+          "status": "completed",
+          "conclusao": "success",
+          "criado_em": "2026-10-13T10:05:00Z",
+          "atualizado_em": "2026-10-13T10:06:00Z",
+          "url": "https://github.com/gfvdata-web/exemplo/actions/runs/7"
+        }
+      },
+      "alertas": []
+    },
+    {
+      "slug": "clima_agradavel",
+      "nome": "Dias de clima agradável",
+      "repo": "DiasAgradaveisMunicipio",
+      "pages_url": "https://climaagradavel.gfvdata.com/",
+      "destaque": false,
+      "categoria": null,
+      "na_lista": true,
+      "github": true,
+      "ultimo_commit_dados": {
+        "data": "2026-10-13T08:00:12Z",
+        "mensagem": "Atualiza dados da rodada 21",
+        "sha": "a1b2c3d",
+        "url": "https://github.com/gfvdata-web/exemplo/commit/a1b2c3d4e5f60718293a4b5c6d7e8f9012345678"
+      },
+      "site_no_ar": {
+        "ok": true,
+        "status_http": 200
+      },
+      "detalhes": {
+        "coleta": null,
+        "commits_dados": [
+          {
+            "data": "2026-10-13T08:00:12Z",
+            "mensagem": "Atualiza dados da rodada 21",
+            "sha": "a1b2c3d",
+            "url": "https://github.com/gfvdata-web/exemplo/commit/a1b2c3d4e5f60718293a4b5c6d7e8f9012345678"
+          },
+          {
+            "data": "2026-10-12T08:00:05Z",
+            "mensagem": "Atualiza dados da rodada 20",
+            "sha": "ffeeddc",
+            "url": "https://github.com/gfvdata-web/exemplo/commit/ffeeddccbbaa00998877665544332211ffeeddcc"
+          }
+        ],
+        "deploy_pages": {
+          "status": "completed",
+          "conclusao": "success",
+          "criado_em": "2026-10-13T10:05:00Z",
+          "atualizado_em": "2026-10-13T10:06:00Z",
+          "url": "https://github.com/gfvdata-web/exemplo/actions/runs/7"
+        }
+      },
+      "alertas": []
+    },
+    {
+      "slug": "notas_fiscais",
+      "nome": "Notas fiscais",
+      "repo": "notas-monitor",
+      "pages_url": "https://notas.gfvdata.com/",
+      "destaque": false,
+      "categoria": null,
+      "na_lista": true,
+      "github": false,
+      "ultimo_commit_dados": {
+        "erro": "repositório fora do GitHub (git só local)"
+      },
+      "site_no_ar": {
+        "ok": true,
+        "status_http": 200
+      },
+      "detalhes": {
+        "coleta": null,
+        "commits_dados": [],
+        "deploy_pages": null
+      },
+      "alertas": []
+    },
+    {
       "slug": "painel_ia",
       "nome": "Painel de IA",
       "repo": "painel-ia",
@@ -1551,6 +1680,7 @@
       "destaque": false,
       "categoria": null,
       "na_lista": false,
+      "github": true,
       "ultimo_commit_dados": {
         "data": "2026-10-13T08:00:12Z",
         "mensagem": "Atualiza dados da rodada 21",
@@ -1595,6 +1725,7 @@
       "destaque": false,
       "categoria": null,
       "na_lista": true,
+      "github": true,
       "ultimo_commit_dados": {
         "data": "2026-10-13T08:00:12Z",
         "mensagem": "Atualiza dados da rodada 21",

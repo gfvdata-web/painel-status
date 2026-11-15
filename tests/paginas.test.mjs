@@ -492,6 +492,12 @@ test("v1: pop-up de detalhes mostra rotina, falha, dados e publicação", async 
   // site sem rotina automática
   p.ctx('abrirDetalhes("eleicoes_2026")');
   assert.match(p.el("dialogo-conteudo").innerHTML, /Sem rotina automática cadastrada/);
+  // site fora do GitHub (github=false): pop-up sem link do repositório
+  const status = copia(exemplo);
+  site(status, "eleicoes_2026").github = false;
+  const q = await abrirV1(status);
+  q.ctx('abrirDetalhes("eleicoes_2026")');
+  assert.doesNotMatch(q.el("dialogo-conteudo").innerHTML, /Repositório →/);
 });
 
 test("v1: pop-up mostra downloads da skill, do CSV, uso por script e desde quando; sem bloco, nada", async () => {

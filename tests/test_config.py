@@ -46,6 +46,9 @@ class CadastroReal(unittest.TestCase):
         for site in config.SITES:
             self.assertRegex(site["repo"], r"^[A-Za-z0-9._-]+$")
             self.assertTrue(site["nome"].strip())
+            if not site["github"]:  # repo fora do GitHub: não há caminho de dados para ler
+                self.assertIsNone(site["caminho_dados"])
+                continue
             self.assertFalse(site["caminho_dados"].startswith("/") or site["caminho_dados"].endswith("/"))
             if site["workflow_arquivo"]:
                 self.assertRegex(site["workflow_arquivo"], r"^[\w.-]+\.ya?ml$")
@@ -105,6 +108,10 @@ class Validacao(unittest.TestCase):
 
     def test_form_rotulo_exige_form_url(self):
         self.recusa("form_rotulo exige form_url", sites=[site_valido(form_rotulo="Enviar")])
+
+    def test_site_fora_do_github_sem_workflow_nem_pipeline(self):
+        self.recusa("github=False", sites=[site_valido(github=False, workflow_arquivo="w.yml")])
+        self.valida(sites=[site_valido(github=False, workflow_arquivo=None)])
 
     def test_form_avulso_malformado(self):
         self.recusa("form avulso malformado", avulsos=[{"nome": "sem url"}])

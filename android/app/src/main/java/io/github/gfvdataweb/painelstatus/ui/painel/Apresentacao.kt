@@ -155,6 +155,9 @@ fun linkSeguro(url: String?): String? =
 /** Repositório do site na conta gfvdata-web (mesmo link do pop-up da página). */
 fun urlDoRepositorio(site: Site): String = "https://github.com/gfvdata-web/${site.repo}"
 
+/** O botão do repositório só aparece quando o repo está no GitHub. */
+fun temRepositorio(site: Site): Boolean = site.github && site.repo.isNotBlank()
+
 // ---------- Aba Status (a lista de docs/js/lista.js) ----------
 
 /** Dias somados no "visitas · 7d" do card. */

@@ -669,7 +669,7 @@ function abrirDetalhes(slug) {
     ${secaoPublicacao(site)}
     <div class="dialogo__links">
       ${linkExterno(site.pages_url, "Abrir site →", "link-site")}
-      ${linkExterno(`https://github.com/gfvdata-web/${site.repo}`, "Repositório →", "link-site")}
+      ${site.github === false ? "" : linkExterno(`https://github.com/gfvdata-web/${site.repo}`, "Repositório →", "link-site")}
       ${linkForm(site, "link-site")}
     </div>
   `;

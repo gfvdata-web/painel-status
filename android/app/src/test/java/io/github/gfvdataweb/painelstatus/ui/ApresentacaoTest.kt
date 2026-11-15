@@ -35,6 +35,7 @@ import io.github.gfvdataweb.painelstatus.ui.painel.enderecoCurto
 import io.github.gfvdataweb.painelstatus.ui.painel.resumoDosSites
 import io.github.gfvdataweb.painelstatus.ui.painel.situacaoDoSite
 import io.github.gfvdataweb.painelstatus.ui.painel.sitesNaOrdemDaLista
+import io.github.gfvdataweb.painelstatus.ui.painel.temRepositorio
 import io.github.gfvdataweb.painelstatus.ui.painel.urlDoRepositorio
 import io.github.gfvdataweb.painelstatus.ui.painel.visitasRecentes
 import io.github.gfvdataweb.painelstatus.ui.painel.fluxoEmAndamento
@@ -234,6 +235,13 @@ class ApresentacaoTest {
     @Test
     fun repositorioFicaNaContaDoPainel() {
         assertEquals("https://github.com/gfvdata-web/BolaoF1", urlDoRepositorio(bolao.copy(repo = "BolaoF1")))
+    }
+
+    @Test
+    fun siteForaDoGithubNaoTemBotaoDoRepositorio() {
+        assertTrue(temRepositorio(bolao.copy(repo = "BolaoF1")))
+        assertFalse(temRepositorio(bolao.copy(repo = "notas-monitor", github = false)))
+        assertFalse(temRepositorio(bolao.copy(repo = "")))
     }
 
     @Test

@@ -64,6 +64,18 @@ class RodadaCompleta(PublicacaoBase):
             self.assertNotIn(campo, eleicoes)
         self.assertIsNone(eleicoes["detalhes"]["coleta"])
 
+    def test_site_fora_do_github_nao_consulta_a_api_do_github(self):
+        status = self.montar()
+        notas = self.site(status, "notas_fiscais")
+        self.assertIs(notas["github"], False)
+        self.assertEqual(notas["ultimo_commit_dados"], {"erro": publicacao.SEM_GITHUB})
+        self.assertTrue(notas["site_no_ar"]["ok"])
+        self.assertIsNone(notas["detalhes"]["deploy_pages"])
+        self.assertEqual(notas["detalhes"]["commits_dados"], [])
+        self.assertEqual(notas["alertas"], [])
+        self.assertFalse([u for u in self.rede.chamadas if "api.github.com" in u and "/notas-monitor" in u])
+        self.assertIs(self.site(status, "quebra_cabecas")["github"], True)
+
     def test_periodo_publicado_vem_do_json_do_site(self):
         status = self.montar()
         self.assertEqual(self.site(status, "meios_pagamento_mensal")["periodo_publicado"], {"inicio": "2020-01", "fim": "2026-08"})

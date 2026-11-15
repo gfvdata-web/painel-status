@@ -39,6 +39,7 @@ import io.github.gfvdataweb.painelstatus.ui.comum.textoDosVisitantes
 import io.github.gfvdataweb.painelstatus.ui.painel.Tom
 import io.github.gfvdataweb.painelstatus.ui.painel.linkSeguro
 import io.github.gfvdataweb.painelstatus.ui.painel.resultadoDe
+import io.github.gfvdataweb.painelstatus.ui.painel.temRepositorio
 import io.github.gfvdataweb.painelstatus.ui.painel.tomDoResultado
 import io.github.gfvdataweb.painelstatus.ui.painel.urlDoRepositorio
 import java.time.Instant
@@ -256,7 +257,7 @@ private fun Links(site: Site) {
                 Text(stringResource(R.string.abrir_site))
             }
         }
-        if (site.repo.isNotBlank()) {
+        if (temRepositorio(site)) {
             OutlinedButton(onClick = { abrir(urlDoRepositorio(site)) }, modifier = Modifier.fillMaxWidth()) {
                 Text(stringResource(R.string.abrir_repositorio))
             }

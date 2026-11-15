@@ -42,6 +42,9 @@ Campos de cada site (todos presentes em toda entrada, para servir de molde):
   contagem_url     JSON público de downloads do site (<site>/contagem.json, sem token),
                    ou None; com valor, o status.json ganha o bloco "downloads"
                    (coleta_downloads.py). Hoje só os 3 sites de dados abertos
+  github           False = o repo não está no GitHub (git só local): nada é lido da
+                   API do GitHub (commits, Actions, deploys); exige workflow_arquivo
+                   None e pipelines desligados. Hoje só o Notas fiscais
 
 Rastreio de acesso: um único site GoatCounter (`gfvdata`, ver coleta_goatcounter.py)
 recebe o snippet padrão em todos os sites monitorados — a separação entre eles é
@@ -78,6 +81,7 @@ SITES = [
         "categoria": None,
         "na_lista": True,
         "contagem_url": None,
+        "github": True,
     },
     {
         "slug": "meios_pagamento_mensal",
@@ -98,6 +102,7 @@ SITES = [
         "categoria": None,
         "na_lista": True,
         "contagem_url": "https://meiospagamento.gfvdata.com/contagem.json",
+        "github": True,
     },
     {
         "slug": "arrecadacao_federal",
@@ -116,6 +121,7 @@ SITES = [
         "categoria": None,
         "na_lista": True,
         "contagem_url": "https://arrecadacaofederal.gfvdata.com/contagem.json",
+        "github": True,
     },
     {
         "slug": "credito_modalidade",
@@ -134,6 +140,7 @@ SITES = [
         "categoria": None,
         "na_lista": True,
         "contagem_url": "https://creditomodalidade.gfvdata.com/contagem.json",
+        "github": True,
     },
     {
         "slug": "simulador_investimentos",
@@ -152,6 +159,7 @@ SITES = [
         "categoria": None,
         "na_lista": True,
         "contagem_url": None,
+        "github": True,
     },
     {
         "slug": "chess_tracking",
@@ -170,6 +178,7 @@ SITES = [
         "categoria": None,
         "na_lista": True,
         "contagem_url": None,
+        "github": True,
     },
     {
         "slug": "plants_care",
@@ -193,6 +202,7 @@ SITES = [
         "categoria": None,
         "na_lista": True,
         "contagem_url": None,
+        "github": True,
     },
     {
         "slug": "eleicoes_2026",
@@ -214,6 +224,7 @@ SITES = [
         "categoria": None,
         "na_lista": True,
         "contagem_url": None,
+        "github": True,
     },
     {
         "slug": "painel_esportivo",
@@ -234,6 +245,7 @@ SITES = [
         "categoria": None,
         "na_lista": True,
         "contagem_url": None,
+        "github": True,
     },
     {
         "slug": "dashboard_municipios",
@@ -252,6 +264,7 @@ SITES = [
         "categoria": None,
         "na_lista": True,
         "contagem_url": None,
+        "github": True,
     },
     {
         "slug": "var_vendo",
@@ -271,6 +284,7 @@ SITES = [
         "categoria": None,
         "na_lista": True,
         "contagem_url": None,
+        "github": True,
     },
     {
         "slug": "evolucao_fotografia",
@@ -292,6 +306,7 @@ SITES = [
         "categoria": None,
         "na_lista": True,
         "contagem_url": None,
+        "github": True,
     },
     # Daqui para baixo, Workers da Cloudflare cujos dados vivem no D1/KV (invisíveis à API do
     # GitHub): caminho_dados é a pasta de assets do wrangler.jsonc, então "Dados atualizados" =
@@ -315,6 +330,7 @@ SITES = [
         "categoria": None,
         "na_lista": True,
         "contagem_url": None,
+        "github": True,
     },
     {
         "slug": "bilbao",
@@ -333,6 +349,7 @@ SITES = [
         "categoria": None,
         "na_lista": True,
         "contagem_url": None,
+        "github": True,
     },
     {
         "slug": "radar_precos",
@@ -351,6 +368,7 @@ SITES = [
         "categoria": None,
         "na_lista": True,
         "contagem_url": None,
+        "github": True,
     },
     {
         "slug": "melhor_preco",
@@ -369,6 +387,69 @@ SITES = [
         "categoria": None,
         "na_lista": True,
         "contagem_url": None,
+        "github": True,
+    },
+    {
+        "slug": "quebra_cabecas",
+        "nome": "Quebra-cabeças Grow",
+        "repo": "QuebraCabecasGrow",
+        "pages_url": "https://quebracabecas.gfvdata.com/",
+        "caminho_dados": "docs",
+        "branch_dados": None,
+        "workflow_arquivo": None,
+        "json_meta_url": None,
+        "form_url": None,
+        "form_rotulo": None,
+        "destaque": False,
+        "pipeline_bolao": False,
+        "pipeline_forms": None,
+        "categoria": None,
+        "na_lista": True,
+        "contagem_url": None,
+        "github": True,
+    },
+    {
+        "slug": "clima_agradavel",
+        "nome": "Dias de clima agradável",
+        "repo": "DiasAgradaveisMunicipio",
+        "pages_url": "https://climaagradavel.gfvdata.com/",
+        # O atualizar-dados.yml commita docs/dados/ uma vez por mês: "Dados atualizados"
+        # mostra essa rodada. Sem workflow cadastrado de propósito: com coleta mensal, o
+        # alerta "sem coleta há N dias" (DIAS_SEM_SUCESSO_ALERTA) ficaria aceso o mês todo.
+        "caminho_dados": "docs/dados",
+        "branch_dados": None,
+        "workflow_arquivo": None,
+        "json_meta_url": None,
+        "form_url": None,
+        "form_rotulo": None,
+        "destaque": False,
+        "pipeline_bolao": False,
+        "pipeline_forms": None,
+        "categoria": None,
+        "na_lista": True,
+        "contagem_url": None,
+        "github": True,
+    },
+    {
+        "slug": "notas_fiscais",
+        "nome": "Notas fiscais",
+        # Git só local, sem repo no GitHub (github=False): o card mostra só "site no ar".
+        # O site exige login; a raiz redireciona para /entrar (200), que conta como no ar.
+        "repo": "notas-monitor",
+        "pages_url": "https://notas.gfvdata.com/",
+        "caminho_dados": None,
+        "branch_dados": None,
+        "workflow_arquivo": None,
+        "json_meta_url": None,
+        "form_url": None,
+        "form_rotulo": None,
+        "destaque": False,
+        "pipeline_bolao": False,
+        "pipeline_forms": None,
+        "categoria": None,
+        "na_lista": True,
+        "contagem_url": None,
+        "github": False,
     },
     {
         "slug": "painel_ia",
@@ -389,6 +470,7 @@ SITES = [
         "categoria": None,
         "na_lista": False,
         "contagem_url": None,
+        "github": True,
     },
     {
         "slug": "site_raiz",
@@ -407,6 +489,7 @@ SITES = [
         "categoria": None,
         "na_lista": True,
         "contagem_url": None,
+        "github": True,
     },
 ]
 
@@ -419,7 +502,7 @@ FORMS_AVULSOS = [
 CAMPOS_SITE = {
     "slug", "nome", "repo", "pages_url", "caminho_dados", "branch_dados", "workflow_arquivo",
     "json_meta_url", "form_url", "form_rotulo", "destaque", "pipeline_bolao", "pipeline_forms",
-    "categoria", "contagem_url", "na_lista",
+    "categoria", "contagem_url", "na_lista", "github",
 }
 
 # Valores aceitos em `categoria` (None = sem categoria, cor neutra).
@@ -445,6 +528,10 @@ def validar():
             problemas.append(f"{rotulo}: pipeline_forms e pipeline_bolao não se combinam")
         if site.get("form_rotulo") and not site.get("form_url"):
             problemas.append(f"{rotulo}: form_rotulo exige form_url")
+        if site.get("github") is False and (
+            site.get("workflow_arquivo") or site.get("pipeline_bolao") or site.get("pipeline_forms")
+        ):
+            problemas.append(f"{rotulo}: github=False não combina com workflow nem pipelines")
         if site.get("categoria") is not None and site.get("categoria") not in CATEGORIAS:
             problemas.append(f"{rotulo}: categoria desconhecida {site.get('categoria')!r}")
     slugs = [site.get("slug") for site in SITES]
