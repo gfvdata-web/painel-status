@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-11-15T21:00:56.573487+00:00",
+    "gerado_em": "2026-11-15T21:40:34.127200+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -12,6 +12,7 @@
       "destaque": true,
       "categoria": null,
       "na_lista": true,
+      "github": true,
       "form_url": "https://forms.gle/7yZAx1WThPf51bv67",
       "form_rotulo": "Enviar palpites (Google Forms)",
       "ultimo_commit_dados": {
@@ -211,6 +212,7 @@
       "destaque": false,
       "categoria": null,
       "na_lista": true,
+      "github": true,
       "ultimo_commit_dados": {
         "data": "2026-10-25T13:44:17Z",
         "mensagem": "dados: atualização mensal (série até 2026-09)",
@@ -536,6 +538,7 @@
       "destaque": false,
       "categoria": null,
       "na_lista": true,
+      "github": true,
       "ultimo_commit_dados": {
         "data": "2026-10-14T12:07:41Z",
         "mensagem": "Eventos: fonte da recessao 2014-2016 aponta para o Codace/IBRE",
@@ -861,6 +864,7 @@
       "destaque": false,
       "categoria": null,
       "na_lista": true,
+      "github": true,
       "ultimo_commit_dados": {
         "data": "2026-11-05T17:29:06Z",
         "mensagem": "dados: atualização mensal (série até 2026-09)",
@@ -1180,6 +1184,7 @@
       "destaque": false,
       "categoria": null,
       "na_lista": true,
+      "github": true,
       "ultimo_commit_dados": {
         "data": "2026-11-14T01:18:11Z",
         "mensagem": "Dados de mercado em 2026-11-14",
@@ -1584,6 +1589,7 @@
       "destaque": false,
       "categoria": null,
       "na_lista": true,
+      "github": true,
       "ultimo_commit_dados": {
         "data": "2026-11-15T16:21:53Z",
         "mensagem": "Atualiza partidas em 2026-11-15T16:21Z",
@@ -2002,22 +2008,23 @@
       "destaque": false,
       "categoria": null,
       "na_lista": true,
+      "github": true,
       "form_url": "https://forms.gle/y3uXaukJXmP9GMED7",
       "form_rotulo": "Enviar fotos",
       "ultimo_commit_dados": {
-        "data": "2026-11-15T16:44:05Z",
-        "mensagem": "dados: leituras do esp32-01 até 2026-11-15T16:33",
-        "sha": "20dfc90",
-        "url": "https://github.com/gfvdata-web/PlantsCare/commit/20dfc904326e9482b0a5d803189571da43a92680"
+        "data": "2026-11-15T21:25:19Z",
+        "mensagem": "dados: leituras do esp32-01 até 2026-11-15T21:18",
+        "sha": "d5f24d4",
+        "url": "https://github.com/gfvdata-web/PlantsCare/commit/d5f24d43a7eb10c62aae565093ae27d1e874021d"
       },
       "ultima_execucao_pipeline": {
-        "id": 43737100790,
+        "id": 43763571469,
         "evento": "schedule",
         "status": "completed",
         "conclusao": "success",
-        "criado_em": "2026-11-15T16:43:47Z",
-        "atualizado_em": "2026-11-15T16:44:38Z",
-        "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/43737100790"
+        "criado_em": "2026-11-15T21:25:05Z",
+        "atualizado_em": "2026-11-15T21:25:50Z",
+        "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/43763571469"
       },
       "site_no_ar": {
         "ok": true,
@@ -2034,6 +2041,16 @@
             }
           ],
           "historico": [
+            {
+              "id": 43763571469,
+              "evento": "schedule",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-11-15T21:25:05Z",
+              "atualizado_em": "2026-11-15T21:25:50Z",
+              "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/43763571469",
+              "duracao_s": 45
+            },
             {
               "id": 43737100790,
               "evento": "schedule",
@@ -2173,26 +2190,16 @@
               "atualizado_em": "2026-11-11T18:15:44Z",
               "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/43075896310",
               "duracao_s": 62
-            },
-            {
-              "id": 43000698646,
-              "evento": "schedule",
-              "status": "completed",
-              "conclusao": "success",
-              "criado_em": "2026-11-11T10:05:48Z",
-              "atualizado_em": "2026-11-11T10:06:40Z",
-              "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/43000698646",
-              "duracao_s": 52
             }
           ],
           "ultimo_sucesso": {
-            "id": 43737100790,
+            "id": 43763571469,
             "evento": "schedule",
             "status": "completed",
             "conclusao": "success",
-            "criado_em": "2026-11-15T16:43:47Z",
-            "atualizado_em": "2026-11-15T16:44:38Z",
-            "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/43737100790"
+            "criado_em": "2026-11-15T21:25:05Z",
+            "atualizado_em": "2026-11-15T21:25:50Z",
+            "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/43763571469"
           },
           "ultima_falha": null,
           "passos_ultima": [
@@ -2244,6 +2251,12 @@
         },
         "commits_dados": [
           {
+            "data": "2026-11-15T21:25:19Z",
+            "mensagem": "dados: leituras do esp32-01 até 2026-11-15T21:18",
+            "sha": "d5f24d4",
+            "url": "https://github.com/gfvdata-web/PlantsCare/commit/d5f24d43a7eb10c62aae565093ae27d1e874021d"
+          },
+          {
             "data": "2026-11-15T16:44:05Z",
             "mensagem": "dados: leituras do esp32-01 até 2026-11-15T16:33",
             "sha": "20dfc90",
@@ -2266,12 +2279,6 @@
             "mensagem": "dados: leituras do esp32-01 até 2026-11-14T20:48",
             "sha": "6d3ce1b",
             "url": "https://github.com/gfvdata-web/PlantsCare/commit/6d3ce1b2f959593bcddbbf14c3bd08864bc51bc4"
-          },
-          {
-            "data": "2026-11-14T16:15:34Z",
-            "mensagem": "dados: leituras do esp32-01 até 2026-11-14T16:03",
-            "sha": "08f8c88",
-            "url": "https://github.com/gfvdata-web/PlantsCare/commit/08f8c882a93df8f116970b496a983c3e5fbca9e2"
           }
         ],
         "deploy_pages": null
@@ -2458,6 +2465,7 @@
       "destaque": false,
       "categoria": null,
       "na_lista": true,
+      "github": true,
       "ultimo_commit_dados": {
         "data": "2026-10-28T22:24:28Z",
         "mensagem": "Urnas zero: histórico das mesmas seções nos 2º turnos desde 2002",
@@ -2649,6 +2657,7 @@
       "destaque": false,
       "categoria": null,
       "na_lista": true,
+      "github": true,
       "ultimo_commit_dados": {
         "data": "2026-09-28T20:07:49Z",
         "mensagem": "Publicação do painel (dados cifrados)",
@@ -2816,6 +2825,7 @@
       "destaque": false,
       "categoria": null,
       "na_lista": true,
+      "github": true,
       "ultimo_commit_dados": {
         "data": "2026-09-15T00:56:09Z",
         "mensagem": "Painel de indicadores municipais brasileiros",
@@ -2854,6 +2864,7 @@
       "destaque": false,
       "categoria": null,
       "na_lista": true,
+      "github": true,
       "ultimo_commit_dados": {
         "data": "2026-10-12T16:18:29Z",
         "mensagem": "Primeira versão: arbitragem na Série A e na Copa do Brasil 2026",
@@ -3015,6 +3026,7 @@
       "destaque": false,
       "categoria": null,
       "na_lista": true,
+      "github": true,
       "ultimo_commit_dados": {
         "data": "2026-10-19T17:47:28Z",
         "mensagem": "feat: v2.1 — Painel de padrões",
@@ -3200,6 +3212,7 @@
       "destaque": false,
       "categoria": null,
       "na_lista": true,
+      "github": true,
       "ultimo_commit_dados": {
         "data": "2026-10-23T02:31:59Z",
         "mensagem": "Histórico real dos testes (Academy + sample questions) no banco e semeado no D1",
@@ -3256,6 +3269,7 @@
       "destaque": false,
       "categoria": null,
       "na_lista": true,
+      "github": true,
       "ultimo_commit_dados": {
         "data": "2026-11-15T00:49:16Z",
         "mensagem": "Filtro de período no histórico: 24 h, 7 dias, 30 dias, 1 ano e tudo",
@@ -3441,6 +3455,7 @@
       "destaque": false,
       "categoria": null,
       "na_lista": true,
+      "github": true,
       "ultimo_commit_dados": {
         "data": "2026-11-14T18:52:27Z",
         "mensagem": "Radar de Preços V2: cola o link e acompanha",
@@ -3477,7 +3492,7 @@
       },
       "alertas": [],
       "acesso": {
-        "visitantes_unicos": 1,
+        "visitantes_unicos": 2,
         "serie_diaria": [
           {
             "data": "2026-10-16",
@@ -3601,7 +3616,7 @@
           },
           {
             "data": "2026-11-15",
-            "visitantes": 0
+            "visitantes": 1
           }
         ]
       }
@@ -3614,6 +3629,7 @@
       "destaque": false,
       "categoria": null,
       "na_lista": true,
+      "github": true,
       "ultimo_commit_dados": {
         "data": "2026-10-14T19:55:00Z",
         "mensagem": "Foto: QR procurado no rodapé do cupom e IA repetida em falha passageira",
@@ -3645,6 +3661,353 @@
       "alertas": []
     },
     {
+      "slug": "quebra_cabecas",
+      "nome": "Quebra-cabeças Grow",
+      "repo": "QuebraCabecasGrow",
+      "pages_url": "https://quebracabecas.gfvdata.com/",
+      "destaque": false,
+      "categoria": null,
+      "na_lista": true,
+      "github": true,
+      "ultimo_commit_dados": {
+        "data": "2026-11-14T01:04:56Z",
+        "mensagem": "Monitor de quebra-cabeças Grow: site, Worker, D1 e Cron",
+        "sha": "233f09a",
+        "url": "https://github.com/gfvdata-web/QuebraCabecasGrow/commit/233f09a6e2daeab12a81473214fd15ceb24ff1fa"
+      },
+      "site_no_ar": {
+        "ok": true,
+        "status_http": 200
+      },
+      "detalhes": {
+        "coleta": null,
+        "commits_dados": [
+          {
+            "data": "2026-11-14T01:04:56Z",
+            "mensagem": "Monitor de quebra-cabeças Grow: site, Worker, D1 e Cron",
+            "sha": "233f09a",
+            "url": "https://github.com/gfvdata-web/QuebraCabecasGrow/commit/233f09a6e2daeab12a81473214fd15ceb24ff1fa"
+          }
+        ],
+        "deploy_pages": null
+      },
+      "alertas": [],
+      "acesso": {
+        "visitantes_unicos": 5,
+        "serie_diaria": [
+          {
+            "data": "2026-10-16",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-17",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-18",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-19",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-20",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-21",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-22",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-23",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-24",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-25",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-26",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-27",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-28",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-29",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-30",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-31",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-01",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-02",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-03",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-04",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-05",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-06",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-07",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-08",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-09",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-10",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-11",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-12",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-13",
+            "visitantes": 2
+          },
+          {
+            "data": "2026-11-14",
+            "visitantes": 3
+          },
+          {
+            "data": "2026-11-15",
+            "visitantes": 0
+          }
+        ]
+      }
+    },
+    {
+      "slug": "clima_agradavel",
+      "nome": "Dias de clima agradável",
+      "repo": "DiasAgradaveisMunicipio",
+      "pages_url": "https://climaagradavel.gfvdata.com/",
+      "destaque": false,
+      "categoria": null,
+      "na_lista": true,
+      "github": true,
+      "ultimo_commit_dados": {
+        "data": "2026-11-15T00:49:22Z",
+        "mensagem": "Dias de clima agradável por município com dados do INMET",
+        "sha": "12920e5",
+        "url": "https://github.com/gfvdata-web/DiasAgradaveisMunicipio/commit/12920e5de1eff4c5257c13cace100625ceae8fa2"
+      },
+      "site_no_ar": {
+        "ok": true,
+        "status_http": 200
+      },
+      "detalhes": {
+        "coleta": null,
+        "commits_dados": [
+          {
+            "data": "2026-11-15T00:49:22Z",
+            "mensagem": "Dias de clima agradável por município com dados do INMET",
+            "sha": "12920e5",
+            "url": "https://github.com/gfvdata-web/DiasAgradaveisMunicipio/commit/12920e5de1eff4c5257c13cace100625ceae8fa2"
+          }
+        ],
+        "deploy_pages": null
+      },
+      "alertas": [],
+      "acesso": {
+        "visitantes_unicos": 5,
+        "serie_diaria": [
+          {
+            "data": "2026-10-16",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-17",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-18",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-19",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-20",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-21",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-22",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-23",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-24",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-25",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-26",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-27",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-28",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-29",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-30",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-31",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-01",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-02",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-03",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-04",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-05",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-06",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-07",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-08",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-09",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-10",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-11",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-12",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-13",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-14",
+            "visitantes": 3
+          },
+          {
+            "data": "2026-11-15",
+            "visitantes": 2
+          }
+        ]
+      }
+    },
+    {
+      "slug": "notas_fiscais",
+      "nome": "Notas fiscais",
+      "repo": "notas-monitor",
+      "pages_url": "https://notas.gfvdata.com/",
+      "destaque": false,
+      "categoria": null,
+      "na_lista": true,
+      "github": false,
+      "ultimo_commit_dados": {
+        "erro": "repositório fora do GitHub (git só local)"
+      },
+      "site_no_ar": {
+        "ok": true,
+        "status_http": 200
+      },
+      "detalhes": {
+        "coleta": null,
+        "commits_dados": [],
+        "deploy_pages": null
+      },
+      "alertas": []
+    },
+    {
       "slug": "painel_ia",
       "nome": "Painel de IA",
       "repo": "painel-ia",
@@ -3652,6 +4015,7 @@
       "destaque": false,
       "categoria": null,
       "na_lista": false,
+      "github": true,
       "ultimo_commit_dados": {
         "data": "2026-11-14T18:21:15Z",
         "mensagem": "Agora: gráfico de custo por milhão de tokens (só dias com 1 mi+ tokens)",
@@ -3837,6 +4201,7 @@
       "destaque": false,
       "categoria": null,
       "na_lista": true,
+      "github": true,
       "ultimo_commit_dados": {
         "data": "2026-10-16T01:27:45Z",
         "mensagem": "Página institucional da raiz gfvdata.com",
