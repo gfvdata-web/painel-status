@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-11-17T15:01:04.179498+00:00",
+    "gerado_em": "2026-11-17T18:01:01.235704+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -3496,7 +3496,136 @@
         ],
         "deploy_pages": null
       },
-      "alertas": []
+      "alertas": [],
+      "acesso": {
+        "visitantes_unicos": 5,
+        "serie_diaria": [
+          {
+            "data": "2026-10-18",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-19",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-20",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-21",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-22",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-23",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-24",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-25",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-26",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-27",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-28",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-29",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-30",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-31",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-01",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-02",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-03",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-04",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-05",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-06",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-07",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-08",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-09",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-10",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-11",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-12",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-13",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-14",
+            "visitantes": 1
+          },
+          {
+            "data": "2026-11-15",
+            "visitantes": 3
+          },
+          {
+            "data": "2026-11-16",
+            "visitantes": 1
+          },
+          {
+            "data": "2026-11-17",
+            "visitantes": 0
+          }
+        ]
+      }
     },
     {
       "slug": "melhor_preco",
@@ -3547,10 +3676,10 @@
       "na_lista": true,
       "github": true,
       "ultimo_commit_dados": {
-        "data": "2026-11-14T01:04:56Z",
-        "mensagem": "Monitor de quebra-cabeças Grow: site, Worker, D1 e Cron",
-        "sha": "233f09a",
-        "url": "https://github.com/gfvdata-web/QuebraCabecasGrow/commit/233f09a6e2daeab12a81473214fd15ceb24ff1fa"
+        "data": "2026-11-17T17:33:41Z",
+        "mensagem": "Catálogo Grow: catálogo pessoal com selo \"bom momento\" e rotina manual preparada",
+        "sha": "d45dd4d",
+        "url": "https://github.com/gfvdata-web/QuebraCabecasGrow/commit/d45dd4d16375d3af426ab6faba6663e7baaca5a9"
       },
       "site_no_ar": {
         "ok": true,
@@ -3559,6 +3688,12 @@
       "detalhes": {
         "coleta": null,
         "commits_dados": [
+          {
+            "data": "2026-11-17T17:33:41Z",
+            "mensagem": "Catálogo Grow: catálogo pessoal com selo \"bom momento\" e rotina manual preparada",
+            "sha": "d45dd4d",
+            "url": "https://github.com/gfvdata-web/QuebraCabecasGrow/commit/d45dd4d16375d3af426ab6faba6663e7baaca5a9"
+          },
           {
             "data": "2026-11-14T01:04:56Z",
             "mensagem": "Monitor de quebra-cabeças Grow: site, Worker, D1 e Cron",
@@ -3570,7 +3705,7 @@
       },
       "alertas": [],
       "acesso": {
-        "visitantes_unicos": 7,
+        "visitantes_unicos": 8,
         "serie_diaria": [
           {
             "data": "2026-10-18",
@@ -3694,7 +3829,7 @@
           },
           {
             "data": "2026-11-17",
-            "visitantes": 0
+            "visitantes": 1
           }
         ]
       }
@@ -3939,136 +4074,7 @@
         ],
         "deploy_pages": null
       },
-      "alertas": [],
-      "acesso": {
-        "visitantes_unicos": 19,
-        "serie_diaria": [
-          {
-            "data": "2026-10-18",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-19",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-20",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-21",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-22",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-23",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-24",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-25",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-26",
-            "visitantes": 3
-          },
-          {
-            "data": "2026-10-27",
-            "visitantes": 1
-          },
-          {
-            "data": "2026-10-28",
-            "visitantes": 1
-          },
-          {
-            "data": "2026-10-29",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-30",
-            "visitantes": 1
-          },
-          {
-            "data": "2026-10-31",
-            "visitantes": 1
-          },
-          {
-            "data": "2026-11-01",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-11-02",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-11-03",
-            "visitantes": 1
-          },
-          {
-            "data": "2026-11-04",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-11-05",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-11-06",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-11-07",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-11-08",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-11-09",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-11-10",
-            "visitantes": 1
-          },
-          {
-            "data": "2026-11-11",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-11-12",
-            "visitantes": 1
-          },
-          {
-            "data": "2026-11-13",
-            "visitantes": 3
-          },
-          {
-            "data": "2026-11-14",
-            "visitantes": 1
-          },
-          {
-            "data": "2026-11-15",
-            "visitantes": 2
-          },
-          {
-            "data": "2026-11-16",
-            "visitantes": 3
-          },
-          {
-            "data": "2026-11-17",
-            "visitantes": 0
-          }
-        ]
-      }
+      "alertas": []
     },
     {
       "slug": "site_raiz",
