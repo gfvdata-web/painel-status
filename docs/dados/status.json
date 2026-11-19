@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-11-19T09:01:03.230888+00:00",
+    "gerado_em": "2026-11-19T11:02:50.008439+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -2012,19 +2012,19 @@
       "form_url": "https://forms.gle/y3uXaukJXmP9GMED7",
       "form_rotulo": "Enviar fotos",
       "ultimo_commit_dados": {
-        "data": "2026-11-19T01:35:14Z",
-        "mensagem": "dados: leituras do esp32-01 até 2026-11-19T01:33",
-        "sha": "4d309cc",
-        "url": "https://github.com/gfvdata-web/PlantsCare/commit/4d309cc045e3c62edc9f74d0169f12d0de67b78f"
+        "data": "2026-11-19T09:41:37Z",
+        "mensagem": "dados: leituras do esp32-01 até 2026-11-19T09:33",
+        "sha": "805648f",
+        "url": "https://github.com/gfvdata-web/PlantsCare/commit/805648f511427c145d5eea60d3df1411b9850e35"
       },
       "ultima_execucao_pipeline": {
-        "id": 44437981555,
+        "id": 44498712429,
         "evento": "schedule",
         "status": "completed",
         "conclusao": "success",
-        "criado_em": "2026-11-19T01:34:57Z",
-        "atualizado_em": "2026-11-19T01:35:49Z",
-        "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/44437981555"
+        "criado_em": "2026-11-19T09:41:20Z",
+        "atualizado_em": "2026-11-19T09:42:07Z",
+        "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/44498712429"
       },
       "site_no_ar": {
         "ok": true,
@@ -2041,6 +2041,16 @@
             }
           ],
           "historico": [
+            {
+              "id": 44498712429,
+              "evento": "schedule",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-11-19T09:41:20Z",
+              "atualizado_em": "2026-11-19T09:42:07Z",
+              "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/44498712429",
+              "duracao_s": 47
+            },
             {
               "id": 44437981555,
               "evento": "schedule",
@@ -2180,26 +2190,16 @@
               "atualizado_em": "2026-11-15T01:27:17Z",
               "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/43663106543",
               "duracao_s": 45
-            },
-            {
-              "id": 43640553699,
-              "evento": "schedule",
-              "status": "completed",
-              "conclusao": "success",
-              "criado_em": "2026-11-14T21:01:21Z",
-              "atualizado_em": "2026-11-14T21:02:11Z",
-              "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/43640553699",
-              "duracao_s": 50
             }
           ],
           "ultimo_sucesso": {
-            "id": 44437981555,
+            "id": 44498712429,
             "evento": "schedule",
             "status": "completed",
             "conclusao": "success",
-            "criado_em": "2026-11-19T01:34:57Z",
-            "atualizado_em": "2026-11-19T01:35:49Z",
-            "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/44437981555"
+            "criado_em": "2026-11-19T09:41:20Z",
+            "atualizado_em": "2026-11-19T09:42:07Z",
+            "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/44498712429"
           },
           "ultima_falha": null,
           "passos_ultima": [
@@ -2251,6 +2251,12 @@
         },
         "commits_dados": [
           {
+            "data": "2026-11-19T09:41:37Z",
+            "mensagem": "dados: leituras do esp32-01 até 2026-11-19T09:33",
+            "sha": "805648f",
+            "url": "https://github.com/gfvdata-web/PlantsCare/commit/805648f511427c145d5eea60d3df1411b9850e35"
+          },
+          {
             "data": "2026-11-19T01:35:14Z",
             "mensagem": "dados: leituras do esp32-01 até 2026-11-19T01:33",
             "sha": "4d309cc",
@@ -2273,12 +2279,6 @@
             "mensagem": "dados: leituras do esp32-01 até 2026-11-17T20:03",
             "sha": "c566825",
             "url": "https://github.com/gfvdata-web/PlantsCare/commit/c566825597f45afa1da0d8400be685fff9fc4561"
-          },
-          {
-            "data": "2026-11-17T11:23:03Z",
-            "mensagem": "dados: leituras do esp32-01 até 2026-11-17T11:18",
-            "sha": "6371d0a",
-            "url": "https://github.com/gfvdata-web/PlantsCare/commit/6371d0a02e9fe3f84a7a09d7272ca0393678a8ab"
           }
         ],
         "deploy_pages": null
@@ -3703,7 +3703,136 @@
         ],
         "deploy_pages": null
       },
-      "alertas": []
+      "alertas": [],
+      "acesso": {
+        "visitantes_unicos": 30,
+        "serie_diaria": [
+          {
+            "data": "2026-10-20",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-21",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-22",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-23",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-24",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-25",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-26",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-27",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-28",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-29",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-30",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-31",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-01",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-02",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-03",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-04",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-05",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-06",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-07",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-08",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-09",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-10",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-11",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-12",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-13",
+            "visitantes": 2
+          },
+          {
+            "data": "2026-11-14",
+            "visitantes": 3
+          },
+          {
+            "data": "2026-11-15",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-16",
+            "visitantes": 2
+          },
+          {
+            "data": "2026-11-17",
+            "visitantes": 1
+          },
+          {
+            "data": "2026-11-18",
+            "visitantes": 22
+          },
+          {
+            "data": "2026-11-19",
+            "visitantes": 0
+          }
+        ]
+      }
     },
     {
       "slug": "clima_agradavel",
