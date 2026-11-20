@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-11-20T12:01:03.751870+00:00",
+    "gerado_em": "2026-11-20T15:01:05.574316+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -2328,7 +2328,7 @@
       },
       "historico_arquivo": "dados/historico/plants_care.json",
       "acesso": {
-        "visitantes_unicos": 8,
+        "visitantes_unicos": 9,
         "serie_diaria": [
           {
             "data": "2026-10-21",
@@ -2452,7 +2452,7 @@
           },
           {
             "data": "2026-11-20",
-            "visitantes": 0
+            "visitantes": 1
           }
         ]
       }
@@ -3073,7 +3073,136 @@
         ],
         "deploy_pages": null
       },
-      "alertas": []
+      "alertas": [],
+      "acesso": {
+        "visitantes_unicos": 15,
+        "serie_diaria": [
+          {
+            "data": "2026-10-21",
+            "visitantes": 1
+          },
+          {
+            "data": "2026-10-22",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-23",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-24",
+            "visitantes": 2
+          },
+          {
+            "data": "2026-10-25",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-26",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-27",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-28",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-29",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-10-30",
+            "visitantes": 1
+          },
+          {
+            "data": "2026-10-31",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-01",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-02",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-03",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-04",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-05",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-06",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-07",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-08",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-09",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-10",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-11",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-12",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-13",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-14",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-15",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-16",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-17",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-18",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-19",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-20",
+            "visitantes": 0
+          }
+        ]
+      }
     },
     {
       "slug": "genai",
@@ -3189,7 +3318,7 @@
       },
       "alertas": [],
       "acesso": {
-        "visitantes_unicos": 8,
+        "visitantes_unicos": 9,
         "serie_diaria": [
           {
             "data": "2026-10-21",
@@ -3313,7 +3442,7 @@
           },
           {
             "data": "2026-11-20",
-            "visitantes": 0
+            "visitantes": 1
           }
         ]
       }
@@ -3576,7 +3705,7 @@
       },
       "alertas": [],
       "acesso": {
-        "visitantes_unicos": 41,
+        "visitantes_unicos": 42,
         "serie_diaria": [
           {
             "data": "2026-10-21",
@@ -3700,7 +3829,7 @@
           },
           {
             "data": "2026-11-20",
-            "visitantes": 0
+            "visitantes": 1
           }
         ]
       }
@@ -3947,7 +4076,7 @@
       },
       "alertas": [],
       "acesso": {
-        "visitantes_unicos": 22,
+        "visitantes_unicos": 23,
         "serie_diaria": [
           {
             "data": "2026-10-21",
@@ -4071,7 +4200,7 @@
           },
           {
             "data": "2026-11-20",
-            "visitantes": 0
+            "visitantes": 1
           }
         ]
       }
