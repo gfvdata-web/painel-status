@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-11-21T01:56:50.181783+00:00",
+    "gerado_em": "2026-11-21T03:01:04.243162+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -196,6 +196,10 @@
           {
             "data": "2026-11-20",
             "visitantes": 0
+          },
+          {
+            "data": "2026-11-21",
+            "visitantes": 0
           }
         ]
       }
@@ -388,6 +392,10 @@
           {
             "data": "2026-11-20",
             "visitantes": 0
+          },
+          {
+            "data": "2026-11-21",
+            "visitantes": 0
           }
         ]
       },
@@ -399,10 +407,6 @@
         "por_script": 1,
         "desde": "2026-10-18",
         "serie_diaria": [
-          {
-            "data": "2026-10-22",
-            "downloads": 0
-          },
           {
             "data": "2026-10-23",
             "downloads": 0
@@ -518,6 +522,10 @@
           {
             "data": "2026-11-20",
             "downloads": 2
+          },
+          {
+            "data": "2026-11-21",
+            "downloads": 0
           }
         ]
       }
@@ -710,6 +718,10 @@
           {
             "data": "2026-11-20",
             "visitantes": 0
+          },
+          {
+            "data": "2026-11-21",
+            "visitantes": 0
           }
         ]
       },
@@ -721,10 +733,6 @@
         "por_script": 0,
         "desde": "2026-10-18",
         "serie_diaria": [
-          {
-            "data": "2026-10-22",
-            "downloads": 0
-          },
           {
             "data": "2026-10-23",
             "downloads": 0
@@ -840,6 +848,10 @@
           {
             "data": "2026-11-20",
             "downloads": 1
+          },
+          {
+            "data": "2026-11-21",
+            "downloads": 0
           }
         ]
       }
@@ -1026,6 +1038,10 @@
           {
             "data": "2026-11-20",
             "visitantes": 0
+          },
+          {
+            "data": "2026-11-21",
+            "visitantes": 0
           }
         ]
       },
@@ -1037,10 +1053,6 @@
         "por_script": 0,
         "desde": "2026-10-18",
         "serie_diaria": [
-          {
-            "data": "2026-10-22",
-            "downloads": 0
-          },
           {
             "data": "2026-10-23",
             "downloads": 0
@@ -1156,6 +1168,10 @@
           {
             "data": "2026-11-20",
             "downloads": 0
+          },
+          {
+            "data": "2026-11-21",
+            "downloads": 0
           }
         ]
       }
@@ -1170,18 +1186,18 @@
       "na_lista": true,
       "github": true,
       "ultimo_commit_dados": {
-        "data": "2026-11-20T02:08:22Z",
-        "mensagem": "Dados de mercado em 2026-11-20",
-        "sha": "779e15f",
-        "url": "https://github.com/gfvdata-web/simulador-investimentos/commit/779e15f95c2bb96d8490d0c29d46d09ae9bf009a"
+        "data": "2026-11-21T02:04:28Z",
+        "mensagem": "Dados de mercado em 2026-11-21",
+        "sha": "a014f02",
+        "url": "https://github.com/gfvdata-web/simulador-investimentos/commit/a014f02cc9c2e3c0be0fc4b95ff8983744542197"
       },
       "ultima_execucao_pipeline": {
         "id": 44852568743,
         "evento": "schedule",
-        "status": "in_progress",
-        "conclusao": null,
+        "status": "completed",
+        "conclusao": "success",
         "criado_em": "2026-11-21T01:51:03Z",
-        "atualizado_em": "2026-11-21T01:51:07Z",
+        "atualizado_em": "2026-11-21T02:04:33Z",
         "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/44852568743"
       },
       "site_no_ar": {
@@ -1202,12 +1218,12 @@
             {
               "id": 44852568743,
               "evento": "schedule",
-              "status": "in_progress",
-              "conclusao": null,
+              "status": "completed",
+              "conclusao": "success",
               "criado_em": "2026-11-21T01:51:03Z",
-              "atualizado_em": "2026-11-21T01:51:07Z",
+              "atualizado_em": "2026-11-21T02:04:33Z",
               "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/44852568743",
-              "duracao_s": null
+              "duracao_s": 810
             },
             {
               "id": 44657129422,
@@ -1351,13 +1367,13 @@
             }
           ],
           "ultimo_sucesso": {
-            "id": 44657129422,
+            "id": 44852568743,
             "evento": "schedule",
             "status": "completed",
             "conclusao": "success",
-            "criado_em": "2026-11-20T01:55:45Z",
-            "atualizado_em": "2026-11-20T02:08:26Z",
-            "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/44657129422"
+            "criado_em": "2026-11-21T01:51:03Z",
+            "atualizado_em": "2026-11-21T02:04:33Z",
+            "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/44852568743"
           },
           "ultima_falha": null,
           "passos_ultima": [
@@ -1375,27 +1391,37 @@
             },
             {
               "nome": "Coletar",
-              "conclusao": "in_progress"
+              "conclusao": "success"
             },
             {
               "nome": "Validar o que foi coletado",
-              "conclusao": "pending"
+              "conclusao": "success"
             },
             {
               "nome": "Commitar se algo mudou",
-              "conclusao": "pending"
+              "conclusao": "success"
             },
             {
               "nome": "Post Run actions/setup-python@v7",
-              "conclusao": "pending"
+              "conclusao": "success"
             },
             {
               "nome": "Post Run actions/checkout@v7",
-              "conclusao": "pending"
+              "conclusao": "success"
+            },
+            {
+              "nome": "Complete job",
+              "conclusao": "success"
             }
           ]
         },
         "commits_dados": [
+          {
+            "data": "2026-11-21T02:04:28Z",
+            "mensagem": "Dados de mercado em 2026-11-21",
+            "sha": "a014f02",
+            "url": "https://github.com/gfvdata-web/simulador-investimentos/commit/a014f02cc9c2e3c0be0fc4b95ff8983744542197"
+          },
           {
             "data": "2026-11-20T02:08:22Z",
             "mensagem": "Dados de mercado em 2026-11-20",
@@ -1419,12 +1445,6 @@
             "mensagem": "Dados de mercado em 2026-11-17",
             "sha": "37881e3",
             "url": "https://github.com/gfvdata-web/simulador-investimentos/commit/37881e38d05709e7af5d46f8da52069ce6f76f9d"
-          },
-          {
-            "data": "2026-11-14T01:18:11Z",
-            "mensagem": "Dados de mercado em 2026-11-14",
-            "sha": "ecced63",
-            "url": "https://github.com/gfvdata-web/simulador-investimentos/commit/ecced635170dc095dffe14695af2da4fe0a02ac5"
           }
         ],
         "deploy_pages": null
@@ -1552,6 +1572,10 @@
           },
           {
             "data": "2026-11-20",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-21",
             "visitantes": 0
           }
         ]
@@ -1967,6 +1991,10 @@
           },
           {
             "data": "2026-11-20",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-21",
             "visitantes": 0
           }
         ]
@@ -2421,6 +2449,10 @@
           {
             "data": "2026-11-20",
             "visitantes": 1
+          },
+          {
+            "data": "2026-11-21",
+            "visitantes": 0
           }
         ]
       }
@@ -2609,6 +2641,10 @@
           {
             "data": "2026-11-20",
             "visitantes": 0
+          },
+          {
+            "data": "2026-11-21",
+            "visitantes": 0
           }
         ]
       }
@@ -2772,6 +2808,10 @@
           },
           {
             "data": "2026-11-20",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-21",
             "visitantes": 0
           }
         ]
@@ -2970,6 +3010,10 @@
           {
             "data": "2026-11-20",
             "visitantes": 0
+          },
+          {
+            "data": "2026-11-21",
+            "visitantes": 0
           }
         ]
       }
@@ -3151,6 +3195,10 @@
           },
           {
             "data": "2026-11-20",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-21",
             "visitantes": 0
           }
         ]
@@ -3391,6 +3439,10 @@
           {
             "data": "2026-11-20",
             "visitantes": 1
+          },
+          {
+            "data": "2026-11-21",
+            "visitantes": 0
           }
         ]
       }
@@ -3444,132 +3496,7 @@
         ],
         "deploy_pages": null
       },
-      "alertas": [],
-      "acesso": {
-        "visitantes_unicos": 6,
-        "serie_diaria": [
-          {
-            "data": "2026-10-22",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-23",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-24",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-25",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-26",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-27",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-28",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-29",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-30",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-31",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-11-01",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-11-02",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-11-03",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-11-04",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-11-05",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-11-06",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-11-07",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-11-08",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-11-09",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-11-10",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-11-11",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-11-12",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-11-13",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-11-14",
-            "visitantes": 1
-          },
-          {
-            "data": "2026-11-15",
-            "visitantes": 3
-          },
-          {
-            "data": "2026-11-16",
-            "visitantes": 1
-          },
-          {
-            "data": "2026-11-17",
-            "visitantes": 1
-          },
-          {
-            "data": "2026-11-18",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-11-19",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-11-20",
-            "visitantes": 0
-          }
-        ]
-      }
+      "alertas": []
     },
     {
       "slug": "melhor_preco",
@@ -3770,6 +3697,10 @@
           {
             "data": "2026-11-20",
             "visitantes": 2
+          },
+          {
+            "data": "2026-11-21",
+            "visitantes": 0
           }
         ]
       }
@@ -3927,6 +3858,10 @@
           },
           {
             "data": "2026-11-20",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-21",
             "visitantes": 0
           }
         ]
@@ -4133,6 +4068,10 @@
           {
             "data": "2026-11-20",
             "visitantes": 1
+          },
+          {
+            "data": "2026-11-21",
+            "visitantes": 0
           }
         ]
       }
