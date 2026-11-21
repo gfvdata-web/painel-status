@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-11-21T11:49:30.491122+00:00",
+    "gerado_em": "2026-11-21T11:59:35.839200+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -16,22 +16,22 @@
       "form_url": "https://forms.gle/7yZAx1WThPf51bv67",
       "form_rotulo": "Enviar palpites (Google Forms)",
       "ultimo_commit_dados": {
-        "data": "2026-11-21T10:17:40Z",
-        "mensagem": "Etapa 5: atualiza dados via Actions (rodada 21)",
-        "sha": "649719d",
-        "url": "https://github.com/gfvdata-web/page-bolao-formula1/commit/649719d6e7d10b7f2f46e27ec16624e10e20e659"
+        "data": "2026-11-21T11:52:51Z",
+        "mensagem": "Etapa 5: pontua rodada 21 (resultado saiu depois do envio)",
+        "sha": "27d4851",
+        "url": "https://github.com/gfvdata-web/page-bolao-formula1/commit/27d485159e70ca422319f83db2600331dda5e7b4"
       },
       "ultima_execucao_pipeline": {
         "id": 44893633405,
         "evento": "repository_dispatch",
-        "status": "in_progress",
-        "conclusao": null,
+        "status": "completed",
+        "conclusao": "success",
         "criado_em": "2026-11-21T10:17:33Z",
-        "atualizado_em": "2026-11-21T10:17:36Z",
+        "atualizado_em": "2026-11-21T11:52:56Z",
         "url": "https://github.com/gfvdata-web/page-bolao-formula1/actions/runs/44893633405"
       },
       "rodada_mais_recente": 21,
-      "em_vigilia": true,
+      "em_vigilia": false,
       "etapas_pipeline": [
         {
           "chave": "forms",
@@ -50,23 +50,23 @@
         {
           "chave": "resultado",
           "titulo": "Resultado oficial do quali (Jolpica)",
-          "estado": "aguardando",
-          "detalhe": "Em vigília: consultando a Jolpica a cada 5 min (até 5 h) até o resultado sair — 19 consultas sem resultado até agora (horário = a mais recente).",
-          "quando": "2026-11-21T11:47:42Z"
+          "estado": "ok",
+          "detalhe": "Saiu depois do envio — obtido pela vigília.",
+          "quando": "2026-11-21T11:52:52Z"
         },
         {
           "chave": "pontuacao",
           "titulo": "Pontuação calculada",
-          "estado": "pendente",
-          "detalhe": "Assim que o resultado sair.",
-          "quando": null
+          "estado": "ok",
+          "detalhe": "",
+          "quando": "2026-11-21T11:52:52Z"
         },
         {
           "chave": "pagina",
           "titulo": "Página atualizada (GitHub Pages)",
-          "estado": "pendente",
-          "detalhe": "",
-          "quando": null
+          "estado": "ok",
+          "detalhe": "Placar novo no ar.",
+          "quando": "2026-11-21T11:53:34Z"
         }
       ],
       "site_no_ar": {

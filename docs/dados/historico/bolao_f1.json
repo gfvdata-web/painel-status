@@ -3,8 +3,17 @@
  "nome": "Bolão F1",
  "workflow": "pipeline.yml",
  "url_workflow": "https://github.com/gfvdata-web/page-bolao-formula1/actions/workflows/pipeline.yml",
- "atualizado_em": "2026-11-08T00:00:58.230009+00:00",
+ "atualizado_em": "2026-11-21T11:59:35.838649+00:00",
  "execucoes": [
+  {
+   "id": 44893633405,
+   "criado_em": "2026-11-21T10:17:33Z",
+   "evento": "repository_dispatch",
+   "conclusao": "success",
+   "duracao_s": 5723,
+   "url": "https://github.com/gfvdata-web/page-bolao-formula1/actions/runs/44893633405",
+   "avisos": []
+  },
   {
    "id": 42414541772,
    "criado_em": "2026-11-07T21:10:02Z",
