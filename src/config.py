@@ -431,6 +431,27 @@ SITES = [
         "github": True,
     },
     {
+        "slug": "esportes",
+        "nome": "Esportes para assistir",
+        "repo": "SportToWatch",
+        "pages_url": "https://esportes.gfvdata.com/",
+        # Os horários vivem no D1, atualizados sob demanda pelo Worker (sem Cron: a conta
+        # já usa os 5). "Dados atualizados" mostra só o último commit em docs/.
+        "caminho_dados": "docs",
+        "branch_dados": None,
+        "workflow_arquivo": None,
+        "json_meta_url": None,
+        "form_url": None,
+        "form_rotulo": None,
+        "destaque": False,
+        "pipeline_bolao": False,
+        "pipeline_forms": None,
+        "categoria": None,
+        "na_lista": True,
+        "contagem_url": None,
+        "github": True,
+    },
+    {
         "slug": "notas_fiscais",
         "nome": "Notas fiscais",
         # Git só local, sem repo no GitHub (github=False): o card mostra só "site no ar".

@@ -1650,6 +1650,51 @@
       "alertas": []
     },
     {
+      "slug": "esportes",
+      "nome": "Esportes para assistir",
+      "repo": "SportToWatch",
+      "pages_url": "https://esportes.gfvdata.com/",
+      "destaque": false,
+      "categoria": null,
+      "na_lista": true,
+      "github": true,
+      "ultimo_commit_dados": {
+        "data": "2026-10-13T08:00:12Z",
+        "mensagem": "Atualiza dados da rodada 21",
+        "sha": "a1b2c3d",
+        "url": "https://github.com/gfvdata-web/exemplo/commit/a1b2c3d4e5f60718293a4b5c6d7e8f9012345678"
+      },
+      "site_no_ar": {
+        "ok": true,
+        "status_http": 200
+      },
+      "detalhes": {
+        "coleta": null,
+        "commits_dados": [
+          {
+            "data": "2026-10-13T08:00:12Z",
+            "mensagem": "Atualiza dados da rodada 21",
+            "sha": "a1b2c3d",
+            "url": "https://github.com/gfvdata-web/exemplo/commit/a1b2c3d4e5f60718293a4b5c6d7e8f9012345678"
+          },
+          {
+            "data": "2026-10-12T08:00:05Z",
+            "mensagem": "Atualiza dados da rodada 20",
+            "sha": "ffeeddc",
+            "url": "https://github.com/gfvdata-web/exemplo/commit/ffeeddccbbaa00998877665544332211ffeeddcc"
+          }
+        ],
+        "deploy_pages": {
+          "status": "completed",
+          "conclusao": "success",
+          "criado_em": "2026-10-13T10:05:00Z",
+          "atualizado_em": "2026-10-13T10:06:00Z",
+          "url": "https://github.com/gfvdata-web/exemplo/actions/runs/7"
+        }
+      },
+      "alertas": []
+    },
+    {
       "slug": "notas_fiscais",
       "nome": "Notas fiscais",
       "repo": "notas-monitor",
