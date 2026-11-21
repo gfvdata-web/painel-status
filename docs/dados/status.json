@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-11-21T10:17:39.552368+00:00",
+    "gerado_em": "2026-11-21T10:18:44.941197+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -16,10 +16,10 @@
       "form_url": "https://forms.gle/7yZAx1WThPf51bv67",
       "form_rotulo": "Enviar palpites (Google Forms)",
       "ultimo_commit_dados": {
-        "data": "2026-11-08T00:00:28Z",
-        "mensagem": "Etapa 5: pontua rodada 20 (resultado saiu depois do envio)",
-        "sha": "fec0856",
-        "url": "https://github.com/gfvdata-web/page-bolao-formula1/commit/fec08568f9df1bf5ac6b06e35840737372d3c6e8"
+        "data": "2026-11-21T10:17:40Z",
+        "mensagem": "Etapa 5: atualiza dados via Actions (rodada 21)",
+        "sha": "649719d",
+        "url": "https://github.com/gfvdata-web/page-bolao-formula1/commit/649719d6e7d10b7f2f46e27ec16624e10e20e659"
       },
       "ultima_execucao_pipeline": {
         "id": 44893633405,
@@ -30,7 +30,7 @@
         "atualizado_em": "2026-11-21T10:17:36Z",
         "url": "https://github.com/gfvdata-web/page-bolao-formula1/actions/runs/44893633405"
       },
-      "rodada_mais_recente": 20,
+      "rodada_mais_recente": 21,
       "em_vigilia": true,
       "etapas_pipeline": [
         {
@@ -43,22 +43,22 @@
         {
           "chave": "leitura",
           "titulo": "Palpites lidos e rodada identificada",
-          "estado": "andamento",
-          "detalhe": "Processando o texto enviado…",
-          "quando": null
+          "estado": "ok",
+          "detalhe": "Palpites gravados no repositório.",
+          "quando": "2026-11-21T10:17:40Z"
         },
         {
           "chave": "resultado",
           "titulo": "Resultado oficial do quali (Jolpica)",
-          "estado": "pendente",
-          "detalhe": "",
-          "quando": null
+          "estado": "aguardando",
+          "detalhe": "Em vigília: consultando a Jolpica a cada 5 min (até 5 h) até o resultado sair — 1 consulta sem resultado até agora (horário = a mais recente).",
+          "quando": "2026-11-21T10:17:40Z"
         },
         {
           "chave": "pontuacao",
           "titulo": "Pontuação calculada",
           "estado": "pendente",
-          "detalhe": "",
+          "detalhe": "Assim que o resultado sair.",
           "quando": null
         },
         {
