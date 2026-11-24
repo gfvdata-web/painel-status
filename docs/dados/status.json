@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-11-24T19:53:11.126660+00:00",
+    "gerado_em": "2026-11-24T21:00:59.042504+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -1591,19 +1591,19 @@
       "na_lista": true,
       "github": true,
       "ultimo_commit_dados": {
-        "data": "2026-11-23T21:22:40Z",
-        "mensagem": "Atualiza partidas em 2026-11-23T21:22Z",
-        "sha": "b9f2685",
-        "url": "https://github.com/gfvdata-web/chess-tracking/commit/b9f2685c0f429ffec8e529dace1880fc099db8df"
+        "data": "2026-11-24T20:09:59Z",
+        "mensagem": "Atualiza partidas em 2026-11-24T20:09Z",
+        "sha": "98fac50",
+        "url": "https://github.com/gfvdata-web/chess-tracking/commit/98fac50ed3ad7908eb121dd6807e0f38e2f99a7f"
       },
       "ultima_execucao_pipeline": {
-        "id": 45268838502,
+        "id": 45477655702,
         "evento": "schedule",
         "status": "completed",
         "conclusao": "success",
-        "criado_em": "2026-11-23T21:21:35Z",
-        "atualizado_em": "2026-11-23T21:22:46Z",
-        "url": "https://github.com/gfvdata-web/chess-tracking/actions/runs/45268838502"
+        "criado_em": "2026-11-24T20:08:39Z",
+        "atualizado_em": "2026-11-24T20:10:05Z",
+        "url": "https://github.com/gfvdata-web/chess-tracking/actions/runs/45477655702"
       },
       "site_no_ar": {
         "ok": true,
@@ -1620,6 +1620,16 @@
             }
           ],
           "historico": [
+            {
+              "id": 45477655702,
+              "evento": "schedule",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-11-24T20:08:39Z",
+              "atualizado_em": "2026-11-24T20:10:05Z",
+              "url": "https://github.com/gfvdata-web/chess-tracking/actions/runs/45477655702",
+              "duracao_s": 86
+            },
             {
               "id": 45268838502,
               "evento": "schedule",
@@ -1759,26 +1769,16 @@
               "atualizado_em": "2026-11-10T17:03:01Z",
               "url": "https://github.com/gfvdata-web/chess-tracking/actions/runs/42860655233",
               "duracao_s": 75
-            },
-            {
-              "id": 42686757131,
-              "evento": "schedule",
-              "status": "completed",
-              "conclusao": "success",
-              "criado_em": "2026-11-09T19:47:45Z",
-              "atualizado_em": "2026-11-09T19:49:38Z",
-              "url": "https://github.com/gfvdata-web/chess-tracking/actions/runs/42686757131",
-              "duracao_s": 113
             }
           ],
           "ultimo_sucesso": {
-            "id": 45268838502,
+            "id": 45477655702,
             "evento": "schedule",
             "status": "completed",
             "conclusao": "success",
-            "criado_em": "2026-11-23T21:21:35Z",
-            "atualizado_em": "2026-11-23T21:22:46Z",
-            "url": "https://github.com/gfvdata-web/chess-tracking/actions/runs/45268838502"
+            "criado_em": "2026-11-24T20:08:39Z",
+            "atualizado_em": "2026-11-24T20:10:05Z",
+            "url": "https://github.com/gfvdata-web/chess-tracking/actions/runs/45477655702"
           },
           "ultima_falha": null,
           "passos_ultima": [
@@ -1830,6 +1830,12 @@
         },
         "commits_dados": [
           {
+            "data": "2026-11-24T20:09:59Z",
+            "mensagem": "Atualiza partidas em 2026-11-24T20:09Z",
+            "sha": "98fac50",
+            "url": "https://github.com/gfvdata-web/chess-tracking/commit/98fac50ed3ad7908eb121dd6807e0f38e2f99a7f"
+          },
+          {
             "data": "2026-11-23T21:22:40Z",
             "mensagem": "Atualiza partidas em 2026-11-23T21:22Z",
             "sha": "b9f2685",
@@ -1852,20 +1858,14 @@
             "mensagem": "Atualiza partidas em 2026-11-20T17:48Z",
             "sha": "056ad5e",
             "url": "https://github.com/gfvdata-web/chess-tracking/commit/056ad5edea8febafb4b3c872d6c0fe4d22797781"
-          },
-          {
-            "data": "2026-11-19T18:17:00Z",
-            "mensagem": "Atualiza partidas em 2026-11-19T18:17Z",
-            "sha": "41878fc",
-            "url": "https://github.com/gfvdata-web/chess-tracking/commit/41878fcf106bac17130625981a9c87acf57ee133"
           }
         ],
         "deploy_pages": {
           "status": "completed",
           "conclusao": "success",
-          "criado_em": "2026-11-23T21:22:44Z",
-          "atualizado_em": "2026-11-23T21:23:31Z",
-          "url": "https://github.com/gfvdata-web/chess-tracking/actions/runs/45269034058"
+          "criado_em": "2026-11-24T20:10:03Z",
+          "atualizado_em": "2026-11-24T20:10:53Z",
+          "url": "https://github.com/gfvdata-web/chess-tracking/actions/runs/45477899762"
         }
       },
       "alertas": [],
@@ -2012,19 +2012,19 @@
       "form_url": "https://forms.gle/y3uXaukJXmP9GMED7",
       "form_rotulo": "Enviar fotos",
       "ultimo_commit_dados": {
-        "data": "2026-11-24T05:41:33Z",
-        "mensagem": "dados: leituras do esp32-01 até 2026-11-24T05:37",
-        "sha": "3d583e9",
-        "url": "https://github.com/gfvdata-web/PlantsCare/commit/3d583e98c9c14bc74a74b86d14eabf83773a3994"
+        "data": "2026-11-24T20:26:42Z",
+        "mensagem": "dados: leituras do esp32-01 até 2026-11-24T20:13",
+        "sha": "36e511a",
+        "url": "https://github.com/gfvdata-web/PlantsCare/commit/36e511aaa2db7f1febde6e216f8d21b2c19e36e2"
       },
       "ultima_execucao_pipeline": {
-        "id": 45335059165,
+        "id": 45480828199,
         "evento": "schedule",
         "status": "completed",
         "conclusao": "success",
-        "criado_em": "2026-11-24T05:41:19Z",
-        "atualizado_em": "2026-11-24T05:42:01Z",
-        "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/45335059165"
+        "criado_em": "2026-11-24T20:26:28Z",
+        "atualizado_em": "2026-11-24T20:27:15Z",
+        "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/45480828199"
       },
       "site_no_ar": {
         "ok": true,
@@ -2041,6 +2041,16 @@
             }
           ],
           "historico": [
+            {
+              "id": 45480828199,
+              "evento": "schedule",
+              "status": "completed",
+              "conclusao": "success",
+              "criado_em": "2026-11-24T20:26:28Z",
+              "atualizado_em": "2026-11-24T20:27:15Z",
+              "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/45480828199",
+              "duracao_s": 47
+            },
             {
               "id": 45335059165,
               "evento": "schedule",
@@ -2180,26 +2190,16 @@
               "atualizado_em": "2026-11-20T00:59:14Z",
               "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/44650056330",
               "duracao_s": 50
-            },
-            {
-              "id": 44591021198,
-              "evento": "schedule",
-              "status": "completed",
-              "conclusao": "success",
-              "criado_em": "2026-11-19T18:44:40Z",
-              "atualizado_em": "2026-11-19T18:45:37Z",
-              "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/44591021198",
-              "duracao_s": 57
             }
           ],
           "ultimo_sucesso": {
-            "id": 45335059165,
+            "id": 45480828199,
             "evento": "schedule",
             "status": "completed",
             "conclusao": "success",
-            "criado_em": "2026-11-24T05:41:19Z",
-            "atualizado_em": "2026-11-24T05:42:01Z",
-            "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/45335059165"
+            "criado_em": "2026-11-24T20:26:28Z",
+            "atualizado_em": "2026-11-24T20:27:15Z",
+            "url": "https://github.com/gfvdata-web/PlantsCare/actions/runs/45480828199"
           },
           "ultima_falha": null,
           "passos_ultima": [
@@ -2251,6 +2251,12 @@
         },
         "commits_dados": [
           {
+            "data": "2026-11-24T20:26:42Z",
+            "mensagem": "dados: leituras do esp32-01 até 2026-11-24T20:13",
+            "sha": "36e511a",
+            "url": "https://github.com/gfvdata-web/PlantsCare/commit/36e511aaa2db7f1febde6e216f8d21b2c19e36e2"
+          },
+          {
             "data": "2026-11-24T05:41:33Z",
             "mensagem": "dados: leituras do esp32-01 até 2026-11-24T05:37",
             "sha": "3d583e9",
@@ -2273,12 +2279,6 @@
             "mensagem": "dados: leituras do esp32-01 até 2026-11-22T23:50",
             "sha": "609851c",
             "url": "https://github.com/gfvdata-web/PlantsCare/commit/609851cf0f548e23ce142cae878f41c6d9db9362"
-          },
-          {
-            "data": "2026-11-22T18:10:12Z",
-            "mensagem": "dados: leituras do esp32-01 até 2026-11-22T18:05",
-            "sha": "303c529",
-            "url": "https://github.com/gfvdata-web/PlantsCare/commit/303c529923ec4e77cc1f6dc07fd770dda8d65545"
           }
         ],
         "deploy_pages": null
