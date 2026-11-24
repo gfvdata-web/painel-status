@@ -3,8 +3,26 @@
  "nome": "Simulador de investimentos",
  "workflow": "atualizar-dados.yml",
  "url_workflow": "https://github.com/gfvdata-web/simulador-investimentos/actions/workflows/atualizar-dados.yml",
- "atualizado_em": "2026-11-21T03:01:14.721362+00:00",
+ "atualizado_em": "2026-11-24T06:01:21.195826+00:00",
  "execucoes": [
+  {
+   "id": 45330535724,
+   "criado_em": "2026-11-24T05:02:49Z",
+   "evento": "schedule",
+   "conclusao": "success",
+   "duracao_s": 725,
+   "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/45330535724",
+   "avisos": [
+    {
+     "nivel": "warning",
+     "mensagem": "B3 COTAHIST 2026: download completo na tentativa 2 (108346483 bytes)"
+    },
+    {
+     "nivel": "warning",
+     "mensagem": "B3 COTAHIST 2026: tentativa 1 caiu com 20728495 de 108346483 bytes (conexao fechada pelo servidor); retomando"
+    }
+   ]
+  },
   {
    "id": 44852568743,
    "criado_em": "2026-11-21T01:51:03Z",
