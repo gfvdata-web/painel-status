@@ -3,8 +3,17 @@
  "nome": "Simulador de investimentos",
  "workflow": "atualizar-dados.yml",
  "url_workflow": "https://github.com/gfvdata-web/simulador-investimentos/actions/workflows/atualizar-dados.yml",
- "atualizado_em": "2026-11-26T06:01:13.290253+00:00",
+ "atualizado_em": "2026-11-27T06:01:09.273495+00:00",
  "execucoes": [
+  {
+   "id": 45933625742,
+   "criado_em": "2026-11-27T03:20:48Z",
+   "evento": "schedule",
+   "conclusao": "success",
+   "duracao_s": 757,
+   "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/45933625742",
+   "avisos": []
+  },
   {
    "id": 45747854162,
    "criado_em": "2026-11-26T03:16:30Z",
