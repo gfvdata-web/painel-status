@@ -3,8 +3,17 @@
  "nome": "Chess Tracking",
  "workflow": "atualizar-partidas.yml",
  "url_workflow": "https://github.com/gfvdata-web/chess-tracking/actions/workflows/atualizar-partidas.yml",
- "atualizado_em": "2026-11-26T20:52:11.553329+00:00",
+ "atualizado_em": "2026-11-27T21:01:18.575505+00:00",
  "execucoes": [
+  {
+   "id": 46053225831,
+   "criado_em": "2026-11-27T18:57:29Z",
+   "evento": "schedule",
+   "conclusao": "success",
+   "duracao_s": 64,
+   "url": "https://github.com/gfvdata-web/chess-tracking/actions/runs/46053225831",
+   "avisos": []
+  },
   {
    "id": 45880153744,
    "criado_em": "2026-11-26T18:59:08Z",
