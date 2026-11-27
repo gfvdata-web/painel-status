@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-11-27T00:01:10.322190+00:00",
+    "gerado_em": "2026-11-27T03:01:10.563898+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -196,6 +196,10 @@
           {
             "data": "2026-11-26",
             "visitantes": 0
+          },
+          {
+            "data": "2026-11-27",
+            "visitantes": 0
           }
         ]
       }
@@ -388,6 +392,10 @@
           {
             "data": "2026-11-26",
             "visitantes": 0
+          },
+          {
+            "data": "2026-11-27",
+            "visitantes": 0
           }
         ]
       },
@@ -399,10 +407,6 @@
         "por_script": 1,
         "desde": "2026-10-18",
         "serie_diaria": [
-          {
-            "data": "2026-10-28",
-            "downloads": 0
-          },
           {
             "data": "2026-10-29",
             "downloads": 0
@@ -518,6 +522,10 @@
           {
             "data": "2026-11-26",
             "downloads": 2
+          },
+          {
+            "data": "2026-11-27",
+            "downloads": 0
           }
         ]
       }
@@ -710,6 +718,10 @@
           {
             "data": "2026-11-26",
             "visitantes": 0
+          },
+          {
+            "data": "2026-11-27",
+            "visitantes": 0
           }
         ]
       },
@@ -721,10 +733,6 @@
         "por_script": 0,
         "desde": "2026-10-18",
         "serie_diaria": [
-          {
-            "data": "2026-10-28",
-            "downloads": 0
-          },
           {
             "data": "2026-10-29",
             "downloads": 0
@@ -839,6 +847,10 @@
           },
           {
             "data": "2026-11-26",
+            "downloads": 0
+          },
+          {
+            "data": "2026-11-27",
             "downloads": 0
           }
         ]
@@ -1026,6 +1038,10 @@
           {
             "data": "2026-11-26",
             "visitantes": 0
+          },
+          {
+            "data": "2026-11-27",
+            "visitantes": 0
           }
         ]
       },
@@ -1037,10 +1053,6 @@
         "por_script": 0,
         "desde": "2026-10-18",
         "serie_diaria": [
-          {
-            "data": "2026-10-28",
-            "downloads": 0
-          },
           {
             "data": "2026-10-29",
             "downloads": 0
@@ -1156,6 +1168,10 @@
           {
             "data": "2026-11-26",
             "downloads": 1
+          },
+          {
+            "data": "2026-11-27",
+            "downloads": 0
           }
         ]
       }
@@ -1556,6 +1572,10 @@
           },
           {
             "data": "2026-11-26",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-27",
             "visitantes": 0
           }
         ]
@@ -1971,6 +1991,10 @@
           },
           {
             "data": "2026-11-26",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-27",
             "visitantes": 0
           }
         ]
@@ -2425,6 +2449,10 @@
           {
             "data": "2026-11-26",
             "visitantes": 0
+          },
+          {
+            "data": "2026-11-27",
+            "visitantes": 0
           }
         ]
       }
@@ -2652,6 +2680,10 @@
           {
             "data": "2026-11-26",
             "visitantes": 0
+          },
+          {
+            "data": "2026-11-27",
+            "visitantes": 0
           }
         ]
       }
@@ -2849,6 +2881,10 @@
           {
             "data": "2026-11-26",
             "visitantes": 0
+          },
+          {
+            "data": "2026-11-27",
+            "visitantes": 0
           }
         ]
       }
@@ -3030,6 +3066,10 @@
           },
           {
             "data": "2026-11-26",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-27",
             "visitantes": 0
           }
         ]
@@ -3270,6 +3310,10 @@
           {
             "data": "2026-11-26",
             "visitantes": 0
+          },
+          {
+            "data": "2026-11-27",
+            "visitantes": 0
           }
         ]
       }
@@ -3445,6 +3489,10 @@
           },
           {
             "data": "2026-11-26",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-27",
             "visitantes": 0
           }
         ]
@@ -3649,6 +3697,10 @@
           {
             "data": "2026-11-26",
             "visitantes": 0
+          },
+          {
+            "data": "2026-11-27",
+            "visitantes": 0
           }
         ]
       }
@@ -3807,6 +3859,10 @@
           {
             "data": "2026-11-26",
             "visitantes": 0
+          },
+          {
+            "data": "2026-11-27",
+            "visitantes": 0
           }
         ]
       }
@@ -3964,6 +4020,10 @@
           },
           {
             "data": "2026-11-26",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-27",
             "visitantes": 0
           }
         ]
@@ -4169,6 +4229,10 @@
           },
           {
             "data": "2026-11-26",
+            "visitantes": 0
+          },
+          {
+            "data": "2026-11-27",
             "visitantes": 0
           }
         ]
