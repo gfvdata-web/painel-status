@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gerado_em": "2026-11-28T03:01:11.381383+00:00",
+    "gerado_em": "2026-11-28T06:00:56.007213+00:00",
     "descricao": "Status de atualização de dados e acesso dos sites gfvdata-web"
   },
   "sites": [
@@ -1186,18 +1186,18 @@
       "na_lista": true,
       "github": true,
       "ultimo_commit_dados": {
-        "data": "2026-11-27T03:33:20Z",
-        "mensagem": "Dados de mercado em 2026-11-27",
-        "sha": "b63d9f0",
-        "url": "https://github.com/gfvdata-web/simulador-investimentos/commit/b63d9f0631709059d10f6a7ecc635c1f9697fce8"
+        "data": "2026-11-28T03:08:43Z",
+        "mensagem": "Dados de mercado em 2026-11-28",
+        "sha": "d31279c",
+        "url": "https://github.com/gfvdata-web/simulador-investimentos/commit/d31279c482ef1fe08742eeb9dc69c45297a61355"
       },
       "ultima_execucao_pipeline": {
         "id": 46100648860,
         "evento": "schedule",
-        "status": "in_progress",
-        "conclusao": null,
+        "status": "completed",
+        "conclusao": "success",
         "criado_em": "2026-11-28T02:59:03Z",
-        "atualizado_em": "2026-11-28T02:59:07Z",
+        "atualizado_em": "2026-11-28T03:08:47Z",
         "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/46100648860"
       },
       "site_no_ar": {
@@ -1218,12 +1218,12 @@
             {
               "id": 46100648860,
               "evento": "schedule",
-              "status": "in_progress",
-              "conclusao": null,
+              "status": "completed",
+              "conclusao": "success",
               "criado_em": "2026-11-28T02:59:03Z",
-              "atualizado_em": "2026-11-28T02:59:07Z",
+              "atualizado_em": "2026-11-28T03:08:47Z",
               "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/46100648860",
-              "duracao_s": null
+              "duracao_s": 584
             },
             {
               "id": 45933625742,
@@ -1367,13 +1367,13 @@
             }
           ],
           "ultimo_sucesso": {
-            "id": 45933625742,
+            "id": 46100648860,
             "evento": "schedule",
             "status": "completed",
             "conclusao": "success",
-            "criado_em": "2026-11-27T03:20:48Z",
-            "atualizado_em": "2026-11-27T03:33:25Z",
-            "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/45933625742"
+            "criado_em": "2026-11-28T02:59:03Z",
+            "atualizado_em": "2026-11-28T03:08:47Z",
+            "url": "https://github.com/gfvdata-web/simulador-investimentos/actions/runs/46100648860"
           },
           "ultima_falha": null,
           "passos_ultima": [
@@ -1391,27 +1391,37 @@
             },
             {
               "nome": "Coletar",
-              "conclusao": "in_progress"
+              "conclusao": "success"
             },
             {
               "nome": "Validar o que foi coletado",
-              "conclusao": "pending"
+              "conclusao": "success"
             },
             {
               "nome": "Commitar se algo mudou",
-              "conclusao": "pending"
+              "conclusao": "success"
             },
             {
               "nome": "Post Run actions/setup-python@v7",
-              "conclusao": "pending"
+              "conclusao": "success"
             },
             {
               "nome": "Post Run actions/checkout@v7",
-              "conclusao": "pending"
+              "conclusao": "success"
+            },
+            {
+              "nome": "Complete job",
+              "conclusao": "success"
             }
           ]
         },
         "commits_dados": [
+          {
+            "data": "2026-11-28T03:08:43Z",
+            "mensagem": "Dados de mercado em 2026-11-28",
+            "sha": "d31279c",
+            "url": "https://github.com/gfvdata-web/simulador-investimentos/commit/d31279c482ef1fe08742eeb9dc69c45297a61355"
+          },
           {
             "data": "2026-11-27T03:33:20Z",
             "mensagem": "Dados de mercado em 2026-11-27",
@@ -1435,12 +1445,6 @@
             "mensagem": "Dados de mercado em 2026-11-24",
             "sha": "262129a",
             "url": "https://github.com/gfvdata-web/simulador-investimentos/commit/262129a41fddfcc5b8efbe50a0a2ef4374735ac0"
-          },
-          {
-            "data": "2026-11-21T02:04:28Z",
-            "mensagem": "Dados de mercado em 2026-11-21",
-            "sha": "a014f02",
-            "url": "https://github.com/gfvdata-web/simulador-investimentos/commit/a014f02cc9c2e3c0be0fc4b95ff8983744542197"
           }
         ],
         "deploy_pages": null
@@ -4232,136 +4236,7 @@
         ],
         "deploy_pages": null
       },
-      "alertas": [],
-      "acesso": {
-        "visitantes_unicos": 26,
-        "serie_diaria": [
-          {
-            "data": "2026-10-29",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-10-30",
-            "visitantes": 1
-          },
-          {
-            "data": "2026-10-31",
-            "visitantes": 1
-          },
-          {
-            "data": "2026-11-01",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-11-02",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-11-03",
-            "visitantes": 1
-          },
-          {
-            "data": "2026-11-04",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-11-05",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-11-06",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-11-07",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-11-08",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-11-09",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-11-10",
-            "visitantes": 1
-          },
-          {
-            "data": "2026-11-11",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-11-12",
-            "visitantes": 1
-          },
-          {
-            "data": "2026-11-13",
-            "visitantes": 3
-          },
-          {
-            "data": "2026-11-14",
-            "visitantes": 1
-          },
-          {
-            "data": "2026-11-15",
-            "visitantes": 2
-          },
-          {
-            "data": "2026-11-16",
-            "visitantes": 3
-          },
-          {
-            "data": "2026-11-17",
-            "visitantes": 1
-          },
-          {
-            "data": "2026-11-18",
-            "visitantes": 1
-          },
-          {
-            "data": "2026-11-19",
-            "visitantes": 1
-          },
-          {
-            "data": "2026-11-20",
-            "visitantes": 1
-          },
-          {
-            "data": "2026-11-21",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-11-22",
-            "visitantes": 1
-          },
-          {
-            "data": "2026-11-23",
-            "visitantes": 1
-          },
-          {
-            "data": "2026-11-24",
-            "visitantes": 1
-          },
-          {
-            "data": "2026-11-25",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-11-26",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-11-27",
-            "visitantes": 0
-          },
-          {
-            "data": "2026-11-28",
-            "visitantes": 0
-          }
-        ]
-      }
+      "alertas": []
     },
     {
       "slug": "site_raiz",
